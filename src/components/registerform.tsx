@@ -24,16 +24,44 @@ interface User {
         console.log(users)
 
         // HandleChange method to update the states
-        const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+
+
+        const handleNameChange = (e:React.ChangeEvent<HTMLInputElement>) => {
             setName(e.target.value);
         }
+        const handleEmailChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+            setEmail(e.target.value);
+        }
+
+        const handlePasswordChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+            setPassword(e.target.value)
+        }
+
+        // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string): void => {
+        //     switch (field) {
+        //         case 'name':
+        //             setName(e.target.value);
+        //             break;
+        //         case 'email':
+        //             setEmail(e.target.value);
+        //             break;
+        //         case 'password':
+        //             setPassword(e.target.value);
+        //             break;
+        //         // Add more cases for other fields if needed
+        //         default:
+        //             break;
+        //     }
+        // };
 
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
 
-                if (name) {
+                if (name && email && password) {
                     setUsers([...users, {name: name,email: email, password : password }]);
                     setName(''); // Clear the input field
+                    setEmail('');
+                    setPassword('');
                 }
 
             if (name === '' || email === '' || password === '') {
@@ -52,9 +80,9 @@ interface User {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
-                    <input  onChange={handleChange} value={name}/>
-                    <input  onChange={handleChange} value={email}/>
-                    <input  onChange={handleChange} value={password}/>
+                    <input name={'name'} onChange={handleNameChange} value={name}/>
+                    <input  onChange={handleEmailChange} value={email}/>
+                    <input  onChange={handlePasswordChange} value={password}/>
                     <button  className="btn"
                             type="submit">
                       Submit
