@@ -6,6 +6,8 @@ interface Props {
 
 interface User {
     name: string;
+    email: string;
+    password: string
 }
 
     export function  Register(props: Props) {
@@ -13,7 +15,7 @@ interface User {
         const [name, setName] = useState('');
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
-        const [users, setUsers] = useState<User[]>([{'name': 'anna'}, {'name': 'alex'}])
+        const [users, setUsers] = useState<User[]>([{'name': 'anna', 'email': "anna@gmail.com", 'password': 'fgehd7832-dsjb'}, {'name': 'alex', 'email': "alex-dd@gmail.com", 'password': 'fgce-wsg'}])
 
         // States for checking the errors
         const [submitted, setSubmitted] = useState(false);
@@ -30,7 +32,7 @@ interface User {
             e.preventDefault();
 
                 if (name) {
-                    setUsers([...users, {name: name}]);
+                    setUsers([...users, {name: name,email: email, password : password }]);
                     setName(''); // Clear the input field
                 }
 
@@ -51,6 +53,8 @@ interface User {
             <div>
                 <form onSubmit={handleSubmit}>
                     <input  onChange={handleChange} value={name}/>
+                    <input  onChange={handleChange} value={email}/>
+                    <input  onChange={handleChange} value={password}/>
                     <button  className="btn"
                             type="submit">
                       Submit
