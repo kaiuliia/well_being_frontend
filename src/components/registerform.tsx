@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 interface Props {
     title: string;
@@ -6,9 +6,26 @@ interface Props {
 
 
     export function  Register(props: Props) {
-        return  (
-            <div>{props.title}</div>
-        );
+        const [name, setName] = useState("");
+
+        // HandleChange method to update the states
+        const handleChange = () => {
+            console.log('eheeh')
+        }
+
+
+
+
+        return (
+            <div>
+                <form>
+                    <input value={name} onChange={handleChange}/>
+                </form>
+            </div>
+        )
+
+
+
     };
 
     // export default Register;
