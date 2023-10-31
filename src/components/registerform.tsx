@@ -80,9 +80,15 @@ interface User {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
+                    <h3>Name:</h3>
                     <input name={'name'} onChange={handleNameChange} value={name}/>
+                    <br></br>
+                    <h3>E-mail:</h3>
                     <input  onChange={handleEmailChange} value={email}/>
+                    <br></br>
+                    <h3>Create a password:</h3>
                     <input  onChange={handlePasswordChange} value={password}/>
+                    <br></br>
                     <button  className="btn"
                             type="submit">
                       Submit
