@@ -40,11 +40,11 @@ export function Register(props: Props) {
 
   useEffect(() => {
     const api = async () => {
-      const data = await fetch("https://randomuser.me/api", {
+      const data = await fetch("/api", {
         method: "GET",
       });
       const jsonData = await data.json();
-      setUsers(jsonData.results);
+      setSubmitted(jsonData.message);
     };
 
     api();
@@ -101,6 +101,7 @@ export function Register(props: Props) {
         <button className="btn" type="submit">
           Submit
         </button>
+        <p>{submitted}</p>
       </form>
     </div>
   );
