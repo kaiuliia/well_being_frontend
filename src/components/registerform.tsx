@@ -27,6 +27,18 @@ export function Register(props: Props) {
 
   // HandleChange method to update the states
 
+  const sendData = async (user: User) => {
+    const data = await fetch("http://localhost:9090/register", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(user),
+    });
+    const result = await data.json();
+    console.log(result.userId);
+    // result.status(201).send("Ready!");
+    // setSubmitted(result.message);
+  };
+
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
@@ -40,7 +52,7 @@ export function Register(props: Props) {
 
   useEffect(() => {
     const api = async () => {
-      const data = await fetch("/api", {
+      const data = await fetch("http://localhost:9090/api", {
         method: "GET",
       });
       const jsonData = await data.json();
@@ -67,11 +79,12 @@ export function Register(props: Props) {
   //     }
   // };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (name && email && password) {
       setUsers([...users, { name: name, email: email, password: password }]);
+      await sendData({ name: name, email: email, password: password });
       setName(""); // Clear the input field
       setEmail("");
       setPassword("");
