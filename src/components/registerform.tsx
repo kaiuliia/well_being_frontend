@@ -35,8 +35,6 @@ export function Register(props: Props) {
     });
     const result = await data.json();
     console.log(result.userId);
-    // result.status(201).send("Ready!");
-    // setSubmitted(result.message);
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
