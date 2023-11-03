@@ -28,13 +28,11 @@ export function Register(props: Props) {
   // HandleChange method to update the states
 
   const sendData = async (user: User) => {
-    const data = await fetch("http://localhost:9090/register", {
+    await fetch("http://localhost:9090/register", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(user),
     });
-    const result = await data.json();
-    console.log(result.userId);
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
