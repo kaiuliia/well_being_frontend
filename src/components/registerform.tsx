@@ -36,7 +36,7 @@ export function Register(props: Props) {
     const result = await data.json();
     console.log(result.userId);
   };
-
+  dd;
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
