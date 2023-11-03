@@ -11,7 +11,7 @@ interface User {
   password: string;
 }
 
-export function Register(props: Props) {
+export function Login(props: Props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,9 +22,8 @@ export function Register(props: Props) {
 
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
-  // const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
-
+  // const [visible, setVisible] = useState(true);
   console.log(users);
 
   // HandleChange method to update the states
@@ -60,23 +59,6 @@ export function Register(props: Props) {
     api();
   }, []);
 
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string): void => {
-  //     switch (field) {
-  //         case 'name':
-  //             setName(e.target.value);
-  //             break;
-  //         case 'email':
-  //             setEmail(e.target.value);
-  //             break;
-  //         case 'password':
-  //             setPassword(e.target.value);
-  //             break;
-  //         // Add more cases for other fields if needed
-  //         default:
-  //             break;
-  //     }
-  // };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -103,17 +85,14 @@ export function Register(props: Props) {
         onSubmit={handleSubmit}
         style={{ display: props.visible ? "block" : "none" }}
       >
-        <h3>Name:</h3>
-        <input name={"name"} onChange={handleNameChange} value={name} />
-        <br></br>
         <h3>E-mail:</h3>
         <input onChange={handleEmailChange} value={email} />
         <br></br>
-        <h3>Create a password:</h3>
+        <h3>Password:</h3>
         <input onChange={handlePasswordChange} value={password} />
         <br></br>
         <button className="btn" type="submit">
-          Submit
+          {props.title}
         </button>
         <p>{submitted}</p>
       </form>
@@ -121,4 +100,4 @@ export function Register(props: Props) {
   );
 }
 
-// export default Register;
+// export default Login;
