@@ -70,13 +70,17 @@ export function Login(props: Props) {
         style={{ display: props.visible ? "block" : "none" }}
       >
         <h3>E-mail:</h3>
-        <input onChange={handleEmailChange} value={email} />
+        <input onChange={handleEmailChange} value={email} type="email" />
         <br></br>
         <h3>Password:</h3>
-        <input onChange={handlePasswordChange} value={password} />
+        <input
+          onChange={handlePasswordChange}
+          value={password}
+          type="password"
+        />
         <br></br>
         <button className="btn" type="submit">
-          LOGIN
+          Log in
         </button>
         <p>{statusMessage}</p>
       </form>
