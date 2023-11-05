@@ -19,10 +19,6 @@ export function Login(props: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  // const [visible, setVisible] = useState(true);
-
-  // HandleChange method to update the states
-
   const sendData = async (user: User) => {
     const response = await fetch("http://localhost:9090/login", {
       method: "POST",
