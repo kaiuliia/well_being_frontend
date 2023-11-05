@@ -48,35 +48,6 @@ export function Register(props: Props) {
     setPassword(e.target.value);
   };
 
-  useEffect(() => {
-    const api = async () => {
-      const data = await fetch("http://localhost:9090/api", {
-        method: "GET",
-      });
-      const jsonData = await data.json();
-      setSubmitted(jsonData.message);
-    };
-
-    api();
-  }, []);
-
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string): void => {
-  //     switch (field) {
-  //         case 'name':
-  //             setName(e.target.value);
-  //             break;
-  //         case 'email':
-  //             setEmail(e.target.value);
-  //             break;
-  //         case 'password':
-  //             setPassword(e.target.value);
-  //             break;
-  //         // Add more cases for other fields if needed
-  //         default:
-  //             break;
-  //     }
-  // };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

@@ -13,20 +13,29 @@ interface User {
 export function Login(props: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
 
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+
   // const [visible, setVisible] = useState(true);
 
   // HandleChange method to update the states
 
   const sendData = async (user: User) => {
-    await fetch("http://localhost:9090/login", {
+    const response = await fetch("http://localhost:9090/login", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(user),
     });
+    if (response.status > 299) {
+      const error = await response.json();
+      setStatusMessage(error.error);
+    } else {
+      const message = await response.json();
+      setStatusMessage(message.name);
+    }
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,9 +76,9 @@ export function Login(props: Props) {
         <input onChange={handlePasswordChange} value={password} />
         <br></br>
         <button className="btn" type="submit">
-          {props.title}
+          LOGIN
         </button>
-        <p>{submitted}</p>
+        <p>{statusMessage}</p>
       </form>
     </div>
   );
