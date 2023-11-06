@@ -29,9 +29,12 @@ function App() {
     <div className="App">
       <button onClick={handleLoginClick}>Login</button>
       <button onClick={handleRegisterClick}>Register</button>
-      <Login title="hrhr" visible={loginVisible} />
-      <Register title="hrhr" visible={registerVisible} />
-      <MainPage />
+      <Router>
+        <Login title="hrhr" visible={loginVisible} />
+        <Register title="hrhr" visible={registerVisible} />
+
+        <MainPage />
+      </Router>
     </div>
   );
 }
