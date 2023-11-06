@@ -9,7 +9,6 @@ interface User {
   email: string;
   password: string;
 }
-
 export function Login(props: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
