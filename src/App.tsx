@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 import { Register } from "./components/registerform";
 import { Login } from "./components/loginform";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { MainPage } from "./components/mainpage";
 
 function App() {
   const [loginVisible, setLoginVisible] = useState(true);
@@ -24,6 +31,7 @@ function App() {
       <button onClick={handleRegisterClick}>Register</button>
       <Login title="hrhr" visible={loginVisible} />
       <Register title="hrhr" visible={registerVisible} />
+      <MainPage />
     </div>
   );
 }
