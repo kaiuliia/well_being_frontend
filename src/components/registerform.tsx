@@ -15,6 +15,7 @@ export function Register(props: Props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
 
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
@@ -23,11 +24,17 @@ export function Register(props: Props) {
   // HandleChange method to update the states
 
   const sendData = async (user: User) => {
-    await fetch("http://localhost:9090/register", {
+    const response = await fetch("http://localhost:9090/register", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(user),
     });
+    if (response.status > 299) {
+      const error = await response.json();
+      setStatusMessage("error");
+    } else {
+      setStatusMessage("Welcome!");
+    }
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +85,7 @@ export function Register(props: Props) {
         <button className="btn" type="submit">
           Submit
         </button>
-        <p>{submitted}</p>
+        <p>{statusMessage}</p>
       </form>
     </div>
   );
