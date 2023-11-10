@@ -25,6 +25,9 @@ function App() {
       {/*<button onClick={handleLoginClick}>Login</button>*/}
       {/*<button onClick={handleRegisterClick}>Register</button>*/}
       {/*<Router>*/}
+      <Link to="/">Main</Link>
+      <Link to="/register">Reg</Link>
+      <Link to="/login"> Log</Link>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route

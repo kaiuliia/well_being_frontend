@@ -13,18 +13,16 @@ export function MainPage(props: Props) {
 
   const handleLoginClick = () => {
     setLoginVisible(true);
-    setRegisterVisible(false);
+    setRegisterVisible(true);
   };
 
   const handleRegisterClick = () => {
-    setLoginVisible(false);
+    setLoginVisible(true);
     setRegisterVisible(true);
   };
   return (
     <div>
       <p>Main Page</p>
-      <a href="/register">Reg</a>
-      <a href="/login"> Log</a>
 
       <button onClick={handleLoginClick}>Login</button>
       <button onClick={handleRegisterClick}>Register</button>
