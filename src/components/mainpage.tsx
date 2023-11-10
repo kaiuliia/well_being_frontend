@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-interface Props {
-  // title: string;
-  // visible: boolean;
-}
+interface Props {}
 
 interface User {
   email: string;
