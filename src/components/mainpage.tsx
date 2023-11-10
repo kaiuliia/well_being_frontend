@@ -8,18 +8,27 @@ interface User {
   password: string;
 }
 export function MainPage(props: Props) {
+  const [loginVisible, setLoginVisible] = useState(true);
+  const [registerVisible, setRegisterVisible] = useState(false);
+
+  const handleLoginClick = () => {
+    setLoginVisible(true);
+    setRegisterVisible(false);
+  };
+
+  const handleRegisterClick = () => {
+    setLoginVisible(false);
+    setRegisterVisible(true);
+  };
   return (
-    <nav>
-      <NavLink to="/main" className="nav-link">
-        Main
-      </NavLink>
-      <NavLink to="/register" className="nav-link">
-        register
-      </NavLink>
-      <NavLink to="/register" className="nav-link">
-        login
-      </NavLink>
-    </nav>
+    <div>
+      <p>Main Page</p>
+      <a href="/register">Reg</a>
+      <a href="/login"> Log</a>
+
+      <button onClick={handleLoginClick}>Login</button>
+      <button onClick={handleRegisterClick}>Register</button>
+    </div>
   );
 }
 

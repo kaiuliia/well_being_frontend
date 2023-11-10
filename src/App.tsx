@@ -10,47 +10,35 @@ function App() {
   const [loginVisible, setLoginVisible] = useState(true);
   const [registerVisible, setRegisterVisible] = useState(false);
 
-  const handleLoginClick = () => {
-    setLoginVisible(true);
-    setRegisterVisible(false);
-  };
-
-  const handleRegisterClick = () => {
-    setLoginVisible(false);
-    setRegisterVisible(true);
-  };
-
-  // <BrowserRouter>
-  //   <Routes>
-  //     <Route path="/" element={<Login title="hrhr" visible={loginVisible} />} />
-  //     <Route
-  //       path="/register/*"
-  //       element={<Register title="hrhr" visible={registerVisible} />}
-  //     />
-  //     <Route path="/main/*" element={<MainPage />} />
-  //   </Routes>
-  // </BrowserRouter>;
+  // const handleLoginClick = () => {
+  //   setLoginVisible(true);
+  //   setRegisterVisible(false);
+  // };
+  //
+  // const handleRegisterClick = () => {
+  //   setLoginVisible(false);
+  //   setRegisterVisible(true);
+  // };
 
   return (
     <div className="App">
-      <button onClick={handleLoginClick}>Login</button>
-      <button onClick={handleRegisterClick}>Register</button>
-      <Router>
-        <Routes>
-          {/* <HomePage /> */}
-          {/*<Route path="/:type/:id" element={<PetDetailsPage />} />*/}
-          <Route
-            path="/register"
-            element={<Register title="hrhr" visible={registerVisible} />}
-          />
-          <Route
-            path="/login"
-            element={<Login title="hrhr" visible={loginVisible} />}
-          />
-          <Route path="/main" element={<MainPage />} />
-          {/*<Route path="/:type?" element={<HomePage />} />*/}
-        </Routes>
-      </Router>
+      {/*<button onClick={handleLoginClick}>Login</button>*/}
+      {/*<button onClick={handleRegisterClick}>Register</button>*/}
+      {/*<Router>*/}
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route
+          path="/register"
+          element={<Register title="hrhr" visible={registerVisible} />}
+        />
+        <Route
+          path="/login"
+          element={<Login title="hrhr" visible={loginVisible} />}
+        />
+
+        {/*<Route path="/:type?" element={<HomePage />} />*/}
+      </Routes>
+      {/*</Router>*/}
     </div>
 
     // <div className="App">
