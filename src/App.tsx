@@ -36,14 +36,16 @@ function App() {
       <button onClick={handleLoginClick}>Login</button>
       <button onClick={handleRegisterClick}>Register</button>
       <Router>
-        <Login title="hrhr" visible={loginVisible} />
-
         <Routes>
           {/* <HomePage /> */}
           {/*<Route path="/:type/:id" element={<PetDetailsPage />} />*/}
           <Route
             path="/register"
             element={<Register title="hrhr" visible={registerVisible} />}
+          />
+          <Route
+            path="/login"
+            element={<Login title="hrhr" visible={loginVisible} />}
           />
           <Route path="/main" element={<MainPage />} />
           {/*<Route path="/:type?" element={<HomePage />} />*/}
