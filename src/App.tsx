@@ -43,16 +43,6 @@ function App() {
       </Routes>
       {/*</Router>*/}
     </div>
-
-    // <div className="App">
-    //   <button onClick={handleLoginClick}>Login</button>
-    //   <button onClick={handleRegisterClick}>Register</button>
-    //   <Link to="main">main</Link>
-    //   <Login title="hrhr" visible={loginVisible} />
-    //   <Register title="hrhr" visible={registerVisible} />
-    //
-    //   <MainPage />
-    // </div>
   );
 }
 
