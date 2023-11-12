@@ -38,10 +38,7 @@ function App() {
           path="/login"
           element={<Login title="hrhr" visible={loginVisible} />}
         />
-
-        {/*<Route path="/:type?" element={<HomePage />} />*/}
       </Routes>
-      {/*</Router>*/}
     </div>
   );
 }
