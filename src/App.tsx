@@ -3,13 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { Register } from "./components/registerform";
 import { Login } from "./components/loginform";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  NavLink,
-} from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
 import { MainPage } from "./components/mainpage";
 
 function App() {
