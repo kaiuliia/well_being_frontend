@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import "./App.css";
 import { Register } from "./components/registerform";
 import { Login } from "./components/loginform";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  NavLink,
+} from "react-router-dom";
 import { MainPage } from "./components/mainpage";
 
 function App() {
@@ -25,9 +31,9 @@ function App() {
       {/*<button onClick={handleLoginClick}>Login</button>*/}
       {/*<button onClick={handleRegisterClick}>Register</button>*/}
       {/*<Router>*/}
-      <Link to="/">Main</Link>
-      <Link to="/register">Reg</Link>
-      <Link to="/login"> Log</Link>
+      <NavLink to="/">Main</NavLink>
+      <NavLink to="/register">Reg</NavLink>
+      <NavLink to="/login"> Log</NavLink>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route
