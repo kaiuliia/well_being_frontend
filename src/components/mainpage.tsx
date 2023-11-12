@@ -12,13 +12,15 @@ export function MainPage(props: Props) {
   const [registerVisible, setRegisterVisible] = useState(false);
 
   const handleLoginClick = () => {
-    setLoginVisible(true);
-    setRegisterVisible(true);
+    // setLoginVisible(true);
+    // setRegisterVisible(true);
+    window.location.href = "/login";
   };
 
   const handleRegisterClick = () => {
-    setLoginVisible(true);
-    setRegisterVisible(true);
+    // setLoginVisible(true);
+    // setRegisterVisible(true);
+    window.location.href = "/register";
   };
   return (
     <div>

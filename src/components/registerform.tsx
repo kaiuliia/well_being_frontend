@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 interface Props {
   title: string;
-  visible: boolean;
+  // visible: boolean;
 }
 
 interface User {
@@ -71,7 +71,7 @@ export function Register(props: Props) {
     <div>
       <form
         onSubmit={handleSubmit}
-        style={{ display: props.visible ? "block" : "none" }}
+        // style={{ display: props.visible ? "block" : "none" }}
       >
         <h3>Name:</h3>
         <input name={"name"} onChange={handleNameChange} value={name} />

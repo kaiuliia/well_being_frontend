@@ -36,14 +36,8 @@ function App() {
       <NavLink to="/login"> Log</NavLink>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route
-          path="/register"
-          element={<Register title="hrhr" visible={registerVisible} />}
-        />
-        <Route
-          path="/login"
-          element={<Login title="hrhr" visible={loginVisible} />}
-        />
+        <Route path="/register" element={<Register title="hrhr" />} />
+        <Route path="/login" element={<Login title="hrhr" />} />
       </Routes>
     </div>
   );

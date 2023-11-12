@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 interface Props {
   title: string;
-  visible: boolean;
 }
 
 interface User {
@@ -60,10 +59,7 @@ export function Login(props: Props) {
 
   return (
     <div>
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: props.visible ? "block" : "none" }}
-      >
+      <form onSubmit={handleSubmit}>
         <h3>E-mail:</h3>
         <input onChange={handleEmailChange} value={email} type="email" />
         <br></br>
@@ -82,5 +78,3 @@ export function Login(props: Props) {
     </div>
   );
 }
-
-// export default Login;
