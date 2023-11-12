@@ -13,31 +13,15 @@ import {
 import { MainPage } from "./components/mainpage";
 
 function App() {
-  const [loginVisible, setLoginVisible] = useState(true);
-  const [registerVisible, setRegisterVisible] = useState(false);
-
-  // const handleLoginClick = () => {
-  //   setLoginVisible(true);
-  //   setRegisterVisible(false);
-  // };
-  //
-  // const handleRegisterClick = () => {
-  //   setLoginVisible(false);
-  //   setRegisterVisible(true);
-  // };
-
   return (
     <div className="App">
-      {/*<button onClick={handleLoginClick}>Login</button>*/}
-      {/*<button onClick={handleRegisterClick}>Register</button>*/}
-      {/*<Router>*/}
       <NavLink to="/">Main</NavLink>
       <NavLink to="/register">Reg</NavLink>
       <NavLink to="/login"> Log</NavLink>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register title="hrhr" />} />
-        <Route path="/login" element={<Login title="hrhr" />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
