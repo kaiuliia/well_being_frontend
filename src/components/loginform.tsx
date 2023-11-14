@@ -28,6 +28,7 @@ export function Login(props: Props) {
       const message = await response.json();
       setStatusMessage(message.name);
       localStorage.setItem("name", message.name);
+      window.location.href = "/login/user";
     }
   };
 

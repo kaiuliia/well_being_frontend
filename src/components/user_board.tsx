@@ -7,6 +7,15 @@ interface User {
   email: string;
   password: string;
 }
+
+interface Surway {
+  general_mood: number;
+  sleep: number;
+  appetite: number;
+  anxiety: number;
+  yourself_time: number;
+  screen_time: number;
+}
 export function UserBoard(props: Props) {
   //
   // const value = useSelector((state) => state.passw.length);
