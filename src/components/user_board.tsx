@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { SliderBar } from "./slide_bar";
 
 interface Props {}
 
@@ -28,25 +29,7 @@ export function UserBoard(props: Props) {
   return (
     <div>
       <p>Hello, {name}</p>
-      <div className="slider-container">
-        <div className="slider-left">
-          <p>Character length</p>
-        </div>
-        <div className="slider-right">
-          <p className="passwordLength">10</p>
-        </div>
-      </div>
-      <div className="slider-bar">
-        <input
-          type="range"
-          min="10"
-          max="50"
-          // value
-          className="slider"
-          id="myRange"
-          // onChange={changeSlider}
-        />
-      </div>
+      <SliderBar />
     </div>
   );
 
