@@ -14,9 +14,11 @@ export function UserBoard(props: Props) {
   // const changeSlider = (event) => {
   //     dispatch(sliderChange(event.target.value));
   // };
+  const name = localStorage.getItem("name");
 
   return (
     <div>
+      <p>Hello, {name}</p>
       <div className="slider-container">
         <div className="slider-left">
           <p>Character length</p>

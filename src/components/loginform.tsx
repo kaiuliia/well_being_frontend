@@ -27,6 +27,7 @@ export function Login(props: Props) {
     } else {
       const message = await response.json();
       setStatusMessage(message.name);
+      localStorage.setItem("name", message.name);
     }
   };
 

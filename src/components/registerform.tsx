@@ -29,11 +29,13 @@ export function Register(props: Props) {
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(user),
     });
+    const message = await response.json();
+
     if (response.status > 299) {
-      const error = await response.json();
       setStatusMessage("error");
     } else {
       setStatusMessage("Welcome!");
+      localStorage.setItem("name", message.name);
     }
   };
 
