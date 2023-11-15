@@ -36,8 +36,9 @@ export function UserBoard(props: Props) {
   const name = localStorage.getItem("name");
 
   const sendData = async (surway: Surway) => {
-    const response = await fetch("http://localhost:9090/login/user", {
+    const response = await fetch("http://localhost:9090/survey", {
       method: "POST",
+      credentials: "include",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(surway),
     });
@@ -46,9 +47,7 @@ export function UserBoard(props: Props) {
       setStatusMessage(error.error);
     } else {
       const message = await response.json();
-      setStatusMessage("Surway saved to database");
-      localStorage.setItem("name", message.name);
-      window.location.href = "/login/user";
+      setStatusMessage(`Survey ${message} saved to database`);
     }
   };
 
