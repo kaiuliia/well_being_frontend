@@ -33,13 +33,14 @@ export function UserBoard(props: Props) {
       ...prevSurway,
       [sliderName]: value,
     }));
-
-    // console.log("Slider value changed:", value);
     setSliderValue(value);
   };
   console.log(sliderValue);
   console.log(surway);
 
+  const handleSubmit = () => {
+    console.log("SUBMITTED!!!!", surway);
+  };
   return (
     <div>
       <p>Hello, {name}</p>
@@ -67,25 +68,7 @@ export function UserBoard(props: Props) {
         surway={"Screen time"}
         onChange={(value) => handleSliderChange(value, "screen_time")}
       />
-      <button>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
-
-  // const handleLoginClick = () => {
-  //   window.location.href = "/login";
-  // };
-  //
-  // const handleRegisterClick = () => {
-  //   window.location.href = "/register";
-  // };
-  // return (
-  //   <div>
-  //     <p>Main Page</p>
-  //
-  //     <button onClick={handleLoginClick}>Login</button>
-  //     <button onClick={handleRegisterClick}>Register</button>
-  //   </div>
-  // );
 }
-
-// export default Login;

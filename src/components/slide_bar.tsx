@@ -5,7 +5,7 @@ interface Props {
   onChange: (value: number) => void;
 }
 export const SliderBar = (props: Props) => {
-  const [sliderValue, setSliderValue] = useState<number>();
+  const [sliderValue, setSliderValue] = useState<number>(0);
 
   const changeSlider = (event: ChangeEvent) => {
     const value = parseInt(event.target.value, 10);
