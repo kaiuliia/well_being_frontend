@@ -1,31 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 
-export const SliderBar = () => {
-  // const value = useSelector((state) => state.passw.length);
-  // const dispatch = useDispatch();
-  // const changeSlider = (event: any) => {
-  //   event.target.value;
-  // };
+interface Props {
+  surway: string;
+}
+export const SliderBar = (props: Props) => {
+  const [sliderValue, setSliderValue] = useState<number>(10);
+
+  const changeSlider = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    setSliderValue(value);
+    // You can also call any additional function here with the updated value
+  };
 
   return (
     <div>
       <div className="slider-container">
         <div className="slider-left">
-          <p>Character length</p>
+          <p>{props.surway}</p>
         </div>
         <div className="slider-right">
-          <p className="passwordLength">{10}</p>
+          <p className="passwordLength">{sliderValue}</p>
         </div>
       </div>
       <div className="slider-bar">
         <input
           type="range"
-          min="10"
-          max="50"
-          // value={20}
+          min="0"
+          max="10"
+          value={sliderValue}
           className="slider"
           id="myRange"
-          // onChange={changeSlider}
+          onChange={changeSlider}
         />
       </div>
     </div>

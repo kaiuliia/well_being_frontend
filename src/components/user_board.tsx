@@ -29,7 +29,14 @@ export function UserBoard(props: Props) {
   return (
     <div>
       <p>Hello, {name}</p>
-      <SliderBar />
+      <SliderBar surway={"general mood"} />
+
+      <SliderBar surway={"appetite"} />
+      <SliderBar surway={"sleep"} />
+
+      <SliderBar surway={"anxiety"} />
+      <SliderBar surway={"Time just for you"} />
+      <SliderBar surway={"Screen time"} />
     </div>
   );
 
