@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-
+import { ChangeEvent } from "../types";
 interface Props {
   surway: string;
+  onChange: (value: number) => void;
 }
 export const SliderBar = (props: Props) => {
-  const [sliderValue, setSliderValue] = useState<number>(10);
+  const [sliderValue, setSliderValue] = useState<number>();
 
-  const changeSlider = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeSlider = (event: ChangeEvent) => {
     const value = parseInt(event.target.value, 10);
     setSliderValue(value);
+    props.onChange(value);
     // You can also call any additional function here with the updated value
   };
 
