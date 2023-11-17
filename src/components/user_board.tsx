@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { SliderBar } from "./slide_bar";
 import { FormEvent, MouseEvent } from "../types";
+import Button from "@mui/material/Button";
 
 interface Props {}
 
