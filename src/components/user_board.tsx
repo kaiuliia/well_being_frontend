@@ -12,15 +12,15 @@ interface User {
 }
 
 interface Surway {
-  general_mood: number;
-  appetite: number;
-  sleep: number;
-  anxiety: number;
-  yourself_time: number;
-  screen_time: number;
+  general_mood: number | number[];
+  appetite: number | number[];
+  sleep: number | number[];
+  anxiety: number | number[];
+  yourself_time: number | number[];
+  screen_time: number | number[];
 }
 export function UserBoard(props: Props) {
-  const [sliderValue, setSliderValue] = useState<number>();
+  const [sliderValue, setSliderValue] = useState<number | number[]>();
   const [surway, setSurway] = useState({
     general_mood: 0,
     appetite: 0,
@@ -84,29 +84,41 @@ export function UserBoard(props: Props) {
       <p>Hello, {name}</p>
       <SliderBar
         surway={"general mood"}
-        onChange={(value) => handleSliderChange(value, "general_mood")}
+        onChange={(value: number | number[]) =>
+          handleSliderChange(value, "general_mood")
+        }
       />
       <SliderBar
         surway={"appetite"}
-        onChange={(value) => handleSliderChange(value, "appetite")}
+        onChange={(value: number | number[]) =>
+          handleSliderChange(value, "appetite")
+        }
       />
       <SliderBar
         surway={"sleep"}
-        onChange={(value) => handleSliderChange(value, "sleep")}
+        onChange={(value: number | number[]) =>
+          handleSliderChange(value, "sleep")
+        }
       />
       <SliderBar
         surway={"anxiety"}
-        onChange={(value) => handleSliderChange(value, "anxiety")}
+        onChange={(value: number | number[]) =>
+          handleSliderChange(value, "anxiety")
+        }
       />
       <SliderBar
         surway={"Time just for you"}
-        onChange={(value) => handleSliderChange(value, "yourself_time")}
+        onChange={(value: number | number[]) =>
+          handleSliderChange(value, "yourself_time")
+        }
       />
       <SliderBar
         surway={"Screen time"}
-        onChange={(value) => handleSliderChange(value, "screen_time")}
+        onChange={(value: number | number[]) =>
+          handleSliderChange(value, "screen_time")
+        }
       />
-      <button onClick={handleSubmit}>Submit</button>
+      <Button onClick={handleSubmit}>Submit</Button>
     </div>
   );
 }
