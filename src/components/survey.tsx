@@ -103,38 +103,43 @@ export function Survey(props: Props) {
           </Typography>
 
           <Box>
-            {/*<SliderBar*/}
-            {/*  surway={"general mood"}*/}
-            {/*  onChange={(value: number | number[]) =>*/}
-            {/*    handleSliderChange(value, "general_mood")*/}
-            {/*  }*/}
-            {/*/>*/}
-            {/*<SliderBar*/}
-            {/*  surway={"appetite"}*/}
-            {/*  onChange={(value: number | number[]) =>*/}
-            {/*    handleSliderChange(value, "appetite")*/}
-            {/*  }*/}
-            {/*/>*/}
-            {/*<SliderBar*/}
-            {/*  surway={"sleep"}*/}
-            {/*  onChange={(value: number | number[]) =>*/}
-            {/*    handleSliderChange(value, "sleep")*/}
-            {/*  }*/}
-            {/*/>*/}
-            {/*<SliderBar*/}
-            {/*  surway={"anxiety"}*/}
-            {/*  onChange={(value: number | number[]) =>*/}
-            {/*    handleSliderChange(value, "anxiety")*/}
-            {/*  }*/}
-            {/*/>*/}
-            {/*<SliderBar*/}
-            {/*  surway={"Time just for you"}*/}
-            {/*  onChange={(value: number | number[]) =>*/}
-            {/*    handleSliderChange(value, "yourself_time")*/}
-            {/*  }*/}
-            {/*/>*/}
             <SliderBar
-              surway={"Screen time"}
+              survey={"general mood"}
+              onChange={(value: number | number[]) =>
+                handleSliderChange(value, "general_mood")
+              }
+            />
+            <br></br>
+            <SliderBar
+              survey={"appetite"}
+              onChange={(value: number | number[]) =>
+                handleSliderChange(value, "appetite")
+              }
+            />
+            <br></br>
+            <SliderBar
+              survey={"sleep"}
+              onChange={(value: number | number[]) =>
+                handleSliderChange(value, "sleep")
+              }
+            />
+            <br></br>
+            <SliderBar
+              survey={"anxiety"}
+              onChange={(value: number | number[]) =>
+                handleSliderChange(value, "anxiety")
+              }
+            />
+            <br></br>
+            <SliderBar
+              survey={"time just for you"}
+              onChange={(value: number | number[]) =>
+                handleSliderChange(value, "yourself_time")
+              }
+            />
+            <br></br>
+            <SliderBar
+              survey={"screen time"}
               onChange={(value: number | number[]) =>
                 handleSliderChange(value, "screen_time")
               }

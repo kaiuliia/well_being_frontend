@@ -3,12 +3,12 @@ import { ChangeEvent } from "../../types";
 import { Slider, Grid } from "@mui/material";
 import { Box, Card } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import "./slider.css";
+
 import { CardHeader } from "@mui/material";
 import { CardMedia } from "@mui/material";
 
 interface Props {
-  surway: string;
+  survey: string;
   onChange: (value: number | number[]) => void;
 }
 export const SliderBar = (props: Props) => {
@@ -18,6 +18,16 @@ export const SliderBar = (props: Props) => {
     setSliderValue(newValue as number[]);
     props.onChange(sliderValue);
   };
+
+  const colors: string[] = [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "lightblue",
+    "blue",
+    "violet",
+  ];
 
   return (
     <Box
@@ -36,12 +46,12 @@ export const SliderBar = (props: Props) => {
         }}
       >
         <Typography component="h3" align="center" variant="h6" gutterBottom>
-          {props.surway}
+          {props.survey}
         </Typography>
 
         <Slider
           sx={{
-            width: "100%", // Set the width to 100% to fill the card
+            width: "90%", // Set the width to 100% to fill the card
             color: "success.main",
             marginBottom: "0rem", // Added margin at the bottom for spacing
             paddingBottom: "0rem",
