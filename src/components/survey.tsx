@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { SliderBar } from "./slide_bar";
-import { FormEvent, MouseEvent } from "../types";
+import { MouseEvent } from "../types";
 import Button from "@mui/material/Button";
 
 import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
 import Paper from "@mui/material/Paper";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
 interface Props {}
