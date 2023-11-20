@@ -21,7 +21,7 @@ interface Surway {
 }
 export function UserBoard(props: Props) {
   const [sliderValue, setSliderValue] = useState<number | number[]>();
-  const [surway, setSurway] = useState({
+  const [surway, setSurway] = useState<Surway>({
     general_mood: 0,
     appetite: 0,
     sleep: 0,
@@ -52,7 +52,10 @@ export function UserBoard(props: Props) {
     }
   };
 
-  const handleSliderChange = (value: number, sliderName: string) => {
+  const handleSliderChange = (
+    value: number | number[],
+    sliderName: keyof Surway,
+  ) => {
     setSurway((prevSurway) => ({
       ...prevSurway,
       [sliderName]: value,
