@@ -17,7 +17,7 @@ interface User {
   password: string;
 }
 
-interface Surway {
+interface Survey {
   general_mood: number | number[];
   appetite: number | number[];
   sleep: number | number[];
@@ -27,7 +27,7 @@ interface Surway {
 }
 export function Survey(props: Props) {
   const [sliderValue, setSliderValue] = useState<number | number[]>();
-  const [surway, setSurway] = useState<Surway>({
+  const [survey, setSurvey] = useState<Survey>({
     general_mood: 0,
     appetite: 0,
     sleep: 0,
@@ -42,12 +42,12 @@ export function Survey(props: Props) {
   const [error, setError] = useState(false);
   const name = localStorage.getItem("name");
 
-  const sendData = async (surway: Surway) => {
+  const sendData = async (survey: Survey) => {
     const response = await fetch("http://localhost:9090/survey", {
       method: "POST",
       credentials: "include",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify(surway),
+      body: JSON.stringify(survey),
     });
     if (response.status > 299) {
       const error = await response.json();
@@ -60,32 +60,32 @@ export function Survey(props: Props) {
 
   const handleSliderChange = (
     value: number | number[],
-    sliderName: keyof Surway,
+    sliderName: keyof Survey,
   ) => {
-    setSurway((prevSurway) => ({
-      ...prevSurway,
+    setSurvey((prevSurvey) => ({
+      ...prevSurvey,
       [sliderName]: value,
     }));
     setSliderValue(value);
   };
   console.log(sliderValue);
-  console.log(surway);
+  console.log(survey);
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
 
     await sendData({
-      general_mood: surway.general_mood,
-      appetite: surway.appetite,
-      sleep: surway.sleep,
-      anxiety: surway.anxiety,
-      yourself_time: surway.yourself_time,
-      screen_time: surway.screen_time,
+      general_mood: survey.general_mood,
+      appetite: survey.appetite,
+      sleep: survey.sleep,
+      anxiety: survey.anxiety,
+      yourself_time: survey.yourself_time,
+      screen_time: survey.screen_time,
     });
 
     setSubmitted(true);
     setError(false);
-    console.log("SUBMITTED!!!!", surway);
+    console.log("SUBMITTED!!!!", survey);
   };
 
   return (
