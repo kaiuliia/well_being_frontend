@@ -157,7 +157,6 @@ export function Register(props: Props) {
             >
               Sign Up
             </Button>
-            <p>{statusMessage}</p>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="#" variant="body2">

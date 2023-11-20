@@ -21,18 +21,7 @@ export const SliderBar = (props: Props) => {
     props.onChange(sliderValue);
   };
 
-  // const handleChange = (event: Event, newValue: number) => {
-  //   setSliderValue(newValue);
-  // };
   return (
-    // <div>
-    //   <div className="slider-container">
-    //     <div className="slider-left">
-    //
-    //     </div>
-    //     <div className="slider-right">
-    //       <p className="passwordLength">{sliderValue}</p>
-    //     </div>
     <Box>
       <p>{props.surway}</p>
       <Slider

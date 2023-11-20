@@ -5,7 +5,7 @@ import { Register } from "./components/registerform";
 import { Login } from "./components/loginform";
 import { Route, Routes, NavLink } from "react-router-dom";
 import { MainPage } from "./components/mainpage";
-import { UserBoard } from "./components/user_board";
+import { Survey } from "./components/survey";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register title="hrhr" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/login/user" element={<UserBoard />} />
+        <Route path="/login/user" element={<Survey />} />
       </Routes>
     </div>
   );

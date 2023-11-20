@@ -19,7 +19,7 @@ interface Surway {
   yourself_time: number | number[];
   screen_time: number | number[];
 }
-export function UserBoard(props: Props) {
+export function Survey(props: Props) {
   const [sliderValue, setSliderValue] = useState<number | number[]>();
   const [surway, setSurway] = useState<Surway>({
     general_mood: 0,
