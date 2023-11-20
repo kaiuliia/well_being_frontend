@@ -9,13 +9,6 @@ interface Props {
 export const SliderBar = (props: Props) => {
   const [sliderValue, setSliderValue] = useState<number | number[]>(0);
 
-  // const handleChange = (event: ChangeEvent) => {
-  //   const value = parseInt(event.target.value, 10);
-  //   setSliderValue(value);
-  //   props.onChange(value);
-  //   // You can also call any additional function here with the updated value
-  // };
-
   const handleChange = (event: Event, newValue: number | number[]) => {
     setSliderValue(newValue as number[]);
     props.onChange(sliderValue);
