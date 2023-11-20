@@ -6,6 +6,7 @@ import { Login } from "./components/loginform";
 import { Route, Routes, NavLink } from "react-router-dom";
 import { MainPage } from "./components/mainpage";
 import { Survey } from "./components/survey";
+import { Dashboard } from "./components/dashboard";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<Register title="hrhr" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/login/user" element={<Survey />} />
+        <Route path="/login/user" element={<Dashboard />} />
       </Routes>
     </div>
   );
