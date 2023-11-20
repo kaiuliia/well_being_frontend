@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { SliderBar } from "./slide_bar";
+import { SliderBar } from "./slider/slide_bar";
 import { MouseEvent } from "../types";
 import Button from "@mui/material/Button";
 
@@ -103,36 +103,36 @@ export function Survey(props: Props) {
           </Typography>
 
           <Box>
-            <SliderBar
-              surway={"general mood"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "general_mood")
-              }
-            />
-            <SliderBar
-              surway={"appetite"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "appetite")
-              }
-            />
-            <SliderBar
-              surway={"sleep"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "sleep")
-              }
-            />
-            <SliderBar
-              surway={"anxiety"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "anxiety")
-              }
-            />
-            <SliderBar
-              surway={"Time just for you"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "yourself_time")
-              }
-            />
+            {/*<SliderBar*/}
+            {/*  surway={"general mood"}*/}
+            {/*  onChange={(value: number | number[]) =>*/}
+            {/*    handleSliderChange(value, "general_mood")*/}
+            {/*  }*/}
+            {/*/>*/}
+            {/*<SliderBar*/}
+            {/*  surway={"appetite"}*/}
+            {/*  onChange={(value: number | number[]) =>*/}
+            {/*    handleSliderChange(value, "appetite")*/}
+            {/*  }*/}
+            {/*/>*/}
+            {/*<SliderBar*/}
+            {/*  surway={"sleep"}*/}
+            {/*  onChange={(value: number | number[]) =>*/}
+            {/*    handleSliderChange(value, "sleep")*/}
+            {/*  }*/}
+            {/*/>*/}
+            {/*<SliderBar*/}
+            {/*  surway={"anxiety"}*/}
+            {/*  onChange={(value: number | number[]) =>*/}
+            {/*    handleSliderChange(value, "anxiety")*/}
+            {/*  }*/}
+            {/*/>*/}
+            {/*<SliderBar*/}
+            {/*  surway={"Time just for you"}*/}
+            {/*  onChange={(value: number | number[]) =>*/}
+            {/*    handleSliderChange(value, "yourself_time")*/}
+            {/*  }*/}
+            {/*/>*/}
             <SliderBar
               surway={"Screen time"}
               onChange={(value: number | number[]) =>
