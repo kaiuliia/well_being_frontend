@@ -42,6 +42,16 @@ export function Survey(props: Props) {
   const [error, setError] = useState(false);
   const name = localStorage.getItem("name");
 
+  const colors: string[] = [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "lightblue",
+    "blue",
+    "violet",
+  ];
+
   const sendData = async (survey: Survey) => {
     const response = await fetch("http://localhost:9090/survey", {
       method: "POST",
@@ -98,12 +108,13 @@ export function Survey(props: Props) {
           elevation={3}
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
         >
-          <Typography component="h1" variant="h4" align="center">
+          <Typography component="h1" variant="h4" align="left">
             Hello, {name}!
           </Typography>
 
           <Box>
             <SliderBar
+              colors={colors[0]}
               survey={"general mood"}
               onChange={(value: number | number[]) =>
                 handleSliderChange(value, "general_mood")
@@ -111,6 +122,7 @@ export function Survey(props: Props) {
             />
             <br></br>
             <SliderBar
+              colors={colors[1]}
               survey={"appetite"}
               onChange={(value: number | number[]) =>
                 handleSliderChange(value, "appetite")
@@ -118,6 +130,7 @@ export function Survey(props: Props) {
             />
             <br></br>
             <SliderBar
+              colors={colors[2]}
               survey={"sleep"}
               onChange={(value: number | number[]) =>
                 handleSliderChange(value, "sleep")
@@ -125,6 +138,7 @@ export function Survey(props: Props) {
             />
             <br></br>
             <SliderBar
+              colors={colors[3]}
               survey={"anxiety"}
               onChange={(value: number | number[]) =>
                 handleSliderChange(value, "anxiety")
@@ -132,6 +146,7 @@ export function Survey(props: Props) {
             />
             <br></br>
             <SliderBar
+              colors={colors[4]}
               survey={"time just for you"}
               onChange={(value: number | number[]) =>
                 handleSliderChange(value, "yourself_time")
@@ -139,6 +154,7 @@ export function Survey(props: Props) {
             />
             <br></br>
             <SliderBar
+              colors={colors[5]}
               survey={"screen time"}
               onChange={(value: number | number[]) =>
                 handleSliderChange(value, "screen_time")

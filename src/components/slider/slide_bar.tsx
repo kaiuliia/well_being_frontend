@@ -8,6 +8,7 @@ import { CardHeader } from "@mui/material";
 import { CardMedia } from "@mui/material";
 
 interface Props {
+  colors: string;
   survey: string;
   onChange: (value: number | number[]) => void;
 }
@@ -19,19 +20,20 @@ export const SliderBar = (props: Props) => {
     props.onChange(sliderValue);
   };
 
-  const colors: string[] = [
-    "red",
-    "orange",
-    "yellow",
-    "green",
-    "lightblue",
-    "blue",
-    "violet",
-  ];
+  // const colors: string[] = [
+  //   "red",
+  //   "orange",
+  //   "yellow",
+  //   "green",
+  //   "lightblue",
+  //   "blue",
+  //   "violet",
+  // ];
 
   return (
     <Box
       sx={{
+        background: "#BFCCB5",
         display: "flex",
         justifyContent: "center",
       }}
@@ -39,13 +41,13 @@ export const SliderBar = (props: Props) => {
       <Card
         sx={{
           width: "30rem",
-          background: "lightblue",
+          background: props.colors,
           height: "8rem", // Increased height to accommodate the slider and labels
           padding: "1rem", // Added padding for better spacing
           alignItems: "center",
         }}
       >
-        <Typography component="h3" align="center" variant="h6" gutterBottom>
+        <Typography component="h3" align="left" variant="h6" gutterBottom>
           {props.survey}
         </Typography>
 
