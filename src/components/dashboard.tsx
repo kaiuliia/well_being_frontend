@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 interface Props {}
 
@@ -14,32 +15,43 @@ interface User {
   password: string;
 }
 export function Dashboard(props: Props) {
-  const handleLoginClick = () => {
-    window.location.href = "/login";
-  };
+  const name = localStorage.getItem("name");
+  // const handleLoginClick = () => {
+  //   window.location.href = "/login";
+  // };
+  //
+  // const handleRegisterClick = () => {
+  //   window.location.href = "/register";
+  // };
 
-  const handleRegisterClick = () => {
-    window.location.href = "/register";
+  const handleSurvetClick = () => {
+    window.location.href = "/login/user/survey";
   };
   return (
     <div>
       <Box
-        component="main"
-        sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto",
-        }}
+        // component="main"
+        sx={
+          {
+            // backgroundColor: (theme) =>
+            //   theme.palette.mode === "dark"
+            //     ? theme.palette.grey[100]
+            //     : theme.palette.grey[900],
+            // flexGrow: 1,
+            // height: "100vh",
+            // overflow: "auto",
+          }
+        }
       >
-        <p>Main Page</p>
+        <Typography component="h2" variant="h4" align="center">
+          Hello, {name}! How are you today?
+        </Typography>
 
-        <Survey />
-        <button onClick={handleLoginClick}>Login</button>
-        <button onClick={handleRegisterClick}>Register</button>
+        <Typography component="h6" variant="h4" align="center">
+          Here is your progress for past week
+        </Typography>
+        <Button onClick={handleSurvetClick}>Add</Button>
+        {/*<Survey />*/}
       </Box>
     </div>
   );

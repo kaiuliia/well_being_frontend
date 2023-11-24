@@ -40,17 +40,17 @@ export function Survey(props: Props) {
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
-  const name = localStorage.getItem("name");
-
-  const colors: string[] = [
-    "#BFCCB5",
-    "#86A789",
-    "#B2C8BA",
-    "#D2E3C8",
-    "#EBF3E8",
-    "#86A789",
-    "#7C96AB",
-  ];
+  // const name = localStorage.getItem("name");
+  //
+  // const colors: string[] = [
+  //   "#BFCCB5",
+  //   "#86A789",
+  //   "#B2C8BA",
+  //   "#D2E3C8",
+  //   "#EBF3E8",
+  //   "#86A789",
+  //   "#7C96AB",
+  // ];
 
   const sendData = async (survey: Survey) => {
     const response = await fetch("http://localhost:9090/survey", {
@@ -92,7 +92,7 @@ export function Survey(props: Props) {
       yourself_time: survey.yourself_time,
       screen_time: survey.screen_time,
     });
-
+    window.location.href = "login/user/advises";
     setSubmitted(true);
     setError(false);
     console.log("SUBMITTED!!!!", survey);
@@ -103,70 +103,67 @@ export function Survey(props: Props) {
       <CssBaseline />
 
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper
-          variant="outlined"
-          elevation={3}
-          sx={{
-            my: { xs: 3, md: 6 },
-            p: { xs: 2, md: 3 },
-            background: "#DDE6ED",
-          }}
-        >
-          <Typography component="h1" variant="h4" align="left">
-            Hello, {name}!
-          </Typography>
+        {/*<Paper*/}
+        {/*  variant="outlined"*/}
+        {/*  elevation={3}*/}
+        {/*  sx={{*/}
+        {/*    my: { xs: 3, md: 6 },*/}
+        {/*    p: { xs: 2, md: 3 },*/}
+        {/*    // background: "#DDE6ED",*/}
+        {/*  }}*/}
+        {/*>*/}
 
-          <Box>
-            <SliderBar
-              colors={colors[0]}
-              survey={"general mood"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "general_mood")
-              }
-            />
-            <br></br>
-            <SliderBar
-              colors={colors[1]}
-              survey={"appetite"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "appetite")
-              }
-            />
-            <br></br>
-            <SliderBar
-              colors={colors[2]}
-              survey={"sleep"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "sleep")
-              }
-            />
-            <br></br>
-            <SliderBar
-              colors={colors[3]}
-              survey={"anxiety"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "anxiety")
-              }
-            />
-            <br></br>
-            <SliderBar
-              colors={colors[4]}
-              survey={"time just for you"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "yourself_time")
-              }
-            />
-            <br></br>
-            <SliderBar
-              colors={colors[5]}
-              survey={"screen time"}
-              onChange={(value: number | number[]) =>
-                handleSliderChange(value, "screen_time")
-              }
-            />
-            <Button onClick={handleSubmit}>Submit</Button>
-          </Box>
-        </Paper>
+        <Box>
+          <SliderBar
+            // colors={colors[0]}
+            survey={"general mood"}
+            onChange={(value: number | number[]) =>
+              handleSliderChange(value, "general_mood")
+            }
+          />
+          <br></br>
+          <SliderBar
+            // colors={colors[1]}
+            survey={"appetite"}
+            onChange={(value: number | number[]) =>
+              handleSliderChange(value, "appetite")
+            }
+          />
+          <br></br>
+          <SliderBar
+            // colors={colors[2]}
+            survey={"sleep"}
+            onChange={(value: number | number[]) =>
+              handleSliderChange(value, "sleep")
+            }
+          />
+          <br></br>
+          <SliderBar
+            // colors={colors[3]}
+            survey={"anxiety"}
+            onChange={(value: number | number[]) =>
+              handleSliderChange(value, "anxiety")
+            }
+          />
+          <br></br>
+          <SliderBar
+            // colors={colors[4]}
+            survey={"time just for you"}
+            onChange={(value: number | number[]) =>
+              handleSliderChange(value, "yourself_time")
+            }
+          />
+          <br></br>
+          <SliderBar
+            // colors={colors[5]}
+            survey={"screen time"}
+            onChange={(value: number | number[]) =>
+              handleSliderChange(value, "screen_time")
+            }
+          />
+          <Button onClick={handleSubmit}>Submit</Button>
+        </Box>
+        {/*</Paper>*/}
       </Container>
     </React.Fragment>
   );

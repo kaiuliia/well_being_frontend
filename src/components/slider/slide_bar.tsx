@@ -5,7 +5,7 @@ import { Box, Card } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 interface Props {
-  colors: string;
+  // colors: string;
   survey: string;
   onChange: (value: number | number[]) => void;
 }
@@ -27,7 +27,7 @@ export const SliderBar = (props: Props) => {
       <Card
         sx={{
           width: "30rem",
-          background: props.colors,
+          // background: props.colors,
           height: "8rem", // Increased height to accommodate the slider and labels
           padding: "1rem", // Added padding for better spacing
           alignItems: "center",
@@ -39,13 +39,14 @@ export const SliderBar = (props: Props) => {
 
         <Slider
           sx={{
-            color: "#B7B7B7",
+            // color: "#B7B7B7",
             width: "90%", // Set the width to 100% to fill the card
             marginBottom: "0rem", // Added margin at the bottom for spacing
             paddingBottom: "0rem",
           }}
           value={sliderValue}
           valueLabelDisplay="auto"
+          color="primary"
           onChange={handleChange}
         />
 

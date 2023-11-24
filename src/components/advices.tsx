@@ -7,7 +7,7 @@ interface User {
   email: string;
   password: string;
 }
-export function MainPage(props: Props) {
+export function Advices(props: Props) {
   const handleLoginClick = () => {
     window.location.href = "/login";
   };
@@ -17,8 +17,7 @@ export function MainPage(props: Props) {
   };
   return (
     <div>
-      {/*<p>Main Page</p>*/}
-
+      STAY CALM
       {/*<button onClick={handleLoginClick}>Login</button>*/}
       {/*<button onClick={handleRegisterClick}>Register</button>*/}
     </div>
