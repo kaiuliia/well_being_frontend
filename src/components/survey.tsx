@@ -43,13 +43,13 @@ export function Survey(props: Props) {
   const name = localStorage.getItem("name");
 
   const colors: string[] = [
-    "red",
-    "orange",
-    "yellow",
-    "green",
-    "lightblue",
-    "blue",
-    "violet",
+    "#BFCCB5",
+    "#86A789",
+    "#B2C8BA",
+    "#D2E3C8",
+    "#EBF3E8",
+    "#86A789",
+    "#7C96AB",
   ];
 
   const sendData = async (survey: Survey) => {
@@ -106,7 +106,11 @@ export function Survey(props: Props) {
         <Paper
           variant="outlined"
           elevation={3}
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+          sx={{
+            my: { xs: 3, md: 6 },
+            p: { xs: 2, md: 3 },
+            background: "#DDE6ED",
+          }}
         >
           <Typography component="h1" variant="h4" align="left">
             Hello, {name}!

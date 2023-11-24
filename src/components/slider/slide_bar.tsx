@@ -4,9 +4,6 @@ import { Slider, Grid } from "@mui/material";
 import { Box, Card } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-import { CardHeader } from "@mui/material";
-import { CardMedia } from "@mui/material";
-
 interface Props {
   colors: string;
   survey: string;
@@ -20,20 +17,9 @@ export const SliderBar = (props: Props) => {
     props.onChange(sliderValue);
   };
 
-  // const colors: string[] = [
-  //   "red",
-  //   "orange",
-  //   "yellow",
-  //   "green",
-  //   "lightblue",
-  //   "blue",
-  //   "violet",
-  // ];
-
   return (
     <Box
       sx={{
-        background: "#BFCCB5",
         display: "flex",
         justifyContent: "center",
       }}
@@ -53,8 +39,8 @@ export const SliderBar = (props: Props) => {
 
         <Slider
           sx={{
+            color: "#B7B7B7",
             width: "90%", // Set the width to 100% to fill the card
-            color: "success.main",
             marginBottom: "0rem", // Added margin at the bottom for spacing
             paddingBottom: "0rem",
           }}

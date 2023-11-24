@@ -24,5 +24,3 @@ export function MainPage(props: Props) {
     </div>
   );
 }
-
-// export default Login;
