@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -16,7 +14,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 interface Props {
   title: string;
-  // visible: boolean;
 }
 
 interface User {
@@ -33,9 +30,7 @@ export function Register(props: Props) {
 
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
-  // const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
-  // HandleChange method to update the states
 
   const sendData = async (user: User) => {
     const response = await fetch("http://localhost:9090/register", {

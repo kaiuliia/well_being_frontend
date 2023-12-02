@@ -18,7 +18,7 @@ export function MainPage(props: Props) {
   return (
     <div>
       {/*<p>Main Page</p>*/}
-
+      Stay calm with WELLBE
       {/*<button onClick={handleLoginClick}>Login</button>*/}
       {/*<button onClick={handleRegisterClick}>Register</button>*/}
     </div>

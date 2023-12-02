@@ -46,8 +46,6 @@ function App() {
         {/*<NavLink to="/register">Reg</NavLink>*/}
         {/*<NavLink to="/login"> Log</NavLink>*/}
         {/*<NavLink to="/login/user"> User </NavLink>*/}
-        <Button onClick={handleLoginClick}>Login</Button>
-        <Button onClick={handleRegisterClick}>Register</Button>
 
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -57,6 +55,8 @@ function App() {
           <Route path="/login/user/advises" element={<Advices />} />
           <Route path="/login/user/survey" element={<Survey />} />
         </Routes>
+        <Button onClick={handleLoginClick}>Login</Button>
+        <Button onClick={handleRegisterClick}>Register</Button>
       </div>
     </ThemeProvider>
   );
