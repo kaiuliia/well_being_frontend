@@ -153,6 +153,7 @@ export function Survey(props: Props) {
               handleSliderChange(value, "yourself_time")
             }
           />
+
           <br></br>
           <SliderBar
             // colors={colors[5]}
