@@ -6,7 +6,7 @@ import "./App.css";
 import { Register } from "./Pages/registerform";
 import { Login } from "./Pages/loginform";
 import { Route, Routes, NavLink } from "react-router-dom";
-import { MainPage } from "./components/mainpage";
+import { MainPage } from "./Pages/mainpage";
 import { Survey } from "./components/survey";
 import { Dashboard } from "./Pages/dashboard";
 import { Advices } from "./components/advices";
