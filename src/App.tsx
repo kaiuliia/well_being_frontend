@@ -8,7 +8,7 @@ import { Login } from "./components/loginform";
 import { Route, Routes, NavLink } from "react-router-dom";
 import { MainPage } from "./components/mainpage";
 import { Survey } from "./components/survey";
-import { Dashboard } from "./components/dashboard";
+import { Dashboard } from "./Pages/dashboard";
 import { Advices } from "./components/advices";
 import Button from "@mui/material/Button";
 
