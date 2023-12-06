@@ -3,7 +3,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import "./App.css";
-import { Register } from "./components/registerform";
+import { Register } from "./Pages/registerform";
 import { Login } from "./components/loginform";
 import { Route, Routes, NavLink } from "react-router-dom";
 import { MainPage } from "./components/mainpage";
