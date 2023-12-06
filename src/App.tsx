@@ -4,7 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import "./App.css";
 import { Register } from "./Pages/registerform";
-import { Login } from "./components/loginform";
+import { Login } from "./Pages/loginform";
 import { Route, Routes, NavLink } from "react-router-dom";
 import { MainPage } from "./components/mainpage";
 import { Survey } from "./components/survey";
