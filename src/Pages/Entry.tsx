@@ -31,10 +31,11 @@ export function EntryPage(props: Props) {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -43,12 +44,14 @@ export function EntryPage(props: Props) {
           <Typography component="h1" variant="h5">
             WELLBE
           </Typography>
+          <Typography component="h6" variant="h6">
+            Your mental support
+          </Typography>
           <Button
             fullWidth
             variant="contained"
             sx={{
               mt: 2,
-
               width: "10rem",
               backgroundColor: "#A5BB5A",
               color: "#FFFFFF",
