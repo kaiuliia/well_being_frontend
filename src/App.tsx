@@ -11,8 +11,10 @@ import { Survey } from "./components/survey";
 import { Dashboard } from "./Pages/dashboard";
 import { Advices } from "./components/advices";
 import Button from "@mui/material/Button";
-import { EntryPage } from "./Pages/entry";
+import { EntryPage } from "./Pages/Entry";
 import { RequireAuth } from "./hoc/RequireAuth";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const darkTheme = createTheme({
   palette: {
@@ -32,23 +34,23 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const handleLoginClick = () => {
-    window.location.href = "/login";
-  };
-
-  const handleRegisterClick = () => {
-    window.location.href = "/register";
-  };
+  // const handleLoginClick = () => {
+  //   window.location.href = "/login";
+  // };
+  //
+  // const handleRegisterClick = () => {
+  //   window.location.href = "/register";
+  // };
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <div className="App">
-        {/*<NavLink to="/">Main</NavLink>*/}
-        {/*<NavLink to="/register">Reg</NavLink>*/}
-        {/*<NavLink to="/login"> Log</NavLink>*/}
-        {/*<NavLink to="/login/user"> User </NavLink>*/}
-
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Routes>
           <Route path="/" element={<EntryPage />} />
           <Route path="/register" element={<Register title="hrhr" />} />
@@ -64,9 +66,7 @@ function App() {
           <Route path="/login/user/advises" element={<Advices />} />
           <Route path="/login/user/survey" element={<Survey />} />
         </Routes>
-        <Button onClick={handleLoginClick}>Login</Button>
-        <Button onClick={handleRegisterClick}>Register</Button>
-      </div>
+      </Grid>
     </ThemeProvider>
   );
 }
