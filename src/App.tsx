@@ -12,6 +12,7 @@ import { Dashboard } from "./Pages/dashboard";
 import { Advices } from "./components/advices";
 import Button from "@mui/material/Button";
 import { EntryPage } from "./Pages/entry";
+import { RequireAuth } from "./hoc/RequireAuth";
 
 const darkTheme = createTheme({
   palette: {
@@ -52,7 +53,14 @@ function App() {
           <Route path="/" element={<EntryPage />} />
           <Route path="/register" element={<Register title="hrhr" />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/login/user" element={<Dashboard />} />
+          <Route
+            path="/login/dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
           <Route path="/login/user/advises" element={<Advices />} />
           <Route path="/login/user/survey" element={<Survey />} />
         </Routes>

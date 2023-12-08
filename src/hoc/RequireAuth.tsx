@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 
-export const RequireAuth = ({ pages }) => {
+export const RequireAuth = ({ pages }: any) => {
   const location = useLocation();
   const auth = false;
   if (!auth) {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -28,6 +29,10 @@ export function Login(props: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const fromPage = location.state?.from?.pathname || "/";
   const sendData = async (user: User) => {
     const response = await fetch("http://localhost:9090/login", {
       method: "POST",
