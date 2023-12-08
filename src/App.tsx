@@ -11,6 +11,7 @@ import { Survey } from "./components/survey";
 import { Dashboard } from "./Pages/dashboard";
 import { Advices } from "./components/advices";
 import Button from "@mui/material/Button";
+import { EntryPage } from "./Pages/entry";
 
 const darkTheme = createTheme({
   palette: {
@@ -48,7 +49,7 @@ function App() {
         {/*<NavLink to="/login/user"> User </NavLink>*/}
 
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route path="/" element={<EntryPage />} />
           <Route path="/register" element={<Register title="hrhr" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login/user" element={<Dashboard />} />
