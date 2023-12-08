@@ -9,6 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 interface Props {}
 
 interface User {
@@ -39,10 +40,15 @@ export function EntryPage(props: Props) {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          WELLBE
+          <Typography component="h1" variant="h5">
+            WELLBE
+          </Typography>
           <Button
+            fullWidth
             variant="contained"
             sx={{
+              mt: 2,
+
               width: "10rem",
               backgroundColor: "#A5BB5A",
               color: "#FFFFFF",
@@ -54,6 +60,8 @@ export function EntryPage(props: Props) {
           <Button
             variant="contained"
             sx={{
+              mt: 2,
+
               width: "10rem",
               backgroundColor: "#8B98AF",
               color: "#FFFFFF",
