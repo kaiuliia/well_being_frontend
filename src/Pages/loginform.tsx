@@ -135,7 +135,7 @@ export function Login(props: Props) {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, color: "#FFFFFF" }}
             >
               Sign In
             </Button>

@@ -55,7 +55,7 @@ export function EntryPage(props: Props) {
             variant="contained"
             sx={{
               mt: 2,
-              width: "10rem",
+              // width: "10rem",
               color: "#FFFFFF",
             }}
             onClick={handleLoginClick}
@@ -63,11 +63,12 @@ export function EntryPage(props: Props) {
             Login
           </Button>
           <Button
+            fullWidth
             variant="contained"
             sx={{
               mt: 2,
 
-              width: "10rem",
+              // width: "10rem",
               backgroundColor: "#8B98AF",
               color: "#FFFFFF",
             }}
