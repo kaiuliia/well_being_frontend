@@ -15,6 +15,7 @@ import { EntryPage } from "./Pages/Entry";
 import { RequireAuth } from "./hoc/RequireAuth";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+// import from "./assets/fonts/";
 
 const customTheme = createTheme({
   palette: {
@@ -31,6 +32,7 @@ const customTheme = createTheme({
     },
   },
   typography: {
+    fontSize: 60,
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
