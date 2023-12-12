@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeOptions } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import "./App.css";
@@ -16,35 +17,53 @@ import { RequireAuth } from "./hoc/RequireAuth";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 // import from "./assets/fonts/";
-
+declare module "@mui/material/styles" {
+  interface Theme {
+    status: {
+      danger: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+    };
+  }
+}
 const customTheme = createTheme({
   palette: {
+    // mode: "light",
     primary: {
       main: "#A5BB5A",
-      light: "#EFF1F4",
-      contrastText: "#FFFFFF",
     },
     secondary: {
       main: "#8B98AF",
-      light: "#F5EBFF",
-      // dark: will be calculated from palette.secondary.main,
-      contrastText: "#47008F",
     },
+    info: {
+      main: "#05413E",
+    },
+    error: {
+      main: "#680010",
+    },
+    warning: {
+      main: "#E98600",
+    },
+    success: {
+      main: "#526637",
+    },
+    divider: "rgba(0,0,0,0.12)",
   },
   typography: {
-    fontSize: 60,
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
+    h1: {
+      fontFamily: "roboto",
+      fontWeight: 300,
+    },
+    h3: {
+      fontFamily: "roboto",
+    },
+    h4: {
+      fontFamily: "roboto",
+    },
   },
 });
 
@@ -67,7 +86,7 @@ function App() {
         alignItems="center"
       >
         <Routes>
-          <Route path="/" element={<EntryPage />} />
+          <Route path="/" element={<EntryPage theme={customTheme} />} />
           <Route path="/register" element={<Register title="hrhr" />} />
           <Route path="/login" element={<Login />} />
           <Route

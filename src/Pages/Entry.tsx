@@ -8,9 +8,11 @@ import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-interface Props {}
+interface Props {
+  theme: Theme;
+}
 
 interface User {
   email: string;
@@ -25,8 +27,9 @@ export function EntryPage(props: Props) {
   const handleRegisterClick = () => {
     window.location.href = "/register";
   };
+
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={props.theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -41,7 +44,7 @@ export function EntryPage(props: Props) {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5" typography="sans-serif">
+          <Typography component="h1" variant="h5">
             WELLBE
           </Typography>
           <Typography component="h6" variant="h6">
@@ -53,7 +56,6 @@ export function EntryPage(props: Props) {
             sx={{
               mt: 2,
               width: "10rem",
-              backgroundColor: "#A5BB5A",
               color: "#FFFFFF",
             }}
             onClick={handleLoginClick}
