@@ -30,6 +30,9 @@ const customTheme = createTheme({
       contrastText: "#47008F",
     },
   },
+  typography: {
+    fontFamily: ['"Helvetica Neue"'].join(","),
+  },
 });
 
 function App() {
