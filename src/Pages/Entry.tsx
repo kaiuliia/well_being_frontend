@@ -45,11 +45,11 @@ export function EntryPage(props: Props) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            WELLBE
+            WellBe
           </Typography>
-          <Typography component="h6" variant="h6">
-            Your mental support
-          </Typography>
+          {/*<Typography component="h6" variant="h6">*/}
+          {/*  Your mental support*/}
+          {/*</Typography>*/}
           <Button
             fullWidth
             variant="contained"

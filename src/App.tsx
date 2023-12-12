@@ -51,6 +51,9 @@ const customTheme = createTheme({
     success: {
       main: "#526637",
     },
+    background: {
+      default: "#EFF1F4",
+    },
     divider: "rgba(0,0,0,0.12)",
   },
   typography: {
@@ -68,14 +71,6 @@ const customTheme = createTheme({
 });
 
 function App() {
-  // const handleLoginClick = () => {
-  //   window.location.href = "/login";
-  // };
-  //
-  // const handleRegisterClick = () => {
-  //   window.location.href = "/register";
-  // };
-
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
@@ -87,13 +82,16 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<EntryPage theme={customTheme} />} />
-          <Route path="/register" element={<Register title="hrhr" />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/register"
+            element={<Register title="hrhr" theme={customTheme} />}
+          />
+          <Route path="/login" element={<Login theme={customTheme} />} />
           <Route
             path="/login/dashboard"
             element={
               <RequireAuth>
-                <Dashboard />
+                <Dashboard theme={customTheme} />
               </RequireAuth>
             }
           />

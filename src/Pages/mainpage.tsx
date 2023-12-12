@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { Theme, ThemeProvider } from "@mui/material/styles";
 
-interface Props {}
+interface Props {
+  theme: Theme;
+}
 
 interface User {
   email: string;
@@ -16,11 +19,13 @@ export function MainPage(props: Props) {
     window.location.href = "/register";
   };
   return (
-    <div>
-      {/*<p>Main Page</p>*/}
-      Stay calm with WELLBE
-      {/*<button onClick={handleLoginClick}>Login</button>*/}
-      {/*<button onClick={handleRegisterClick}>Register</button>*/}
-    </div>
+    <ThemeProvider theme={props.theme}>
+      <div>
+        {/*<p>Main Page</p>*/}
+        Stay calm with WELLBE
+        {/*<button onClick={handleLoginClick}>Login</button>*/}
+        {/*<button onClick={handleRegisterClick}>Register</button>*/}
+      </div>
+    </ThemeProvider>
   );
 }

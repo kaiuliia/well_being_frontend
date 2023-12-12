@@ -10,10 +10,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 
 interface Props {
   title: string;
+  theme: Theme;
 }
 
 interface User {
@@ -80,7 +81,7 @@ export function Register(props: Props) {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={props.theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
