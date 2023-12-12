@@ -41,7 +41,7 @@ export function EntryPage(props: Props) {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" typography="sans-serif">
             WELLBE
           </Typography>
           <Typography component="h6" variant="h6">
