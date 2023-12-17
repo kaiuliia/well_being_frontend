@@ -13,7 +13,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
-
+import { useAuth } from "../hoc/useAuth";
 interface Props {
   theme: Theme;
 }
@@ -33,7 +33,7 @@ export function Login(props: Props) {
 
   const navigate = useNavigate();
   const location = useLocation();
-
+  const signin = useAuth();
   const fromPage = location.state?.from?.pathname || "/";
   const sendData = async (user: User) => {
     const response = await fetch("http://localhost:9090/login", {
@@ -64,7 +64,7 @@ export function Login(props: Props) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    // signin(user:User);
     if (email && password) {
       await sendData({ email: email, password: password });
       setEmail("");

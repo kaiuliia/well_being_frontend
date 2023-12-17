@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
+import { Dialog } from "@mui/material";
 
 interface Props {
   theme: Theme;
@@ -19,14 +20,13 @@ interface User {
 }
 export function Dashboard(props: Props) {
   const name = localStorage.getItem("name");
-  // const handleLoginClick = () => {
-  //   window.location.href = "/login";
-  // };
-  //
-  // const handleRegisterClick = () => {
-  //   window.location.href = "/register";
-  // };
 
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState();
+
+  const dialogOpen = () => {
+    setOpen(!open);
+  };
   const handleSurveyClick = () => {
     window.location.href = "/login/user/survey";
   };
@@ -54,9 +54,12 @@ export function Dashboard(props: Props) {
           <Typography component="h6" variant="h4" align="center">
             Here is your progress for past week
           </Typography>
-          <Button onClick={handleSurveyClick}>Change today</Button>
+          <Button onClick={dialogOpen}>Change today</Button>
           {/*<Survey />*/}
         </Box>
+        <Dialog open={open}>
+          <Survey />
+        </Dialog>
       </div>
     </ThemeProvider>
   );

@@ -14,9 +14,11 @@ import { Advices } from "./components/advices";
 import Button from "@mui/material/Button";
 import { EntryPage } from "./Pages/Entry";
 import { RequireAuth } from "./hoc/RequireAuth";
+import { AuthProvider } from "./hoc/AuthProvider";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 // import from "./assets/fonts/";
+
 declare module "@mui/material/styles" {
   interface Theme {
     status: {
@@ -71,7 +73,9 @@ const customTheme = createTheme({
 });
 
 function App() {
+  const [token, setToken] = useState();
   return (
+    // <AuthProvider>
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <Grid
@@ -88,11 +92,11 @@ function App() {
           />
           <Route path="/login" element={<Login theme={customTheme} />} />
           <Route
-            path="/login/dashboard"
+            path="/user/dashboard"
             element={
-              <RequireAuth>
-                <Dashboard theme={customTheme} />
-              </RequireAuth>
+              // <RequireAuth>
+              <Dashboard theme={customTheme} />
+              // </RequireAuth>
             }
           />
           <Route path="/login/user/advises" element={<Advices />} />
@@ -100,6 +104,7 @@ function App() {
         </Routes>
       </Grid>
     </ThemeProvider>
+    // </AuthProvider>
   );
 }
 
