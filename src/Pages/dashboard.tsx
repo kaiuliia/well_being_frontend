@@ -27,7 +27,7 @@ export function Dashboard(props: Props) {
   //   window.location.href = "/register";
   // };
 
-  const handleSurvetClick = () => {
+  const handleSurveyClick = () => {
     window.location.href = "/login/user/survey";
   };
   return (
@@ -54,7 +54,7 @@ export function Dashboard(props: Props) {
           <Typography component="h6" variant="h4" align="center">
             Here is your progress for past week
           </Typography>
-          <Button onClick={handleSurvetClick}>Add</Button>
+          <Button onClick={handleSurveyClick}>Change today</Button>
           {/*<Survey />*/}
         </Box>
       </div>

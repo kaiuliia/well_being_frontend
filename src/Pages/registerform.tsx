@@ -47,7 +47,7 @@ export function Register(props: Props) {
     } else {
       setStatusMessage("Welcome!");
       localStorage.setItem("name", message.name);
-      window.location.href = "login/user";
+      window.location.href = "/user/dashboard";
     }
   };
   const defaultTheme = createTheme();
