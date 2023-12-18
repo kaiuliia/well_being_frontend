@@ -73,7 +73,6 @@ const customTheme = createTheme({
 });
 
 function App() {
-  const [token, setToken] = useState();
   return (
     // <AuthProvider>
     <ThemeProvider theme={customTheme}>

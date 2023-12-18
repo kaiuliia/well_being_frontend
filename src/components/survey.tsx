@@ -142,7 +142,9 @@ export function Survey(props: Props) {
         {/*    // background: "#DDE6ED",*/}
         {/*  }}*/}
         {/*>*/}
-
+        <Typography component="h3" align="left" gutterBottom>
+          How are you today?
+        </Typography>
         <Box>
           {sliderProps.map((prop) => (
             <Box>

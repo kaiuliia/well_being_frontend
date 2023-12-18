@@ -20,52 +20,66 @@ export const SliderBar = (props: Props) => {
   };
 
   return (
-    <Box
+    // <Box
+    //   sx={{
+    //     display: "flex",
+    //     justifyContent: "center",
+    //     alignItems: "center",
+    //   }}
+    // >
+    <Card
       sx={{
+        width: "100%", // Set the width to 100% to be responsive
+        height: "auto", // Auto height to fit content
         display: "flex",
-        justifyContent: "center",
+        flexDirection: "column",
+        padding: "1rem",
+        alignItems: "flex-start", // Align Survey name to the left
       }}
     >
-      <Card
-        sx={{
-          width: "30rem",
-          // background: props.colors,
-          height: "8rem", // Increased height to accommodate the slider and labels
-          padding: "1rem", // Added padding for better spacing
-          alignItems: "center",
-        }}
+      <Typography
+        component="h5"
+        align="left"
+        margin="0rem"
+        paddingBottom="0.8rem"
       >
-        <Typography component="h3" align="left" variant="h6" gutterBottom>
-          {props.survey}
+        {props.survey}
+      </Typography>
+
+      <Slider
+        sx={{
+          width: "100%",
+          margin: "0rem",
+          padding: "0rem",
+        }}
+        value={sliderValue}
+        valueLabelDisplay="auto"
+        color="primary"
+        onChange={handleChange}
+      />
+
+      <Grid container justifyContent="space-between" alignItems="center">
+        <Typography
+          component="h5"
+          align="left"
+          width="40%"
+          fontSize="0.8rem"
+          paddingTop="0.8rem"
+          paddingBottom="0.8rem"
+        >
+          {props.min}
         </Typography>
-
-        <Slider
-          sx={{
-            // color: "#B7B7B7",
-            width: "90%", // Set the width to 100% to fill the card
-            marginBottom: "0rem", // Added margin at the bottom for spacing
-            paddingBottom: "0rem",
-          }}
-          value={sliderValue}
-          valueLabelDisplay="auto"
-          color="primary"
-          onChange={handleChange}
-        />
-
-        <Grid container justifyContent="space-between">
-          <Typography component="h5" align="left" width="20%" fontSize="0.8rem">
-            {props.min}
-          </Typography>
-          <Typography
-            component="h5"
-            align="right"
-            width="20%"
-            fontSize="0.8rem"
-          >
-            {props.max}
-          </Typography>
-        </Grid>
-      </Card>
-    </Box>
+        <Typography
+          component="h5"
+          align="right"
+          width="40%"
+          fontSize="0.8rem"
+          paddingBottom="0rem"
+        >
+          {props.max}
+        </Typography>
+      </Grid>
+    </Card>
+    // </Box>
   );
 };

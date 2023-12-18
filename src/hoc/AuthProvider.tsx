@@ -4,19 +4,24 @@ interface User {
   email: string;
   password: string;
 }
-export const AuthContext = createContext(null);
-export const AuthProvider = ({ pages }: any) => {
-  const [user, setUser] = useState(null);
-  const sighin = (newUser: User, callback: any) => {
-    // @ts-ignore
+
+interface Context {
+  user?: User;
+  signIn: (newUser: User) => void;
+  signOut: () => void;
+}
+
+export const AuthContext = createContext<Context>({} as Context);
+export const AuthProvider = ({ children }: any) => {
+  const [user, setUser] = useState<User>();
+
+  const signIn = (newUser: User) => {
     setUser(newUser);
-    callback();
   };
-  const sighout = (callback: any) => {
-    setUser(null);
-    callback();
+  const signOut = () => {
+    setUser(undefined);
   };
-  const value = { user, sighin, sighout };
+  const value = { user, signIn, signOut };
   // @ts-ignore
-  return <AuthContext.Provider value={value}>{pages}</AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
