@@ -17,6 +17,14 @@ interface User {
   password: string;
 }
 
+type SurveyType =
+  | "appetite"
+  | "general_mood"
+  | "sleep"
+  | "anxiety"
+  | "yourself_time"
+  | "screen_time";
+
 interface Survey {
   general_mood: number | number[];
   appetite: number | number[];
@@ -36,12 +44,13 @@ export function Survey(props: Props) {
     screen_time: 0,
   });
 
-  const surveyCategories: string[] = [
-    "General mood",
-    "Appetite",
-    "Sleep",
-    "Calmness",
-    "Time for you",
+  const surveyCategories: SurveyType[] = [
+    "general_mood",
+    "appetite",
+    "sleep",
+    "anxiety",
+    "yourself_time",
+    "screen_time",
     // Add more categories as needed
   ];
 
@@ -115,13 +124,13 @@ export function Survey(props: Props) {
         {/*>*/}
 
         <Box>
-          {surveyCategories.map((survey: string) => (
+          {surveyCategories.map((survey) => (
             <Box>
               <SliderBar
                 // colors={colors[0]}
                 survey={survey}
                 onChange={(value: number | number[]) =>
-                  handleSliderChange(value, "general_mood")
+                  handleSliderChange(value, survey)
                 }
               />
               <br></br>
