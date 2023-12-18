@@ -49,26 +49,26 @@ export function Survey(props: Props) {
     },
     {
       name: "Activities",
-      min: "To low",
-      max: "High level",
+      min: "Not active",
+      max: "Very active",
       surveyKey: "activities",
     },
     {
       name: "Sleep",
       min: "Feel shattered",
-      max: "Good",
+      max: "Well-rested",
       surveyKey: "sleep",
     },
     {
       name: "Calmness",
-      min: "Fell anxious",
-      max: "I'm calm",
+      min: "Feel anxious",
+      max: "Feel calm",
       surveyKey: "calmness",
     },
     {
       name: "Time for me",
-      min: "Don't have",
-      max: "Have a lot",
+      min: "None",
+      max: "A lot",
       surveyKey: "yourself_time",
     },
   ];
