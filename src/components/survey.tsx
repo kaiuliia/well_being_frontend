@@ -21,17 +21,15 @@ type SurveyType =
   | "appetite"
   | "general_mood"
   | "sleep"
-  | "anxiety"
-  | "yourself_time"
-  | "screen_time";
+  | "calmness"
+  | "yourself_time";
 
 interface Survey {
   general_mood: number | number[];
   appetite: number | number[];
   sleep: number | number[];
-  anxiety: number | number[];
+  calmness: number | number[];
   yourself_time: number | number[];
-  screen_time: number | number[];
 }
 export function Survey(props: Props) {
   const [sliderValue, setSliderValue] = useState<number | number[]>();
@@ -39,18 +37,16 @@ export function Survey(props: Props) {
     general_mood: 0,
     appetite: 0,
     sleep: 0,
-    anxiety: 0,
+    calmness: 0,
     yourself_time: 0,
-    screen_time: 0,
   });
 
   const surveyCategories: SurveyType[] = [
     "general_mood",
     "appetite",
     "sleep",
-    "anxiety",
+    "calmness",
     "yourself_time",
-    "screen_time",
     // Add more categories as needed
   ];
 
@@ -96,9 +92,8 @@ export function Survey(props: Props) {
       general_mood: survey.general_mood,
       appetite: survey.appetite,
       sleep: survey.sleep,
-      anxiety: survey.anxiety,
+      calmness: survey.calmness,
       yourself_time: survey.yourself_time,
-      screen_time: survey.screen_time,
     });
     window.location.href = "login/user/advises";
     setSubmitted(true);
@@ -137,54 +132,6 @@ export function Survey(props: Props) {
             </Box>
           ))}
 
-          {/*<SliderBar*/}
-          {/*  // colors={colors[0]}*/}
-          {/*  survey={"general mood"}*/}
-          {/*  onChange={(value: number | number[]) =>*/}
-          {/*    handleSliderChange(value, "general_mood")*/}
-          {/*  }*/}
-          {/*/>*/}
-          {/*<br></br>*/}
-          {/*<SliderBar*/}
-          {/*  // colors={colors[1]}*/}
-          {/*  survey={"appetite"}*/}
-          {/*  onChange={(value: number | number[]) =>*/}
-          {/*    handleSliderChange(value, "appetite")*/}
-          {/*  }*/}
-          {/*/>*/}
-          {/*<br></br>*/}
-          {/*<SliderBar*/}
-          {/*  // colors={colors[2]}*/}
-          {/*  survey={"sleep"}*/}
-          {/*  onChange={(value: number | number[]) =>*/}
-          {/*    handleSliderChange(value, "sleep")*/}
-          {/*  }*/}
-          {/*/>*/}
-          {/*<br></br>*/}
-          {/*<SliderBar*/}
-          {/*  // colors={colors[3]}*/}
-          {/*  survey={"anxiety"}*/}
-          {/*  onChange={(value: number | number[]) =>*/}
-          {/*    handleSliderChange(value, "anxiety")*/}
-          {/*  }*/}
-          {/*/>*/}
-          {/*<br></br>*/}
-          {/*<SliderBar*/}
-          {/*  // colors={colors[4]}*/}
-          {/*  survey={"time just for you"}*/}
-          {/*  onChange={(value: number | number[]) =>*/}
-          {/*    handleSliderChange(value, "yourself_time")*/}
-          {/*  }*/}
-          {/*/>*/}
-
-          {/*<br></br>*/}
-          {/*<SliderBar*/}
-          {/*  // colors={colors[5]}*/}
-          {/*  survey={"screen time"}*/}
-          {/*  onChange={(value: number | number[]) =>*/}
-          {/*    handleSliderChange(value, "screen_time")*/}
-          {/*  }*/}
-          {/*/>*/}
           <Button onClick={handleSubmit}>Submit</Button>
         </Box>
         {/*</Paper>*/}
