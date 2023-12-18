@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 
 interface Props {}
 
@@ -16,17 +17,16 @@ interface User {
   email: string;
   password: string;
 }
-
-type SurveyType =
-  | "appetite"
-  | "general_mood"
-  | "sleep"
-  | "calmness"
-  | "yourself_time";
+interface SliderProps {
+  name: string;
+  min: string;
+  max: string;
+  surveyKey: keyof Survey;
+}
 
 interface Survey {
   general_mood: number | number[];
-  appetite: number | number[];
+  activities: number | number[];
   sleep: number | number[];
   calmness: number | number[];
   yourself_time: number | number[];
@@ -35,19 +35,42 @@ export function Survey(props: Props) {
   const [sliderValue, setSliderValue] = useState<number | number[]>();
   const [survey, setSurvey] = useState<Survey>({
     general_mood: 0,
-    appetite: 0,
+    activities: 0,
     sleep: 0,
     calmness: 0,
     yourself_time: 0,
   });
-
-  const surveyCategories: SurveyType[] = [
-    "general_mood",
-    "appetite",
-    "sleep",
-    "calmness",
-    "yourself_time",
-    // Add more categories as needed
+  const sliderProps: SliderProps[] = [
+    {
+      name: "General mood",
+      min: "Bad",
+      max: "Very good",
+      surveyKey: "general_mood",
+    },
+    {
+      name: "Activities",
+      min: "To low",
+      max: "High level",
+      surveyKey: "activities",
+    },
+    {
+      name: "Sleep",
+      min: "Feel shattered",
+      max: "Good",
+      surveyKey: "sleep",
+    },
+    {
+      name: "Calmness",
+      min: "Fell anxious",
+      max: "I'm calm",
+      surveyKey: "calmness",
+    },
+    {
+      name: "Time for me",
+      min: "Don't have",
+      max: "Have a lot",
+      surveyKey: "yourself_time",
+    },
   ];
 
   const [statusMessage, setStatusMessage] = useState("");
@@ -90,7 +113,7 @@ export function Survey(props: Props) {
 
     await sendData({
       general_mood: survey.general_mood,
-      appetite: survey.appetite,
+      activities: survey.activities,
       sleep: survey.sleep,
       calmness: survey.calmness,
       yourself_time: survey.yourself_time,
@@ -103,7 +126,9 @@ export function Survey(props: Props) {
 
   // @ts-ignore
   // @ts-ignore
+  // @ts-ignore
   return (
+    // <ThemeProvider theme={props.theme}>
     <React.Fragment>
       <CssBaseline />
 
@@ -119,14 +144,16 @@ export function Survey(props: Props) {
         {/*>*/}
 
         <Box>
-          {surveyCategories.map((survey) => (
+          {sliderProps.map((prop) => (
             <Box>
               <SliderBar
                 // colors={colors[0]}
-                survey={survey}
+                survey={prop.name}
                 onChange={(value: number | number[]) =>
-                  handleSliderChange(value, survey)
+                  handleSliderChange(value, prop.surveyKey)
                 }
+                min={prop.min}
+                max={prop.max}
               />
               <br></br>
             </Box>
@@ -137,5 +164,6 @@ export function Survey(props: Props) {
         {/*</Paper>*/}
       </Container>
     </React.Fragment>
+    // </ThemeProvider>
   );
 }

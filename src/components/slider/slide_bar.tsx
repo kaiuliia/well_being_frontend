@@ -8,6 +8,8 @@ interface Props {
   // colors: string;
   survey: string;
   onChange: (value: number | number[]) => void;
+  max: string;
+  min: string;
 }
 export const SliderBar = (props: Props) => {
   const [sliderValue, setSliderValue] = useState<number | number[]>(0);
@@ -52,7 +54,7 @@ export const SliderBar = (props: Props) => {
 
         <Grid container justifyContent="space-between">
           <Typography component="h5" align="left" width="20%" fontSize="0.8rem">
-            Minimal
+            {props.min}
           </Typography>
           <Typography
             component="h5"
@@ -60,7 +62,7 @@ export const SliderBar = (props: Props) => {
             width="20%"
             fontSize="0.8rem"
           >
-            Very much
+            {props.max}
           </Typography>
         </Grid>
       </Card>
