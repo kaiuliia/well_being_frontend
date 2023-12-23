@@ -132,33 +132,42 @@ export function Survey(props: Props) {
     // <ThemeProvider theme={props.}>
     <React.Fragment>
       <CssBaseline />
-      <Grid container xs={12} sm={12} lg={12}>
-        <Grid item xs={12} sm={12} lg={12}>
+      {/*<Grid container xs={12} sm={12} lg={12}>*/}
+      {/*  <Grid item xs={12} sm={12} lg={12}>*/}
+      <Box
+        sx={{
+          width: "95%",
+          padding: "1rem",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        <Box>
+          <Typography component="h3" align="left" gutterBottom>
+            How are you today?
+          </Typography>
           <Box>
-            <Typography component="h3" align="left" gutterBottom>
-              How are you today?
-            </Typography>
-            <Box>
-              {sliderProps.map((prop) => (
-                <Box>
-                  <SliderBar
-                    // colors={colors[0]}
-                    survey={prop.name}
-                    onChange={(value: number | number[]) =>
-                      handleSliderChange(value, prop.surveyKey)
-                    }
-                    min={prop.min}
-                    max={prop.max}
-                  />
-                  <br></br>
-                </Box>
-              ))}
+            {sliderProps.map((prop) => (
+              <Box>
+                <SliderBar
+                  // colors={colors[0]}
+                  survey={prop.name}
+                  onChange={(value: number | number[]) =>
+                    handleSliderChange(value, prop.surveyKey)
+                  }
+                  min={prop.min}
+                  max={prop.max}
+                />
+                <br></br>
+              </Box>
+            ))}
 
-              <Button onClick={handleSubmit}>Submit</Button>
-            </Box>
+            <Button onClick={handleSubmit}>Submit</Button>
           </Box>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
+      {/*  </Grid>*/}
+      {/*</Grid>*/}
     </React.Fragment>
     //{" "}
     // </ThemeProvider>
