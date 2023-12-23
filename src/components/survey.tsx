@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
 
 interface Props {}
 
@@ -128,44 +129,38 @@ export function Survey(props: Props) {
   // @ts-ignore
   // @ts-ignore
   return (
-    // <ThemeProvider theme={props.theme}>
+    // <ThemeProvider theme={props.}>
     <React.Fragment>
       <CssBaseline />
-
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        {/*<Paper*/}
-        {/*  variant="outlined"*/}
-        {/*  elevation={3}*/}
-        {/*  sx={{*/}
-        {/*    my: { xs: 3, md: 6 },*/}
-        {/*    p: { xs: 2, md: 3 },*/}
-        {/*    // background: "#DDE6ED",*/}
-        {/*  }}*/}
-        {/*>*/}
-        <Typography component="h3" align="left" gutterBottom>
-          How are you today?
-        </Typography>
-        <Box>
-          {sliderProps.map((prop) => (
+      <Grid container xs={12} sm={12} lg={12}>
+        <Grid item xs={12} sm={12} lg={12}>
+          <Box>
+            <Typography component="h3" align="left" gutterBottom>
+              How are you today?
+            </Typography>
             <Box>
-              <SliderBar
-                // colors={colors[0]}
-                survey={prop.name}
-                onChange={(value: number | number[]) =>
-                  handleSliderChange(value, prop.surveyKey)
-                }
-                min={prop.min}
-                max={prop.max}
-              />
-              <br></br>
-            </Box>
-          ))}
+              {sliderProps.map((prop) => (
+                <Box>
+                  <SliderBar
+                    // colors={colors[0]}
+                    survey={prop.name}
+                    onChange={(value: number | number[]) =>
+                      handleSliderChange(value, prop.surveyKey)
+                    }
+                    min={prop.min}
+                    max={prop.max}
+                  />
+                  <br></br>
+                </Box>
+              ))}
 
-          <Button onClick={handleSubmit}>Submit</Button>
-        </Box>
-        {/*</Paper>*/}
-      </Container>
+              <Button onClick={handleSubmit}>Submit</Button>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
     </React.Fragment>
+    //{" "}
     // </ThemeProvider>
   );
 }

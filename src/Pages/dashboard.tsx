@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import { Dialog } from "@mui/material";
-
+import Grid2 from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid";
 interface Props {
   theme: Theme;
 }
@@ -57,7 +58,8 @@ export function Dashboard(props: Props) {
           <Button onClick={dialogOpen}>Change today</Button>
           {/*<Survey />*/}
         </Box>
-        <Dialog open={open}>
+
+        <Dialog fullWidth={true} open={open}>
           <Survey />
         </Dialog>
       </div>
