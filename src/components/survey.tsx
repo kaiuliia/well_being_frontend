@@ -167,16 +167,23 @@ export function Survey(props: Props) {
                 <br></br>
               </Box>
             ))}
-            <Button
-              fullWidth
-              variant="contained"
+            <Box
               sx={{
-                color: "#FFFFFF",
+                display: "flex",
+                justifyContent: "center",
               }}
-              onClick={handleSubmit}
             >
-              Submit
-            </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  width: "30%",
+                  color: "#FFFFFF",
+                }}
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
