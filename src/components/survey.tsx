@@ -125,21 +125,16 @@ export function Survey(props: Props) {
     console.log("SUBMITTED!!!!", survey);
   };
 
-  // @ts-ignore
-  // @ts-ignore
-  // @ts-ignore
   return (
-    // <ThemeProvider theme={props.}>
     <React.Fragment>
       <CssBaseline />
-      {/*<Grid container xs={12} sm={12} lg={12}>*/}
-      {/*  <Grid item xs={12} sm={12} lg={12}>*/}
       <Box
         sx={{
-          width: "95%",
+          width: "100%",
           padding: "2rem 1rem 2rem 1rem",
           marginLeft: "auto",
           marginRight: "auto",
+          backgroundColor: "background.default",
         }}
       >
         <Box>
@@ -156,8 +151,6 @@ export function Survey(props: Props) {
               <Box
                 sx={{
                   width: "100%",
-                  // height: "4rem",
-                  // padding: "2rem 1rem 2rem 1rem",
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
@@ -174,15 +167,19 @@ export function Survey(props: Props) {
                 <br></br>
               </Box>
             ))}
-
-            <Button onClick={handleSubmit}>Submit</Button>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{
+                color: "#FFFFFF",
+              }}
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
           </Box>
         </Box>
       </Box>
-      {/*  </Grid>*/}
-      {/*</Grid>*/}
     </React.Fragment>
-    //{" "}
-    // </ThemeProvider>
   );
 }
