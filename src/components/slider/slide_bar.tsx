@@ -58,6 +58,9 @@ export const SliderBar = (props: Props) => {
           margin: "0rem",
           padding: "0rem",
           color: color,
+          "& .MuiSlider-valueLabel": {
+            backgroundColor: color,
+          },
         }}
         value={sliderValue}
         valueLabelDisplay="auto"
