@@ -20,13 +20,6 @@ export const SliderBar = (props: Props) => {
   };
 
   return (
-    // <Box
-    //   sx={{
-    //     display: "flex",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //   }}
-    // >
     <Card
       sx={{
         width: "100%", // Set the width to 100% to be responsive
