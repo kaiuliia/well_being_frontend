@@ -52,11 +52,23 @@ export function Dashboard(props: Props) {
             Hello, {name}!
           </Typography>
 
-          <Typography component="h6" variant="h4" align="center">
-            Here is your progress for past week
-          </Typography>
-          <Button onClick={dialogOpen}>Change today</Button>
-          {/*<Survey />*/}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                width: "30%",
+                color: "#FFFFFF",
+              }}
+              onClick={dialogOpen}
+            >
+              Change today
+            </Button>
+          </Box>
         </Box>
 
         <Dialog fullWidth={true} open={open}>
