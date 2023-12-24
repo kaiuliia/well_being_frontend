@@ -22,12 +22,12 @@ export const SliderBar = (props: Props) => {
   return (
     <Card
       sx={{
-        width: "100%", // Set the width to 100% to be responsive
-        height: "auto", // Auto height to fit content
+        width: "100%",
+        height: "auto",
         display: "flex",
         flexDirection: "column",
         padding: "0.8rem",
-        alignItems: "flex-start", // Align Survey name to the left
+        alignItems: "flex-start",
       }}
     >
       <Typography
