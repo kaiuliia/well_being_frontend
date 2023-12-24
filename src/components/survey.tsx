@@ -143,7 +143,7 @@ export function Survey(props: Props) {
         }}
       >
         <Box>
-          <Typography component="h2" variant="h4" align="center" gutterBottom>
+          <Typography variant="h2" align="center" gutterBottom>
             How are you today?
           </Typography>
           <Box>

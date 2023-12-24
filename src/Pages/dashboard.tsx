@@ -49,7 +49,7 @@ export function Dashboard(props: Props) {
           }
         >
           <Typography component="h2" variant="h4" align="center">
-            Hello, {name}! How are you today?
+            Hello, {name}!
           </Typography>
 
           <Typography component="h6" variant="h4" align="center">
