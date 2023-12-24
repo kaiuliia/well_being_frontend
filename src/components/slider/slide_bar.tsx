@@ -33,15 +33,15 @@ export const SliderBar = (props: Props) => {
         height: "auto", // Auto height to fit content
         display: "flex",
         flexDirection: "column",
-        padding: "1rem",
+        padding: "0.8rem",
         alignItems: "flex-start", // Align Survey name to the left
       }}
     >
       <Typography
-        component="h5"
+        variant="subtitle1"
         align="left"
         margin="0rem"
-        paddingBottom="0.8rem"
+        paddingBottom="0.5rem"
       >
         {props.survey}
       </Typography>
@@ -60,20 +60,18 @@ export const SliderBar = (props: Props) => {
 
       <Grid container justifyContent="space-between" alignItems="center">
         <Typography
-          component="h5"
+          variant="caption"
           align="left"
           width="40%"
-          fontSize="0.8rem"
-          paddingTop="0.8rem"
-          paddingBottom="0.8rem"
+          paddingTop="0.5rem"
+          // paddingBottom="0.8rem"
         >
           {props.min}
         </Typography>
         <Typography
-          component="h5"
+          variant="caption"
           align="right"
           width="40%"
-          fontSize="0.8rem"
           paddingBottom="0rem"
         >
           {props.max}

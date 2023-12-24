@@ -137,18 +137,26 @@ export function Survey(props: Props) {
       <Box
         sx={{
           width: "95%",
-          padding: "1rem",
+          padding: "2rem 1rem 2rem 1rem",
           marginLeft: "auto",
           marginRight: "auto",
         }}
       >
         <Box>
-          <Typography component="h3" align="left" gutterBottom>
+          <Typography component="h2" variant="h4" align="center" gutterBottom>
             How are you today?
           </Typography>
           <Box>
             {sliderProps.map((prop) => (
-              <Box>
+              <Box
+                sx={{
+                  width: "100%",
+                  // height: "4rem",
+                  // padding: "2rem 1rem 2rem 1rem",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              >
                 <SliderBar
                   // colors={colors[0]}
                   survey={prop.name}
