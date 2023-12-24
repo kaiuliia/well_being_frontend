@@ -63,10 +63,20 @@ const customTheme = createTheme({
       fontFamily: "roboto",
       fontWeight: 300,
     },
+    h2: {
+      fontFamily: "roboto",
+      // fontWeight: 300,
+    },
     h3: {
       fontFamily: "roboto",
     },
     h4: {
+      fontFamily: "roboto",
+    },
+    h5: {
+      fontFamily: "roboto",
+    },
+    h6: {
       fontFamily: "roboto",
     },
   },

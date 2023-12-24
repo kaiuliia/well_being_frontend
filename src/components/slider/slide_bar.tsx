@@ -18,6 +18,19 @@ export const SliderBar = (props: Props) => {
     setSliderValue(newValue as number[]);
     props.onChange(sliderValue);
   };
+  const color = () => {
+    // setSliderValue(newValue as number[]);
+    if (sliderValue === 0) {
+      return "secondary.main";
+    }
+    if (sliderValue < 30) {
+      return "error.main";
+    } else if (sliderValue >= 30 && sliderValue <= 70) {
+      return "warning.main";
+    } else {
+      return "info.main";
+    }
+  };
 
   return (
     <Card
@@ -44,6 +57,7 @@ export const SliderBar = (props: Props) => {
           width: "100%",
           margin: "0rem",
           padding: "0rem",
+          color: color,
         }}
         value={sliderValue}
         valueLabelDisplay="auto"
@@ -57,7 +71,6 @@ export const SliderBar = (props: Props) => {
           align="left"
           width="40%"
           paddingTop="0.5rem"
-          // paddingBottom="0.8rem"
         >
           {props.min}
         </Typography>
