@@ -139,7 +139,7 @@ export function Survey(props: Props) {
       >
         <Box>
           <Typography
-            component="h2"
+            component="h4"
             variant="h4"
             align="center"
             fontWeight="bold"
