@@ -1,192 +1,60 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { SliderBar } from "../slider/slide_bar";
-import { MouseEvent } from "../../types";
-import Button from "@mui/material/Button";
-
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
 
-interface Props {}
-
-interface User {
-  email: string;
-  password: string;
-}
-interface SliderProps {
-  name: string;
-  min: string;
-  max: string;
-  surveyKey: keyof Survey;
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
+  return { name, calories, fat, carbs, protein };
 }
 
-interface Survey {
-  general_mood: number | number[];
-  activities: number | number[];
-  sleep: number | number[];
-  calmness: number | number[];
-  yourself_time: number | number[];
-}
-export function Survey(props: Props) {
-  const [sliderValue, setSliderValue] = useState<number | number[]>();
-  const [survey, setSurvey] = useState<Survey>({
-    general_mood: 0,
-    activities: 0,
-    sleep: 0,
-    calmness: 0,
-    yourself_time: 0,
-  });
-  const sliderProps: SliderProps[] = [
-    {
-      name: "General mood",
-      min: "Bad",
-      max: "Very good",
-      surveyKey: "general_mood",
-    },
-    {
-      name: "Activities",
-      min: "Not active",
-      max: "Very active",
-      surveyKey: "activities",
-    },
-    {
-      name: "Sleep",
-      min: "Feel shattered",
-      max: "Well-rested",
-      surveyKey: "sleep",
-    },
-    {
-      name: "Calmness",
-      min: "Feel anxious",
-      max: "Feel calm",
-      surveyKey: "calmness",
-    },
-    {
-      name: "Time for me",
-      min: "None",
-      max: "A lot",
-      surveyKey: "yourself_time",
-    },
-  ];
+const rows = [
+  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+  createData("Eclair", 262, 16.0, 24, 6.0),
+  createData("Cupcake", 305, 3.7, 67, 4.3),
+  createData("Gingerbread", 356, 16.0, 49, 3.9),
+];
 
-  const [statusMessage, setStatusMessage] = useState("");
-
-  // States for checking the errors
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
-
-  const sendData = async (survey: Survey) => {
-    const response = await fetch("http://localhost:9090/survey", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(survey),
-    });
-    if (response.status > 299) {
-      const error = await response.json();
-      setStatusMessage(error.error);
-    } else {
-      const message = await response.json();
-      setStatusMessage(`Survey ${message} saved to database`);
-    }
-  };
-
-  const handleSliderChange = (
-    value: number | number[],
-    sliderName: keyof Survey,
-  ) => {
-    setSurvey((prevSurvey) => ({
-      ...prevSurvey,
-      [sliderName]: value,
-    }));
-    setSliderValue(value);
-  };
-  console.log(sliderValue);
-  console.log(survey);
-
-  const handleSubmit = async (e: MouseEvent) => {
-    e.preventDefault();
-
-    await sendData({
-      general_mood: survey.general_mood,
-      activities: survey.activities,
-      sleep: survey.sleep,
-      calmness: survey.calmness,
-      yourself_time: survey.yourself_time,
-    });
-    window.location.href = "login/user/advises";
-    setSubmitted(true);
-    setError(false);
-    console.log("SUBMITTED!!!!", survey);
-  };
-
+export default function DashboardTable() {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Box
-        sx={{
-          width: "100%",
-          padding: "2rem 1rem 2rem 1rem",
-          marginLeft: "auto",
-          marginRight: "auto",
-          backgroundColor: "background.default",
-        }}
-      >
-        <Box>
-          <Typography
-            component="h4"
-            variant="h4"
-            align="center"
-            fontWeight="bold"
-          >
-            How are you today?
-          </Typography>
-          <Box>
-            {sliderProps.map((prop) => (
-              <Box
-                sx={{
-                  width: "100%",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              >
-                <SliderBar
-                  // colors={colors[0]}
-                  survey={prop.name}
-                  onChange={(value: number | number[]) =>
-                    handleSliderChange(value, prop.surveyKey)
-                  }
-                  min={prop.min}
-                  max={prop.max}
-                />
-                <br></br>
-              </Box>
-            ))}
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Dessert (100g serving)</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <Button
-                variant="contained"
-                sx={{
-                  width: "30%",
-                  color: "#FFFFFF",
-                }}
-                onClick={handleSubmit}
-              >
-                Submit
-              </Button>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </React.Fragment>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }

@@ -32,14 +32,12 @@ export function Dashboard(props: Props) {
     window.location.href = "/login/user/survey";
   };
   return (
-    // <ThemeProvider theme={props.theme}>
     <Box
       sx={{
         position: "relative",
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        // justifyContent: "center",
       }}
     >
       <Box>
@@ -58,8 +56,6 @@ export function Dashboard(props: Props) {
             variant="contained"
             sx={{
               position: "absolute",
-              // bottom: "5%",
-              // width: "30%",
               color: "#FFFFFF",
             }}
             onClick={dialogOpen}
@@ -73,7 +69,6 @@ export function Dashboard(props: Props) {
         <Survey />
       </Dialog>
     </Box>
-    // </ThemeProvider>
   );
 }
 
