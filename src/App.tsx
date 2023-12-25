@@ -104,7 +104,7 @@ function App() {
             path="/user/dashboard"
             element={
               // <RequireAuth>
-              <Dashboard theme={customTheme} />
+              <Dashboard />
               // </RequireAuth>
             }
           />
