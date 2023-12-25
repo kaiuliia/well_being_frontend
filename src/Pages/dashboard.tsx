@@ -11,6 +11,7 @@ import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import { Dialog } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import Grid from "@mui/material/Grid";
+import DashboardTable from "../components/dashboard/table";
 interface Props {
   // theme: Theme;
 }
@@ -32,43 +33,44 @@ export function Dashboard(props: Props) {
     window.location.href = "/login/user/survey";
   };
   return (
-    <Box
-      sx={{
-        position: "relative",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Box>
-        <Typography component="h2" variant="h4" align="center">
-          Hello, {name}!
-        </Typography>
-
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Button
-            variant="contained"
-            sx={{
-              position: "absolute",
-              color: "#FFFFFF",
-            }}
-            onClick={dialogOpen}
-          >
-            Change today
-          </Button>
-        </Box>
-      </Box>
-
-      <Dialog fullWidth={true} open={open}>
-        <Survey />
-      </Dialog>
-    </Box>
+    <DashboardTable />
+    // <Box
+    //   sx={{
+    //     position: "relative",
+    //     width: "100%",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //   }}
+    // >
+    //   <Box>
+    //     <Typography component="h2" variant="h4" align="center">
+    //       Hello, {name}!
+    //     </Typography>
+    //
+    //     <Box
+    //       sx={{
+    //         width: "100%",
+    //         display: "flex",
+    //         justifyContent: "center",
+    //       }}
+    //     >
+    //       <Button
+    //         variant="contained"
+    //         sx={{
+    //           position: "absolute",
+    //           color: "#FFFFFF",
+    //         }}
+    //         onClick={dialogOpen}
+    //       >
+    //         Change today
+    //       </Button>
+    //     </Box>
+    //   </Box>
+    //
+    //   <Dialog fullWidth={true} open={open}>
+    //     <Survey />
+    //   </Dialog>
+    // </Box>
   );
 }
 
