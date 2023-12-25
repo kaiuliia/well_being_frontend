@@ -28,14 +28,20 @@ const rows = [
 export default function DashboardTable() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table
+        // sx={{ minWidth: "100%" }}
+        aria-label="simple table"
+      >
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell></TableCell>
+            <TableCell align="right">M</TableCell>
+            <TableCell align="right">T</TableCell>
+            <TableCell align="right">W</TableCell>
+            <TableCell align="right">T</TableCell>
+            <TableCell align="right">F</TableCell>
+            <TableCell align="right">S</TableCell>
+            <TableCell align="right">S</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
