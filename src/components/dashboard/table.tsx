@@ -8,12 +8,15 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+import Box from "@mui/material/Box";
 
 interface MoodData {
   dateRange: string;
-  sleep: string;
-  calmness: string;
-  appetite: string;
+  general_mood: number | number[];
+  activities: number | number[];
+  sleep: number | number[];
+  calmness: number | number[];
+  yourself_time: number | number[];
 }
 
 interface MoodState {
@@ -67,20 +70,21 @@ export function DashboardTable() {
             <TableCell>{mood}</TableCell>
             {daysOfWeek.map((day) => (
               <TableCell key={day}>
-                <Select
-                  value={"h"}
-                  onChange={(e) =>
-                    handleMoodChange(
-                      mood,
-                      day as keyof MoodData,
-                      e.target.value,
-                    )
-                  }
-                >
-                  <MenuItem value="">Select</MenuItem>
-                  <MenuItem value="good">Good</MenuItem>
-                  <MenuItem value="bad">Bad</MenuItem>
-                </Select>
+                <Box>" gjk"</Box>
+                {/*<Select*/}
+                {/*  value={"h"}*/}
+                {/*  onChange={(e) =>*/}
+                {/*    handleMoodChange(*/}
+                {/*      mood,*/}
+                {/*      day as keyof MoodData,*/}
+                {/*      e.target.value,*/}
+                {/*    )*/}
+                {/*  }*/}
+                {/*>*/}
+                {/*  <MenuItem value="">Select</MenuItem>*/}
+                {/*  <MenuItem value="good">Good</MenuItem>*/}
+                {/*  <MenuItem value="bad">Bad</MenuItem>*/}
+                {/*</Select>*/}
               </TableCell>
             ))}
           </TableRow>
