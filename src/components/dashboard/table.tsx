@@ -9,6 +9,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import Box from "@mui/material/Box";
+import { Survey } from "../survey";
 
 interface MoodData {
   dateRange: string;
@@ -17,6 +18,12 @@ interface MoodData {
   sleep: number | number[];
   calmness: number | number[];
   yourself_time: number | number[];
+}
+
+interface MoodProps {
+  name: string;
+  min: string;
+  max: string;
 }
 
 interface MoodState {
@@ -34,14 +41,108 @@ export function DashboardTable() {
     "Sunday",
   ];
 
+  const moodProps: MoodProps[] = [
+    {
+      name: "General mood",
+      min: "Bad",
+      max: "Very good",
+      surveyKey: "general_mood",
+    },
+    {
+      name: "Activities",
+      min: "Not active",
+      max: "Very active",
+      surveyKey: "activities",
+    },
+    {
+      name: "Sleep",
+      min: "Feel shattered",
+      max: "Well-rested",
+      surveyKey: "sleep",
+    },
+    {
+      name: "Calmness",
+      min: "Feel anxious",
+      max: "Feel calm",
+      surveyKey: "calmness",
+    },
+    {
+      name: "Time for me",
+      min: "None",
+      max: "A lot",
+      surveyKey: "yourself_time",
+    },
+  ];
+
   const [moods, setMoods] = useState<MoodState>({
-    good: { dateRange: "", sleep: "", calmness: "", appetite: "" },
-    bad: { dateRange: "", sleep: "", calmness: "", appetite: "" },
-    // ... add other moods
+    monday: {
+      dateRange: "",
+      general_mood: 0,
+      activities: 0,
+      sleep: 0,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    tuesday: {
+      dateRange: "",
+      general_mood: 0,
+      activities: 0,
+      sleep: 0,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    wednesday: {
+      dateRange: "",
+      general_mood: 0,
+      activities: 0,
+      sleep: 0,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    thursday: {
+      dateRange: "",
+      general_mood: 0,
+      activities: 0,
+      sleep: 0,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    friday: {
+      dateRange: "",
+      general_mood: 0,
+      activities: 0,
+      sleep: 0,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    saturday: {
+      dateRange: "",
+      general_mood: 0,
+      activities: 0,
+      sleep: 0,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    sunday: {
+      dateRange: "",
+      general_mood: 0,
+      activities: 0,
+      sleep: 0,
+      calmness: 0,
+      yourself_time: 0,
+    },
   });
+
+  //
+  // const [moods, setMoods] = useState<MoodState>({
+  //   good: { dateRange: "", sleep:0, calmness: "", appetite: "" },
+  //   bad: { dateRange: "", sleep: 0, calmness: "", appetite: "" },
+  //   // ... add other moods
+  // });
 
   const handleMoodChange = (
     mood: string,
+    color: string,
     day: keyof MoodData,
     value: string,
   ) => {
@@ -67,7 +168,7 @@ export function DashboardTable() {
       <TableBody>
         {Object.keys(moods).map((mood) => (
           <TableRow key={mood}>
-            <TableCell>{mood}</TableCell>
+            <TableCell></TableCell>
             {daysOfWeek.map((day) => (
               <TableCell key={day}>
                 <Box>" gjk"</Box>
