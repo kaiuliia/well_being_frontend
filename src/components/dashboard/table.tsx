@@ -46,31 +46,26 @@ export function DashboardTable() {
       name: "General mood",
       min: "Bad",
       max: "Very good",
-      surveyKey: "general_mood",
     },
     {
       name: "Activities",
       min: "Not active",
       max: "Very active",
-      surveyKey: "activities",
     },
     {
       name: "Sleep",
       min: "Feel shattered",
       max: "Well-rested",
-      surveyKey: "sleep",
     },
     {
       name: "Calmness",
       min: "Feel anxious",
       max: "Feel calm",
-      surveyKey: "calmness",
     },
     {
       name: "Time for me",
       min: "None",
       max: "A lot",
-      surveyKey: "yourself_time",
     },
   ];
 
@@ -133,13 +128,6 @@ export function DashboardTable() {
     },
   });
 
-  //
-  // const [moods, setMoods] = useState<MoodState>({
-  //   good: { dateRange: "", sleep:0, calmness: "", appetite: "" },
-  //   bad: { dateRange: "", sleep: 0, calmness: "", appetite: "" },
-  //   // ... add other moods
-  // });
-
   const handleMoodChange = (
     mood: string,
     color: string,
@@ -166,9 +154,9 @@ export function DashboardTable() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {Object.keys(moods).map((mood) => (
-          <TableRow key={mood}>
-            <TableCell></TableCell>
+        {moodProps.map((mood) => (
+          <TableRow key={mood.name}>
+            <TableCell>{mood.name}</TableCell>
             {daysOfWeek.map((day) => (
               <TableCell key={day}>
                 <Box>" gjk"</Box>
