@@ -53,6 +53,7 @@ export function DashboardTable() {
     },
   ];
 
+  const color = moodProps.map((color) => color.color);
   const [moods, setMoods] = useState<MoodState>({
     monday: {
       dateRange: "",
@@ -128,49 +129,88 @@ export function DashboardTable() {
   };
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell></TableCell>
-          {daysOfWeek.map((day) => (
-            <TableCell key={day}>{day}</TableCell>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {moodProps.map((mood) => (
-          <TableRow key={mood.name}>
-            <TableCell>{mood.name}</TableCell>
+    <Box>
+      <Table sx={{ width: "auto", padding: "0" }}>
+        <TableHead>
+          <TableRow>
+            <TableCell></TableCell>
             {daysOfWeek.map((day) => (
-              <TableCell key={day}>
-                <Box
-                  sx={{
-                    width: "1rem",
-                    height: "1rem",
-                    backgroundColor: "green",
-                  }}
-                ></Box>
-                {/*<Select*/}
-                {/*  value={"h"}*/}
-                {/*  onChange={(e) =>*/}
-                {/*    handleMoodChange(*/}
-                {/*      mood,*/}
-                {/*      day as keyof MoodData,*/}
-                {/*      e.target.value,*/}
-                {/*    )*/}
-                {/*  }*/}
-                {/*>*/}
-                {/*  <MenuItem value="">Select</MenuItem>*/}
-                {/*  <MenuItem value="good">Good</MenuItem>*/}
-                {/*  <MenuItem value="bad">Bad</MenuItem>*/}
-                {/*</Select>*/}
+              <TableCell
+                key={day}
+                sx={{
+                  padding: "0",
+                }}
+              >
+                {day}
               </TableCell>
             ))}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {moodProps.map((mood) => (
+            <TableRow key={mood.name} sx={{ padding: "0" }}>
+              <TableCell sx={{ padding: "0" }}>{mood.name}</TableCell>
+              {daysOfWeek.map((day) => (
+                <TableCell sx={{ padding: "0" }} key={day}>
+                  <Box
+                    sx={{
+                      width: "1rem",
+                      height: "1rem",
+                      padding: "0",
+                      marginLeft: "0.4rem",
+                      backgroundColor: color,
+                    }}
+                  ></Box>
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Box>
   );
 }
 
 // export default MoodTable;
+{
+  /*<Select*/
+}
+{
+  /*  value={"h"}*/
+}
+{
+  /*  onChange={(e) =>*/
+}
+{
+  /*    handleMoodChange(*/
+}
+{
+  /*      mood,*/
+}
+{
+  /*      day as keyof MoodData,*/
+}
+{
+  /*      e.target.value,*/
+}
+{
+  /*    )*/
+}
+{
+  /*  }*/
+}
+{
+  /*>*/
+}
+{
+  /*  <MenuItem value="">Select</MenuItem>*/
+}
+{
+  /*  <MenuItem value="good">Good</MenuItem>*/
+}
+{
+  /*  <MenuItem value="bad">Bad</MenuItem>*/
+}
+{
+  /*</Select>*/
+}
