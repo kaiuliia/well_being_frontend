@@ -5,8 +5,6 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Select,
-  MenuItem,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Survey } from "../survey";
@@ -22,8 +20,7 @@ interface MoodData {
 
 interface MoodProps {
   name: string;
-  min: string;
-  max: string;
+  color: string;
 }
 
 interface MoodState {
@@ -31,41 +28,28 @@ interface MoodState {
 }
 
 export function DashboardTable() {
-  const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  const daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
 
   const moodProps: MoodProps[] = [
     {
       name: "General mood",
-      min: "Bad",
-      max: "Very good",
+      color: "green",
     },
     {
       name: "Activities",
-      min: "Not active",
-      max: "Very active",
+      color: "red",
     },
     {
       name: "Sleep",
-      min: "Feel shattered",
-      max: "Well-rested",
+      color: "green",
     },
     {
       name: "Calmness",
-      min: "Feel anxious",
-      max: "Feel calm",
+      color: "green",
     },
     {
       name: "Time for me",
-      min: "None",
-      max: "A lot",
+      color: "green",
     },
   ];
 
@@ -159,7 +143,13 @@ export function DashboardTable() {
             <TableCell>{mood.name}</TableCell>
             {daysOfWeek.map((day) => (
               <TableCell key={day}>
-                <Box>" gjk"</Box>
+                <Box
+                  sx={{
+                    width: "1rem",
+                    height: "1rem",
+                    backgroundColor: "green",
+                  }}
+                ></Box>
                 {/*<Select*/}
                 {/*  value={"h"}*/}
                 {/*  onChange={(e) =>*/}
