@@ -6,23 +6,24 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
-  return { name, calories, fat, carbs, protein };
-}
+// function createData(
+//   name: string,
+//   calories: number,
+//   fat: number,
+//   carbs: number,
+//   protein: number,
+// ) {
+//   return { name, calories, fat, carbs, protein };
+// }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
+  "General mood",
+  "Ice cream sandwich",
+  "Eclair",
+  "Cupcake",
+  "Gingerbread",
 ];
 
 export default function DashboardTable() {
@@ -35,28 +36,60 @@ export default function DashboardTable() {
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
-            <TableCell align="right">M</TableCell>
-            <TableCell align="right">T</TableCell>
-            <TableCell align="right">W</TableCell>
-            <TableCell align="right">T</TableCell>
-            <TableCell align="right">F</TableCell>
-            <TableCell align="right">S</TableCell>
-            <TableCell align="right">S</TableCell>
+            <TableCell align="center">M</TableCell>
+            <TableCell align="center">T</TableCell>
+            <TableCell align="center">W</TableCell>
+            <TableCell align="center">T</TableCell>
+            <TableCell align="center">F</TableCell>
+            <TableCell align="center">S</TableCell>
+            <TableCell align="center">S</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">
+                <Box
+                  sx={{
+                    width: "1rem",
+                    height: "1rem",
+                    backgroundColor: "green",
+                  }}
+                ></Box>
+              </TableCell>
+              <TableCell align="center">
+                <Box
+                  sx={{
+                    width: "1rem",
+                    height: "1rem",
+                    backgroundColor: "green",
+                  }}
+                ></Box>
+              </TableCell>
+              <TableCell align="center">
+                <Box
+                  sx={{
+                    width: "1rem",
+                    height: "1rem",
+                    backgroundColor: "green",
+                  }}
+                ></Box>
+              </TableCell>
+              <TableCell align="center">
+                <Box
+                  sx={{
+                    width: "1rem",
+                    height: "1rem",
+                    backgroundColor: "green",
+                  }}
+                ></Box>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
