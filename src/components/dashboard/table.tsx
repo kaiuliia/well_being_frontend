@@ -130,7 +130,14 @@ export function DashboardTable() {
 
   return (
     <Box>
-      <Table sx={{ width: "auto", padding: "0" }}>
+      <Table
+        sx={{
+          width: "auto",
+          padding: "0",
+          tableLayout: "fixed",
+          "& .MuiTableCell-root": { padding: "0.15rem" },
+        }}
+      >
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
@@ -157,7 +164,8 @@ export function DashboardTable() {
                       width: "1rem",
                       height: "1rem",
                       padding: "0",
-                      marginLeft: "0.4rem",
+                      // marginLeft: "0.4rem",
+                      // paddingLeft: "2.8rem",
                       backgroundColor: color,
                     }}
                   ></Box>
