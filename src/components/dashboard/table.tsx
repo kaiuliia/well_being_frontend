@@ -135,7 +135,10 @@ export function DashboardTable() {
           width: "auto",
           padding: "0",
           tableLayout: "fixed",
-          "& .MuiTableCell-root": { padding: "0.15rem" },
+          "& .MuiTableCell-root": {
+            padding: "0.15rem",
+            borderBottom: "none",
+          },
         }}
       >
         <TableHead>
@@ -164,8 +167,6 @@ export function DashboardTable() {
                       width: "1rem",
                       height: "1rem",
                       padding: "0",
-                      // marginLeft: "0.4rem",
-                      // paddingLeft: "2.8rem",
                       backgroundColor: color,
                     }}
                   ></Box>

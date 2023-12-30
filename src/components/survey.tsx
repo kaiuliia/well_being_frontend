@@ -26,7 +26,7 @@ interface SliderProps {
 }
 
 interface Survey {
-  general_mood: number | number[];
+  mood: number | number[];
   activities: number | number[];
   sleep: number | number[];
   calmness: number | number[];
@@ -35,7 +35,7 @@ interface Survey {
 export function Survey(props: Props) {
   const [sliderValue, setSliderValue] = useState<number | number[]>();
   const [survey, setSurvey] = useState<Survey>({
-    general_mood: 0,
+    mood: 0,
     activities: 0,
     sleep: 0,
     calmness: 0,
@@ -43,10 +43,10 @@ export function Survey(props: Props) {
   });
   const sliderProps: SliderProps[] = [
     {
-      name: "General mood",
+      name: "Mood",
       min: "Bad",
       max: "Very good",
-      surveyKey: "general_mood",
+      surveyKey: "mood",
     },
     {
       name: "Activities",
@@ -113,7 +113,7 @@ export function Survey(props: Props) {
     e.preventDefault();
 
     await sendData({
-      general_mood: survey.general_mood,
+      mood: survey.mood,
       activities: survey.activities,
       sleep: survey.sleep,
       calmness: survey.calmness,
