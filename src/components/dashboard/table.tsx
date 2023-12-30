@@ -138,6 +138,7 @@ export function DashboardTable() {
           "& .MuiTableCell-root": {
             padding: "0.15rem",
             borderBottom: "none",
+            textAlign: "center",
           },
         }}
       >
