@@ -175,7 +175,9 @@ export function DashboardTable() {
                       width: "1rem",
                       height: "1rem",
                       padding: "0",
-                      backgroundColor: getColorFromNumber(moods[day][mood.key]),
+                      backgroundColor: "orange",
+
+                      // getColorFromNumber(moods[day][moodProps.key]),
                     }}
                   ></Box>
                 </TableCell>
