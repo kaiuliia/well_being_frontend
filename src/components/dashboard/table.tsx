@@ -11,7 +11,7 @@ import { Survey } from "../survey";
 
 interface MoodData {
   dateRange: string;
-  general_mood: number | number[];
+  mood: number | number[];
   activities: number | number[];
   sleep: number | number[];
   calmness: number | number[];
@@ -20,7 +20,7 @@ interface MoodData {
 
 interface MoodProps {
   name: string;
-  color: string;
+  key: keyof MoodData;
 }
 
 interface MoodState {
@@ -32,32 +32,32 @@ export function DashboardTable() {
 
   const moodProps: MoodProps[] = [
     {
-      name: "General mood",
-      color: "green",
+      name: "Mood",
+      key: "mood",
     },
     {
       name: "Activities",
-      color: "red",
+      key: "activities",
     },
     {
       name: "Sleep",
-      color: "green",
+      key: "sleep",
     },
     {
       name: "Calmness",
-      color: "green",
+      key: "calmness",
     },
     {
       name: "Time for me",
-      color: "green",
+      key: "yourself_time",
     },
   ];
-
-  const color = moodProps.map((color) => color.color);
+  // moods[day][mood.key]
+  // const color = moodProps.map((color) => color.color);
   const [moods, setMoods] = useState<MoodState>({
     monday: {
       dateRange: "",
-      general_mood: 0,
+      mood: 5,
       activities: 0,
       sleep: 0,
       calmness: 0,
@@ -65,7 +65,7 @@ export function DashboardTable() {
     },
     tuesday: {
       dateRange: "",
-      general_mood: 0,
+      mood: 0,
       activities: 0,
       sleep: 0,
       calmness: 0,
@@ -73,7 +73,7 @@ export function DashboardTable() {
     },
     wednesday: {
       dateRange: "",
-      general_mood: 0,
+      mood: 0,
       activities: 0,
       sleep: 0,
       calmness: 0,
@@ -81,7 +81,7 @@ export function DashboardTable() {
     },
     thursday: {
       dateRange: "",
-      general_mood: 0,
+      mood: 0,
       activities: 0,
       sleep: 0,
       calmness: 0,
@@ -89,7 +89,7 @@ export function DashboardTable() {
     },
     friday: {
       dateRange: "",
-      general_mood: 0,
+      mood: 0,
       activities: 0,
       sleep: 0,
       calmness: 0,
@@ -97,7 +97,7 @@ export function DashboardTable() {
     },
     saturday: {
       dateRange: "",
-      general_mood: 0,
+      mood: 0,
       activities: 0,
       sleep: 0,
       calmness: 0,
@@ -105,14 +105,21 @@ export function DashboardTable() {
     },
     sunday: {
       dateRange: "",
-      general_mood: 0,
+      mood: 0,
       activities: 0,
       sleep: 0,
       calmness: 0,
       yourself_time: 0,
     },
   });
-
+  const getColorFromNumber = (number: number | number[] | string) => {
+    if (number < 30) {
+      return "yellow";
+    }
+    if (number >= 30) {
+      return "purple";
+    }
+  };
   const handleMoodChange = (
     mood: string,
     color: string,
@@ -168,7 +175,7 @@ export function DashboardTable() {
                       width: "1rem",
                       height: "1rem",
                       padding: "0",
-                      backgroundColor: color,
+                      backgroundColor: getColorFromNumber(moods[day][mood.key]),
                     }}
                   ></Box>
                 </TableCell>
