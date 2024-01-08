@@ -172,6 +172,7 @@ export function DashboardTable() {
                 <TableCell sx={{ padding: "0" }} key={day}>
                   <Box
                     jfdk
+                    eradz
                     sx={{
                       width: "1rem",
                       height: "1rem",
