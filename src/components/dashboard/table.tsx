@@ -171,6 +171,7 @@ export function DashboardTable() {
               {daysOfWeek.map((day) => (
                 <TableCell sx={{ padding: "0" }} key={day}>
                   <Box
+                    jfdk
                     sx={{
                       width: "1rem",
                       height: "1rem",
