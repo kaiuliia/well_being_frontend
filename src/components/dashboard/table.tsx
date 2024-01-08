@@ -162,6 +162,7 @@ export function DashboardTable() {
                 {day}
               </TableCell>
             ))}
+            bdfkd
           </TableRow>
         </TableHead>
         <TableBody>
