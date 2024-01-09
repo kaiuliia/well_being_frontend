@@ -162,6 +162,7 @@ export function DashboardTable() {
                 {day}
               </TableCell>
             ))}
+            fsd
           </TableRow>
         </TableHead>
         <TableBody>
