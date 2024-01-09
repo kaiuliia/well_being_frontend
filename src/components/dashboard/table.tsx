@@ -162,6 +162,7 @@ export function DashboardTable() {
                 {day}
               </TableCell>
             ))}
+            aec
           </TableRow>
         </TableHead>
         <TableBody>
