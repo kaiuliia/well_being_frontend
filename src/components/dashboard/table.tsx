@@ -81,7 +81,7 @@ export function DashboardTable() {
       weekDay: "W",
       dateRange: "",
       mood: 0,
-      activities: 0,
+      activities: 90,
       sleep: 0,
       calmness: 0,
       yourself_time: 0,
@@ -109,7 +109,7 @@ export function DashboardTable() {
       dateRange: "",
       mood: 0,
       activities: 0,
-      sleep: 0,
+      sleep: 90,
       calmness: 0,
       yourself_time: 0,
     },
@@ -178,9 +178,9 @@ export function DashboardTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {moodProps.map((mood) => (
-            <TableRow key={mood.name} sx={{ padding: "0" }}>
-              <TableCell sx={{ padding: "0" }}>{mood.name}</TableCell>
+          {moodProps.map((moodType) => (
+            <TableRow key={moodType.name} sx={{ padding: "0" }}>
+              <TableCell sx={{ padding: "0" }}>{moodType.name}</TableCell>
               {daysOfWeek.map((day) => (
                 <TableCell sx={{ padding: "0" }} key={day}>
                   <Box
@@ -188,7 +188,9 @@ export function DashboardTable() {
                       width: "1rem",
                       height: "1rem",
                       padding: "0",
-                      backgroundColor: getColorFromNumber(moods[day].mood),
+                      backgroundColor: getColorFromNumber(
+                        moods[day][moodType.key],
+                      ),
                       // getColorFromNumber(moods[day][mood.key])
 
                       // getColorFromNumber(moods[day][moodProps.key]),
