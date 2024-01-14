@@ -99,7 +99,7 @@ export function DashboardTable() {
       weekDay: "F",
       dateRange: "",
       mood: 0,
-      activities: 0,
+      activities: 65,
       sleep: 0,
       calmness: 0,
       yourself_time: 0,
