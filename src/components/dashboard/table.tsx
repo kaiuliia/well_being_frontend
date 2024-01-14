@@ -28,7 +28,7 @@ interface MoodState {
 }
 
 export function DashboardTable() {
-  const daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
+  const daysOfWeek = ["M", "T", "W", "THU", "F", "S", "SU"];
 
   const moodProps: MoodProps[] = [
     {
@@ -52,10 +52,10 @@ export function DashboardTable() {
       key: "yourself_time",
     },
   ];
-  // moods[day][mood.key]
+
   // const color = moodProps.map((color) => color.color);
   const [moods, setMoods] = useState<MoodState>({
-    monday: {
+    M: {
       dateRange: "",
       mood: 5,
       activities: 0,
@@ -63,7 +63,7 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    tuesday: {
+    T: {
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -71,7 +71,7 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    wednesday: {
+    W: {
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -79,7 +79,7 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    thursday: {
+    TH: {
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -87,7 +87,7 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    friday: {
+    F: {
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -95,7 +95,7 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    saturday: {
+    S: {
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -103,7 +103,7 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    sunday: {
+    SU: {
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -134,7 +134,7 @@ export function DashboardTable() {
       },
     }));
   };
-
+  console.log(getColorFromNumber(moods[M]));
   return (
     <Box>
       <Table
@@ -175,7 +175,7 @@ export function DashboardTable() {
                       width: "1rem",
                       height: "1rem",
                       padding: "0",
-                      backgroundColor: "orange",
+                      backgroundColor: getColorFromNumber(moods[day][mood.key]),
 
                       // getColorFromNumber(moods[day][moodProps.key]),
                     }}
