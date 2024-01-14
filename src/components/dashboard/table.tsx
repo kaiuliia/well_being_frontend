@@ -87,7 +87,7 @@ export function DashboardTable() {
       yourself_time: 0,
     },
     4: {
-      weekDay: "TH",
+      weekDay: "T",
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -114,7 +114,7 @@ export function DashboardTable() {
       yourself_time: 0,
     },
     7: {
-      weekDay: "SU",
+      weekDay: "S",
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -172,7 +172,7 @@ export function DashboardTable() {
                   padding: "0",
                 }}
               >
-                {day}
+                {moods[day].weekDay}
               </TableCell>
             ))}
           </TableRow>
