@@ -191,9 +191,6 @@ export function DashboardTable() {
                       backgroundColor: getColorFromNumber(
                         moods[day][moodType.key],
                       ),
-                      // getColorFromNumber(moods[day][mood.key])
-
-                      // getColorFromNumber(moods[day][moodProps.key]),
                     }}
                   ></Box>
                 </TableCell>
