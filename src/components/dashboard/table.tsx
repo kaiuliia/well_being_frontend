@@ -124,11 +124,15 @@ export function DashboardTable() {
     },
   });
   const getColorFromNumber = (number: number | number[] | string) => {
-    if (number < 30) {
-      return "yellow";
+    if (number === 0) {
+      return "secondary.main";
     }
-    if (number >= 30) {
-      return "purple";
+    if (number < 30) {
+      return "error.main";
+    } else if (number >= 30 && number <= 70) {
+      return "warning.main";
+    } else {
+      return "info.main";
     }
   };
   const handleMoodChange = (
@@ -201,48 +205,4 @@ export function DashboardTable() {
       </Table>
     </Box>
   );
-}
-
-// export default MoodTable;
-{
-  /*<Select*/
-}
-{
-  /*  value={"h"}*/
-}
-{
-  /*  onChange={(e) =>*/
-}
-{
-  /*    handleMoodChange(*/
-}
-{
-  /*      mood,*/
-}
-{
-  /*      day as keyof MoodData,*/
-}
-{
-  /*      e.target.value,*/
-}
-{
-  /*    )*/
-}
-{
-  /*  }*/
-}
-{
-  /*>*/
-}
-{
-  /*  <MenuItem value="">Select</MenuItem>*/
-}
-{
-  /*  <MenuItem value="good">Good</MenuItem>*/
-}
-{
-  /*  <MenuItem value="bad">Bad</MenuItem>*/
-}
-{
-  /*</Select>*/
 }
