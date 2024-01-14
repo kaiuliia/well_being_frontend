@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import { Survey } from "../survey";
 
 interface MoodData {
+  weekDay: string;
   dateRange: string;
   mood: number | number[];
   activities: number | number[];
@@ -24,11 +25,11 @@ interface MoodProps {
 }
 
 interface MoodState {
-  [day: string]: MoodData;
+  [day: string | number]: MoodData;
 }
 
 export function DashboardTable() {
-  const daysOfWeek = ["M", "T", "W", "THU", "F", "S", "SU"];
+  const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
 
   const moodProps: MoodProps[] = [
     {
@@ -52,18 +53,23 @@ export function DashboardTable() {
       key: "yourself_time",
     },
   ];
-
+  const [check, setCheck] = useState({
+    1: { hey: "hey" },
+    2: { buy: "buy" },
+  });
   // const color = moodProps.map((color) => color.color);
   const [moods, setMoods] = useState<MoodState>({
-    M: {
+    1: {
+      weekDay: "M",
       dateRange: "",
       mood: 5,
       activities: 0,
-      sleep: 0,
+      sleep: 14,
       calmness: 0,
       yourself_time: 0,
     },
-    T: {
+    2: {
+      weekDay: "T",
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -71,7 +77,8 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    W: {
+    3: {
+      weekDay: "W",
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -79,7 +86,8 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    TH: {
+    4: {
+      weekDay: "TH",
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -87,7 +95,8 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    F: {
+    5: {
+      weekDay: "F",
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -95,7 +104,8 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    S: {
+    6: {
+      weekDay: "S",
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -103,7 +113,8 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-    SU: {
+    7: {
+      weekDay: "SU",
       dateRange: "",
       mood: 0,
       activities: 0,
@@ -134,7 +145,9 @@ export function DashboardTable() {
       },
     }));
   };
-  console.log(getColorFromNumber(moods[M]));
+
+  console.log(getColorFromNumber(moods["1"].sleep));
+
   return (
     <Box>
       <Table
@@ -175,7 +188,8 @@ export function DashboardTable() {
                       width: "1rem",
                       height: "1rem",
                       padding: "0",
-                      backgroundColor: getColorFromNumber(moods[day][mood.key]),
+                      backgroundColor: getColorFromNumber(moods[day].mood),
+                      // getColorFromNumber(moods[day][mood.key])
 
                       // getColorFromNumber(moods[day][moodProps.key]),
                     }}
