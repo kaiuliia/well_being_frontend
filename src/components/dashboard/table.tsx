@@ -86,7 +86,6 @@ export function DashboardTable() {
       calmness: 0,
       yourself_time: 0,
     },
-
     4: {
       weekDay: "T",
       dateRange: "",
