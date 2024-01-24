@@ -126,7 +126,7 @@ export function DashboardTable() {
   });
   const getColorFromNumber = (number: number | number[] | string) => {
     if (number === 0) {
-      return "#FFFFFF";
+      return "bg-white";
     }
     if (number < 30) {
       return "bg-custom-red";
@@ -156,18 +156,6 @@ export function DashboardTable() {
   return (
     <div>
       <table className="table-fixed w-auto p-0 text-center border-separate border-spacing-0.5 leading-[0.5rem]">
-        {/*<Table*/}
-        {/*  sx={{*/}
-        {/*    width: "auto",*/}
-        {/*    padding: "0",*/}
-        {/*    tableLayout: "fixed",*/}
-        {/*    "& .MuiTableCell-root": {*/}
-        {/*      padding: "0.15rem",*/}
-        {/*      borderBottom: "none",*/}
-        {/*      textAlign: "center",*/}
-        {/*    },*/}
-        {/*  }}*/}
-        {/*>*/}
         <thead className="p-0">
           <tr>
             <th className="p-0"></th>
@@ -185,16 +173,10 @@ export function DashboardTable() {
               {daysOfWeek.map((day) => (
                 <th key={day}>
                   <div
-                    className={" rounded-md shadow-lg w-4 h-4 bg-amber-400"}
-                    // sx={{
-                    //   width: "1rem",
-                    //   height: "1rem",
-                    //   borderRadius: "8px",
-                    //   padding: "0",
-                    //   backgroundColor: getColorFromNumber(
-                    //     moods[day][moodType.key],
-                    //   ),
-                    // }}
+                    className={
+                      getColorFromNumber(moods[day][moodType.key]) +
+                      " rounded-md shadow-lg w-4 h-4"
+                    }
                   ></div>
                 </th>
               ))}
