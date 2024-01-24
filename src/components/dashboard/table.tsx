@@ -155,7 +155,7 @@ export function DashboardTable() {
 
   return (
     <div>
-      <table className="table-fixed w-auto p-0.5 text-center border-spacing-0.5">
+      <table className="table-fixed w-auto p-0 text-center border-separate border-spacing-0.5 leading-[0.5rem]">
         {/*<Table*/}
         {/*  sx={{*/}
         {/*    width: "auto",*/}
@@ -168,9 +168,9 @@ export function DashboardTable() {
         {/*    },*/}
         {/*  }}*/}
         {/*>*/}
-        <thead>
+        <thead className="p-0">
           <tr>
-            <th></th>
+            <th className="p-0"></th>
             {daysOfWeek.map((day) => (
               <th key={day} className="p-0">
                 {moods[day].weekDay}
@@ -180,12 +180,12 @@ export function DashboardTable() {
         </thead>
         <tbody>
           {moodProps.map((moodType) => (
-            <tr key={moodType.name} className="p-0">
+            <tr className="p-0" key={moodType.name}>
               <th className="p-0">{moodType.name}</th>
               {daysOfWeek.map((day) => (
-                <th className="p-0" key={day}>
+                <th key={day}>
                   <div
-                    className={" rounded-md shadow-lg p-0 w-4 h-4 bg-amber-400"}
+                    className={" rounded-md shadow-lg w-4 h-4 bg-amber-400"}
                     // sx={{
                     //   width: "1rem",
                     //   height: "1rem",
