@@ -151,39 +151,37 @@ export function DashboardTable() {
     }));
   };
 
-  console.log(getColorFromNumber(moods["1"].sleep));
-
   return (
-    <div>
-      <table className="table-fixed w-auto p-0 text-center border-separate border-spacing-0.5 leading-[0.5rem]">
-        <thead className="p-0">
-          <tr>
-            <th className="p-0"></th>
+    <table className="table-fixed w-auto p-0 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
+      <thead className="p-0">
+        <tr>
+          <th className="p-0 "></th>
+          {daysOfWeek.map((day) => (
+            <th key={day} className="p-0 text-xs font-medium">
+              {moods[day].weekDay}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {moodProps.map((moodType) => (
+          <tr className="p-0 " key={moodType.name}>
+            <th className="p-0 text-xs font-normal text-left align-top text-main-secondary-gray">
+              {moodType.name}
+            </th>
             {daysOfWeek.map((day) => (
-              <th key={day} className="p-0">
-                {moods[day].weekDay}
+              <th key={day}>
+                <div
+                  className={
+                    getColorFromNumber(moods[day][moodType.key]) +
+                    " rounded-md shadow-lg w-4 h-4"
+                  }
+                ></div>
               </th>
             ))}
           </tr>
-        </thead>
-        <tbody>
-          {moodProps.map((moodType) => (
-            <tr className="p-0" key={moodType.name}>
-              <th className="p-0">{moodType.name}</th>
-              {daysOfWeek.map((day) => (
-                <th key={day}>
-                  <div
-                    className={
-                      getColorFromNumber(moods[day][moodType.key]) +
-                      " rounded-md shadow-lg w-4 h-4"
-                    }
-                  ></div>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 }
