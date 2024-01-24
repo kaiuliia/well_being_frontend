@@ -126,7 +126,7 @@ export function DashboardTable() {
   });
   const getColorFromNumber = (number: number | number[] | string) => {
     if (number === 0) {
-      return "secondary.main";
+      return "#FFFFFF";
     }
     if (number < 30) {
       return "error.main";
@@ -192,6 +192,7 @@ export function DashboardTable() {
                     sx={{
                       width: "1rem",
                       height: "1rem",
+                      borderRadius: "8px",
                       padding: "0",
                       backgroundColor: getColorFromNumber(
                         moods[day][moodType.key],

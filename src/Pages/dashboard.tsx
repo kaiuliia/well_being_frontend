@@ -33,7 +33,7 @@ export function Dashboard(props: Props) {
     window.location.href = "/login/user/survey";
   };
   return (
-    <div className="display-none">
+    <div className="bg-back-gray">
       <DashboardTable />
       <div className="text-3xl font-bold underline">
         HELLO
