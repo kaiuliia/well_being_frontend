@@ -129,11 +129,11 @@ export function DashboardTable() {
       return "#FFFFFF";
     }
     if (number < 30) {
-      return "error.main";
+      return "bg-custom-red";
     } else if (number >= 30 && number <= 70) {
-      return "warning.main";
+      return "bg-custom-orange";
     } else {
-      return "info.main";
+      return "bg-custom-green";
     }
   };
   const handleMoodChange = (
@@ -188,17 +188,18 @@ export function DashboardTable() {
               <TableCell sx={{ padding: "0" }}>{moodType.name}</TableCell>
               {daysOfWeek.map((day) => (
                 <TableCell sx={{ padding: "0" }} key={day}>
-                  <Box
-                    sx={{
-                      width: "1rem",
-                      height: "1rem",
-                      borderRadius: "8px",
-                      padding: "0",
-                      backgroundColor: getColorFromNumber(
-                        moods[day][moodType.key],
-                      ),
-                    }}
-                  ></Box>
+                  <div
+                    className={" rounded-md shadow-lg p-0 w-4 h-4 bg-amber-400"}
+                    // sx={{
+                    //   width: "1rem",
+                    //   height: "1rem",
+                    //   borderRadius: "8px",
+                    //   padding: "0",
+                    //   backgroundColor: getColorFromNumber(
+                    //     moods[day][moodType.key],
+                    //   ),
+                    // }}
+                  ></div>
                 </TableCell>
               ))}
             </TableRow>
