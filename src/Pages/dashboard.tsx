@@ -33,13 +33,13 @@ export function Dashboard(props: Props) {
     window.location.href = "/login/user/survey";
   };
   return (
-    <Box className="display-none">
+    <div className="display-none">
       <DashboardTable />
-      <div className="display-none">
+      <div className="text-3xl font-bold underline">
         HELLO
         <div>WORLD</div>
       </div>
-    </Box>
+    </div>
   );
 }
 
