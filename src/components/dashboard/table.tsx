@@ -155,39 +155,35 @@ export function DashboardTable() {
 
   return (
     <div>
-      <Table
-        sx={{
-          width: "auto",
-          padding: "0",
-          tableLayout: "fixed",
-          "& .MuiTableCell-root": {
-            padding: "0.15rem",
-            borderBottom: "none",
-            textAlign: "center",
-          },
-        }}
-      >
-        <TableHead>
-          <TableRow>
-            <TableCell></TableCell>
+      <table className="table-fixed w-auto p-0.5 text-center border-spacing-0.5">
+        {/*<Table*/}
+        {/*  sx={{*/}
+        {/*    width: "auto",*/}
+        {/*    padding: "0",*/}
+        {/*    tableLayout: "fixed",*/}
+        {/*    "& .MuiTableCell-root": {*/}
+        {/*      padding: "0.15rem",*/}
+        {/*      borderBottom: "none",*/}
+        {/*      textAlign: "center",*/}
+        {/*    },*/}
+        {/*  }}*/}
+        {/*>*/}
+        <thead>
+          <tr>
+            <th></th>
             {daysOfWeek.map((day) => (
-              <TableCell
-                key={day}
-                sx={{
-                  padding: "0",
-                }}
-              >
+              <th key={day} className="p-0">
                 {moods[day].weekDay}
-              </TableCell>
+              </th>
             ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
+          </tr>
+        </thead>
+        <tbody>
           {moodProps.map((moodType) => (
-            <TableRow key={moodType.name} sx={{ padding: "0" }}>
-              <TableCell sx={{ padding: "0" }}>{moodType.name}</TableCell>
+            <tr key={moodType.name} className="p-0">
+              <th className="p-0">{moodType.name}</th>
               {daysOfWeek.map((day) => (
-                <TableCell sx={{ padding: "0" }} key={day}>
+                <th className="p-0" key={day}>
                   <div
                     className={" rounded-md shadow-lg p-0 w-4 h-4 bg-amber-400"}
                     // sx={{
@@ -200,12 +196,12 @@ export function DashboardTable() {
                     //   ),
                     // }}
                   ></div>
-                </TableCell>
+                </th>
               ))}
-            </TableRow>
+            </tr>
           ))}
-        </TableBody>
-      </Table>
+        </tbody>
+      </table>
     </div>
   );
 }
