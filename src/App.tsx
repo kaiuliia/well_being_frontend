@@ -85,35 +85,35 @@ const customTheme = createTheme({
 function App() {
   return (
     // <AuthProvider>
-    // <ThemeProvider theme={customTheme}>
-    //   <CssBaseline />
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Routes>
-        <Route path="/" element={<EntryPage theme={customTheme} />} />
-        <Route
-          path="/register"
-          element={<Register title="hrhr" theme={customTheme} />}
-        />
-        <Route path="/login" element={<Login theme={customTheme} />} />
-        <Route
-          path="/user/dashboard"
-          element={
-            // <RequireAuth>
-            <Dashboard />
-            // </RequireAuth>
-          }
-        />
+    <ThemeProvider theme={customTheme}>
+      {/*//   <CssBaseline />*/}
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Routes>
+          <Route path="/" element={<EntryPage theme={customTheme} />} />
+          <Route
+            path="/register"
+            element={<Register title="hrhr" theme={customTheme} />}
+          />
+          <Route path="/login" element={<Login theme={customTheme} />} />
+          <Route
+            path="/user/dashboard"
+            element={
+              // <RequireAuth>
+              <Dashboard />
+              // </RequireAuth>
+            }
+          />
 
-        <Route path="/login/user/advises" element={<Advices />} />
-        <Route path="/login/user/survey" element={<Survey />} />
-      </Routes>
-    </Grid>
-    // </ThemeProvider>
+          <Route path="/login/user/advises" element={<Advices />} />
+          <Route path="/login/user/survey" element={<Survey />} />
+        </Routes>
+      </Grid>
+    </ThemeProvider>
 
     // </AuthProvider>
   );

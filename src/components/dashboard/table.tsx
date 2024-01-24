@@ -154,7 +154,7 @@ export function DashboardTable() {
   console.log(getColorFromNumber(moods["1"].sleep));
 
   return (
-    <Box>
+    <div>
       <Table
         sx={{
           width: "auto",
@@ -204,6 +204,6 @@ export function DashboardTable() {
           ))}
         </TableBody>
       </Table>
-    </Box>
+    </div>
   );
 }
