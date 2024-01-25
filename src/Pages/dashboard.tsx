@@ -12,6 +12,7 @@ import { Dialog } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import Grid from "@mui/material/Grid";
 import { DashboardTable } from "../components/dashboard/table";
+import { Recomend } from "../components/dashboard/recomend";
 interface Props {
   // theme: Theme;
 }
@@ -38,15 +39,11 @@ export function Dashboard(props: Props) {
         Welcome, {name}!
       </div>
       <DashboardTable />
+
       <div className="text-xs font-medium text-left ">
         Recomendations for today:
       </div>
-      <div className="text-lg font-medium text-left text-main-light-green">
-        One
-      </div>
-      <div className="text-lg font-medium text-left text-main-light-green">
-        Two
-      </div>
+      <Recomend />
     </div>
   );
 }
