@@ -33,11 +33,19 @@ export function Dashboard(props: Props) {
     window.location.href = "/login/user/survey";
   };
   return (
-    <div className="bg-back-gray">
+    <div className="bg-back-gray w-100">
+      <div className="text-lg font-medium text-left text-main-light-green">
+        Welcome, {name}!
+      </div>
       <DashboardTable />
-      <div className="text-3xl font-bold underline">
-        HELLO
-        <div>WORLD</div>
+      <div className="text-xs font-medium text-left ">
+        Recomendations for today:
+      </div>
+      <div className="text-lg font-medium text-left text-main-light-green">
+        One
+      </div>
+      <div className="text-lg font-medium text-left text-main-light-green">
+        Two
       </div>
     </div>
   );

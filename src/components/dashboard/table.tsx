@@ -152,7 +152,7 @@ export function DashboardTable() {
   };
 
   return (
-    <table className="table-fixed w-auto p-0 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
+    <table className="table-fixed w-auto pt-3 pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
       <thead className="p-0">
         <tr>
           <th className="p-0 "></th>
