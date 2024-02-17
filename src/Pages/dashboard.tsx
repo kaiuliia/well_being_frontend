@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { Survey } from "../components/survey";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
-import { Dialog } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2";
-import Grid from "@mui/material/Grid";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 import { DashboardTable } from "../components/dashboard/table";
 import { Recomend } from "../components/dashboard/recomend";
-interface Props {
-  // theme: Theme;
-}
+import { HeaderDashboard } from "../components/dashboard/header";
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 interface User {
   email: string;
   password: string;
 }
-export function Dashboard(props: Props) {
+export function Dashboard() {
   const name = localStorage.getItem("name");
+  const [value, onChange] = useState<Value>(new Date());
 
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState();
@@ -41,6 +34,7 @@ export function Dashboard(props: Props) {
   // };
   return (
     <div className="bg-back-gray w-100">
+      <HeaderDashboard />
       <div className="text-lg font-medium text-left text-main-light-green">
         Welcome, {name}!
       </div>
@@ -50,6 +44,7 @@ export function Dashboard(props: Props) {
         Recomendations for today:
       </div>
       <Recomend />
+      <Calendar onChange={onChange} value={value} />
       {/*<input onChange={onchangeinput}></input>*/}
       {/*<button onClick={handleSubmit}>submit</button>*/}
     </div>
