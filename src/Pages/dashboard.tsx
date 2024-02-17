@@ -33,6 +33,12 @@ export function Dashboard(props: Props) {
   const handleSurveyClick = () => {
     window.location.href = "/login/user/survey";
   };
+
+  const handleSubmit = () => {};
+  // const [names, setNames] = useState('kolya')
+  // const onchangeinput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //  setNames(e.target.value) ;
+  // };
   return (
     <div className="bg-back-gray w-100">
       <div className="text-lg font-medium text-left text-main-light-green">
@@ -44,8 +50,10 @@ export function Dashboard(props: Props) {
         Recomendations for today:
       </div>
       <Recomend />
+      {/*<input onChange={onchangeinput}></input>*/}
+      {/*<button onClick={handleSubmit}>submit</button>*/}
     </div>
   );
 }
-
+//useref
 // export default Login;
