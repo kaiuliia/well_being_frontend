@@ -19,19 +19,38 @@ export function Dashboard() {
 
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState();
-
+  const [selectedCalendarRange, setSelectedCalendarRange] = useState();
   const dialogOpen = () => {
     setOpen(!open);
   };
   const handleSurveyClick = () => {
     window.location.href = "/login/user/survey";
   };
+  const chosenDate = new Date(); // Your chosen date
 
+  // Find the first day of the week (Sunday)
+  const firstDayOfWeek = new Date(chosenDate);
+  firstDayOfWeek.setDate(chosenDate.getDate() - chosenDate.getDay());
+
+  // Find the last day of the week (Saturday)
+  const lastDayOfWeek = new Date(chosenDate);
+  lastDayOfWeek.setDate(chosenDate.getDate() - chosenDate.getDay() + 7);
+
+  // Formatting the dates to 'YYYY-MM-DD' format
+  const formattedFirstDayOfWeek = firstDayOfWeek.toISOString().split("T")[0];
+  const formattedLastDayOfWeek = lastDayOfWeek.toISOString().split("T")[0];
+
+  console.log("Start of the week:", formattedFirstDayOfWeek);
+  console.log("End of the week:", formattedLastDayOfWeek);
   const handleSubmit = () => {};
   // const [names, setNames] = useState('kolya')
   // const onchangeinput = (e: React.ChangeEvent<HTMLInputElement>) => {
   //  setNames(e.target.value) ;
   // };
+
+  const calendarRange = value;
+
+  console.log(calendarRange);
   return (
     <div className="bg-back-gray w-100">
       <HeaderDashboard />
@@ -44,7 +63,13 @@ export function Dashboard() {
         Recomendations for today:
       </div>
       <Recomend />
-      <Calendar onChange={onChange} value={value} />
+      <Calendar
+        onChange={onChange}
+        onClickDay={(value, event) => alert(value)}
+        value={value}
+        goToRangeStartOnSelect={true}
+        onViewChange={({ action, activeStartDate, value, view }) => alert(view)}
+      />
       {/*<input onChange={onchangeinput}></input>*/}
       {/*<button onClick={handleSubmit}>submit</button>*/}
     </div>
