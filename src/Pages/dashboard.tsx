@@ -21,6 +21,9 @@ export function Dashboard() {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState();
   const [selectedCalendarRange, setSelectedCalendarRange] = useState();
+  const [startDate, setStartDate] = useState(
+    moment().startOf("week").utc().format("D MMM"),
+  );
   const dialogOpen = () => {
     setOpen(!open);
   };
@@ -56,8 +59,9 @@ export function Dashboard() {
   });
 
   const calendarRange = value;
-  const startDate = moment().startOf("week").utc().format("D MMM");
+  // const startDate = moment().startOf("week").utc().format("D MMM");
   const endDate = moment().endOf("week").utc().format("D MMM");
+
   console.log(calendarRange);
   return (
     <div className="bg-back-gray w-100">
