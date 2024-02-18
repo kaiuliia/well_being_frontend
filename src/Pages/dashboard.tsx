@@ -4,6 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import { DashboardTable } from "../components/dashboard/table";
 import { Recomend } from "../components/dashboard/recomend";
 import { HeaderDashboard } from "../components/dashboard/header";
+import moment from "moment";
 
 type ValuePiece = Date | null;
 
@@ -39,21 +40,28 @@ export function Dashboard() {
   // Formatting the dates to 'YYYY-MM-DD' format
   const formattedFirstDayOfWeek = firstDayOfWeek.toISOString().split("T")[0];
   const formattedLastDayOfWeek = lastDayOfWeek.toISOString().split("T")[0];
-
-  console.log("Start of the week:", formattedFirstDayOfWeek);
-  console.log("End of the week:", formattedLastDayOfWeek);
+  //
+  // console.log("Start of the week:", formattedFirstDayOfWeek);
+  // console.log("End of the week:", formattedLastDayOfWeek);
   const handleSubmit = () => {};
   // const [names, setNames] = useState('kolya')
   // const onchangeinput = (e: React.ChangeEvent<HTMLInputElement>) => {
   //  setNames(e.target.value) ;
   // };
 
-  const calendarRange = value;
+  moment.updateLocale("en", {
+    week: {
+      dow: 1, // Monday is the first day of the week.
+    },
+  });
 
+  const calendarRange = value;
+  const startDate = moment().startOf("week").utc().format("D MMM");
+  const endDate = moment().endOf("week").utc().format("D MMM");
   console.log(calendarRange);
   return (
     <div className="bg-back-gray w-100">
-      <HeaderDashboard />
+      <HeaderDashboard startDate={startDate} endDate={endDate} />
       <div className="text-lg font-medium text-left text-main-light-green">
         Welcome, {name}!
       </div>
