@@ -20,12 +20,13 @@ export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
   const handleDateSelect = () => {};
   return (
     <div className="flex justify-between">
-      <FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" />
+      <FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" size={"xl"} />
       <div>
         <FontAwesomeIcon
           icon={faChevronLeft}
           color="#A5BB5A"
           className="pr-2"
+          size={"xl"}
         />
         <DatePicker
           selected={startDate}
@@ -36,10 +37,11 @@ export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
           icon={faChevronRight}
           color="#A5BB5A"
           className="pl-2"
+          size={"xl"}
           // onClick={minusWeek}
         />
       </div>
-      <FontAwesomeIcon icon={faSliders} color="#BBC1CE" />
+      <FontAwesomeIcon icon={faSliders} color="#BBC1CE" size={"xl"} />
     </div>
   );
 }

@@ -152,12 +152,12 @@ export function DashboardTable() {
   };
 
   return (
-    <table className="table-fixed w-auto pt-3 pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
+    <table className="table-fixed w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
       <thead className="p-0">
         <tr>
-          <th className="p-0 "></th>
+          <th className="p-[0.5rem]"></th>
           {daysOfWeek.map((day) => (
-            <th key={day} className="p-0 text-xs font-medium">
+            <th key={day} className=" text-xs font-medium">
               {moods[day].weekDay}
             </th>
           ))}
@@ -165,8 +165,8 @@ export function DashboardTable() {
       </thead>
       <tbody>
         {moodProps.map((moodType) => (
-          <tr className="p-0 " key={moodType.name}>
-            <th className="p-0 text-xs font-normal text-left align-top text-main-secondary-gray">
+          <tr className="p-[0.5rem]" key={moodType.name}>
+            <th className="p-[0.5rem] text-xs font-normal text-left align-top text-main-secondary-gray">
               {moodType.name}
             </th>
             {daysOfWeek.map((day) => (
@@ -174,7 +174,7 @@ export function DashboardTable() {
                 <div
                   className={
                     getColorFromNumber(moods[day][moodType.key]) +
-                    " rounded-md shadow-lg w-4 h-4"
+                    " rounded-md shadow-lg w-7 h-7"
                   }
                 ></div>
               </th>

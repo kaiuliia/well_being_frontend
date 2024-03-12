@@ -87,12 +87,13 @@ function App() {
     // <AuthProvider>
     <ThemeProvider theme={customTheme}>
       {/*//   <CssBaseline />*/}
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
+      <div className={"container"}>
+        {/*<Grid*/}
+        {/*  container*/}
+        {/*  direction="column"*/}
+        {/*  justifyContent="center"*/}
+        {/*  alignItems="center"*/}
+        {/*>*/}
         <Routes>
           <Route path="/" element={<EntryPage theme={customTheme} />} />
           <Route
@@ -112,7 +113,8 @@ function App() {
           <Route path="/login/user/advises" element={<Advices />} />
           <Route path="/login/user/survey" element={<Survey />} />
         </Routes>
-      </Grid>
+        {/*</Grid>*/}
+      </div>
     </ThemeProvider>
 
     // </AuthProvider>

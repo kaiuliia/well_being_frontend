@@ -58,9 +58,10 @@ export function Dashboard() {
 
   console.log(calendarRange);
   return (
-    <div className="bg-back-gray w-100">
+    // <div className={"container"}>
+    <div className="bg-back-gray w-auto">
       <HeaderDashboard startDate={chosenDate} endDate={chosenDate} />
-      <div className="text-lg font-medium text-left text-main-light-green">
+      <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
         Welcome, {name}!
       </div>
       <DashboardTable />
@@ -70,6 +71,7 @@ export function Dashboard() {
       </div>
       <Recomend />
     </div>
+    // </div>
   );
 }
 //useref
