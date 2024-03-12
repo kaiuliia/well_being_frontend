@@ -6,18 +6,18 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Moment } from "moment";
 import moment from "moment/moment";
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 interface HeaderDashboardProps {
-  startDate: string;
-  endDate: string;
+  startDate?: Date;
+  endDate?: Date;
 }
 
 export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
-  const plusWeek = () => {
-    const plusWeekValue = moment().add(7, "days");
-    startDate = moment(plusWeekValue).startOf("week").utc().format("D MMM");
-  };
-  // const startDate = new Date();
+  const handleDateChange = () => {};
+
+  const handleDateSelect = () => {};
   return (
     <div className="flex justify-between">
       <FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" />
@@ -26,9 +26,12 @@ export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
           icon={faChevronLeft}
           color="#A5BB5A"
           className="pr-2"
-          onClick={plusWeek}
         />
-        {`${startDate}- ${endDate}`}
+        <DatePicker
+          selected={startDate}
+          onSelect={handleDateSelect} //when day is clicked
+          onChange={handleDateChange} //only when value has changed
+        />
         <FontAwesomeIcon
           icon={faChevronRight}
           color="#A5BB5A"
