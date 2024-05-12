@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "react-calendar/dist/Calendar.css";
 import { DashboardTable } from "../components/dashboard/table";
 import { Recomend } from "../components/dashboard/recomend";
 import { HeaderDashboard } from "../components/dashboard/header";

@@ -22,6 +22,5 @@ export const AuthProvider = ({ children }: any) => {
     setUser(undefined);
   };
   const value = { user, signIn, signOut };
-  // @ts-ignore
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
