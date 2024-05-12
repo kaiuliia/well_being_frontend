@@ -55,7 +55,27 @@ export function Dashboard() {
   const calendarRange = value;
   // const startDate = moment().startOf("week").utc().format("D MMM");
   const endDate = moment().endOf("week").utc().format("D MMM");
-
+  const logOut = () => {
+    // localStorage.setItem("name", message.name);
+    window.location.href = "/login";
+    // const sendData = async (user: User) => {
+    //   const response = await fetch("http://localhost:9090/login", {
+    //     method: "POST",
+    //     credentials: "include",
+    //     headers: { "Content-type": "application/json" },
+    //     body: JSON.stringify(user),
+    //   });
+    //   if (response.status > 299) {
+    //     const error = await response.json();
+    //     setStatusMessage(error.error);
+    //   } else {
+    //     const message = await response.json();
+    //     setStatusMessage(message.name);
+    //     localStorage.setItem("name", message.name);
+    //     window.location.href = "/user/dashboard";
+    //   }
+    // };
+  };
   console.log(calendarRange);
   return (
     // <div className={"container"}>
@@ -70,9 +90,12 @@ export function Dashboard() {
         Recomendations for today:
       </div>
       <Recomend />
+      <div>
+        <a className={"text-red-300"} onClick={logOut}>
+          {" "}
+          log out
+        </a>
+      </div>
     </div>
-    // </div>
   );
 }
-//useref
-// export default Login;
