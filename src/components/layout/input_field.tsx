@@ -1,30 +1,33 @@
-import React, { FormEventHandler } from "react";
-import TextField from "@mui/material/TextField";
+import React, { HTMLInputTypeAttribute } from "react";
+
 interface InputProps {
   onChange?: any;
 
   required?: boolean;
-
   name?: string;
   label?: string;
-  type?: string;
+  type?: HTMLInputTypeAttribute;
   id?: string;
   autoComplete?: string;
   className?: string;
   value?: string;
+  placeholder?: string;
 }
 export const Input = (props: InputProps) => {
   return (
     <input
+      className={
+        "border-main-secondary-gray border-[1px] h-[3.5rem] rounded-md w-full bg-back-gray "
+      }
       onChange={props.onChange}
-      className={props.className}
       required={props.required}
       name={props.name}
       type={props.type}
       id={props.id}
       // label={props.label}
       autoComplete={props.autoComplete}
-      value={props.name}
+      value={props.value}
+      placeholder={props.placeholder}
     ></input>
   );
 };
