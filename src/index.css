@@ -20,9 +20,13 @@ body {
     font-size: 18px;
     color:black
 }
+.link {
+    font-size: 18px;
+    color: orange;
+    text-underline: orange;
+}
 .title {
     font-size: 60px;
-
 }
 html {
     background-color: #EFF1F4;

@@ -1,14 +1,5 @@
 import React, { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import CssBaseline from "@mui/material/CssBaseline";
-
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import { useAuth } from "../hoc/useAuth";
 import { Button } from "../components/layout/button";
 import { Input } from "../components/layout/input_field";
@@ -118,9 +109,8 @@ export function Login() {
         <Button />
       </form>
       <div>
-        <a>Forgot password?</a>
-
-        <a> "Don't have an account? Sign Up" </a>
+        <p className={"link"}>Forgot password?</p>
+        <p className={"link"}> Don't have an account? Sign Up</p>
       </div>
     </>
   );
