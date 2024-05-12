@@ -55,26 +55,18 @@ export function Dashboard() {
   const calendarRange = value;
   // const startDate = moment().startOf("week").utc().format("D MMM");
   const endDate = moment().endOf("week").utc().format("D MMM");
-  const logOut = () => {
-    // localStorage.setItem("name", message.name);
-    window.location.href = "/login";
-    // const sendData = async (user: User) => {
-    //   const response = await fetch("http://localhost:9090/login", {
-    //     method: "POST",
-    //     credentials: "include",
-    //     headers: { "Content-type": "application/json" },
-    //     body: JSON.stringify(user),
-    //   });
-    //   if (response.status > 299) {
-    //     const error = await response.json();
-    //     setStatusMessage(error.error);
-    //   } else {
-    //     const message = await response.json();
-    //     setStatusMessage(message.name);
-    //     localStorage.setItem("name", message.name);
-    //     window.location.href = "/user/dashboard";
-    //   }
-    // };
+  const logOut = async () => {
+    const response = await fetch("http://localhost:9090/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    if (response.status > 299) {
+      console.log("user still herelogout");
+    } else {
+      localStorage.clear();
+      window.location.href = "/user/login";
+      console.log("succses logout");
+    }
   };
   console.log(calendarRange);
   return (
@@ -85,7 +77,15 @@ export function Dashboard() {
         Welcome, {name}!
       </div>
       <DashboardTable />
-
+      <a
+        className={"text-orange-800"}
+        onClick={() => {
+          window.location.href = "/sliders";
+        }}
+      >
+        {" "}
+        ADD TODAY
+      </a>
       <div className="text-xs font-medium text-left ">
         Recomendations for today:
       </div>
