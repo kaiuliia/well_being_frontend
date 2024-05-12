@@ -1,13 +1,4 @@
 import React, { useState } from "react";
-import {
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-} from "@mui/material";
-import Box from "@mui/material/Box";
-import { Survey } from "../survey";
 
 interface MoodData {
   weekDay: string;

@@ -20,7 +20,7 @@ interface RecProps {
 //   [day: string | number]: RecData;
 // }
 
-export function Recomend() {
+export function Advice() {
   // const recProps: RecProps[] = [
   //   {
   //     name: "Meditation 1",

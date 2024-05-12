@@ -33,24 +33,8 @@ export const SliderBar = (props: Props) => {
   };
 
   return (
-    <Card
-      sx={{
-        width: "100%",
-        height: "auto",
-        display: "flex",
-        flexDirection: "column",
-        padding: "0.8rem",
-        alignItems: "flex-start",
-      }}
-    >
-      <Typography
-        variant="subtitle1"
-        align="left"
-        margin="0rem"
-        paddingBottom="0.5rem"
-      >
-        {props.survey}
-      </Typography>
+    <div className="w-100% h-auto flex flex-column p-[0.8rem] align-start bg-white">
+      <p className={"paragraph"}>{props.survey}</p>
 
       <Slider
         sx={{
@@ -68,25 +52,10 @@ export const SliderBar = (props: Props) => {
         onChange={handleChange}
       />
 
-      <Grid container justifyContent="space-between" alignItems="center">
-        <Typography
-          variant="caption"
-          align="left"
-          width="40%"
-          paddingTop="0.5rem"
-        >
-          {props.min}
-        </Typography>
-        <Typography
-          variant="caption"
-          align="right"
-          width="40%"
-          paddingBottom="0rem"
-        >
-          {props.max}
-        </Typography>
-      </Grid>
-    </Card>
-    // </Box>
+      <div className={"flex flex-row justify-between align-center"}>
+        <p className={"paragraph"}>{props.min}</p>
+        <p className={"paragraph"}>{props.max}</p>
+      </div>
+    </div>
   );
 };

@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+
 import { SliderBar } from "./slider/slide_bar";
 import { MouseEvent } from "../types";
-import Button from "@mui/material/Button";
-
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
+import { Button } from "./layout/button";
 
 interface Props {}
 
@@ -126,67 +118,30 @@ export function Survey(props: Props) {
   };
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Box
-        sx={{
-          width: "100%",
-          padding: "2rem 1rem 2rem 1rem",
-          marginLeft: "auto",
-          marginRight: "auto",
-          backgroundColor: "background.default",
-        }}
-      >
-        <Box>
-          <Typography
-            component="h4"
-            variant="h4"
-            align="center"
-            fontWeight="bold"
-          >
-            How are you today?
-          </Typography>
-          <Box>
-            {sliderProps.map((prop) => (
-              <Box
-                sx={{
-                  width: "100%",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              >
-                <SliderBar
-                  // colors={colors[0]}
-                  survey={prop.name}
-                  onChange={(value: number | number[]) =>
-                    handleSliderChange(value, prop.surveyKey)
-                  }
-                  min={prop.min}
-                  max={prop.max}
-                />
-                <br></br>
-              </Box>
-            ))}
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Button
-                variant="contained"
-                sx={{
-                  width: "30%",
-                  color: "#FFFFFF",
-                }}
-                onClick={handleSubmit}
-              >
-                Submit
-              </Button>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </React.Fragment>
+    // <React.Fragment>
+    //   <CssBaseline />
+    <div className="w-100% py-[2rem] px-[1rem] mx-auto bg-back-gray">
+      <p className={"title"}> How are you today?</p>
+
+      {sliderProps.map((prop) => (
+        <div className={"w-100% mx-auto"}>
+          <SliderBar
+            // colors={colors[0]}
+            survey={prop.name}
+            onChange={(value: number | number[]) =>
+              handleSliderChange(value, prop.surveyKey)
+            }
+            min={prop.min}
+            max={prop.max}
+          />
+          <br></br>
+          {/*</Box>*/}
+        </div>
+      ))}
+      <div className="flex flex-center">
+        <Button name={"Submit"} onSubmit={handleSubmit} />
+      </div>
+    </div>
+    // </React.Fragment>
   );
 }

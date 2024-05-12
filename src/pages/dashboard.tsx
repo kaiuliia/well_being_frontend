@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DashboardTable } from "../components/dashboard/table";
-import { Recomend } from "../components/dashboard/recomend";
+import { Advice } from "../components/dashboard/advice";
 import { HeaderDashboard } from "../components/dashboard/header";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
@@ -88,7 +88,7 @@ export function Dashboard() {
       <div className="text-xs font-medium text-left ">
         Recomendations for today:
       </div>
-      <Recomend />
+      <Advice />
       <div>
         <a className={"text-red-300"} onClick={logOut}>
           {" "}
