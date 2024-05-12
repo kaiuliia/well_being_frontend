@@ -105,7 +105,7 @@ export function Login() {
           <p className={"paragraph"}> Remember me</p>
         </div>
 
-        <Button />
+        <Button name={"Sign in"} />
       </form>
       <div>
         <p className={"link"}>Forgot password?</p>
