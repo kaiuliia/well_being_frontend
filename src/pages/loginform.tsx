@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -14,13 +14,15 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import { useAuth } from "../hoc/useAuth";
+import { Button } from "../components/layout/button";
+import { Input } from "../components/layout/input_field";
 interface Props {}
 
 interface User {
   email: string;
   password: string;
 }
-export function Login(props: Props) {
+export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
@@ -108,30 +110,42 @@ export function Login(props: Props) {
             onChange={handleEmailChange}
             value={email}
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+          {/*<TextField*/}
+          {/*  margin="normal"*/}
+          {/*  required*/}
+          {/*  fullWidth*/}
+          {/*  name="password"*/}
+          {/*  label="Password"*/}
+          {/*  type="password"*/}
+          {/*  id="password"*/}
+          {/*  autoComplete="current-password"*/}
+          {/*  onChange={handlePasswordChange}*/}
+          {/*  value={password}*/}
+          {/*/>*/}
+
+          <Input
             onChange={handlePasswordChange}
             value={password}
+            autoComplete="current-password"
+            type="password"
+            id="password"
+            name="password"
+            required={true}
           />
+
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2, color: "#FFFFFF" }}
-          >
-            Sign In
-          </Button>
+          {/*<Button*/}
+          {/*  type="submit"*/}
+          {/*  fullWidth*/}
+          {/*  variant="contained"*/}
+          {/*  sx={{ mt: 3, mb: 2, color: "#FFFFFF" }}*/}
+          {/*>*/}
+          {/*  Sign In*/}
+          {/*</Button>*/}
+          <Button />
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">

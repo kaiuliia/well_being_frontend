@@ -1,6 +1,6 @@
 import React, { FormEventHandler } from "react";
 interface ButtonProps {
-  onSubmit: any;
+  onSubmit?: any;
 }
 export const Button = (props: ButtonProps) => {
   return (
