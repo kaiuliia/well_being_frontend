@@ -99,8 +99,7 @@ export function Login() {
           <input
             type="checkbox"
             id="checkbox"
-            ref={checkboxRef}
-            defaultChecked={isChecked}
+            defaultChecked={false}
             onClick={handleCheck}
           />
           <p className={"paragraph"}> Remember me</p>
