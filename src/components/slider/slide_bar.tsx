@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { ChangeEvent } from "../../types";
-import { Slider, Grid } from "@mui/material";
-import { Box, Card } from "@mui/material";
-import Typography from "@mui/material/Typography";
+import { Slider } from "@mui/material";
 
 interface Props {
   // colors: string;
@@ -21,14 +18,14 @@ export const SliderBar = (props: Props) => {
   const color = () => {
     // setSliderValue(newValue as number[]);
     if (sliderValue === 0) {
-      return "secondary.main";
+      return "#EFF1F4";
     }
     if (sliderValue < 30) {
-      return "error.main";
+      return "#680010";
     } else if (sliderValue >= 30 && sliderValue <= 70) {
-      return "warning.main";
+      return "#E98600";
     } else {
-      return "info.main";
+      return "#05413E";
     }
   };
 
@@ -37,6 +34,7 @@ export const SliderBar = (props: Props) => {
       <p className={"paragraph"}>{props.survey}</p>
 
       <Slider
+        // className={`w-100% m-0 p-0 bg-${color}`}
         sx={{
           width: "100%",
           margin: "0rem",
