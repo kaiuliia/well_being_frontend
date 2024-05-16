@@ -13,6 +13,7 @@ interface User {
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   // States for checking the errors
@@ -55,21 +56,20 @@ export function Login() {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // signin(user:User);
-    if (email && password) {
-      await sendData({ email: email, password: password });
+    try {
+      const response = await sendData({ email, password });
+
+      // Clear email and password fields after form submission
       setEmail("");
       setPassword("");
-    }
-
-    if (email === "" || password === "") {
-      setError(true);
-    } else {
-      setSubmitted(true);
-      setError(false);
+    } catch (error) {
+      // Handle error if sendData fails
+      console.error("Error:", error);
+      // Optionally, set an error state or show an error message to the user
     }
   };
 
+  console.log(errorMessage);
   return (
     <>
       <p className={"title"}> Sign in</p>
@@ -104,7 +104,7 @@ export function Login() {
           />
           <p className={"paragraph"}> Remember me</p>
         </div>
-
+        {errorMessage && <p className={"paragraph"}> ERROR!!!!</p>}
         <Button name={"Sign in"} />
       </form>
       <div>

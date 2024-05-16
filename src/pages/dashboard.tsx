@@ -63,7 +63,7 @@ export function Dashboard() {
       console.log("user still herelogout");
     } else {
       localStorage.clear();
-      window.location.href = "/user/login";
+      window.location.href = "/login";
       console.log("succses logout");
     }
   };
@@ -79,7 +79,7 @@ export function Dashboard() {
       <a
         className={"text-orange-800"}
         onClick={() => {
-          window.location.href = "/sliders";
+          window.location.href = "/user/survey";
         }}
       >
         {" "}

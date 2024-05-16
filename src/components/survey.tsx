@@ -111,15 +111,13 @@ export function Survey(props: Props) {
       calmness: survey.calmness,
       yourself_time: survey.yourself_time,
     });
-    window.location.href = "login/user/advises";
+    window.location.href = "/user/dashboard";
     setSubmitted(true);
     setError(false);
     console.log("SUBMITTED!!!!", survey);
   };
 
   return (
-    // <React.Fragment>
-    //   <CssBaseline />
     <div className="w-100% py-[2rem] px-[1rem] mx-auto bg-back-gray">
       <p className={"title"}> How are you today?</p>
 
@@ -139,9 +137,8 @@ export function Survey(props: Props) {
         </div>
       ))}
       <div className="flex flex-center">
-        <Button name={"Submit"} onSubmit={handleSubmit} />
+        <Button name={"Submit"} onClick={handleSubmit} />
       </div>
     </div>
-    // </React.Fragment>
   );
 }
