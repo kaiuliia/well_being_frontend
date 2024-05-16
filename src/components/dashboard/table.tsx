@@ -19,7 +19,11 @@ interface MoodState {
   [day: string | number]: MoodData;
 }
 
-export function DashboardTable() {
+interface DashboardTableProps {
+  startDate: Date;
+  endDate: Date;
+}
+export function DashboardTable(props: DashboardTableProps) {
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
 
   const moodProps: MoodProps[] = [

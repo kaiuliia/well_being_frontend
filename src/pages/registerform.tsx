@@ -113,7 +113,15 @@ export function Register(props: Props) {
 
         <Button name={"Sign up"} />
       </form>
-      <p className={"link"}> Already have an account? Sign in</p>
+      <p
+        className={"link cursor-pointer"}
+        onClick={() => {
+          window.location.href = "/login";
+        }}
+      >
+        {" "}
+        Already have an account? Sign in
+      </p>
     </div>
   );
 }

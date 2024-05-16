@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../hoc/useAuth";
 import { Button } from "../components/layout/button";
@@ -9,6 +9,7 @@ interface Props {}
 interface User {
   email: string;
   password: string;
+  isChecked: boolean;
 }
 export function Login() {
   const [email, setEmail] = useState("");
@@ -33,6 +34,8 @@ export function Login() {
     });
     if (response.status > 299) {
       const error = await response.json();
+      setErrorMessage(true);
+      setPassword("");
       setStatusMessage(error.error);
     } else {
       const message = await response.json();
@@ -52,20 +55,16 @@ export function Login() {
   };
   const handleCheck = () => {
     setIsChecked(!isChecked);
-    console.log(isChecked);
   };
+  console.log("check", isChecked);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await sendData({ email, password });
-
-      // Clear email and password fields after form submission
-      setEmail("");
+      await sendData({ email, password, isChecked });
       setPassword("");
     } catch (error) {
-      // Handle error if sendData fails
+      setPassword("");
       console.error("Error:", error);
-      // Optionally, set an error state or show an error message to the user
     }
   };
 
@@ -99,7 +98,7 @@ export function Login() {
           <input
             type="checkbox"
             id="checkbox"
-            defaultChecked={false}
+            defaultChecked={isChecked}
             onClick={handleCheck}
           />
           <p className={"paragraph"}> Remember me</p>
@@ -108,8 +107,16 @@ export function Login() {
         <Button name={"Sign in"} />
       </form>
       <div>
-        <p className={"link"}>Forgot password?</p>
-        <p className={"link"}> Don't have an account? Sign Up</p>
+        <p className={"link cursor-pointer"}>Forgot password?</p>
+        <p
+          className={"link cursor-pointer"}
+          onClick={() => {
+            window.location.href = "/register";
+          }}
+        >
+          {" "}
+          Don't have an account? Sign Up
+        </p>
       </div>
     </>
   );

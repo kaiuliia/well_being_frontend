@@ -75,9 +75,9 @@ export function Dashboard() {
       <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
         Welcome, {name}!
       </div>
-      <DashboardTable />
+      <DashboardTable startDate={chosenDate} endDate={chosenDate} />
       <a
-        className={"text-orange-800"}
+        className={"text-orange-800 cursor-pointer"}
         onClick={() => {
           window.location.href = "/user/survey";
         }}
@@ -90,7 +90,7 @@ export function Dashboard() {
       </div>
       <Advice />
       <div>
-        <a className={"text-red-300"} onClick={logOut}>
+        <a className={"text-red-300 cursor-pointer"} onClick={logOut}>
           {" "}
           log out
         </a>
