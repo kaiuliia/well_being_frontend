@@ -67,6 +67,23 @@ export function Dashboard() {
       console.log("succses logout");
     }
   };
+
+  const fillDashboard = async (startDate: Date, endDate: Date) => {
+    const isoStartDate = startDate.toISOString();
+    const isoEndDate = endDate.toISOString();
+    const response = await fetch(
+      `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+    if (response.status > 299) {
+      console.log("err");
+    } else {
+      console.log("response", response);
+    }
+  };
   console.log(calendarRange);
   return (
     // <div className={"container"}>
@@ -90,6 +107,15 @@ export function Dashboard() {
       </div>
       <Advice />
       <div>
+        <a
+          className={"text-red-300 cursor-pointer"}
+          onClick={() =>
+            fillDashboard(new Date(2023, 10, 18), new Date(2023, 10, 23))
+          }
+        >
+          {" "}
+          GET DASHBOARD DATA
+        </a>
         <a className={"text-red-300 cursor-pointer"} onClick={logOut}>
           {" "}
           log out
