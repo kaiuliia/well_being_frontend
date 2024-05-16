@@ -2,17 +2,21 @@ import React, { useState } from "react";
 
 interface MoodData {
   weekDay: string;
-  dateRange: string;
-  mood: number | number[];
-  activities: number | number[];
-  sleep: number | number[];
-  calmness: number | number[];
-  yourself_time: number | number[];
+  dateRange?: string;
+  date: Date;
+  mood: number;
+  activities: number;
+  sleep: number;
+  calmness: number;
+  yourself_time: number;
 }
 
 interface MoodProps {
   name: string;
-  key: keyof MoodData;
+  key: keyof Pick<
+    MoodData,
+    "mood" | "activities" | "sleep" | "calmness" | "yourself_time"
+  >;
 }
 
 interface MoodState {
@@ -23,7 +27,7 @@ interface DashboardTableProps {
   startDate: Date;
   endDate: Date;
 }
-export function DashboardTable(props: DashboardTableProps) {
+export function DashboardTable({ startDate, endDate }: DashboardTableProps) {
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
 
   const moodProps: MoodProps[] = [
@@ -48,24 +52,21 @@ export function DashboardTable(props: DashboardTableProps) {
       key: "yourself_time",
     },
   ];
-  const [check, setCheck] = useState({
-    1: { hey: "hey" },
-    2: { buy: "buy" },
-  });
+
   // const color = moodProps.map((color) => color.color);
   const [moods, setMoods] = useState<MoodState>({
     1: {
       weekDay: "M",
-      dateRange: "",
-      mood: 5,
-      activities: 0,
-      sleep: 14,
-      calmness: 0,
-      yourself_time: 0,
+      date: new Date(2024, 4, 12),
+      mood: 100,
+      activities: 100,
+      sleep: 100,
+      calmness: 100,
+      yourself_time: 100,
     },
     2: {
       weekDay: "T",
-      dateRange: "",
+      date: new Date(2024, 4, 13),
       mood: 0,
       activities: 0,
       sleep: 0,
@@ -74,7 +75,7 @@ export function DashboardTable(props: DashboardTableProps) {
     },
     3: {
       weekDay: "W",
-      dateRange: "",
+      date: new Date(2024, 4, 14),
       mood: 0,
       activities: 90,
       sleep: 0,
@@ -84,7 +85,7 @@ export function DashboardTable(props: DashboardTableProps) {
 
     4: {
       weekDay: "T",
-      dateRange: "",
+      date: new Date(2024, 4, 15),
       mood: 0,
       activities: 0,
       sleep: 0,
@@ -93,7 +94,7 @@ export function DashboardTable(props: DashboardTableProps) {
     },
     5: {
       weekDay: "F",
-      dateRange: "",
+      date: new Date(2024, 4, 15),
       mood: 0,
       activities: 65,
       sleep: 0,
@@ -102,7 +103,7 @@ export function DashboardTable(props: DashboardTableProps) {
     },
     6: {
       weekDay: "S",
-      dateRange: "",
+      date: new Date(2024, 4, 16),
       mood: 0,
       activities: 0,
       sleep: 90,
@@ -111,7 +112,7 @@ export function DashboardTable(props: DashboardTableProps) {
     },
     7: {
       weekDay: "S",
-      dateRange: "",
+      date: new Date(2024, 4, 17),
       mood: 0,
       activities: 80,
       sleep: 0,
@@ -119,7 +120,7 @@ export function DashboardTable(props: DashboardTableProps) {
       yourself_time: 0,
     },
   });
-  const getColorFromNumber = (number: number | number[] | string) => {
+  const getColorFromNumber = (number: number) => {
     if (number === 0) {
       return "bg-white";
     }
@@ -145,38 +146,113 @@ export function DashboardTable(props: DashboardTableProps) {
       },
     }));
   };
+  const dates = [12, 13, 14, 15, 16, 17, 18];
+  const filledDashboard = [
+    {
+      date: new Date(2024, 4, 12),
+      mood: 15,
+      activities: 0,
+      sleep: 14,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    {
+      date: new Date(2024, 4, 13),
+      mood: 15,
+      activities: 0,
+      sleep: 14,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    {
+      date: new Date(2024, 4, 14),
+      mood: 15,
+      activities: 0,
+      sleep: 14,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    {
+      date: new Date(2024, 4, 15),
+      mood: 15,
+      activities: 0,
+      sleep: 14,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    {
+      date: new Date(2024, 4, 16),
+      mood: 30,
+      activities: 0,
+      sleep: 14,
+      calmness: 0,
+      yourself_time: 0,
+    },
 
+    {
+      date: new Date(2024, 4, 17),
+      mood: 15,
+      activities: 0,
+      sleep: 14,
+      calmness: 0,
+      yourself_time: 0,
+    },
+
+    {
+      date: new Date(2024, 4, 18),
+      mood: 15,
+      activities: 0,
+      sleep: 14,
+      calmness: 0,
+      yourself_time: 0,
+    },
+    {
+      date: new Date(2024, 4, 19),
+      mood: 15,
+      activities: 0,
+      sleep: 14,
+      calmness: 0,
+      yourself_time: 0,
+    },
+  ];
+  console.log("RANGE", startDate, endDate);
+  console.log("date", new Date(2024, 4, 17));
   return (
-    <table className="table-fixed w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
-      <thead className="p-0">
-        <tr>
-          <th className="p-[0.5rem]"></th>
-          {daysOfWeek.map((day) => (
-            <th key={day} className=" text-xs font-medium">
-              {moods[day].weekDay}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {moodProps.map((moodType) => (
-          <tr className="p-[0.5rem]" key={moodType.name}>
-            <th className="p-[0.5rem] text-xs font-normal text-left align-top text-main-secondary-gray">
-              {moodType.name}
-            </th>
+    <>
+      <p>{new Date().getMonth()}</p>
+
+      <table className="table-fixed w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
+        <thead className="p-0">
+          <tr>
+            <th className="p-[0.5rem]"></th>
             {daysOfWeek.map((day) => (
-              <th key={day}>
-                <div
-                  className={
-                    getColorFromNumber(moods[day][moodType.key]) +
-                    " rounded-md shadow-lg w-7 h-7"
-                  }
-                ></div>
+              <th key={day} className=" text-xs font-medium">
+                {moods[day].weekDay}
               </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {moodProps.map((moodType) => (
+            <tr className="p-[0.5rem]" key={moodType.name}>
+              <th className="p-[0.5rem] text-xs font-normal text-left align-top text-main-secondary-gray">
+                {moodType.name}
+              </th>
+
+              {daysOfWeek.map((day) => (
+                <th key={day}>
+                  <div
+                    className={
+                      getColorFromNumber(moods[day][moodType.key]) +
+                      " rounded-md shadow-lg w-7 h-7"
+                    }
+                  ></div>
+                </th>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

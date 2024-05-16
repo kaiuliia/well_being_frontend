@@ -71,11 +71,11 @@ export function Dashboard() {
   return (
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
-      <HeaderDashboard startDate={chosenDate} endDate={chosenDate} />
+      <HeaderDashboard startDate={firstDayOfWeek} endDate={lastDayOfWeek} />
       <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
         Welcome, {name}!
       </div>
-      <DashboardTable startDate={chosenDate} endDate={chosenDate} />
+      <DashboardTable startDate={firstDayOfWeek} endDate={lastDayOfWeek} />
       <a
         className={"text-orange-800 cursor-pointer"}
         onClick={() => {

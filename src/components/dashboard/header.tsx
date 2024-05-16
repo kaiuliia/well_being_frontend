@@ -29,7 +29,7 @@ export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
           size={"xl"}
         />
         <DatePicker
-          selected={startDate}
+          selected={new Date()}
           onSelect={handleDateSelect} //when day is clicked
           onChange={handleDateChange} //only when value has changed
         />
