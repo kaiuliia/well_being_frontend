@@ -67,8 +67,8 @@ export function DashboardTable({ startDate, endDate }: DashboardTableProps) {
     2: {
       weekDay: "T",
       date: new Date(2024, 4, 13),
-      mood: 0,
-      activities: 0,
+      mood: 50,
+      activities: 40,
       sleep: 0,
       calmness: 0,
       yourself_time: 0,
