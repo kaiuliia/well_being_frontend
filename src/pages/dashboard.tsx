@@ -85,7 +85,8 @@ export function Dashboard() {
         console.log("response", response);
         const data = await response.json();
         if (data.length > 0) {
-          console.log("DATA", data);
+          console.log("result", data);
+          console.log("date", data[0].date);
         }
       }
     } catch (error) {
