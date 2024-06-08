@@ -15,9 +15,15 @@ interface HeaderDashboardProps {
 }
 
 export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
-  const handleDateChange = () => {};
-
-  const handleDateSelect = () => {};
+  const handleDateChange = () => {
+    console.log("uhgfds");
+  };
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const handleDateSelect = (date: Date) => {
+    setSelectedDate(date);
+    console.log(selectedDate);
+  };
+  console.log(selectedDate);
   return (
     <div className="flex justify-between">
       <FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" size={"xl"} />
@@ -29,9 +35,9 @@ export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
           size={"xl"}
         />
         <DatePicker
-          selected={new Date()}
-          onSelect={handleDateSelect} //when day is clicked
-          onChange={handleDateChange} //only when value has changed
+          selected={selectedDate}
+          // onSelect={handleDateChange} //when day is clicked
+          onChange={handleDateSelect} //only when value has changed
         />
         <FontAwesomeIcon
           icon={faChevronRight}
