@@ -71,20 +71,29 @@ export function Dashboard() {
   const fillDashboard = async (startDate: Date, endDate: Date) => {
     const isoStartDate = startDate.toISOString();
     const isoEndDate = endDate.toISOString();
-    const response = await fetch(
-      `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
-      {
-        method: "GET",
-        credentials: "include",
-      },
-    );
-    if (response.status > 299) {
-      console.log("err");
-    } else {
-      console.log("response", response);
+    try {
+      const response = await fetch(
+        `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
+      if (response.status > 299) {
+        console.log("err");
+      } else {
+        console.log("response", response);
+        const data = await response.json();
+        if (data.length > 0) {
+          console.log("DATA", data);
+        }
+      }
+    } catch (error) {
+      // Handle any errors that occur during the fetch operation
+      console.error("There was a problem with the fetch operation:", error);
     }
   };
-  console.log(calendarRange);
+  // console.log(calendarRange);
   return (
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
