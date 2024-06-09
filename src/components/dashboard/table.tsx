@@ -143,14 +143,16 @@ export function DashboardTable({
     }));
   };
 
-  console.log("TABLE WEEK", weekDates);
+  console.log("TABLE boardEndMonth", boardEndMonth);
 
   return (
     <>
       <p className={"pl-[10rem]"}>{boardYear}</p>
       <div className="flex flex-row">
         <p className={"pl-[10rem]"}>{convertMonthToString(boardStartMonth)}</p>
-        {boardEndMonth && <p>{convertMonthToString(boardEndMonth)} </p>}
+        {boardEndMonth !== undefined && (
+          <p>{convertMonthToString(boardEndMonth)} </p>
+        )}
       </div>
       <table className="table-fixed w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
         <thead className="p-0">
