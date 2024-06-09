@@ -75,10 +75,6 @@ export function Dashboard() {
     }
   };
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const handleDateSelect = (date: Date) => {
-    setSelectedDate(date);
-    console.log(selectedDate);
-  };
 
   const [weekDates, setWeekDates] = useState([]);
 
@@ -100,6 +96,8 @@ export function Dashboard() {
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
+  // @ts-ignore
+  // @ts-ignore
   return (
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
@@ -131,7 +129,10 @@ export function Dashboard() {
       <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
         Welcome, {name}!
       </div>
-      <DashboardTable weekDates={weekDates} endDate={lastDayOfWeek} />
+      <DashboardTable
+        weekDates={weekDates}
+        endDate={lastDayOfWeek}
+      ></DashboardTable>
       <a
         className={"text-orange-800 cursor-pointer"}
         onClick={() => {

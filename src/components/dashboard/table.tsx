@@ -31,7 +31,7 @@ interface MoodState {
 }
 
 interface DashboardTableProps {
-  weekDates: [] | never[];
+  weekDates: any[];
   endDate: Date;
 }
 export function DashboardTable({ weekDates, endDate }: DashboardTableProps) {
@@ -155,6 +155,7 @@ export function DashboardTable({ weekDates, endDate }: DashboardTableProps) {
   const fillDate = fillDateOfMonth(boardMonth, boardYear);
   console.log(fillDate.map((element) => element.dayOfWeek));
 
+  console.log("TABLE WEEK", weekDates);
   console.log("date", new Date(2024, 4, 17));
   return (
     <>
@@ -168,9 +169,9 @@ export function DashboardTable({ weekDates, endDate }: DashboardTableProps) {
         <thead className="p-0">
           <tr>
             <th className="p-[0.5rem]"></th>
-            {fillDate.map((element) => (
-              <th key={element.date.getDate()} className=" text-xs font-medium">
-                {element.dayOfWeek.slice(0, 2).toUpperCase()}
+            {weekDates.map((element) => (
+              <th key={element} className=" text-xs font-medium">
+                {element.getDate()}
               </th>
             ))}
           </tr>
@@ -199,22 +200,11 @@ export function DashboardTable({ weekDates, endDate }: DashboardTableProps) {
         <thead className="p-0">
           <tr>
             <th className="p-[0.5rem]"></th>
-            {fillDate.map((element) => (
-              <th key={element.date.getDate()} className=" text-xs font-medium">
-                {element.date.getDate()}
+            {daysOfWeek.map((day) => (
+              <th key={day} className=" text-xs font-medium">
+                {moods[day].weekDay}
               </th>
             ))}
-            {/*{fillDateOfMonth(boardMonth, boardYear).map((day: string) => (*/}
-            {/*  <th key={day} className=" text-xs font-medium">*/}
-            {/*    {day.slice(0, 2).toUpperCase()}*/}
-            {/*    /!*{moods[day].weekDay}*!/*/}
-            {/*  </th>*/}
-            {/*))}*/}
-            {/*{daysOfWeek.map((day) => (*/}
-            {/*  <th key={day} className=" text-xs font-medium">*/}
-            {/*    {moods[day].weekDay}*/}
-            {/*  </th>*/}
-            {/*))}*/}
           </tr>
         </thead>
       </table>
