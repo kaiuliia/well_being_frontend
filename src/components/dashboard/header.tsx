@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { format, startOfWeek, endOfWeek, addDays } from "date-fns";
 import { Moment } from "moment";
 import moment from "moment/moment";
 import DatePicker from "react-datepicker";
@@ -15,13 +16,27 @@ interface HeaderDashboardProps {
 }
 
 export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
-  const handleDateChange = () => {
-    console.log("uhgfds");
-  };
   const [selectedDate, setSelectedDate] = useState(new Date());
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
     console.log(selectedDate);
+  };
+
+  const [weekDates, setWeekDates] = useState([]);
+
+  const handleDateChange = (date: Date) => {
+    setSelectedDate(date);
+
+    const start = startOfWeek(date, { weekStartsOn: 1 }); // Week starts on Monday
+    const end = endOfWeek(date, { weekStartsOn: 1 });
+
+    const dates: any[] = [];
+    for (let day = start; day <= end; day = addDays(day, 1)) {
+      dates.push(day);
+    }
+    // @ts-ignore
+    setWeekDates(dates);
+    console.log("weedat", weekDates);
   };
   console.log(selectedDate);
   return (
@@ -37,7 +52,7 @@ export function HeaderDashboard({ startDate, endDate }: HeaderDashboardProps) {
         <DatePicker
           selected={selectedDate}
           // onSelect={handleDateChange} //when day is clicked
-          onChange={handleDateSelect} //only when value has changed
+          onChange={handleDateChange} //only when value has changed
         />
         <FontAwesomeIcon
           icon={faChevronRight}
