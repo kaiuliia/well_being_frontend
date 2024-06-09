@@ -147,10 +147,7 @@ export function DashboardTable({
     <>
       <p className={"pl-[10rem]"}>{boardYear}</p>
       <p className={"pl-[10rem]"}>{convertMonthToString(boardMonth)}</p>
-      <div className={"flex flex-row"}>
-        <button className={"pl-[10rem] font-extrabold text-2xl"}>-</button>{" "}
-        <button className={"pl-[1rem] font-extrabold text-2xl"}>+</button>
-      </div>
+
       <table className="table-fixed w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
         <thead className="p-0">
           <tr>

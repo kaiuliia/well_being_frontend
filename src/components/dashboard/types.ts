@@ -75,7 +75,11 @@ export const fillDashboard = async (startDate: Date, endDate: Date) => {
   }
 };
 
-export const handleClick = (month: number, year: number, weekDates: []) => {};
+// export const addDays = (date: Date, days: number): Date => {
+//   const result = date;
+//   result.setDate(result.getDate() + days);
+//   return result;
+// };
 
 export const getColorFromNumber = (number: number) => {
   if (number === 0) {

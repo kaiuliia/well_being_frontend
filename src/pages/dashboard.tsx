@@ -65,7 +65,7 @@ export function Dashboard() {
     setWeekDates(dates);
     console.log("weekdates", weekDates);
   };
-  const handleRangeChange = (weekDates: Date[]) => {
+  const handleRangeMinusWeek = (weekDates: Date[]) => {
     const isFirstDayInTheWeek = weekDates.some(
       (element: Date) => element.getDate() === 1,
     );
@@ -73,23 +73,44 @@ export function Dashboard() {
       (element: Date) => element.getMonth() === 0,
     );
 
-    const addDays = (date: Date, days: number): Date => {
-      const result = date;
-      result.setDate(result.getDate() + days);
-      return result;
-    };
+    let previousWeek;
+    if (!isFirstDayInTheWeek && !isJanuary) {
+      previousWeek = weekDates.map((date) => addDays(date, -7));
+    }
 
-    let previousWeek = weekDates.map((date) => addDays(date, -7));
-    setSelectedDate(previousWeek[0]);
+    previousWeek && setSelectedDate(previousWeek[0]);
     setBoardMonth(selectedDate.getMonth());
-
+    setBoardYear(selectedDate.getFullYear());
+    console.log("selectedDate", selectedDate);
     console.log("isFirst", isFirstDayInTheWeek);
     console.log("weekDates", weekDates);
     console.log("isJanuary", isJanuary);
     console.log("previousWeek", previousWeek);
   };
+  const handleRangePlusWeek = (weekDates: Date[]) => {
+    const isFirstDayInTheWeek = weekDates.some(
+      (element: Date) => element.getDate() === 1,
+    );
+    const isJanuary = weekDates.some(
+      (element: Date) => element.getMonth() === 0,
+    );
 
+    let previousWeek;
+    if (!isFirstDayInTheWeek && !isJanuary) {
+      previousWeek = weekDates.map((date) => addDays(date, 7));
+    }
+
+    previousWeek && setSelectedDate(previousWeek[0]);
+    setBoardMonth(selectedDate.getMonth());
+    setBoardYear(selectedDate.getFullYear());
+    console.log("selectedDate", selectedDate);
+    console.log("isFirst", isFirstDayInTheWeek);
+    console.log("weekDates", weekDates);
+    console.log("isJanuary", isJanuary);
+    console.log("previousWeek", previousWeek);
+  };
   console.log(selectedDate);
+
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
@@ -102,13 +123,13 @@ export function Dashboard() {
         {/*<FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" size={"xl"} />*/}
         <div>
           <button
-            onClick={() => handleRangeChange(weekDates)}
+            onClick={() => handleRangeMinusWeek(weekDates)}
             className={"pl-[10rem] font-extrabold text-2xl"}
           >
             -
           </button>{" "}
           <button
-            onClick={() => handleRangeChange(weekDates)}
+            onClick={() => handleRangePlusWeek(weekDates)}
             className={"pl-[1rem] font-extrabold text-2xl"}
           >
             +
