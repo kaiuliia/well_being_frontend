@@ -23,11 +23,11 @@ export function convertMonthToString(month: number): string {
   ];
 
   // Check if the month number is valid
-  if (month < 1 || month > 12) {
+  if (month < 0 || month > 11) {
     throw new Error("Invalid month number");
   }
 
-  return monthNames[month - 1];
+  return monthNames[month];
 }
 
 export function getDaysInMonth(month: number, year: number) {

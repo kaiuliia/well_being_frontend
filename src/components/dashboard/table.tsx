@@ -27,12 +27,14 @@ interface MoodState {
 interface DashboardTableProps {
   weekDates: any[];
   boardYear: number;
-  boardMonth: number;
+  boardStartMonth: number;
+  boardEndMonth: number | undefined;
 }
 export function DashboardTable({
   weekDates,
   boardYear,
-  boardMonth,
+  boardStartMonth,
+  boardEndMonth,
 }: DashboardTableProps) {
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
   const moodProps: MoodProps[] = [
@@ -146,8 +148,10 @@ export function DashboardTable({
   return (
     <>
       <p className={"pl-[10rem]"}>{boardYear}</p>
-      <p className={"pl-[10rem]"}>{convertMonthToString(boardMonth)}</p>
-
+      <div className="flex flex-row">
+        <p className={"pl-[10rem]"}>{convertMonthToString(boardStartMonth)}</p>
+        {boardEndMonth && <p>{convertMonthToString(boardEndMonth)} </p>}
+      </div>
       <table className="table-fixed w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
         <thead className="p-0">
           <tr>

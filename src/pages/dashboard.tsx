@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { DashboardTable } from "../components/dashboard/table";
 import { Advice } from "../components/dashboard/advice";
-import { fillDashboard, logOut } from "../components/dashboard/types";
+import {
+  convertMonthToString,
+  fillDashboard,
+  logOut,
+} from "../components/dashboard/types";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays, endOfWeek, startOfWeek } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendarDays,
-  faChevronLeft,
-  faChevronRight,
-  faSliders,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -28,9 +27,10 @@ export function Dashboard() {
 
   const [open, setOpen] = useState(false);
   const [boardYear, setBoardYear] = useState<number>(new Date().getFullYear());
-  const [boardMonth, setBoardMonth] = useState<number>(
-    new Date().getMonth() + 1,
+  const [boardStartMonth, setBoardStartMonth] = useState<number>(
+    new Date().getMonth(),
   );
+  const [boardEndMonth, setBoardEndMonth] = useState<number>();
 
   const dialogOpen = () => {
     setOpen(!open);
@@ -66,61 +66,46 @@ export function Dashboard() {
     console.log("weekdates", weekDates);
   };
   const handleRangeMinusWeek = (weekDates: Date[]) => {
-    const isFirstDayInTheWeek = weekDates.some(
-      (element: Date) => element.getDate() === 1,
-    );
-    const isJanuary = weekDates.some(
-      (element: Date) => element.getMonth() === 0,
-    );
-
     let previousWeek;
-    if (!isFirstDayInTheWeek && !isJanuary) {
-      previousWeek = weekDates.map((date) => addDays(date, -7));
+    previousWeek = weekDates.map((date) => addDays(date, -7));
+    if (previousWeek) {
+      setWeekDates(previousWeek);
+      const newSelectedStartDate = previousWeek[0];
+      const newSelectedEndDate = previousWeek[previousWeek.length - 1];
+      setSelectedDate(newSelectedStartDate);
+      setBoardStartMonth(newSelectedStartDate.getMonth());
+      setBoardEndMonth(newSelectedEndDate.getMonth());
+      setBoardYear(newSelectedStartDate.getFullYear());
     }
-
-    previousWeek && setSelectedDate(previousWeek[0]);
-    setBoardMonth(selectedDate.getMonth());
-    setBoardYear(selectedDate.getFullYear());
-    console.log("selectedDate", selectedDate);
-    console.log("isFirst", isFirstDayInTheWeek);
-    console.log("weekDates", weekDates);
-    console.log("isJanuary", isJanuary);
-    console.log("previousWeek", previousWeek);
   };
+
   const handleRangePlusWeek = (weekDates: Date[]) => {
-    const isFirstDayInTheWeek = weekDates.some(
-      (element: Date) => element.getDate() === 1,
-    );
-    const isJanuary = weekDates.some(
-      (element: Date) => element.getMonth() === 0,
-    );
+    let nextWeek;
 
-    let previousWeek;
-    if (!isFirstDayInTheWeek && !isJanuary) {
-      previousWeek = weekDates.map((date) => addDays(date, 7));
+    nextWeek = weekDates.map((date) => addDays(date, 7));
+
+    if (nextWeek) {
+      setWeekDates(nextWeek);
+      const newSelectedStartDate = nextWeek[0];
+      const newSelectedEndDate = nextWeek[nextWeek.length - 1];
+      setSelectedDate(newSelectedStartDate);
+      setBoardStartMonth(newSelectedStartDate.getMonth());
+      setBoardEndMonth(newSelectedEndDate.getMonth());
+      setBoardYear(newSelectedStartDate.getFullYear());
     }
-
-    previousWeek && setSelectedDate(previousWeek[0]);
-    setBoardMonth(selectedDate.getMonth());
-    setBoardYear(selectedDate.getFullYear());
-    console.log("selectedDate", selectedDate);
-    console.log("isFirst", isFirstDayInTheWeek);
-    console.log("weekDates", weekDates);
-    console.log("isJanuary", isJanuary);
-    console.log("previousWeek", previousWeek);
   };
+
   console.log(selectedDate);
 
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
-  // @ts-ignore
-  // @ts-ignore
+
+  console.log("board month,", boardStartMonth);
   return (
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
       <div className="flex justify-between">
-        {/*<FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" size={"xl"} />*/}
         <div>
           <button
             onClick={() => handleRangeMinusWeek(weekDates)}
@@ -134,25 +119,12 @@ export function Dashboard() {
           >
             +
           </button>
-          {/*<FontAwesomeIcon*/}
-          {/*  icon={faChevronLeft}*/}
-          {/*  color="#A5BB5A"*/}
-          {/*  className="pr-2"*/}
-          {/*  size={"xl"}*/}
-          {/*/>*/}
           <DatePicker
             selected={selectedDate}
             calendarStartDay={1}
             // onSelect={handleDateChange} //when day is clicked
             onChange={handleDateChange} //only when value has changed
           />
-          {/*<FontAwesomeIcon*/}
-          {/*  icon={faChevronRight}*/}
-          {/*  color="#A5BB5A"*/}
-          {/*  className="pl-2"*/}
-          {/*  size={"xl"}*/}
-          {/*  // onClick={handleClick}*/}
-          {/*/>*/}
         </div>
         <FontAwesomeIcon icon={faSliders} color="#BBC1CE" size={"xl"} />
       </div>
@@ -163,7 +135,10 @@ export function Dashboard() {
       <DashboardTable
         weekDates={weekDates}
         boardYear={boardYear}
-        boardMonth={boardMonth}
+        boardStartMonth={boardStartMonth}
+        boardEndMonth={
+          boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
+        }
       ></DashboardTable>
       <a
         className={"text-orange-800 cursor-pointer"}
