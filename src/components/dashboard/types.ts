@@ -59,6 +59,34 @@ export const fillDateOfMonth = (month: number, year: number) => {
   return boardDate.slice(0, 7);
 };
 //DASHBOARD VIEW FUNCTIONS
+
+export const fillDashboard = async (startDate: Date, endDate: Date) => {
+  const isoStartDate = startDate.toISOString();
+  const isoEndDate = endDate.toISOString();
+  try {
+    const response = await fetch(
+      `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+    if (response.status > 299) {
+      console.log("err");
+    } else {
+      console.log("response", response);
+      const data = await response.json();
+      if (data.length > 0) {
+        console.log("result", data);
+        console.log("date", data[0].date);
+      }
+    }
+  } catch (error) {
+    // Handle any errors that occur during the fetch operation
+    console.error("There was a problem with the fetch operation:", error);
+  }
+};
+
 export const getColorFromNumber = (number: number) => {
   if (number === 0) {
     return "bg-white";

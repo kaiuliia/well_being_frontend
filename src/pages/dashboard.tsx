@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { DashboardTable } from "../components/dashboard/table";
 import { Advice } from "../components/dashboard/advice";
-import { HeaderDashboard } from "../components/dashboard/header";
+
+import { fillDashboard } from "../components/dashboard/types";
 import moment from "moment";
+import "react-datepicker/dist/react-datepicker.css";
+import { addDays, endOfWeek, startOfWeek } from "date-fns";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendarDays,
+  faChevronLeft,
+  faChevronRight,
+  faSliders,
+} from "@fortawesome/free-solid-svg-icons";
+import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 
 type ValuePiece = Date | null;
@@ -48,12 +60,7 @@ export function Dashboard() {
       dow: 1, // Monday is the first day of the week.
     },
   });
-  const handleDateChange = () => {};
 
-  const handleDateSelect = () => {};
-  const calendarRange = value;
-  // const startDate = moment().startOf("week").utc().format("D MMM");
-  const endDate = moment().endOf("week").utc().format("D MMM");
   const logOut = async () => {
     const response = await fetch("http://localhost:9090/logout", {
       method: "POST",
@@ -67,42 +74,64 @@ export function Dashboard() {
       console.log("succses logout");
     }
   };
-
-  const fillDashboard = async (startDate: Date, endDate: Date) => {
-    const isoStartDate = startDate.toISOString();
-    const isoEndDate = endDate.toISOString();
-    try {
-      const response = await fetch(
-        `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
-        {
-          method: "GET",
-          credentials: "include",
-        },
-      );
-      if (response.status > 299) {
-        console.log("err");
-      } else {
-        console.log("response", response);
-        const data = await response.json();
-        if (data.length > 0) {
-          console.log("result", data);
-          console.log("date", data[0].date);
-        }
-      }
-    } catch (error) {
-      // Handle any errors that occur during the fetch operation
-      console.error("There was a problem with the fetch operation:", error);
-    }
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const handleDateSelect = (date: Date) => {
+    setSelectedDate(date);
+    console.log(selectedDate);
   };
-  // console.log(calendarRange);
+
+  const [weekDates, setWeekDates] = useState([]);
+
+  const handleDateChange = (date: Date) => {
+    setSelectedDate(date);
+
+    const start = startOfWeek(date, { weekStartsOn: 1 }); // Week starts on Monday
+    const end = endOfWeek(date, { weekStartsOn: 1 });
+    const dates: any[] = [];
+    for (let day = start; day <= end; day = addDays(day, 1)) {
+      dates.push(day);
+    }
+    // @ts-ignore
+    setWeekDates(dates);
+    console.log("weekdates", weekDates);
+  };
+
+  console.log(selectedDate);
+  useEffect(() => {
+    handleDateChange(selectedDate);
+  }, []);
   return (
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
-      <HeaderDashboard startDate={firstDayOfWeek} endDate={lastDayOfWeek} />
+      <div className="flex justify-between">
+        <FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" size={"xl"} />
+        <div>
+          <FontAwesomeIcon
+            icon={faChevronLeft}
+            color="#A5BB5A"
+            className="pr-2"
+            size={"xl"}
+          />
+          <DatePicker
+            selected={selectedDate}
+            // onSelect={handleDateChange} //when day is clicked
+            onChange={handleDateChange} //only when value has changed
+          />
+          <FontAwesomeIcon
+            icon={faChevronRight}
+            color="#A5BB5A"
+            className="pl-2"
+            size={"xl"}
+            // onClick={minusWeek}
+          />
+        </div>
+        <FontAwesomeIcon icon={faSliders} color="#BBC1CE" size={"xl"} />
+      </div>
+      {/*<HeaderDashboard startDate={firstDayOfWeek} endDate={lastDayOfWeek} />*/}
       <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
         Welcome, {name}!
       </div>
-      <DashboardTable startDate={firstDayOfWeek} endDate={lastDayOfWeek} />
+      <DashboardTable weekDates={weekDates} endDate={lastDayOfWeek} />
       <a
         className={"text-orange-800 cursor-pointer"}
         onClick={() => {

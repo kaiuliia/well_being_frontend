@@ -31,10 +31,10 @@ interface MoodState {
 }
 
 interface DashboardTableProps {
-  startDate: Date;
+  weekDates: [] | never[];
   endDate: Date;
 }
-export function DashboardTable({ startDate, endDate }: DashboardTableProps) {
+export function DashboardTable({ weekDates, endDate }: DashboardTableProps) {
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
   const [boardYear, setBoardYear] = useState<number>(new Date().getFullYear());
   const [boardMonth, setBoardMonth] = useState<number>(
@@ -154,7 +154,7 @@ export function DashboardTable({ startDate, endDate }: DashboardTableProps) {
   console.log("fill dates", fillDateOfMonth(boardMonth, boardYear));
   const fillDate = fillDateOfMonth(boardMonth, boardYear);
   console.log(fillDate.map((element) => element.dayOfWeek));
-  console.log("RANGE", startDate, endDate);
+
   console.log("date", new Date(2024, 4, 17));
   return (
     <>
