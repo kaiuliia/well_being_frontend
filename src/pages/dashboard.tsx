@@ -65,33 +65,18 @@ export function Dashboard() {
     setWeekDates(dates);
     console.log("weekdates", weekDates);
   };
-  const handleRangeMinusWeek = (weekDates: Date[]) => {
-    let previousWeek;
-    previousWeek = weekDates.map((date) => addDays(date, -7));
-    if (previousWeek) {
-      setWeekDates(previousWeek);
-      const newSelectedStartDate = previousWeek[0];
-      const newSelectedEndDate = previousWeek[previousWeek.length - 1];
+  const handleChangeRangeWeek = (weekDates: Date[], amount: number) => {
+    let newRangeWeek;
+    newRangeWeek = weekDates.map((date) => addDays(date, amount));
+    if (newRangeWeek) {
+      setWeekDates(newRangeWeek);
+      const newSelectedStartDate = newRangeWeek[0];
+      const newSelectedEndDate = newRangeWeek[6];
       setSelectedDate(newSelectedStartDate);
       setBoardStartMonth(newSelectedStartDate.getMonth());
       setBoardEndMonth(newSelectedEndDate.getMonth());
       setBoardYear(newSelectedStartDate.getFullYear());
-    }
-  };
-
-  const handleRangePlusWeek = (weekDates: Date[]) => {
-    let nextWeek;
-
-    nextWeek = weekDates.map((date) => addDays(date, 7));
-
-    if (nextWeek) {
-      setWeekDates(nextWeek);
-      const newSelectedStartDate = nextWeek[0];
-      const newSelectedEndDate = nextWeek[nextWeek.length - 1];
-      setSelectedDate(newSelectedStartDate);
-      setBoardStartMonth(newSelectedStartDate.getMonth());
-      setBoardEndMonth(newSelectedEndDate.getMonth());
-      setBoardYear(newSelectedStartDate.getFullYear());
+      console.log("BOARDEND", boardEndMonth);
     }
   };
 
@@ -108,13 +93,13 @@ export function Dashboard() {
       <div className="flex justify-between">
         <div>
           <button
-            onClick={() => handleRangeMinusWeek(weekDates)}
+            onClick={() => handleChangeRangeWeek(weekDates, -7)}
             className={"pl-[10rem] font-extrabold text-2xl"}
           >
             -
           </button>{" "}
           <button
-            onClick={() => handleRangePlusWeek(weekDates)}
+            onClick={() => handleChangeRangeWeek(weekDates, 7)}
             className={"pl-[1rem] font-extrabold text-2xl"}
           >
             +
