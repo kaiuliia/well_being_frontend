@@ -1,4 +1,5 @@
 import React from "react";
+import { addDays, endOfWeek, startOfWeek } from "date-fns/index";
 
 export type FormEvent = React.FormEvent<HTMLFormElement>;
 export type MouseEvent = React.MouseEvent<HTMLButtonElement>;
@@ -45,19 +46,6 @@ export function getDaysInMonth(month: number, year: number) {
   return daysArray;
 }
 
-export const getDateRange = (boardMonth: number, boardYear: number) => {
-  let dayOfTheWeekForCurrentDate = getDaysInMonth(boardMonth, boardYear).find(
-    (element) => element.date.toLocaleString() === new Date().toLocaleString(),
-  );
-  return dayOfTheWeekForCurrentDate;
-};
-export const fillDateOfMonth = (month: number, year: number) => {
-  let datesArray = Array(7).fill(0);
-  let boardDate = getDaysInMonth(month, year);
-  let todayDate: Date = new Date();
-  datesArray = boardDate.map((element) => element.dayOfWeek).slice(0, 7);
-  return boardDate.slice(0, 7);
-};
 //DASHBOARD VIEW FUNCTIONS
 
 export const fillDashboard = async (startDate: Date, endDate: Date) => {
@@ -87,6 +75,8 @@ export const fillDashboard = async (startDate: Date, endDate: Date) => {
   }
 };
 
+export const handleClick = (month: number, year: number, weekDates: []) => {};
+
 export const getColorFromNumber = (number: number) => {
   if (number === 0) {
     return "bg-white";
@@ -97,6 +87,22 @@ export const getColorFromNumber = (number: number) => {
     return "bg-custom-orange";
   } else {
     return "bg-custom-green";
+  }
+};
+
+//USERDATA
+
+export const logOut = async () => {
+  const response = await fetch("http://localhost:9090/logout", {
+    method: "POST",
+    credentials: "include",
+  });
+  if (response.status > 299) {
+    console.log("user still herelogout");
+  } else {
+    localStorage.clear();
+    window.location.href = "/login";
+    console.log("succses logout");
   }
 };
 

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DashboardTable } from "../components/dashboard/table";
 import { Advice } from "../components/dashboard/advice";
-
-import { fillDashboard } from "../components/dashboard/types";
+import { fillDashboard, logOut } from "../components/dashboard/types";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays, endOfWeek, startOfWeek } from "date-fns";
@@ -14,7 +13,6 @@ import {
   faSliders,
 } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 
 type ValuePiece = Date | null;
@@ -27,14 +25,13 @@ interface User {
 }
 export function Dashboard() {
   const name = localStorage.getItem("name");
-  const [value, onChange] = useState<Value>(new Date());
 
   const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState();
-  const [selectedCalendarRange, setSelectedCalendarRange] = useState();
-  const [startDate, setStartDate] = useState(
-    moment().startOf("week").utc().format("D MMM"),
+  const [boardYear, setBoardYear] = useState<number>(new Date().getFullYear());
+  const [boardMonth, setBoardMonth] = useState<number>(
+    new Date().getMonth() + 1,
   );
+
   const dialogOpen = () => {
     setOpen(!open);
   };
@@ -51,32 +48,9 @@ export function Dashboard() {
   const lastDayOfWeek = new Date(chosenDate);
   lastDayOfWeek.setDate(chosenDate.getDate() - chosenDate.getDay() + 7);
 
-  // Formatting the dates to 'YYYY-MM-DD' format
-  const formattedFirstDayOfWeek = firstDayOfWeek.toISOString().split("T")[0];
-  const formattedLastDayOfWeek = lastDayOfWeek.toISOString().split("T")[0];
-
-  moment.updateLocale("en", {
-    week: {
-      dow: 1, // Monday is the first day of the week.
-    },
-  });
-
-  const logOut = async () => {
-    const response = await fetch("http://localhost:9090/logout", {
-      method: "POST",
-      credentials: "include",
-    });
-    if (response.status > 299) {
-      console.log("user still herelogout");
-    } else {
-      localStorage.clear();
-      window.location.href = "/login";
-      console.log("succses logout");
-    }
-  };
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const [weekDates, setWeekDates] = useState([]);
+  const [weekDates, setWeekDates] = useState<Date[]>([]);
 
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
@@ -91,6 +65,29 @@ export function Dashboard() {
     setWeekDates(dates);
     console.log("weekdates", weekDates);
   };
+  const handleRangeChange = (weekDates: Date[]) => {
+    const isFirstDayInTheWeek = weekDates.some(
+      (element: Date) => element.getDate() === 1,
+    );
+    const isJanuary = weekDates.some(
+      (element: Date) => element.getMonth() === 0,
+    );
+
+    const addDays = (date: Date, days: number): Date => {
+      const result = date;
+      result.setDate(result.getDate() + days);
+      return result;
+    };
+
+    let previousWeek = weekDates.map((date) => addDays(date, -7));
+    setSelectedDate(previousWeek[0]);
+    setBoardMonth(selectedDate.getMonth());
+
+    console.log("isFirst", isFirstDayInTheWeek);
+    console.log("weekDates", weekDates);
+    console.log("isJanuary", isJanuary);
+    console.log("previousWeek", previousWeek);
+  };
 
   console.log(selectedDate);
   useEffect(() => {
@@ -102,26 +99,39 @@ export function Dashboard() {
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
       <div className="flex justify-between">
-        <FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" size={"xl"} />
+        {/*<FontAwesomeIcon icon={faCalendarDays} color="#BBC1CE" size={"xl"} />*/}
         <div>
-          <FontAwesomeIcon
-            icon={faChevronLeft}
-            color="#A5BB5A"
-            className="pr-2"
-            size={"xl"}
-          />
+          <button
+            onClick={() => handleRangeChange(weekDates)}
+            className={"pl-[10rem] font-extrabold text-2xl"}
+          >
+            -
+          </button>{" "}
+          <button
+            onClick={() => handleRangeChange(weekDates)}
+            className={"pl-[1rem] font-extrabold text-2xl"}
+          >
+            +
+          </button>
+          {/*<FontAwesomeIcon*/}
+          {/*  icon={faChevronLeft}*/}
+          {/*  color="#A5BB5A"*/}
+          {/*  className="pr-2"*/}
+          {/*  size={"xl"}*/}
+          {/*/>*/}
           <DatePicker
             selected={selectedDate}
+            calendarStartDay={1}
             // onSelect={handleDateChange} //when day is clicked
             onChange={handleDateChange} //only when value has changed
           />
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            color="#A5BB5A"
-            className="pl-2"
-            size={"xl"}
-            // onClick={minusWeek}
-          />
+          {/*<FontAwesomeIcon*/}
+          {/*  icon={faChevronRight}*/}
+          {/*  color="#A5BB5A"*/}
+          {/*  className="pl-2"*/}
+          {/*  size={"xl"}*/}
+          {/*  // onClick={handleClick}*/}
+          {/*/>*/}
         </div>
         <FontAwesomeIcon icon={faSliders} color="#BBC1CE" size={"xl"} />
       </div>
@@ -131,7 +141,8 @@ export function Dashboard() {
       </div>
       <DashboardTable
         weekDates={weekDates}
-        endDate={lastDayOfWeek}
+        boardYear={boardYear}
+        boardMonth={boardMonth}
       ></DashboardTable>
       <a
         className={"text-orange-800 cursor-pointer"}

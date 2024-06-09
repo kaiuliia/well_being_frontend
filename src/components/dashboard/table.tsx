@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  convertMonthToString,
-  getColorFromNumber,
-  getDaysInMonth,
-  getDateRange,
-  fillDateOfMonth,
-} from "./types";
+import { convertMonthToString, getColorFromNumber } from "./types";
 
 interface MoodData {
   weekDay: string;
@@ -32,15 +26,15 @@ interface MoodState {
 
 interface DashboardTableProps {
   weekDates: any[];
-  endDate: Date;
+  boardYear: number;
+  boardMonth: number;
 }
-export function DashboardTable({ weekDates, endDate }: DashboardTableProps) {
+export function DashboardTable({
+  weekDates,
+  boardYear,
+  boardMonth,
+}: DashboardTableProps) {
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
-  const [boardYear, setBoardYear] = useState<number>(new Date().getFullYear());
-  const [boardMonth, setBoardMonth] = useState<number>(
-    new Date().getMonth() + 1,
-  );
-  const [boardDateRange, setBoardDateRange] = useState<number[]>();
   const moodProps: MoodProps[] = [
     {
       name: "Mood",
@@ -132,9 +126,6 @@ export function DashboardTable({ weekDates, endDate }: DashboardTableProps) {
     },
   });
 
-  //TO DO    find date range to show on dashboard and map the date accocrding to days of the week
-  console.log("range", getDateRange);
-  getDaysInMonth(4, 2024);
   const handleMoodChange = (
     mood: string,
     color: string,
@@ -149,14 +140,9 @@ export function DashboardTable({ weekDates, endDate }: DashboardTableProps) {
       },
     }));
   };
-  const dates = [12, 13, 14, 15, 16, 17, 18];
-  console.log("getDates", getDaysInMonth(4, 2024));
-  console.log("fill dates", fillDateOfMonth(boardMonth, boardYear));
-  const fillDate = fillDateOfMonth(boardMonth, boardYear);
-  console.log(fillDate.map((element) => element.dayOfWeek));
 
   console.log("TABLE WEEK", weekDates);
-  console.log("date", new Date(2024, 4, 17));
+
   return (
     <>
       <p className={"pl-[10rem]"}>{boardYear}</p>
