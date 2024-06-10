@@ -79,7 +79,20 @@ export function Dashboard() {
       console.log("BOARDEND", boardEndMonth);
     }
   };
-
+  const handleChangeRangeYear = (weekDates: Date[], amount: number) => {
+    let newRangeWeek;
+    newRangeWeek = weekDates.map((date) => addDays(date, 365));
+    if (newRangeWeek) {
+      setWeekDates(newRangeWeek);
+      const newSelectedStartDate = newRangeWeek[0];
+      const newSelectedEndDate = newRangeWeek[6];
+      setSelectedDate(newSelectedStartDate);
+      setBoardStartMonth(newSelectedStartDate.getMonth());
+      setBoardEndMonth(newSelectedEndDate.getMonth());
+      setBoardYear(newSelectedStartDate.getFullYear());
+      console.log("BOARDEND", boardEndMonth);
+    }
+  };
   console.log(selectedDate);
 
   useEffect(() => {
@@ -96,13 +109,13 @@ export function Dashboard() {
             onClick={() => handleChangeRangeWeek(weekDates, -7)}
             className={"pl-[10rem] font-extrabold text-2xl"}
           >
-            -
+            - week
           </button>{" "}
           <button
             onClick={() => handleChangeRangeWeek(weekDates, 7)}
             className={"pl-[1rem] font-extrabold text-2xl"}
           >
-            +
+            + week
           </button>
           <DatePicker
             selected={selectedDate}
@@ -117,6 +130,18 @@ export function Dashboard() {
       <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
         Welcome, {name}!
       </div>
+      <button
+        onClick={() => handleChangeRangeWeek(weekDates, -365)}
+        className={"pl-[10rem] font-extrabold text-2xl"}
+      >
+        - year
+      </button>{" "}
+      <button
+        onClick={() => handleChangeRangeWeek(weekDates, 365)}
+        className={"pl-[1rem] font-extrabold text-2xl"}
+      >
+        + year
+      </button>
       <DashboardTable
         weekDates={weekDates}
         boardYear={boardYear}
@@ -156,3 +181,10 @@ export function Dashboard() {
     </div>
   );
 }
+
+//NEXT TIME :
+
+//2 fill dashboard according to fetching data
+
+//TODO GLOBALLY
+//+- check year - check the february for 29 days
