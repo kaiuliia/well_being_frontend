@@ -52,19 +52,37 @@ export function Dashboard() {
 
   const [weekDates, setWeekDates] = useState<Date[]>([]);
 
-  const handleDateChange = (date: Date) => {
+  // const handleDateChange = (date: Date) => {
+  //   setSelectedDate(date);
+  //
+  //   const start = startOfWeek(date, { weekStartsOn: 1 }); // Week starts on Monday
+  //   const end = endOfWeek(date, { weekStartsOn: 1 });
+  //   const dates: any[] = [];
+  //   for (let day = start; day <= end; day = addDays(day, 1)) {
+  //     dates.push(day);
+  //   }
+  //   // @ts-ignore
+  //   setWeekDates(dates);
+  //   console.log("weekdates", weekDates);
+  // };
+  function handleDateChange(date: Date) {
     setSelectedDate(date);
+    let currentDate = moment(date);
+    console.log("currentDate", currentDate);
+    let weekStart = currentDate.clone().startOf("isoWeek");
+    let weekEnd = currentDate.clone().endOf("isoWeek");
 
-    const start = startOfWeek(date, { weekStartsOn: 1 }); // Week starts on Monday
-    const end = endOfWeek(date, { weekStartsOn: 1 });
-    const dates: any[] = [];
-    for (let day = start; day <= end; day = addDays(day, 1)) {
-      dates.push(day);
+    let days = [];
+
+    for (let i = 0; i <= 6; i++) {
+      days.push(moment(weekStart).add(i, "days").toDate());
     }
-    // @ts-ignore
-    setWeekDates(dates);
-    console.log("weekdates", weekDates);
-  };
+
+    setWeekDates(days);
+    console.log("week", weekDates);
+  }
+
+  // console.log("moment curr weel", getCurrentWeek());
   const handleChangeRangeWeek = (weekDates: Date[], amount: number) => {
     let newRangeWeek;
     newRangeWeek = weekDates.map((date) => addDays(date, amount));
@@ -77,13 +95,17 @@ export function Dashboard() {
       setBoardEndMonth(newSelectedEndDate.getMonth());
       setBoardYear(newSelectedStartDate.getFullYear());
       console.log("BOARDEND", boardEndMonth);
+      console.log("weekdatesfun", weekDates);
     }
   };
+  console.log("weekdates", weekDates);
   const handleChangeRangeYear = (weekDates: Date[], amount: number) => {
     let newRangeWeek;
-    newRangeWeek = weekDates.map((date) => addDays(date, 365));
+    newRangeWeek = weekDates.map((date) => addDays(date, amount));
+
     if (newRangeWeek) {
       setWeekDates(newRangeWeek);
+      console.log("weekdates", weekDates);
       const newSelectedStartDate = newRangeWeek[0];
       const newSelectedEndDate = newRangeWeek[6];
       setSelectedDate(newSelectedStartDate);
@@ -99,7 +121,7 @@ export function Dashboard() {
     handleDateChange(selectedDate);
   }, []);
 
-  console.log("board month,", boardStartMonth);
+  console.log("board month rrrrrr,", boardStartMonth);
   return (
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
@@ -183,7 +205,7 @@ export function Dashboard() {
 }
 
 //NEXT TIME :
-
+//SORT WEEKDATES ARRAY (now its starts randomly!!!)
 //2 fill dashboard according to fetching data
 
 //TODO GLOBALLY
