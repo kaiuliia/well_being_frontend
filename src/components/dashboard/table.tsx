@@ -26,7 +26,7 @@ interface MoodState {
 
 interface DashboardTableProps {
   weekDates: any[];
-  boardYear: number;
+  boardYear: number | number[];
   boardStartMonth: number;
   boardEndMonth: number | undefined;
 }

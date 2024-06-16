@@ -26,7 +26,9 @@ export function Dashboard() {
   const name = localStorage.getItem("name");
 
   const [open, setOpen] = useState(false);
-  const [boardYear, setBoardYear] = useState<number>(new Date().getFullYear());
+  const [boardYear, setBoardYear] = useState<number | number[]>(
+    new Date().getFullYear(),
+  );
   const [boardStartMonth, setBoardStartMonth] = useState<number>(
     new Date().getMonth(),
   );
@@ -68,38 +70,21 @@ export function Dashboard() {
     console.log("week", weekDates);
   }
 
-  // console.log("moment curr weel", getCurrentWeek());
-  // const handleChangeRangeWeek = (weekDates: Date[], amount: number) => {
-  //   let newRangeWeek;
-  //   newRangeWeek = weekDates.map((date) => addDays(date, amount));
-  //   if (newRangeWeek) {
-  //     setWeekDates(newRangeWeek);
-  //     const newSelectedStartDate = newRangeWeek[0];
-  //     const newSelectedEndDate = newRangeWeek[6];
-  //     setSelectedDate(newSelectedStartDate);
-  //     setBoardStartMonth(newSelectedStartDate.getMonth());
-  //     setBoardEndMonth(newSelectedEndDate.getMonth());
-  //     setBoardYear(newSelectedStartDate.getFullYear());
-  //     console.log("BOARDEND", boardEndMonth);
-  //     console.log("weekdatesfun", weekDates);
-  //   }
-  // };
-
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
     let startOfNewWeek;
     let endOfNewWeek;
+    let newWeekDates: Date[] = [];
     switch (action) {
       case "minus_week":
         startOfNewWeek = startOfCurrentWeek.clone().subtract(1, "week");
         endOfNewWeek = endOfCurrentWeek.clone().subtract(1, "week");
         setSelectedDate(startOfNewWeek.toDate());
-        const previousWeekDates = [];
         for (let i = 0; i < 7; i++) {
-          previousWeekDates.push(startOfNewWeek.clone().add(i, "day").toDate());
+          newWeekDates.push(startOfNewWeek.clone().add(i, "day").toDate());
         }
-        setWeekDates(previousWeekDates);
+        setWeekDates(newWeekDates);
         setBoardStartMonth(startOfNewWeek.toDate().getMonth());
         setBoardEndMonth(endOfNewWeek.toDate().getMonth());
         break;
@@ -107,17 +92,37 @@ export function Dashboard() {
         startOfNewWeek = startOfCurrentWeek.clone().add(1, "week");
         endOfNewWeek = endOfCurrentWeek.clone().add(1, "week");
         setSelectedDate(startOfNewWeek.toDate());
-        const nextWeekDates = [];
         for (let i = 0; i < 7; i++) {
-          nextWeekDates.push(startOfNewWeek.clone().add(i, "day").toDate());
+          newWeekDates.push(startOfNewWeek.clone().add(i, "day").toDate());
         }
-        setWeekDates(nextWeekDates);
+        setWeekDates(newWeekDates);
         setBoardStartMonth(startOfNewWeek.toDate().getMonth());
-        setBoardEndMonth(endOfNewWeek.toDate().getMonth());
+        endOfNewWeek && setBoardEndMonth(endOfNewWeek.toDate().getMonth());
+        break;
+
+      case "plus_year":
+    }
+
+    if (
+      startOfNewWeek &&
+      endOfNewWeek &&
+      startOfNewWeek.toDate().getFullYear() ===
+        endOfNewWeek.toDate().getFullYear()
+    ) {
+      startOfNewWeek && setBoardYear(startOfNewWeek.toDate().getFullYear());
+    } else if (
+      startOfNewWeek &&
+      endOfNewWeek &&
+      startOfNewWeek.toDate().getFullYear() !==
+        endOfNewWeek.toDate().getFullYear()
+    ) {
+      setBoardYear([
+        startOfNewWeek.toDate().getFullYear(),
+        endOfNewWeek.toDate().getFullYear(),
+      ]);
     }
   };
 
-  console.log("weekdates", weekDates);
   const handleChangeRangeYear = (weekDates: Date[], amount: number) => {
     let newRangeWeek;
     newRangeWeek = weekDates.map((date) => addDays(date, amount));
@@ -147,13 +152,13 @@ export function Dashboard() {
       <div className="flex justify-between">
         <div>
           <button
-            onClick={() => handleChangeRangeWeek(weekDates, "minusweek")}
+            onClick={() => handleChangeRangeWeek(weekDates, "minus_week")}
             className={"pl-[10rem] font-extrabold text-2xl"}
           >
             - week
           </button>{" "}
           <button
-            onClick={() => handleChangeRangeWeek(weekDates, "plusweek")}
+            onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
             className={"pl-[1rem] font-extrabold text-2xl"}
           >
             + week
@@ -172,13 +177,13 @@ export function Dashboard() {
         Welcome, {name}!
       </div>
       <button
-        onClick={() => handleChangeRangeWeek(weekDates, "minusweek")}
+        onClick={() => handleChangeRangeWeek(weekDates, "minus_year")}
         className={"pl-[10rem] font-extrabold text-2xl"}
       >
         - year
       </button>{" "}
       <button
-        onClick={() => handleChangeRangeWeek(weekDates, "minusweek")}
+        onClick={() => handleChangeRangeWeek(weekDates, "plus_year")}
         className={"pl-[1rem] font-extrabold text-2xl"}
       >
         + year
