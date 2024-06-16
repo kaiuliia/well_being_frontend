@@ -37,18 +37,6 @@ export function Dashboard() {
   const dialogOpen = () => {
     setOpen(!open);
   };
-  const handleSurveyClick = () => {
-    window.location.href = "/login/user/survey";
-  };
-  const chosenDate = new Date(); // Your chosen date
-
-  // Find the first day of the week (Sunday)
-  const firstDayOfWeek = new Date(chosenDate);
-  firstDayOfWeek.setDate(chosenDate.getDate() - chosenDate.getDay());
-
-  // Find the last day of the week (Saturday)
-  const lastDayOfWeek = new Date(chosenDate);
-  lastDayOfWeek.setDate(chosenDate.getDate() - chosenDate.getDay() + 7);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -75,6 +63,7 @@ export function Dashboard() {
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
     let startOfNewWeek;
     let endOfNewWeek;
+    let startNextYear;
     let newWeekDates: Date[] = [];
     switch (action) {
       case "minus_week":
@@ -99,8 +88,30 @@ export function Dashboard() {
         setBoardStartMonth(startOfNewWeek.toDate().getMonth());
         endOfNewWeek && setBoardEndMonth(endOfNewWeek.toDate().getMonth());
         break;
-
+      case "minus_year":
+        startNextYear = startOfCurrentWeek.clone().subtract(1, "year");
+        startOfNewWeek = startNextYear.clone().startOf("isoWeek");
+        endOfNewWeek = startNextYear.clone().endOf("isoWeek");
+        setSelectedDate(startOfNewWeek.toDate());
+        for (let i = 0; i < 7; i++) {
+          newWeekDates.push(startOfNewWeek.clone().add(i, "day").toDate());
+        }
+        setWeekDates(newWeekDates);
+        setBoardStartMonth(startOfNewWeek.toDate().getMonth());
+        setBoardEndMonth(endOfNewWeek.toDate().getMonth());
+        break;
       case "plus_year":
+        startNextYear = startOfCurrentWeek.clone().add(1, "year");
+        startOfNewWeek = startNextYear.clone().startOf("isoWeek");
+        endOfNewWeek = startNextYear.clone().endOf("isoWeek");
+        setSelectedDate(startOfNewWeek.toDate());
+        for (let i = 0; i < 7; i++) {
+          newWeekDates.push(startOfNewWeek.clone().add(i, "day").toDate());
+        }
+        setWeekDates(newWeekDates);
+        setBoardStartMonth(startOfNewWeek.toDate().getMonth());
+        setBoardEndMonth(endOfNewWeek.toDate().getMonth());
+        break;
     }
 
     if (
@@ -123,29 +134,10 @@ export function Dashboard() {
     }
   };
 
-  const handleChangeRangeYear = (weekDates: Date[], amount: number) => {
-    let newRangeWeek;
-    newRangeWeek = weekDates.map((date) => addDays(date, amount));
-
-    if (newRangeWeek) {
-      setWeekDates(newRangeWeek);
-      console.log("weekdates", weekDates);
-      const newSelectedStartDate = newRangeWeek[0];
-      const newSelectedEndDate = newRangeWeek[6];
-      setSelectedDate(newSelectedStartDate);
-      setBoardStartMonth(newSelectedStartDate.getMonth());
-      setBoardEndMonth(newSelectedEndDate.getMonth());
-      setBoardYear(newSelectedStartDate.getFullYear());
-      console.log("BOARDEND", boardEndMonth);
-    }
-  };
-  console.log(selectedDate);
-
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
 
-  console.log("board month rrrrrr,", boardStartMonth);
   return (
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
@@ -163,12 +155,14 @@ export function Dashboard() {
           >
             + week
           </button>
-          <DatePicker
-            selected={selectedDate}
-            calendarStartDay={1}
-            // onSelect={handleDateChange} //when day is clicked
-            onChange={handleDateChange} //only when value has changed
-          />
+          <div className={"hidden"}>
+            <DatePicker
+              selected={selectedDate}
+              calendarStartDay={1}
+              // onSelect={handleDateChange} //when day is clicked
+              onChange={handleDateChange} //only when value has changed
+            />
+          </div>
         </div>
         <FontAwesomeIcon icon={faSliders} color="#BBC1CE" size={"xl"} />
       </div>
@@ -229,7 +223,7 @@ export function Dashboard() {
 }
 
 //NEXT TIME :
-//SORT WEEKDATES ARRAY (now its starts randomly!!!)
+
 //2 fill dashboard according to fetching data
 
 //TODO GLOBALLY

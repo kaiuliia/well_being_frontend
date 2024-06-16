@@ -1,5 +1,6 @@
 import React from "react";
 import { addDays, endOfWeek, startOfWeek } from "date-fns/index";
+import moment from "moment/moment";
 
 export type FormEvent = React.FormEvent<HTMLFormElement>;
 export type MouseEvent = React.MouseEvent<HTMLButtonElement>;
@@ -30,22 +31,6 @@ export function convertMonthToString(month: number): string {
   return monthNames[month];
 }
 
-export function getDaysInMonth(month: number, year: number) {
-  // Adjust month from 1-12 to 0-11 for JavaScript Date
-  month = month - 1;
-
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const daysArray = [];
-
-  for (let day = 1; day <= daysInMonth; day++) {
-    const date = new Date(year, month, day);
-    const dayOfWeek = date.toLocaleString("en-US", { weekday: "long" });
-    daysArray.push({ date, dayOfWeek });
-  }
-
-  return daysArray;
-}
-
 //DASHBOARD VIEW FUNCTIONS
 
 export const fillDashboard = async (startDate: Date, endDate: Date) => {
@@ -74,12 +59,6 @@ export const fillDashboard = async (startDate: Date, endDate: Date) => {
     console.error("There was a problem with the fetch operation:", error);
   }
 };
-
-// export const addDays = (date: Date, days: number): Date => {
-//   const result = date;
-//   result.setDate(result.getDate() + days);
-//   return result;
-// };
 
 export const getColorFromNumber = (number: number) => {
   if (number === 0) {
