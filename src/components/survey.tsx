@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { SliderBar } from "./slider/slide_bar";
 import { MouseEvent } from "../types";
 import { Button } from "./layout/button";
+import { useLocalStore } from "../store/useStore";
 
 interface Props {}
 
@@ -26,13 +27,16 @@ interface Survey {
 }
 export function Survey(props: Props) {
   const [sliderValue, setSliderValue] = useState<number | number[]>();
-  const [survey, setSurvey] = useState<Survey>({
-    mood: 0,
-    activities: 0,
-    sleep: 0,
-    calmness: 0,
-    yourself_time: 0,
-  });
+  const { survey, setSurvey } = useLocalStore();
+  // const [survey, setSurvey] = useState<Survey>({
+  //   mood: 0,
+  //   activities: 0,
+  //   sleep: 0,
+  //   calmness: 0,
+  //   yourself_time: 0,
+  // });
+
+  console.log("survey", survey);
   const sliderProps: SliderProps[] = [
     {
       name: "Mood",
@@ -92,14 +96,11 @@ export function Survey(props: Props) {
     value: number | number[],
     sliderName: keyof Survey,
   ) => {
-    setSurvey((prevSurvey) => ({
-      ...prevSurvey,
-      [sliderName]: value,
-    }));
+    // setSurvey();
     setSliderValue(value);
   };
-  console.log(sliderValue);
-  console.log(survey);
+  console.log("slader vel", sliderValue);
+  console.log("surv2", survey);
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
