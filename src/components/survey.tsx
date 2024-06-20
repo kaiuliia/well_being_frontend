@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import { SliderBar } from "./slider/slide_bar";
 import { MouseEvent } from "../types";
 import { Button } from "./layout/button";
 import { useLocalStore } from "../store/useStore";
+import { Slider } from "@mui/material";
 
 interface Props {}
 
@@ -11,7 +11,7 @@ interface User {
   email: string;
   password: string;
 }
-interface SliderProps {
+interface SliderName {
   name: string;
   min: string;
   max: string;
@@ -26,7 +26,8 @@ interface Survey {
   yourself_time: number | number[];
 }
 export function Survey(props: Props) {
-  const [sliderValue, setSliderValue] = useState<number | number[]>();
+  const [sliderValue, setSliderValue] = useState<number>(0);
+
   const { survey, setSurvey } = useLocalStore();
   // const [survey, setSurvey] = useState<Survey>({
   //   mood: 0,
@@ -37,7 +38,7 @@ export function Survey(props: Props) {
   // });
 
   console.log("survey", survey);
-  const sliderProps: SliderProps[] = [
+  const sliderName: SliderName[] = [
     {
       name: "Mood",
       min: "Bad",
@@ -93,11 +94,12 @@ export function Survey(props: Props) {
   };
 
   const handleSliderChange = (
+    event: Event,
     value: number | number[],
-    sliderName: keyof Survey,
+    name: string,
   ) => {
-    // setSurvey();
-    setSliderValue(value);
+    setSliderValue(value as number);
+    // setSliderName(name);
   };
   console.log("slader vel", sliderValue);
   console.log("surv2", survey);
@@ -117,24 +119,65 @@ export function Survey(props: Props) {
     setError(false);
     console.log("SUBMITTED!!!!", survey);
   };
-
+  const color = () => {
+    // setSliderValue(newValue as number[]);
+    if (sliderValue === 0) {
+      return "#EFF1F4";
+    }
+    if (sliderValue < 30) {
+      return "#680010";
+    } else if (sliderValue >= 30 && sliderValue <= 70) {
+      return "#E98600";
+    } else {
+      return "#05413E";
+    }
+  };
   return (
     <div className="w-100% py-[2rem] px-[1rem] mx-auto bg-back-gray">
       <p className={"title"}> How are you today?</p>
 
-      {sliderProps.map((prop) => (
+      {sliderName.map((slider) => (
         <div className={"w-100% mx-auto"}>
-          <SliderBar
-            // colors={colors[0]}
-            survey={prop.name}
-            onChange={(value: number | number[]) =>
-              handleSliderChange(value, prop.surveyKey)
-            }
-            min={prop.min}
-            max={prop.max}
-          />
-          <br></br>
-          {/*</Box>*/}
+          <div className="w-100% h-auto flex flex-column p-[0.8rem] align-start bg-white">
+            <p className={"paragraph"}>{slider.surveyKey}</p>
+
+            <Slider
+              // className={`w-100% m-0 p-0 bg-${color}`}
+              sx={{
+                width: "100%",
+                margin: "0rem",
+                padding: "0rem",
+                color: color,
+                "& .MuiSlider-valueLabel": {
+                  backgroundColor: color,
+                },
+              }}
+              // value={sliderValue[1]}
+              valueLabelDisplay="auto"
+              color="primary"
+              onChange={(event, value) =>
+                handleSliderChange(event, value, slider.surveyKey)
+              }
+              value={sliderValue}
+            />
+
+            <div className={"flex flex-row justify-between align-center"}>
+              <p className={"paragraph"}>{slider.min}</p>
+              <p className={"paragraph"}>{slider.max}</p>
+            </div>
+
+            {/*<SliderBar*/}
+            {/*  // colors={colors[0]}*/}
+            {/*  survey={slider.name}*/}
+            {/*  onChange={(value: number) =>*/}
+            {/*    handleSliderChange(value, slider.surveyKey)*/}
+            {/*  }*/}
+            {/*  min={slider.min}*/}
+            {/*  max={slider.max}*/}
+            {/*/>*/}
+            <br></br>
+            {/*</Box>*/}
+          </div>
         </div>
       ))}
       <div className="flex flex-center">
