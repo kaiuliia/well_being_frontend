@@ -5,19 +5,8 @@ import { Button } from "./layout/button";
 import { useLocalStore } from "../store/useStore";
 import { Slider } from "@mui/material";
 
+import { sliderName } from "./types";
 interface Props {}
-
-interface User {
-  email: string;
-  password: string;
-}
-interface SliderName {
-  name: string;
-  min: string;
-  max: string;
-  surveyKey: keyof Survey;
-}
-
 interface Survey {
   mood: number | number[];
   activities: number | number[];
@@ -25,60 +14,15 @@ interface Survey {
   calmness: number | number[];
   yourself_time: number | number[];
 }
-export function Survey(props: Props) {
-  // const [sliderValue, setSliderValue] = useState<{
-  //   key: string;
-  //   value: number;
-  // }>({
-  //   mood: 0,
-  //   activities: 0,
-  //   sleep: 0,
-  //   calmness: 0,
-  //   yourself_time: 0,
-  // });
+interface User {
+  email: string;
+  password: string;
+}
 
+export function Survey(props: Props) {
   const { survey, setSurvey } = useLocalStore();
-  // const [survey, setSurvey] = useState<Survey>({
-  //   mood: 0,
-  //   activities: 0,
-  //   sleep: 0,
-  //   calmness: 0,
-  //   yourself_time: 0,
-  // });
 
   console.log("survey", survey);
-  const sliderName: SliderName[] = [
-    {
-      name: "Mood",
-      min: "Bad",
-      max: "Very good",
-      surveyKey: "mood",
-    },
-    {
-      name: "Activities",
-      min: "Not active",
-      max: "Very active",
-      surveyKey: "activities",
-    },
-    {
-      name: "Sleep",
-      min: "Feel shattered",
-      max: "Well-rested",
-      surveyKey: "sleep",
-    },
-    {
-      name: "Calmness",
-      min: "Feel anxious",
-      max: "Feel calm",
-      surveyKey: "calmness",
-    },
-    {
-      name: "Time for me",
-      min: "None",
-      max: "A lot",
-      surveyKey: "yourself_time",
-    },
-  ];
 
   const [statusMessage, setStatusMessage] = useState("");
 
@@ -149,7 +93,6 @@ export function Survey(props: Props) {
             <p className={"paragraph"}>{slider.surveyKey}</p>
 
             <Slider
-              // className={`w-100% m-0 p-0 bg-${color}`}
               sx={{
                 width: "100%",
                 margin: "0rem",
@@ -159,7 +102,6 @@ export function Survey(props: Props) {
                   backgroundColor: color(survey[slider.surveyKey]),
                 },
               }}
-              // value={sliderValue[1]}
               valueLabelDisplay="auto"
               color="primary"
               onChange={(e, value) =>
@@ -173,17 +115,7 @@ export function Survey(props: Props) {
               <p className={"paragraph"}>{slider.max}</p>
             </div>
 
-            {/*<SliderBar*/}
-            {/*  // colors={colors[0]}*/}
-            {/*  survey={slider.name}*/}
-            {/*  onChange={(value: number) =>*/}
-            {/*    handleSliderChange(value, slider.surveyKey)*/}
-            {/*  }*/}
-            {/*  min={slider.min}*/}
-            {/*  max={slider.max}*/}
-            {/*/>*/}
             <br></br>
-            {/*</Box>*/}
           </div>
         </div>
       ))}

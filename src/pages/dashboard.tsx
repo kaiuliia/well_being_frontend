@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useLocalStore } from "../store/useStore";
 
 type ValuePiece = Date | null;
 
@@ -24,7 +25,8 @@ interface User {
 }
 export function Dashboard() {
   const name = localStorage.getItem("name");
-
+  const { survey, setSurvey } = useLocalStore();
+  console.log("dashsurvey", survey);
   const [open, setOpen] = useState(false);
   const [boardYear, setBoardYear] = useState<number | number[]>(
     new Date().getFullYear(),
