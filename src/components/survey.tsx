@@ -26,7 +26,16 @@ interface Survey {
   yourself_time: number | number[];
 }
 export function Survey(props: Props) {
-  const [sliderValue, setSliderValue] = useState<number>(0);
+  // const [sliderValue, setSliderValue] = useState<{
+  //   key: string;
+  //   value: number;
+  // }>({
+  //   mood: 0,
+  //   activities: 0,
+  //   sleep: 0,
+  //   calmness: 0,
+  //   yourself_time: 0,
+  // });
 
   const { survey, setSurvey } = useLocalStore();
   // const [survey, setSurvey] = useState<Survey>({
@@ -92,16 +101,13 @@ export function Survey(props: Props) {
       setStatusMessage(`Survey ${message} saved to database`);
     }
   };
-
-  const handleSliderChange = (
-    event: Event,
-    value: number | number[],
-    name: string,
-  ) => {
-    setSliderValue(value as number);
-    // setSliderName(name);
+  const updateValue = (name: keyof Survey, value: number) => {
+    setSurvey({
+      ...survey,
+      [name]: value,
+    });
   };
-  console.log("slader vel", sliderValue);
+
   console.log("surv2", survey);
 
   const handleSubmit = async (e: MouseEvent) => {
@@ -119,19 +125,20 @@ export function Survey(props: Props) {
     setError(false);
     console.log("SUBMITTED!!!!", survey);
   };
-  const color = () => {
-    // setSliderValue(newValue as number[]);
-    if (sliderValue === 0) {
+
+  const color = (value: number) => {
+    if (value === 0) {
       return "#EFF1F4";
     }
-    if (sliderValue < 30) {
+    if (value < 30) {
       return "#680010";
-    } else if (sliderValue >= 30 && sliderValue <= 70) {
+    } else if (value >= 30 && value <= 70) {
       return "#E98600";
     } else {
       return "#05413E";
     }
   };
+
   return (
     <div className="w-100% py-[2rem] px-[1rem] mx-auto bg-back-gray">
       <p className={"title"}> How are you today?</p>
@@ -147,18 +154,18 @@ export function Survey(props: Props) {
                 width: "100%",
                 margin: "0rem",
                 padding: "0rem",
-                color: color,
+                color: color(survey[slider.surveyKey]),
                 "& .MuiSlider-valueLabel": {
-                  backgroundColor: color,
+                  backgroundColor: color(survey[slider.surveyKey]),
                 },
               }}
               // value={sliderValue[1]}
               valueLabelDisplay="auto"
               color="primary"
-              onChange={(event, value) =>
-                handleSliderChange(event, value, slider.surveyKey)
+              onChange={(e, value) =>
+                updateValue(slider.surveyKey, value as number)
               }
-              value={sliderValue}
+              value={survey[slider.surveyKey]}
             />
 
             <div className={"flex flex-row justify-between align-center"}>

@@ -21,5 +21,5 @@ export const useLocalStore = create<useLocalState>((set) => ({
     calmness: 0,
     yourself_time: 0,
   },
-  setSurvey: (survey: Survey) => set({ survey }),
+  setSurvey: (newSurvey: Survey) => set({ survey: newSurvey }),
 }));
