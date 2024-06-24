@@ -6,6 +6,7 @@ import { useLocalStore } from "../store/useStore";
 import { Slider } from "@mui/material";
 
 import { sliderName } from "./types";
+import { useNavigate } from "react-router-dom";
 interface Props {}
 interface Survey {
   mood: number | number[];
@@ -29,6 +30,7 @@ export function Survey(props: Props) {
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const sendData = async (survey: Survey) => {
     const response = await fetch("http://localhost:9090/survey", {
@@ -64,7 +66,8 @@ export function Survey(props: Props) {
       calmness: survey.calmness,
       yourself_time: survey.yourself_time,
     });
-    window.location.href = "/user/dashboard";
+
+    navigate("/user/dashboard");
     setSubmitted(true);
     setError(false);
     console.log("SUBMITTED!!!!", survey);
