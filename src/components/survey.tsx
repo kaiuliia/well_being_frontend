@@ -23,8 +23,6 @@ interface User {
 export function Survey(props: Props) {
   const { survey, setSurvey } = useLocalStore();
 
-  console.log("survey", survey);
-
   const [statusMessage, setStatusMessage] = useState("");
 
   // States for checking the errors
@@ -54,8 +52,6 @@ export function Survey(props: Props) {
     });
   };
 
-  console.log("surv2", survey);
-
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
 
@@ -70,7 +66,6 @@ export function Survey(props: Props) {
     navigate("/user/dashboard");
     setSubmitted(true);
     setError(false);
-    console.log("SUBMITTED!!!!", survey);
   };
 
   const color = (value: number) => {

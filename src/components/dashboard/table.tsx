@@ -29,12 +29,14 @@ interface DashboardTableProps {
   boardYear: number | number[];
   boardStartMonth: number;
   boardEndMonth: number | undefined;
+  dashboardData: any;
 }
 export function DashboardTable({
   weekDates,
   boardYear,
   boardStartMonth,
   boardEndMonth,
+  dashboardData,
 }: DashboardTableProps) {
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
   const moodProps: MoodProps[] = [
@@ -65,7 +67,7 @@ export function DashboardTable({
     1: {
       weekDay: "M",
       date: new Date(2024, 4, 12),
-      mood: 100,
+      mood: 4,
       activities: 100,
       sleep: 100,
       calmness: 100,
@@ -119,7 +121,7 @@ export function DashboardTable({
     },
     7: {
       weekDay: "S",
-      date: new Date(2024, 4, 17),
+      date: new Date(2024, 6, 24),
       mood: 0,
       activities: 80,
       sleep: 0,
@@ -128,6 +130,12 @@ export function DashboardTable({
     },
   });
 
+  console.log("dashboardData", dashboardData);
+  const findDayToChange = (today: Date) => {};
+  const dateStr = "2023-11-18T10:11:09.655Z";
+  const date = new Date(dateStr);
+
+  // setMoods({ ...moods });
   const handleMoodChange = (
     mood: string,
     color: string,
@@ -142,8 +150,6 @@ export function DashboardTable({
       },
     }));
   };
-
-  console.log("TABLE boardEndMonth", boardEndMonth);
 
   return (
     <>

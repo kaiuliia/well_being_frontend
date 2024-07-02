@@ -33,7 +33,11 @@ export function convertMonthToString(month: number): string {
 
 //DASHBOARD VIEW FUNCTIONS
 
-export const fillDashboard = async (startDate: Date, endDate: Date) => {
+export const fillDashboard = async (
+  startDate: Date,
+  endDate: Date,
+  setData: any,
+) => {
   const isoStartDate = startDate.toISOString();
   const isoEndDate = endDate.toISOString();
   try {
@@ -52,6 +56,7 @@ export const fillDashboard = async (startDate: Date, endDate: Date) => {
       if (data.length > 0) {
         console.log("result", data);
         console.log("date", data[0].date);
+        setData(data);
       }
     }
   } catch (error) {

@@ -23,10 +23,11 @@ interface User {
   email: string;
   password: string;
 }
+
 export function Dashboard() {
   const name = localStorage.getItem("name");
   const { survey, setSurvey } = useLocalStore();
-  console.log("dashsurvey", survey);
+
   const [open, setOpen] = useState(false);
   const [boardYear, setBoardYear] = useState<number | number[]>(
     new Date().getFullYear(),
@@ -47,7 +48,7 @@ export function Dashboard() {
   function handleDateChange(date: Date) {
     setSelectedDate(date);
     let currentDate = moment(date);
-    console.log("currentDate", currentDate);
+
     let weekStart = currentDate.clone().startOf("isoWeek");
     let weekEnd = currentDate.clone().endOf("isoWeek");
     let days = [];
@@ -57,8 +58,12 @@ export function Dashboard() {
     }
 
     setWeekDates(days);
-    console.log("week", weekDates);
   }
+
+  const [dashboardData, setDashboardData] = useState();
+  // useEffect(() => {
+  //   result && setDashboardData(result);
+  // }, []);
 
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
@@ -135,10 +140,15 @@ export function Dashboard() {
       ]);
     }
   };
-
+  console.log("dashboardData", dashboardData);
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
+  const resultData = fillDashboard(
+    new Date(weekDates[0]),
+    new Date(weekDates[weekDates.length - 1]),
+    setDashboardData,
+  );
 
   return (
     // <div className={"container"}>
@@ -185,9 +195,11 @@ export function Dashboard() {
         + year
       </button>
       <DashboardTable
+        dashboardData={dashboardData}
         weekDates={weekDates}
         boardYear={boardYear}
         boardStartMonth={boardStartMonth}
+        // boardData={}
         boardEndMonth={
           boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
         }
@@ -209,7 +221,11 @@ export function Dashboard() {
         <a
           className={"text-red-300 cursor-pointer"}
           onClick={() =>
-            fillDashboard(new Date(2023, 10, 18), new Date(2023, 10, 23))
+            fillDashboard(
+              new Date(2023, 12, 2),
+              new Date(2024, 7, 2),
+              setDashboardData,
+            )
           }
         >
           {" "}
