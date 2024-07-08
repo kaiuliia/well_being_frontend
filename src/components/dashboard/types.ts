@@ -34,12 +34,12 @@ export function convertMonthToString(month: number): string {
 //DASHBOARD VIEW FUNCTIONS
 
 export const fillDashboard = async (
-  startDate: Date,
-  endDate: Date,
   setData: any,
+  startDate?: Date,
+  endDate?: Date,
 ) => {
-  const isoStartDate = startDate.toISOString();
-  const isoEndDate = endDate.toISOString();
+  const isoStartDate = startDate && startDate.toISOString();
+  const isoEndDate = endDate && endDate.toISOString();
   try {
     const response = await fetch(
       `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,

@@ -65,6 +65,78 @@ export function Dashboard() {
   //   result && setDashboardData(result);
   // }, []);
 
+  const mockData = [
+    {
+      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      date: "2024-05-19T18:53:57.223Z",
+      general_mood: "1",
+      sleep: "25",
+      activities: "15",
+      yourself_time: "35",
+      calmness: "2",
+    },
+    {
+      id: "6267f84f-668d-4b0c-9de1-29b6243dafc8",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      date: "2024-05-01T21:00:00.000Z",
+      general_mood: "2",
+      sleep: "23",
+      activities: "15",
+      yourself_time: "35",
+      calmness: "20",
+    },
+    {
+      id: "6267f84f-668d-4b0c-9de1-29b6243dafc8",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      date: "2024-05-18T21:00:00.000Z",
+      general_mood: "10",
+      sleep: "25",
+      activities: "15",
+      yourself_time: "35",
+      calmness: "20",
+    },
+    {
+      id: "6267f84f-668d-4b0c-9de1-29b6243dafc8",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      date: "2024-05-16T21:00:00.000Z",
+      general_mood: "10",
+      sleep: "25",
+      activities: "15",
+      yourself_time: "35",
+      calmness: "20",
+    },
+  ];
+  mockData.sort((a, b) => {
+    return moment(a.date).diff(moment(b.date));
+  });
+  console.log(mockData);
+  console.log(moment(mockData[0].date).isoWeekday() === 7);
+  let emptyElement = {
+    // ...emptyElement,
+    date: "2024-05-16T21:00:00.000Z",
+    sleep: "0",
+    general_mood: "0",
+    activities: "0",
+    yourself_time: "0",
+    calmness: "0",
+  };
+  // const fullDashboardFunction = (mockData: any, emptyElement: any) => {
+  //   let newArray = [];
+  //
+  //   for (let i = 0; i < 6; i++) {
+  //     for (let j = 0; j < mockData.length; i++) {
+  //       if (moment(mockData[j].date).isoWeekday() === j + 1) {
+  //         newArray.push(mockData[j]);
+  //       } else {
+  //         newArray.push(emptyElement);
+  //       }
+  //     }
+  //   }
+  //   return newArray;
+  // };
+
+  // console.log("fulldab", fullDashboardFunction(mockData, emptyElement));
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
@@ -140,14 +212,21 @@ export function Dashboard() {
       ]);
     }
   };
-  console.log("dashboardData", dashboardData);
+  // console.log("dashboardData", dashboardData);
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
+  useEffect(() => {
+    fillDashboard(
+      setDashboardData,
+      new Date(weekDates[0]),
+      new Date(weekDates[weekDates.length - 1]),
+    );
+  }, []);
   const resultData = fillDashboard(
+    setDashboardData,
     new Date(weekDates[0]),
     new Date(weekDates[weekDates.length - 1]),
-    setDashboardData,
   );
 
   return (
@@ -222,9 +301,9 @@ export function Dashboard() {
           className={"text-red-300 cursor-pointer"}
           onClick={() =>
             fillDashboard(
-              new Date(2023, 12, 2),
-              new Date(2024, 7, 2),
               setDashboardData,
+              new Date(2024, 4, 2),
+              new Date(2024, 7, 2),
             )
           }
         >

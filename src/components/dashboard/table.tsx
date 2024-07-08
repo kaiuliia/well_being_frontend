@@ -130,6 +130,78 @@ export function DashboardTable({
     },
   });
 
+  const dash = [
+    {
+      activities: "15",
+      calmness: "0",
+      date: "2024-05-19T18:53:57.223Z",
+      general_mood: "10",
+      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
+      sleep: "25",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      yourself_time: "35",
+    },
+    {
+      activities: "15",
+      calmness: "0",
+      date: "2024-05-19T18:53:57.223Z",
+      general_mood: "10",
+      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
+      sleep: "25",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      yourself_time: "35",
+    },
+    {
+      activities: "15",
+      calmness: "0",
+      date: "2024-05-19T18:53:57.223Z",
+      general_mood: "10",
+      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
+      sleep: "25",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      yourself_time: "35",
+    },
+    {
+      activities: "78",
+      calmness: "0",
+      date: "2024-05-19T18:53:57.223Z",
+      general_mood: "10",
+      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
+      sleep: "25",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      yourself_time: "35",
+    },
+    {
+      activities: "16",
+      calmness: "0",
+      date: "2024-05-19T18:53:57.223Z",
+      general_mood: "10",
+      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
+      sleep: "25",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      yourself_time: "35",
+    },
+    {
+      activities: "15",
+      calmness: "0",
+      date: "2024-05-19T18:53:57.223Z",
+      general_mood: "67",
+      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
+      sleep: "25",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      yourself_time: "35",
+    },
+    {
+      activities: "15",
+      calmness: "0",
+      date: "2024-05-19T18:53:57.223Z",
+      general_mood: "11",
+      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
+      sleep: "25",
+      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
+      yourself_time: "35",
+    },
+  ];
   console.log("dashboardData", dashboardData);
   const findDayToChange = (today: Date) => {};
   const dateStr = "2023-11-18T10:11:09.655Z";
@@ -183,9 +255,14 @@ export function DashboardTable({
                 <th key={day}>
                   <div
                     className={
-                      getColorFromNumber(moods[day][moodType.key]) +
-                      " rounded-md shadow-lg w-7 h-7"
+                      dashboardData &&
+                      getColorFromNumber(dashboardData[0][moodType.key]) +
+                        " rounded-md shadow-lg w-7 h-7"
                     }
+                    // className={
+                    //   getColorFromNumber(moods[day][moodType.key]) +
+                    //   " rounded-md shadow-lg w-7 h-7"
+                    // }
                   ></div>
                 </th>
               ))}
