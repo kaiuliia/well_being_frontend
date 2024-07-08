@@ -121,22 +121,26 @@ export function Dashboard() {
     yourself_time: "0",
     calmness: "0",
   };
-  // const fullDashboardFunction = (mockData: any, emptyElement: any) => {
-  //   let newArray = [];
-  //
-  //   for (let i = 0; i < 6; i++) {
-  //     for (let j = 0; j < mockData.length; i++) {
-  //       if (moment(mockData[j].date).isoWeekday() === j + 1) {
-  //         newArray.push(mockData[j]);
-  //       } else {
-  //         newArray.push(emptyElement);
-  //       }
-  //     }
-  //   }
-  //   return newArray;
-  // };
+  const fullDashboardFunction = (mockData: any, emptyElement: any) => {
+    let newArray = [];
 
-  // console.log("fulldab", fullDashboardFunction(mockData, emptyElement));
+    for (let i = 1; i <= 7; i++) {
+      for (let j = 0; j < mockData.length; j++) {
+        if (moment(mockData[j].date).isoWeekday() === i) {
+          newArray.push(mockData[j]);
+          i++;
+
+          break;
+        } else {
+          newArray.push(emptyElement);
+          i++;
+        }
+      }
+    }
+    console.log(newArray);
+  };
+
+  console.log("fulldab", fullDashboardFunction(mockData, emptyElement));
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
@@ -318,10 +322,3 @@ export function Dashboard() {
     </div>
   );
 }
-
-//NEXT TIME :
-
-//2 fill dashboard according to fetching data
-
-//TODO GLOBALLY
-//+- check year - check the february for 29 days
