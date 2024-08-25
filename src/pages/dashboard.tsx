@@ -299,6 +299,19 @@ export function Dashboard() {
       <div className="text-xs font-medium text-left ">
         Recomendations for today:
       </div>
+      <div className={"bg-blue-300 w-fit h-fit"}>
+        <button
+          onClick={() => handleChangeRangeWeek(weekDates, "plus_year")}
+          className={"pl-[1rem] font-extrabold text-2xl"}
+        >
+          SLEEP
+        </button>
+        <div className={"bg-green-300 w-fit h-fit"}>
+          <button onClick={} className={}>
+            MOOD
+          </button>
+        </div>
+      </div>
       <Advice />
       <div>
         <a
