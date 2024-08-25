@@ -232,7 +232,8 @@ export function Dashboard() {
     new Date(weekDates[0]),
     new Date(weekDates[weekDates.length - 1]),
   );
-
+  const handleAddSleep = () => {};
+  const handleAddMood = () => {};
   return (
     // <div className={"container"}>
     <div className="bg-back-gray w-auto">
@@ -301,13 +302,16 @@ export function Dashboard() {
       </div>
       <div className={"bg-blue-300 w-fit h-fit"}>
         <button
-          onClick={() => handleChangeRangeWeek(weekDates, "plus_year")}
+          onClick={() => handleAddSleep()}
           className={"pl-[1rem] font-extrabold text-2xl"}
         >
           SLEEP
         </button>
         <div className={"bg-green-300 w-fit h-fit"}>
-          <button onClick={} className={}>
+          <button
+            onClick={() => handleAddMood()}
+            className={"pl-[1rem] font-extrabold text-2xl"}
+          >
             MOOD
           </button>
         </div>
