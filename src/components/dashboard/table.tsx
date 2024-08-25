@@ -202,7 +202,7 @@ export function DashboardTable({
       yourself_time: "35",
     },
   ];
-  console.log("dashboardData", dashboardData);
+
   const findDayToChange = (today: Date) => {};
   const dateStr = "2023-11-18T10:11:09.655Z";
   const date = new Date(dateStr);

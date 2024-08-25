@@ -110,8 +110,7 @@ export function Dashboard() {
   mockData.sort((a, b) => {
     return moment(a.date).diff(moment(b.date));
   });
-  console.log(mockData);
-  console.log(moment(mockData[0].date).isoWeekday() === 7);
+
   let emptyElement = {
     // ...emptyElement,
     date: "2024-05-16T21:00:00.000Z",
@@ -137,10 +136,8 @@ export function Dashboard() {
         }
       }
     }
-    console.log(newArray);
   };
 
-  console.log("fulldab", fullDashboardFunction(mockData, emptyElement));
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");

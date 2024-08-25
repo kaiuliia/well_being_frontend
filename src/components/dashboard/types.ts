@@ -55,7 +55,7 @@ export const fillDashboard = async (
       const data = await response.json();
       if (data.length > 0) {
         console.log("result", data);
-        console.log("date", data[0].date);
+
         setData(data);
       }
     }

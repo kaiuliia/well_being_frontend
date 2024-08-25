@@ -31,7 +31,6 @@ export function Survey(props: Props) {
   const navigate = useNavigate();
 
   const sendData = async (survey: Survey) => {
-    console.log("survey", survey);
     const response = await fetch("http://localhost:9090/survey", {
       method: "POST",
       credentials: "include",
@@ -64,7 +63,7 @@ export function Survey(props: Props) {
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
-    console.log("survey2", survey);
+
     await sendData({
       mood: survey.mood,
       activities: survey.activities,
