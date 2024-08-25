@@ -31,11 +31,21 @@ export function Survey(props: Props) {
   const navigate = useNavigate();
 
   const sendData = async (survey: Survey) => {
+    console.log("survey", survey);
     const response = await fetch("http://localhost:9090/survey", {
       method: "POST",
       credentials: "include",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify(survey),
+      body: JSON.stringify({
+        general_mood: survey.mood,
+        activities: survey.activities,
+        sleep: survey.sleep,
+        calmness: survey.calmness,
+        yourself_time: survey.yourself_time,
+        date: new Date().toISOString(), // Sending the current date
+      }),
+      // {mood: 0, activities: 0, sleep: 78, calmness: 41, yourself_time: 0}
+      // body: JSON.stringify(survey),
     });
     if (response.status > 299) {
       const error = await response.json();
@@ -54,7 +64,7 @@ export function Survey(props: Props) {
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
-
+    console.log("survey2", survey);
     await sendData({
       mood: survey.mood,
       activities: survey.activities,

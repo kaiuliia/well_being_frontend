@@ -232,7 +232,28 @@ export function Dashboard() {
     new Date(weekDates[0]),
     new Date(weekDates[weekDates.length - 1]),
   );
-  const handleAddSleep = () => {};
+  const handleAddSleepr = () => {
+    // /survey/sleep
+  };
+
+  const handleAddSleep = async (sleepNum: number) => {
+    const response = await fetch("http://localhost:9090/survey/sleep", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        sleep: sleepNum,
+        date: new Date().toISOString(), // Sending the current date
+      }),
+    });
+    if (response.status > 299) {
+      const error = await response.json();
+      console.log("ERR SLEEP REQ");
+    } else {
+      const message = await response.json();
+      console.log("SLEEP IS THERE", message);
+    }
+  };
   const handleAddMood = () => {};
   return (
     // <div className={"container"}>
@@ -302,7 +323,7 @@ export function Dashboard() {
       </div>
       <div className={"bg-blue-300 w-fit h-fit"}>
         <button
-          onClick={() => handleAddSleep()}
+          onClick={() => handleAddSleep(1)}
           className={"pl-[1rem] font-extrabold text-2xl"}
         >
           SLEEP
