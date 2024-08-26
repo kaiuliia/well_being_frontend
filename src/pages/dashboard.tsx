@@ -338,8 +338,8 @@ export function Dashboard() {
           onClick={() =>
             fillDashboard(
               setDashboardData,
-              new Date(2024, 4, 2),
-              new Date(2024, 7, 2),
+              new Date(2024, 8, 24),
+              new Date(2024, 8, 26),
             )
           }
         >

@@ -49,7 +49,7 @@ export function Survey(props: Props) {
       if (response.status > 299) {
         const error = await response.json();
         setStatusMessage(error.error);
-        setError(true); // Set error state if needed
+        setError(true);
       } else {
         const message = await response.json();
         setStatusMessage(`Survey ${message} saved to database`);

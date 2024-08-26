@@ -40,6 +40,7 @@ export const fillDashboard = async (
 ) => {
   const isoStartDate = startDate && startDate.toISOString();
   const isoEndDate = endDate && endDate.toISOString();
+  console.log("startDate", startDate);
   try {
     const response = await fetch(
       `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
