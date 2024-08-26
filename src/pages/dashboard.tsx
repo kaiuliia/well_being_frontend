@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DashboardTable } from "../components/dashboard/table";
 import { Advice } from "../components/dashboard/advice";
-import {
-  convertMonthToString,
-  fillDashboard,
-  logOut,
-} from "../components/dashboard/types";
+import { convertMonthToString, logOut } from "../components/dashboard/types";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays, endOfWeek, startOfWeek } from "date-fns";
@@ -44,7 +40,38 @@ export function Dashboard() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [weekDates, setWeekDates] = useState<Date[]>([]);
+  const fillDashboard = async (
+    setData: any,
+    startDate?: Date,
+    endDate?: Date,
+  ) => {
+    const isoStartDate = startDate && startDate.toISOString();
+    const isoEndDate = endDate && endDate.toISOString();
+    console.log("startDate", startDate);
+    try {
+      const response = await fetch(
+        `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
+      if (response.status > 299) {
+        console.log("err");
+      } else {
+        console.log("response", response);
+        const data = await response.json();
+        if (data.length > 0) {
+          console.log("result", data);
 
+          setData(data);
+        }
+      }
+    } catch (error) {
+      // Handle any errors that occur during the fetch operation
+      console.error("There was a problem with the fetch operation:", error);
+    }
+  };
   function handleDateChange(date: Date) {
     setSelectedDate(date);
     let currentDate = moment(date);
@@ -221,8 +248,8 @@ export function Dashboard() {
   useEffect(() => {
     fillDashboard(
       setDashboardData,
-      new Date(weekDates[0]),
-      new Date(weekDates[weekDates.length - 1]),
+      weekDates[0],
+      weekDates[weekDates.length - 1],
     );
   }, []);
 
@@ -230,6 +257,16 @@ export function Dashboard() {
     // /survey/sleep
   };
 
+  console.log(
+    "correct",
+    new Date(2024, 8, 26),
+    "wd1",
+    weekDates[0]?.toISOString(),
+    // new Date(year, month, date).toISOString(),
+
+    "wd2",
+    new Date(weekDates[weekDates.length - 1]),
+  );
   const handleAddSleep = async (sleepNum: number) => {
     const response = await fetch("http://localhost:9090/survey/sleep", {
       method: "POST",

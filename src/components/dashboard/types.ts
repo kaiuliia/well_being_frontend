@@ -33,39 +33,6 @@ export function convertMonthToString(month: number): string {
 
 //DASHBOARD VIEW FUNCTIONS
 
-export const fillDashboard = async (
-  setData: any,
-  startDate?: Date,
-  endDate?: Date,
-) => {
-  const isoStartDate = startDate && startDate.toISOString();
-  const isoEndDate = endDate && endDate.toISOString();
-  console.log("startDate", startDate);
-  try {
-    const response = await fetch(
-      `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
-      {
-        method: "GET",
-        credentials: "include",
-      },
-    );
-    if (response.status > 299) {
-      console.log("err");
-    } else {
-      console.log("response", response);
-      const data = await response.json();
-      if (data.length > 0) {
-        console.log("result", data);
-
-        setData(data);
-      }
-    }
-  } catch (error) {
-    // Handle any errors that occur during the fetch operation
-    console.error("There was a problem with the fetch operation:", error);
-  }
-};
-
 export const getColorFromNumber = (number: number) => {
   if (number === 0) {
     return "bg-white";
