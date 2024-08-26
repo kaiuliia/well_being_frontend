@@ -217,6 +217,7 @@ export function Dashboard() {
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
+
   useEffect(() => {
     fillDashboard(
       setDashboardData,
@@ -224,11 +225,7 @@ export function Dashboard() {
       new Date(weekDates[weekDates.length - 1]),
     );
   }, []);
-  const resultData = fillDashboard(
-    setDashboardData,
-    new Date(weekDates[0]),
-    new Date(weekDates[weekDates.length - 1]),
-  );
+
   const handleAddSleepr = () => {
     // /survey/sleep
   };
@@ -316,7 +313,7 @@ export function Dashboard() {
         ADD TODAY
       </a>
       <div className="text-xs font-medium text-left ">
-        Recomendations for today:
+        Recomendations for dtoday:
       </div>
       <div className={"bg-blue-300 w-fit h-fit"}>
         <button

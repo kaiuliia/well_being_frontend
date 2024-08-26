@@ -30,28 +30,35 @@ export function Survey(props: Props) {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  const sendData = async (survey: Survey) => {
-    const response = await fetch("http://localhost:9090/survey", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        general_mood: survey.mood,
-        activities: survey.activities,
-        sleep: survey.sleep,
-        calmness: survey.calmness,
-        yourself_time: survey.yourself_time,
-        date: new Date().toISOString(), // Sending the current date
-      }),
-      // {mood: 0, activities: 0, sleep: 78, calmness: 41, yourself_time: 0}
-      // body: JSON.stringify(survey),
-    });
-    if (response.status > 299) {
-      const error = await response.json();
-      setStatusMessage(error.error);
-    } else {
-      const message = await response.json();
-      setStatusMessage(`Survey ${message} saved to database`);
+  const sendData = async () => {
+    try {
+      const response = await fetch("http://localhost:9090/survey", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          general_mood: survey.mood,
+          activities: survey.activities,
+          sleep: survey.sleep,
+          calmness: survey.calmness,
+          yourself_time: survey.yourself_time,
+          date: new Date().toISOString(),
+        }),
+      });
+
+      if (response.status > 299) {
+        const error = await response.json();
+        setStatusMessage(error.error);
+        setError(true); // Set error state if needed
+      } else {
+        const message = await response.json();
+        setStatusMessage(`Survey ${message} saved to database`);
+        setSubmitted(true);
+        navigate("/user/dashboard");
+      }
+    } catch (error) {
+      setStatusMessage("An unexpected error occurred.");
+      setError(true);
     }
   };
   const updateValue = (name: keyof Survey, value: number) => {
@@ -63,20 +70,8 @@ export function Survey(props: Props) {
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
-
-    await sendData({
-      mood: survey.mood,
-      activities: survey.activities,
-      sleep: survey.sleep,
-      calmness: survey.calmness,
-      yourself_time: survey.yourself_time,
-    });
-
-    navigate("/user/dashboard");
-    setSubmitted(true);
-    setError(false);
+    await sendData();
   };
-
   const color = (value: number) => {
     if (value === 0) {
       return "#EFF1F4";
