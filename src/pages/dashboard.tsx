@@ -238,8 +238,8 @@ export function Dashboard() {
 
   function fillMissingDates(data: any, startDate: any, endDate: any) {
     // Ensure the time part of the date is set to midnight in local time
-    startDate.setHours(0, 0, 0, 0);
-    endDate.setHours(0, 0, 0, 0);
+    startDate?.setHours(0, 0, 0, 0);
+    endDate?.setHours(0, 0, 0, 0);
 
     // Create a new Date object for iteration
     let currentDate = new Date(startDate);
@@ -255,7 +255,8 @@ export function Dashboard() {
       ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
 
       // Check if the current date exists in the original data
-      let existingData = data.find((item: any) => item.date === formattedDate);
+      let existingData =
+        data && data.find((item: any) => item.date === formattedDate);
 
       // If the date exists, add the existing object to the filledData array
       // Otherwise, add a new object with null values
@@ -289,14 +290,13 @@ export function Dashboard() {
     );
   }, [weekDates[0]]);
 
-  console.log(
-    "dashboardData",
-    fillMissingDates(
-      dashboardData,
-      weekDates[0],
-      weekDates[weekDates.length - 1],
-    ),
-  );
+  // const wholeWeek = fillMissingDates(
+  //   dashboardData,
+  //   weekDates[0],
+  //   weekDates[weekDates.length - 1],
+  // );
+  // console.log("wholeWeek", wholeWeek);
+
   const handleAddSleep = async (sleepNum: number) => {
     const response = await fetch("http://localhost:9090/survey/sleep", {
       method: "POST",
@@ -315,11 +315,7 @@ export function Dashboard() {
       console.log("SLEEP IS THERE", message);
     }
   };
-  console.log(
-    "new date",
-    // new Date(2024, 8, 24).getDate(),
-    new Date(2024, 7, 27),
-  );
+
   const handleAddMood = () => {};
   return (
     // <div className={"container"}>

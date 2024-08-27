@@ -5,7 +5,7 @@ interface MoodData {
   weekDay: string;
   dateRange?: string;
   date: Date;
-  mood: number;
+  general_mood: number;
   activities: number;
   sleep: number;
   calmness: number;
@@ -16,7 +16,7 @@ interface MoodProps {
   name: string;
   key: keyof Pick<
     MoodData,
-    "mood" | "activities" | "sleep" | "calmness" | "yourself_time"
+    "general_mood" | "activities" | "sleep" | "calmness" | "yourself_time"
   >;
 }
 
@@ -41,8 +41,8 @@ export function DashboardTable({
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
   const moodProps: MoodProps[] = [
     {
-      name: "Mood",
-      key: "mood",
+      name: "General_mood",
+      key: "general_mood",
     },
     {
       name: "Activities",
@@ -67,7 +67,7 @@ export function DashboardTable({
     1: {
       weekDay: "M",
       date: new Date(2024, 4, 12),
-      mood: 4,
+      general_mood: 4,
       activities: 100,
       sleep: 100,
       calmness: 100,
@@ -76,7 +76,7 @@ export function DashboardTable({
     2: {
       weekDay: "T",
       date: new Date(2024, 4, 13),
-      mood: 50,
+      general_mood: 50,
       activities: 40,
       sleep: 0,
       calmness: 0,
@@ -85,7 +85,7 @@ export function DashboardTable({
     3: {
       weekDay: "W",
       date: new Date(2024, 4, 14),
-      mood: 0,
+      general_mood: 0,
       activities: 90,
       sleep: 0,
       calmness: 0,
@@ -95,7 +95,7 @@ export function DashboardTable({
     4: {
       weekDay: "T",
       date: new Date(2024, 4, 15),
-      mood: 0,
+      general_mood: 0,
       activities: 0,
       sleep: 0,
       calmness: 0,
@@ -104,7 +104,7 @@ export function DashboardTable({
     5: {
       weekDay: "F",
       date: new Date(2024, 4, 15),
-      mood: 0,
+      general_mood: 0,
       activities: 65,
       sleep: 0,
       calmness: 0,
@@ -113,7 +113,7 @@ export function DashboardTable({
     6: {
       weekDay: "S",
       date: new Date(2024, 4, 16),
-      mood: 0,
+      general_mood: 0,
       activities: 0,
       sleep: 90,
       calmness: 0,
@@ -122,7 +122,7 @@ export function DashboardTable({
     7: {
       weekDay: "S",
       date: new Date(2024, 6, 24),
-      mood: 0,
+      general_mood: 0,
       activities: 80,
       sleep: 0,
       calmness: 0,
@@ -251,12 +251,12 @@ export function DashboardTable({
                 {moodType.name}
               </th>
 
-              {daysOfWeek.map((day) => (
+              {daysOfWeek.map((day, idx) => (
                 <th key={day}>
                   <div
                     className={
                       dashboardData &&
-                      getColorFromNumber(dashboardData[0][moodType.key]) +
+                      getColorFromNumber(dashboardData[idx][moodType.key]) +
                         " rounded-md shadow-lg w-7 h-7"
                     }
                     // className={
