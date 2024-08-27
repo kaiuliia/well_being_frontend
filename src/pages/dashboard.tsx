@@ -138,15 +138,6 @@ export function Dashboard() {
     return moment(a.date).diff(moment(b.date));
   });
 
-  let emptyElement = {
-    // ...emptyElement,
-    date: "2024-05-16T21:00:00.000Z",
-    sleep: "0",
-    general_mood: "0",
-    activities: "0",
-    yourself_time: "0",
-    calmness: "0",
-  };
   const fullDashboardFunction = (mockData: any, emptyElement: any) => {
     let newArray = [];
 
@@ -245,27 +236,66 @@ export function Dashboard() {
     handleDateChange(selectedDate);
   }, []);
 
+  function fillMissingDates(data: any, startDate: any, endDate: any) {
+    // Ensure the time part of the date is set to midnight in local time
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(0, 0, 0, 0);
+
+    // Create a new Date object for iteration
+    let currentDate = new Date(startDate);
+
+    // Create an array to store the final result
+    let filledData = [];
+
+    // Iterate over the date range
+    while (currentDate <= endDate) {
+      // Format the current date as a string (yyyy-mm-dd) without converting to UTC
+      let formattedDate = `${currentDate.getFullYear()}-${String(
+        currentDate.getMonth() + 1,
+      ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
+
+      // Check if the current date exists in the original data
+      let existingData = data.find((item: any) => item.date === formattedDate);
+
+      // If the date exists, add the existing object to the filledData array
+      // Otherwise, add a new object with null values
+      if (existingData) {
+        filledData.push(existingData);
+      } else {
+        filledData.push({
+          date: formattedDate,
+          id: null,
+          user_id: null,
+          general_mood: null,
+          sleep: null,
+          activities: null,
+          yourself_time: null,
+          calmness: null,
+        });
+      }
+
+      // Move to the next date
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    return filledData;
+  }
+  console.log();
   useEffect(() => {
     fillDashboard(
       setDashboardData,
       weekDates[0],
       weekDates[weekDates.length - 1],
     );
-  }, []);
-
-  const handleAddSleepr = () => {
-    // /survey/sleep
-  };
+  }, [weekDates[0]]);
 
   console.log(
-    "correct",
-    new Date(2024, 8, 26),
-    "wd1",
-    weekDates[0]?.toISOString(),
-    // new Date(year, month, date).toISOString(),
-
-    "wd2",
-    new Date(weekDates[weekDates.length - 1]),
+    "dashboardData",
+    fillMissingDates(
+      dashboardData,
+      weekDates[0],
+      weekDates[weekDates.length - 1],
+    ),
   );
   const handleAddSleep = async (sleepNum: number) => {
     const response = await fetch("http://localhost:9090/survey/sleep", {
@@ -285,6 +315,11 @@ export function Dashboard() {
       console.log("SLEEP IS THERE", message);
     }
   };
+  console.log(
+    "new date",
+    // new Date(2024, 8, 24).getDate(),
+    new Date(2024, 7, 27),
+  );
   const handleAddMood = () => {};
   return (
     // <div className={"container"}>
@@ -375,8 +410,8 @@ export function Dashboard() {
           onClick={() =>
             fillDashboard(
               setDashboardData,
-              new Date(2024, 8, 24),
-              new Date(2024, 8, 26),
+              new Date(2024, 7, 20),
+              new Date(2024, 7, 28),
             )
           }
         >
