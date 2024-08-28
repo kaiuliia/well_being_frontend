@@ -9,7 +9,7 @@ import { sliderName } from "./types";
 import { useNavigate } from "react-router-dom";
 interface Props {}
 interface Survey {
-  mood: number | number[];
+  general_mood: number | number[];
   activities: number | number[];
   sleep: number | number[];
   calmness: number | number[];
@@ -37,7 +37,7 @@ export function Survey(props: Props) {
         credentials: "include",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
-          general_mood: survey.mood,
+          general_mood: survey.general_mood,
           activities: survey.activities,
           sleep: survey.sleep,
           calmness: survey.calmness,

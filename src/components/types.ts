@@ -8,7 +8,7 @@ export type MouseEvent = React.MouseEvent<HTMLButtonElement>;
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
 export interface Survey {
-  mood: number | number[];
+  general_mood: number | number[];
   activities: number | number[];
   sleep: number | number[];
   calmness: number | number[];
@@ -25,7 +25,7 @@ export const sliderName: SliderName[] = [
     name: "Mood",
     min: "Bad",
     max: "Very good",
-    surveyKey: "mood",
+    surveyKey: "general_mood",
   },
   {
     name: "Activities",

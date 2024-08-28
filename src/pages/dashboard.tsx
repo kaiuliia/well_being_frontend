@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { DashboardTable } from "../components/dashboard/table";
 import { Advice } from "../components/dashboard/advice";
 import { convertMonthToString, logOut } from "../components/dashboard/types";
@@ -173,6 +173,10 @@ export function Dashboard() {
   }, []);
 
   function fillMissingDates(data: any, startDate: any, endDate: any) {
+    if (!data) {
+      return;
+    }
+
     // Ensure the time part of the date is set to midnight in local time
     startDate?.setHours(0, 0, 0, 0);
     endDate?.setHours(0, 0, 0, 0);
@@ -217,14 +221,15 @@ export function Dashboard() {
 
     return filledData;
   }
-  console.log("dashboardData", dashboardData);
+
   useEffect(() => {
     fillDashboard(
       setDashboardData,
       weekDates[0],
       weekDates[weekDates.length - 1],
     );
-  }, []);
+  }, [selectedDate]);
+
   console.log(
     "weekDates[0]",
     selectedDate,
@@ -303,7 +308,7 @@ export function Dashboard() {
         + year
       </button>
       <DashboardTable
-        dashboardData={dashboardData}
+        dashboardData={wholeWeek}
         weekDates={weekDates}
         boardYear={boardYear}
         boardStartMonth={boardStartMonth}

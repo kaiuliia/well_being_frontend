@@ -191,6 +191,7 @@ export function DashboardTable({
       user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
       yourself_time: "35",
     },
+
     {
       id: "1bb4eb4e-de10-4032-9ace-b1eee3b948d2",
       user_id: "73fe1a9d-a605-9163-afaf-7380bcc840de",
@@ -256,8 +257,9 @@ export function DashboardTable({
                   <div
                     className={
                       // dashboardData &&
-                      getColorFromNumber(dash[idx][moodType.key]) +
-                      " rounded-md shadow-lg w-7 h-7"
+                      (dashboardData
+                        ? getColorFromNumber(dashboardData[idx][moodType.key])
+                        : "bg-white") + " rounded-md shadow-lg w-7 h-7"
                     }
                     // className={
                     //   getColorFromNumber(moods[day][moodType.key]) +
