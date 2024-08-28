@@ -15,17 +15,12 @@ interface Survey {
   calmness: number | number[];
   yourself_time: number | number[];
 }
-interface User {
-  email: string;
-  password: string;
-}
 
 export function Survey(props: Props) {
   const { survey, setSurvey } = useLocalStore();
 
   const [statusMessage, setStatusMessage] = useState("");
 
-  // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();

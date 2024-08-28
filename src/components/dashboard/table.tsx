@@ -39,6 +39,7 @@ export function DashboardTable({
   dashboardData,
 }: DashboardTableProps) {
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
+  const nameOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
   const moodProps: MoodProps[] = [
     {
       name: "General_mood",
@@ -61,74 +62,6 @@ export function DashboardTable({
       key: "yourself_time",
     },
   ];
-
-  // const color = moodProps.map((color) => color.color);
-  const [moods, setMoods] = useState<MoodState>({
-    1: {
-      weekDay: "M",
-      date: new Date(2024, 4, 12),
-      general_mood: 4,
-      activities: 100,
-      sleep: 100,
-      calmness: 100,
-      yourself_time: 100,
-    },
-    2: {
-      weekDay: "T",
-      date: new Date(2024, 4, 13),
-      general_mood: 50,
-      activities: 40,
-      sleep: 0,
-      calmness: 0,
-      yourself_time: 0,
-    },
-    3: {
-      weekDay: "W",
-      date: new Date(2024, 4, 14),
-      general_mood: 0,
-      activities: 90,
-      sleep: 0,
-      calmness: 0,
-      yourself_time: 0,
-    },
-
-    4: {
-      weekDay: "T",
-      date: new Date(2024, 4, 15),
-      general_mood: 0,
-      activities: 0,
-      sleep: 0,
-      calmness: 0,
-      yourself_time: 0,
-    },
-    5: {
-      weekDay: "F",
-      date: new Date(2024, 4, 15),
-      general_mood: 0,
-      activities: 65,
-      sleep: 0,
-      calmness: 0,
-      yourself_time: 0,
-    },
-    6: {
-      weekDay: "S",
-      date: new Date(2024, 4, 16),
-      general_mood: 0,
-      activities: 0,
-      sleep: 90,
-      calmness: 0,
-      yourself_time: 0,
-    },
-    7: {
-      weekDay: "S",
-      date: new Date(2024, 6, 24),
-      general_mood: 0,
-      activities: 80,
-      sleep: 0,
-      calmness: 0,
-      yourself_time: 0,
-    },
-  });
 
   const dash = [
     {
@@ -208,22 +141,6 @@ export function DashboardTable({
   const dateStr = "2023-11-18T10:11:09.655Z";
   const date = new Date(dateStr);
 
-  // setMoods({ ...moods });
-  const handleMoodChange = (
-    mood: string,
-    color: string,
-    day: keyof MoodData,
-    value: string,
-  ) => {
-    setMoods((prevMoods) => ({
-      ...prevMoods,
-      [mood]: {
-        ...prevMoods[mood],
-        [day]: value,
-      },
-    }));
-  };
-
   return (
     <>
       <p className={"pl-[10rem]"}>{boardYear}</p>
@@ -261,10 +178,6 @@ export function DashboardTable({
                         ? getColorFromNumber(dashboardData[idx][moodType.key])
                         : "bg-white") + " rounded-md shadow-lg w-7 h-7"
                     }
-                    // className={
-                    //   getColorFromNumber(moods[day][moodType.key]) +
-                    //   " rounded-md shadow-lg w-7 h-7"
-                    // }
                   ></div>
                 </th>
               ))}
@@ -274,9 +187,9 @@ export function DashboardTable({
         <thead className="p-0">
           <tr>
             <th className="p-[0.5rem]"></th>
-            {daysOfWeek.map((day) => (
+            {daysOfWeek.map((day, idx) => (
               <th key={day} className=" text-xs font-medium">
-                {moods[day].weekDay}
+                {nameOfWeek[idx]}
               </th>
             ))}
           </tr>

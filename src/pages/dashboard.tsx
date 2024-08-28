@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { DashboardTable } from "../components/dashboard/table";
 import { Advice } from "../components/dashboard/advice";
-import { convertMonthToString, logOut } from "../components/dashboard/types";
+import { logOut } from "../components/dashboard/types";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
-import { addDays, endOfWeek, startOfWeek } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import DatePicker from "react-datepicker";
@@ -22,9 +21,6 @@ interface User {
 
 export function Dashboard() {
   const name = localStorage.getItem("name");
-  const { survey, setSurvey } = useLocalStore();
-
-  const [open, setOpen] = useState(false);
   const [boardYear, setBoardYear] = useState<number | number[]>(
     new Date().getFullYear(),
   );
@@ -32,66 +28,8 @@ export function Dashboard() {
     new Date().getMonth(),
   );
   const [boardEndMonth, setBoardEndMonth] = useState<number>();
-
-  const dialogOpen = () => {
-    setOpen(!open);
-  };
-
   const [selectedDate, setSelectedDate] = useState(new Date());
-
   const [weekDates, setWeekDates] = useState<Date[]>([]);
-  const fillDashboard = async (
-    setData: any,
-    startDate?: Date,
-    endDate?: Date,
-  ) => {
-    if (startDate === undefined || endDate === undefined) {
-      return;
-    }
-    const isoStartDate = startDate && startDate.toISOString();
-    const isoEndDate = endDate && endDate.toISOString();
-    console.log("startDate", startDate);
-    try {
-      const response = await fetch(
-        `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
-        {
-          method: "GET",
-          credentials: "include",
-        },
-      );
-      if (response.status > 299) {
-        console.log("err");
-      } else {
-        console.log("response", response);
-        const data = await response.json();
-        if (data.length > 0) {
-          console.log("result", data);
-
-          setData(data);
-        }
-      }
-    } catch (error) {
-      // Handle any errors that occur during the fetch operation
-      console.error("There was a problem with the fetch operation:", error);
-    }
-  };
-  function handleDateChange(date: Date) {
-    setSelectedDate(date);
-    let currentDate = moment(date);
-
-    let weekStart = currentDate.clone().startOf("isoWeek");
-    let weekEnd = currentDate.clone().endOf("isoWeek");
-    let days = [];
-
-    for (let i = 0; i <= 6; i++) {
-      days.push(moment(weekStart).add(i, "days").toDate());
-    }
-
-    setWeekDates(days);
-  }
-
-  const [dashboardData, setDashboardData] = useState();
-
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
@@ -167,7 +105,58 @@ export function Dashboard() {
       ]);
     }
   };
-  // console.log("dashboardData", dashboardData);
+  const fillDashboard = async (
+    setData: any,
+    startDate?: Date,
+    endDate?: Date,
+  ) => {
+    if (startDate === undefined || endDate === undefined) {
+      return;
+    }
+    const isoStartDate = startDate && startDate.toISOString();
+    const isoEndDate = endDate && endDate.toISOString();
+    console.log("startDate", startDate);
+    try {
+      const response = await fetch(
+        `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
+      if (response.status > 299) {
+        console.log("err");
+      } else {
+        console.log("response", response);
+        const data = await response.json();
+        if (data.length > 0) {
+          console.log("result", data);
+
+          setData(data);
+        }
+      }
+    } catch (error) {
+      // Handle any errors that occur during the fetch operation
+      console.error("There was a problem with the fetch operation:", error);
+    }
+  };
+  function handleDateChange(date: Date) {
+    setSelectedDate(date);
+    let currentDate = moment(date);
+
+    let weekStart = currentDate.clone().startOf("isoWeek");
+    let weekEnd = currentDate.clone().endOf("isoWeek");
+    let days = [];
+
+    for (let i = 0; i <= 6; i++) {
+      days.push(moment(weekStart).add(i, "days").toDate());
+    }
+
+    setWeekDates(days);
+  }
+
+  const [dashboardData, setDashboardData] = useState();
+
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
@@ -177,29 +166,20 @@ export function Dashboard() {
       return;
     }
 
-    // Ensure the time part of the date is set to midnight in local time
     startDate?.setHours(0, 0, 0, 0);
     endDate?.setHours(0, 0, 0, 0);
 
-    // Create a new Date object for iteration
     let currentDate = new Date(startDate);
-
-    // Create an array to store the final result
     let filledData = [];
 
-    // Iterate over the date range
     while (currentDate <= endDate) {
-      // Format the current date as a string (yyyy-mm-dd) without converting to UTC
       let formattedDate = `${currentDate.getFullYear()}-${String(
         currentDate.getMonth() + 1,
       ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
 
-      // Check if the current date exists in the original data
       let existingData =
         data && data.find((item: any) => item.date === formattedDate);
 
-      // If the date exists, add the existing object to the filledData array
-      // Otherwise, add a new object with null values
       if (existingData) {
         filledData.push(existingData);
       } else {
@@ -214,11 +194,8 @@ export function Dashboard() {
           calmness: null,
         });
       }
-
-      // Move to the next date
       currentDate.setDate(currentDate.getDate() + 1);
     }
-
     return filledData;
   }
 
@@ -230,41 +207,13 @@ export function Dashboard() {
     );
   }, [selectedDate]);
 
-  console.log(
-    "weekDates[0]",
-    selectedDate,
-    weekDates[0],
-    weekDates[weekDates.length - 1],
-  );
   const wholeWeek = fillMissingDates(
     dashboardData,
     weekDates[0],
     weekDates[weekDates.length - 1],
   );
-  console.log("wholeWeek", wholeWeek);
-  useEffect(() => {}, []);
-  const handleAddSleep = async (sleepNum: number) => {
-    const response = await fetch("http://localhost:9090/survey/sleep", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        sleep: sleepNum,
-        date: new Date().toISOString(), // Sending the current date
-      }),
-    });
-    if (response.status > 299) {
-      const error = await response.json();
-      console.log("ERR SLEEP REQ");
-    } else {
-      const message = await response.json();
-      console.log("SLEEP IS THERE", message);
-    }
-  };
 
-  const handleAddMood = () => {};
   return (
-    // <div className={"container"}>
     <div className="bg-back-gray w-auto">
       <div className="flex justify-between">
         <div>
@@ -330,19 +279,9 @@ export function Dashboard() {
         Recomendations for dtoday:
       </div>
       <div className={"bg-blue-300 w-fit h-fit"}>
-        <button
-          onClick={() => handleAddSleep(1)}
-          className={"pl-[1rem] font-extrabold text-2xl"}
-        >
-          SLEEP
-        </button>
+        <button className={"pl-[1rem] font-extrabold text-2xl"}>SLEEP</button>
         <div className={"bg-green-300 w-fit h-fit"}>
-          <button
-            onClick={() => handleAddMood()}
-            className={"pl-[1rem] font-extrabold text-2xl"}
-          >
-            MOOD
-          </button>
+          <button className={"pl-[1rem] font-extrabold text-2xl"}>MOOD</button>
         </div>
       </div>
       <Advice />
@@ -354,8 +293,6 @@ export function Dashboard() {
               setDashboardData,
               weekDates[0],
               weekDates[weekDates.length - 1],
-              // new Date(2024, 7, 20),
-              // new Date(2024, 7, 28),
             )
           }
         >
