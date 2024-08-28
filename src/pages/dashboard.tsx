@@ -45,6 +45,9 @@ export function Dashboard() {
     startDate?: Date,
     endDate?: Date,
   ) => {
+    if (startDate === undefined || endDate === undefined) {
+      return;
+    }
     const isoStartDate = startDate && startDate.toISOString();
     const isoEndDate = endDate && endDate.toISOString();
     console.log("startDate", startDate);
@@ -88,9 +91,6 @@ export function Dashboard() {
   }
 
   const [dashboardData, setDashboardData] = useState();
-  // useEffect(() => {
-  //   result && setDashboardData(result);
-  // }, []);
 
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
@@ -224,15 +224,20 @@ export function Dashboard() {
       weekDates[0],
       weekDates[weekDates.length - 1],
     );
-  }, [selectedDate]);
-
+  }, []);
+  console.log(
+    "weekDates[0]",
+    selectedDate,
+    weekDates[0],
+    weekDates[weekDates.length - 1],
+  );
   const wholeWeek = fillMissingDates(
     dashboardData,
     weekDates[0],
     weekDates[weekDates.length - 1],
   );
   console.log("wholeWeek", wholeWeek);
-
+  useEffect(() => {}, []);
   const handleAddSleep = async (sleepNum: number) => {
     const response = await fetch("http://localhost:9090/survey/sleep", {
       method: "POST",
