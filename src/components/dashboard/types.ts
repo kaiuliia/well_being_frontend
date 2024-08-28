@@ -33,13 +33,17 @@ export function convertMonthToString(month: number): string {
 
 //DASHBOARD VIEW FUNCTIONS
 
-export const getColorFromNumber = (number: number) => {
-  if (number === 0) {
+export const getColorFromNumber = (point: string | null) => {
+  if (point === null) {
     return "bg-white";
   }
-  if (number < 30) {
+  if (Number(point) === 0) {
+    return "bg-white";
+  }
+
+  if (Number(point) < 30) {
     return "bg-custom-red";
-  } else if (number >= 30 && number <= 70) {
+  } else if (Number(point) >= 30 && Number(point) <= 70) {
     return "bg-custom-orange";
   } else {
     return "bg-custom-green";

@@ -134,7 +134,7 @@ export function DashboardTable({
     {
       activities: "15",
       calmness: "0",
-      date: "2024-05-19T18:53:57.223Z",
+      date: "2024-08-26",
       general_mood: "10",
       id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
       sleep: "25",
@@ -144,8 +144,8 @@ export function DashboardTable({
     {
       activities: "15",
       calmness: "0",
-      date: "2024-05-19T18:53:57.223Z",
-      general_mood: "10",
+      date: "2024-08-27",
+      general_mood: null,
       id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
       sleep: "25",
       user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
@@ -154,7 +154,7 @@ export function DashboardTable({
     {
       activities: "15",
       calmness: "0",
-      date: "2024-05-19T18:53:57.223Z",
+      date: "2024-08-28",
       general_mood: "10",
       id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
       sleep: "25",
@@ -164,7 +164,7 @@ export function DashboardTable({
     {
       activities: "78",
       calmness: "0",
-      date: "2024-05-19T18:53:57.223Z",
+      date: "2024-08-29",
       general_mood: "10",
       id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
       sleep: "25",
@@ -174,7 +174,7 @@ export function DashboardTable({
     {
       activities: "16",
       calmness: "0",
-      date: "2024-05-19T18:53:57.223Z",
+      date: "2024-08-30",
       general_mood: "10",
       id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
       sleep: "25",
@@ -184,7 +184,7 @@ export function DashboardTable({
     {
       activities: "15",
       calmness: "0",
-      date: "2024-05-19T18:53:57.223Z",
+      date: "2024-08-31",
       general_mood: "67",
       id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
       sleep: "25",
@@ -192,14 +192,14 @@ export function DashboardTable({
       yourself_time: "35",
     },
     {
-      activities: "15",
-      calmness: "0",
-      date: "2024-05-19T18:53:57.223Z",
-      general_mood: "11",
-      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
-      sleep: "25",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      yourself_time: "35",
+      id: "1bb4eb4e-de10-4032-9ace-b1eee3b948d2",
+      user_id: "73fe1a9d-a605-9163-afaf-7380bcc840de",
+      date: "2024-09-01",
+      general_mood: "100",
+      sleep: "100",
+      activities: "5",
+      yourself_time: "13",
+      calmness: "45",
     },
   ];
 
@@ -255,9 +255,9 @@ export function DashboardTable({
                 <th key={day}>
                   <div
                     className={
-                      dashboardData &&
-                      getColorFromNumber(dashboardData[idx][moodType.key]) +
-                        " rounded-md shadow-lg w-7 h-7"
+                      // dashboardData &&
+                      getColorFromNumber(dash[idx][moodType.key]) +
+                      " rounded-md shadow-lg w-7 h-7"
                     }
                     // className={
                     //   getColorFromNumber(moods[day][moodType.key]) +

@@ -290,12 +290,12 @@ export function Dashboard() {
     );
   }, [weekDates[0]]);
 
-  // const wholeWeek = fillMissingDates(
-  //   dashboardData,
-  //   weekDates[0],
-  //   weekDates[weekDates.length - 1],
-  // );
-  // console.log("wholeWeek", wholeWeek);
+  const wholeWeek = fillMissingDates(
+    dashboardData,
+    weekDates[0],
+    weekDates[weekDates.length - 1],
+  );
+  console.log("wholeWeek", wholeWeek);
 
   const handleAddSleep = async (sleepNum: number) => {
     const response = await fetch("http://localhost:9090/survey/sleep", {
