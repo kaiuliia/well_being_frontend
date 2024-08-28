@@ -92,70 +92,6 @@ export function Dashboard() {
   //   result && setDashboardData(result);
   // }, []);
 
-  const mockData = [
-    {
-      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      date: "2024-05-19T18:53:57.223Z",
-      general_mood: "1",
-      sleep: "25",
-      activities: "15",
-      yourself_time: "35",
-      calmness: "2",
-    },
-    {
-      id: "6267f84f-668d-4b0c-9de1-29b6243dafc8",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      date: "2024-05-01T21:00:00.000Z",
-      general_mood: "2",
-      sleep: "23",
-      activities: "15",
-      yourself_time: "35",
-      calmness: "20",
-    },
-    {
-      id: "6267f84f-668d-4b0c-9de1-29b6243dafc8",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      date: "2024-05-18T21:00:00.000Z",
-      general_mood: "10",
-      sleep: "25",
-      activities: "15",
-      yourself_time: "35",
-      calmness: "20",
-    },
-    {
-      id: "6267f84f-668d-4b0c-9de1-29b6243dafc8",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      date: "2024-05-16T21:00:00.000Z",
-      general_mood: "10",
-      sleep: "25",
-      activities: "15",
-      yourself_time: "35",
-      calmness: "20",
-    },
-  ];
-  mockData.sort((a, b) => {
-    return moment(a.date).diff(moment(b.date));
-  });
-
-  const fullDashboardFunction = (mockData: any, emptyElement: any) => {
-    let newArray = [];
-
-    for (let i = 1; i <= 7; i++) {
-      for (let j = 0; j < mockData.length; j++) {
-        if (moment(mockData[j].date).isoWeekday() === i) {
-          newArray.push(mockData[j]);
-          i++;
-
-          break;
-        } else {
-          newArray.push(emptyElement);
-          i++;
-        }
-      }
-    }
-  };
-
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
@@ -281,14 +217,14 @@ export function Dashboard() {
 
     return filledData;
   }
-  console.log();
+  console.log("dashboardData", dashboardData);
   useEffect(() => {
     fillDashboard(
       setDashboardData,
       weekDates[0],
       weekDates[weekDates.length - 1],
     );
-  }, [weekDates[0]]);
+  }, [selectedDate]);
 
   const wholeWeek = fillMissingDates(
     dashboardData,
@@ -406,8 +342,10 @@ export function Dashboard() {
           onClick={() =>
             fillDashboard(
               setDashboardData,
-              new Date(2024, 7, 20),
-              new Date(2024, 7, 28),
+              weekDates[0],
+              weekDates[weekDates.length - 1],
+              // new Date(2024, 7, 20),
+              // new Date(2024, 7, 28),
             )
           }
         >
