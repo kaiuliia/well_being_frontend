@@ -49,7 +49,7 @@ export function Survey(props: Props) {
         const message = await response.json();
         setStatusMessage(`Survey ${message} saved to database`);
         setSubmitted(true);
-        navigate("/user/dashboard");
+        navigate("/user/home");
       }
     } catch (error) {
       setStatusMessage("An unexpected error occurred.");

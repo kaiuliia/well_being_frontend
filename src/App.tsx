@@ -6,7 +6,7 @@ import { Login } from "./pages/loginform";
 import { Route, Routes, NavLink } from "react-router-dom";
 
 import { Survey } from "./components/survey";
-import { Dashboard } from "./pages/dashboard";
+import { Home } from "./pages/home";
 import { Advices } from "./components/advices";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register title="register" />} />
         <Route path="/" element={<Login />} />
-        <Route path="/user/dashboard" element={<Dashboard />} />
+        <Route path="/user/home" element={<Home />} />
         <Route path="/user/advises" element={<Advices />} />
         <Route path="/user/survey" element={<Survey />} />
       </Routes>

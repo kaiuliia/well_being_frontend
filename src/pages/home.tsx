@@ -1,26 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { DashboardTable } from "../components/dashboard/table";
-import { Advice } from "../components/dashboard/advice";
-import { logOut } from "../components/dashboard/types";
+import { Dashboard } from "../components/dashboard/dashboard";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSliders } from "@fortawesome/free-solid-svg-icons";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useLocalStore } from "../store/useStore";
 
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
-
-interface User {
-  email: string;
-  password: string;
-}
-
-export function Dashboard() {
-  const name = localStorage.getItem("name");
+export function Home() {
   const [boardYear, setBoardYear] = useState<number | number[]>(
     new Date().getFullYear(),
   );
@@ -145,7 +129,6 @@ export function Dashboard() {
     let currentDate = moment(date);
 
     let weekStart = currentDate.clone().startOf("isoWeek");
-    let weekEnd = currentDate.clone().endOf("isoWeek");
     let days = [];
 
     for (let i = 0; i <= 6; i++) {
@@ -214,96 +197,15 @@ export function Dashboard() {
   );
 
   return (
-    <div className="bg-back-gray w-auto">
-      <div className="flex justify-between">
-        <div>
-          <button
-            onClick={() => handleChangeRangeWeek(weekDates, "minus_week")}
-            className={"pl-[10rem] font-extrabold text-2xl"}
-          >
-            - week
-          </button>{" "}
-          <button
-            onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
-            className={"pl-[1rem] font-extrabold text-2xl"}
-          >
-            + week
-          </button>
-          <div className={"hidden"}>
-            <DatePicker
-              selected={selectedDate}
-              calendarStartDay={1}
-              // onSelect={handleDateChange} //when day is clicked
-              onChange={handleDateChange} //only when value has changed
-            />
-          </div>
-        </div>
-        <FontAwesomeIcon icon={faSliders} color="#BBC1CE" size={"xl"} />
-      </div>
-      {/*<HeaderDashboard startDate={firstDayOfWeek} endDate={lastDayOfWeek} />*/}
-      <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
-        Welcome, {name}!
-      </div>
-      <button
-        onClick={() => handleChangeRangeWeek(weekDates, "minus_year")}
-        className={"pl-[10rem] font-extrabold text-2xl"}
-      >
-        - year
-      </button>{" "}
-      <button
-        onClick={() => handleChangeRangeWeek(weekDates, "plus_year")}
-        className={"pl-[1rem] font-extrabold text-2xl"}
-      >
-        + year
-      </button>
-      <DashboardTable
-        dashboardData={wholeWeek}
-        weekDates={weekDates}
-        boardYear={boardYear}
-        boardStartMonth={boardStartMonth}
-        // boardData={}
-        boardEndMonth={
-          boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
-        }
-      ></DashboardTable>
-      <a
-        className={"text-orange-800 cursor-pointer"}
-        onClick={() => {
-          window.location.href = "/user/survey";
-        }}
-      >
-        {" "}
-        ADD TODAY
-      </a>
-      <div className="text-xs font-medium text-left ">
-        Recomendations for dtoday:
-      </div>
-      <div className={"bg-blue-300 w-fit h-fit"}>
-        <button className={"pl-[1rem] font-extrabold text-2xl"}>SLEEP</button>
-        <div className={"bg-green-300 w-fit h-fit"}>
-          <button className={"pl-[1rem] font-extrabold text-2xl"}>MOOD</button>
-        </div>
-      </div>
-      <Advice />
-      <div>
-        <a
-          className={"text-red-300 cursor-pointer"}
-          onClick={() =>
-            fillDashboard(
-              setDashboardData,
-              weekDates[0],
-              weekDates[weekDates.length - 1],
-            )
-          }
-        >
-          {" "}
-          GET DASHBOARD DATA
-        </a>
-        <a className={"text-red-300 cursor-pointer"} onClick={logOut}>
-          {" "}
-          log out
-        </a>
-      </div>
-    </div>
+    <Dashboard
+      boardYear={boardYear}
+      boardStartMonth={boardStartMonth}
+      boardEndMonth={boardEndMonth}
+      handleChangeRangeWeek={handleChangeRangeWeek}
+      handleDateChange={handleDateChange}
+      selectedDate={selectedDate}
+      wholeWeek={wholeWeek}
+      weekDates={weekDates}
+    />
   );
 }
