@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Button } from "./layout/button";
 import { useLocalStore } from "../store/useStore";
@@ -25,10 +25,7 @@ export function Survey(props: Props) {
     calmness: 0,
     yourself_time: 0,
   });
-  const [statusMessage, setStatusMessage] = useState("");
 
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const updateValue = (name: keyof Survey, value: number) => {

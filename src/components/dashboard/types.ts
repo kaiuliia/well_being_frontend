@@ -1,6 +1,4 @@
 import React from "react";
-import { addDays, endOfWeek, startOfWeek } from "date-fns/index";
-import moment from "moment/moment";
 
 export type FormEvent = React.FormEvent<HTMLFormElement>;
 export type MouseEvent = React.MouseEvent<HTMLButtonElement>;
@@ -65,72 +63,3 @@ export const logOut = async () => {
     console.log("succses logout");
   }
 };
-
-// export function fillDashboard = ()=> [
-//   {
-//     date: new Date(2024, 4, 12),
-//     mood: 15,
-//     activities: 0,
-//     sleep: 14,
-//     calmness: 0,
-//     yourself_time: 0,
-//   },
-//   {
-//     date: new Date(2024, 4, 13),
-//     mood: 15,
-//     activities: 0,
-//     sleep: 14,
-//     calmness: 0,
-//     yourself_time: 0,
-//   },
-//   {
-//     date: new Date(2024, 4, 14),
-//     mood: 15,
-//     activities: 0,
-//     sleep: 14,
-//     calmness: 0,
-//     yourself_time: 0,
-//   },
-//   {
-//     date: new Date(2024, 4, 15),
-//     mood: 15,
-//     activities: 0,
-//     sleep: 14,
-//     calmness: 0,
-//     yourself_time: 0,
-//   },
-//   {
-//     date: new Date(2024, 4, 16),
-//     mood: 30,
-//     activities: 0,
-//     sleep: 14,
-//     calmness: 0,
-//     yourself_time: 0,
-//   },
-//
-//   {
-//     date: new Date(2024, 4, 17),
-//     mood: 15,
-//     activities: 0,
-//     sleep: 14,
-//     calmness: 0,
-//     yourself_time: 0,
-//   },
-//
-//   {
-//     date: new Date(2024, 4, 18),
-//     mood: 15,
-//     activities: 0,
-//     sleep: 14,
-//     calmness: 0,
-//     yourself_time: 0,
-//   },
-//   {
-//     date: new Date(2024, 4, 19),
-//     mood: 15,
-//     activities: 0,
-//     sleep: 14,
-//     calmness: 0,
-//     yourself_time: 0,
-//   },
-// ];

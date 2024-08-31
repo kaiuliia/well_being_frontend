@@ -4,7 +4,6 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocalStore } from "../store/useStore";
-import { useNavigate } from "react-router-dom";
 
 export function Home() {
   const [boardYear, setBoardYear] = useState<number | number[]>(
@@ -16,15 +15,9 @@ export function Home() {
   const { weekDates, setWeekDates, dashboard, fetchAndUpdateDashboard } =
     useLocalStore();
 
-  // (state) => ({
-  //   dashboard: state.dashboard,
-  //   setDashboard: state.setDashboard,
-  //   fetchAndUpdateDashboard: state.fetchAndUpdateDashboard,
-  // }),
-
   const [boardEndMonth, setBoardEndMonth] = useState<number>();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  // const [weekDates, setWeekDates] = useState<Date[]>([]);
+
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
