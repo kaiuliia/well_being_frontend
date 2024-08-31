@@ -13,6 +13,8 @@ interface Survey {
 }
 
 interface useLocalState {
+  weekDates: Date[];
+  setWeekDates: (weekDates: Date[]) => void;
   survey: Survey;
   setSurvey: (survey: Survey) => void;
   dashboard: Survey[];
@@ -75,6 +77,8 @@ export const useLocalStore = create<useLocalState>((set) => ({
     yourself_time: 0,
   },
   setSurvey: (newSurvey: Survey) => set({ survey: newSurvey }),
+  weekDates: [],
+  setWeekDates: (newWeekDates: Date[]) => set({ weekDates: newWeekDates }),
   dashboard: [],
   setDashboard: (newDashboard: Survey[], startDate: Date, endDate: Date) => {
     const filledDashboard = fillMissingDates(newDashboard, startDate, endDate);

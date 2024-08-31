@@ -14,8 +14,14 @@ export function Home() {
     new Date().getMonth(),
   );
   const { survey } = useLocalStore();
-  const { setDashboard, fetchAndUpdateDashboard, dashboard, postSurveyData } =
-    useLocalStore();
+  const {
+    setDashboard,
+    fetchAndUpdateDashboard,
+    dashboard,
+    postSurveyData,
+    weekDates,
+    setWeekDates,
+  } = useLocalStore();
   // (state) => ({
   //   dashboard: state.dashboard,
   //   setDashboard: state.setDashboard,
@@ -24,7 +30,7 @@ export function Home() {
   console.log("survey", survey);
   const [boardEndMonth, setBoardEndMonth] = useState<number>();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [weekDates, setWeekDates] = useState<Date[]>([]);
+  // const [weekDates, setWeekDates] = useState<Date[]>([]);
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
     const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
