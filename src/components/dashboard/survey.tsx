@@ -36,10 +36,7 @@ export function Survey(props: Props) {
   };
 
   const handleSubmit = async (): Promise<void> => {
-    // e.preventDefault();
-    console.log(3.9);
     await postSurveyData(survey);
-    console.log(3);
 
     await fetchAndUpdateDashboard();
     navigate("/user/home");

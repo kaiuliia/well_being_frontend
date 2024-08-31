@@ -77,7 +77,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
 
     const isoStartDate = weekDates[0]?.toISOString();
     const isoEndDate = weekDates[weekDates.length - 1]?.toISOString();
-    console.log("startDate", weekDates[0]);
+
     try {
       const response = await fetch(
         `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
@@ -89,11 +89,8 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
       if (response.status > 299) {
         console.log("err");
       } else {
-        console.log("response", response);
         const data = await response.json();
         if (data.length >= 0) {
-          console.log("result", data);
-
           set({
             dashboard: fillMissingDates(
               data,
@@ -131,7 +128,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         // setError(true);
       } else {
         const message = await response.json();
-        console.log(message);
+
         // setStatusMessage(`Survey ${message} saved to database`);
         // setSubmitted(true);
         // navigate("/user/home");

@@ -113,8 +113,6 @@ export function Home() {
     fetchAndUpdateDashboard();
   }, [selectedDate]);
 
-  console.log("weekdate", weekDates[0]);
-  console.log("dashboard", dashboard);
   return (
     <Dashboard
       boardYear={boardYear}

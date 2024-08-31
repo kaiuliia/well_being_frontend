@@ -56,7 +56,7 @@ export function Login() {
   const handleCheck = () => {
     setIsChecked(!isChecked);
   };
-  console.log("check", isChecked);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -68,7 +68,6 @@ export function Login() {
     }
   };
 
-  console.log(errorMessage);
   return (
     <>
       <p className={"title"}> Sign in</p>

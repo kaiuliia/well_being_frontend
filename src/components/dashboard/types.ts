@@ -103,10 +103,8 @@ export const logOut = async () => {
     credentials: "include",
   });
   if (response.status > 299) {
-    console.log("user still herelogout");
   } else {
     localStorage.clear();
     window.location.href = "/login";
-    console.log("succses logout");
   }
 };
