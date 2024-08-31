@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { Button } from "./layout/button";
-import { useLocalStore } from "../store/useStore";
+import { Button } from "../layout/button";
+import { useLocalStore } from "../../store/useStore";
 import { Slider } from "@mui/material";
 
 import { sliderName } from "./types";

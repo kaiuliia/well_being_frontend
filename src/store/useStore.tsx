@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Survey } from "../components/types";
+import { Survey } from "../components/dashboard/types";
 
 interface ApiSurvey {
   id: string;
