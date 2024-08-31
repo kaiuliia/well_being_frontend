@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { useNavigate } from "react-router-dom";
 
 interface Survey {
   id: string;
@@ -21,6 +22,7 @@ interface useLocalState {
     startDate?: Date,
     endDate?: Date,
   ) => Promise<void>;
+  postSurveyData: (setSurvey: Survey) => Promise<void>;
 }
 
 function fillMissingDates(
@@ -109,6 +111,40 @@ export const useLocalStore = create<useLocalState>((set) => ({
       }
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
+    }
+  },
+
+  postSurveyData: async (survey: Survey) => {
+    try {
+      const response = await fetch("http://localhost:9090/survey", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          general_mood: survey.general_mood,
+          activities: survey.activities,
+          sleep: survey.sleep,
+          calmness: survey.calmness,
+          yourself_time: survey.yourself_time,
+          date: new Date().toISOString(),
+        }),
+      });
+
+      if (response.status > 299) {
+        const error = await response.json();
+        console.log(error);
+        // setStatusMessage(error.error);
+        // setError(true);
+      } else {
+        const message = await response.json();
+        console.log(message);
+        // setStatusMessage(`Survey ${message} saved to database`);
+        // setSubmitted(true);
+        // navigate("/user/home");
+      }
+    } catch (error) {
+      // setStatusMessage("An unexpected error occurred.");
+      // setError(true);
     }
   },
 }));

@@ -17,7 +17,13 @@ interface Survey {
 }
 
 export function Survey(props: Props) {
-  const { survey, setSurvey } = useLocalStore();
+  const {
+    survey,
+    setSurvey,
+    postSurveyData,
+    fetchAndUpdateDashboard,
+    setDashboard,
+  } = useLocalStore();
 
   const [statusMessage, setStatusMessage] = useState("");
 
@@ -25,37 +31,6 @@ export function Survey(props: Props) {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  const sendData = async () => {
-    try {
-      const response = await fetch("http://localhost:9090/survey", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({
-          general_mood: survey.general_mood,
-          activities: survey.activities,
-          sleep: survey.sleep,
-          calmness: survey.calmness,
-          yourself_time: survey.yourself_time,
-          date: new Date().toISOString(),
-        }),
-      });
-
-      if (response.status > 299) {
-        const error = await response.json();
-        setStatusMessage(error.error);
-        setError(true);
-      } else {
-        const message = await response.json();
-        setStatusMessage(`Survey ${message} saved to database`);
-        setSubmitted(true);
-        navigate("/user/home");
-      }
-    } catch (error) {
-      setStatusMessage("An unexpected error occurred.");
-      setError(true);
-    }
-  };
   const updateValue = (name: keyof Survey, value: number) => {
     setSurvey({
       ...survey,
@@ -65,7 +40,8 @@ export function Survey(props: Props) {
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
-    await sendData();
+    await postSurveyData(survey);
+    navigate("/user/home");
   };
   const color = (value: number) => {
     if (value === 0) {
