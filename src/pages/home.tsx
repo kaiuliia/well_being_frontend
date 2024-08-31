@@ -3,6 +3,7 @@ import { Dashboard } from "../components/dashboard/dashboard";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { useLocalStore } from "../store/useStore";
 
 export function Home() {
   const [boardYear, setBoardYear] = useState<number | number[]>(
@@ -11,6 +12,12 @@ export function Home() {
   const [boardStartMonth, setBoardStartMonth] = useState<number>(
     new Date().getMonth(),
   );
+  const { survey, dashboard } = useLocalStore();
+  const { setDashboard, fetchAndUpdateDashboard } = useLocalStore((state) => ({
+    setDashboard: state.setDashboard,
+    fetchAndUpdateDashboard: state.fetchAndUpdateDashboard,
+  }));
+  console.log("survey", survey);
   const [boardEndMonth, setBoardEndMonth] = useState<number>();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [weekDates, setWeekDates] = useState<Date[]>([]);
@@ -89,41 +96,44 @@ export function Home() {
       ]);
     }
   };
-  const fillDashboard = async (
-    setData: any,
-    startDate?: Date,
-    endDate?: Date,
-  ) => {
-    if (startDate === undefined || endDate === undefined) {
-      return;
-    }
-    const isoStartDate = startDate && startDate.toISOString();
-    const isoEndDate = endDate && endDate.toISOString();
-    console.log("startDate", startDate);
-    try {
-      const response = await fetch(
-        `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
-        {
-          method: "GET",
-          credentials: "include",
-        },
-      );
-      if (response.status > 299) {
-        console.log("err");
-      } else {
-        console.log("response", response);
-        const data = await response.json();
-        if (data.length > 0) {
-          console.log("result", data);
 
-          setData(data);
-        }
-      }
-    } catch (error) {
-      // Handle any errors that occur during the fetch operation
-      console.error("There was a problem with the fetch operation:", error);
-    }
-  };
+  // console.log(fetchAndUpdateDashboard(setDashboard, ));
+
+  // const fillDashboard = async (
+  //   setData: any,
+  //   startDate?: Date,
+  //   endDate?: Date,
+  // ) => {
+  //   if (startDate === undefined || endDate === undefined) {
+  //     return;
+  //   }
+  //   const isoStartDate = startDate && startDate.toISOString();
+  //   const isoEndDate = endDate && endDate.toISOString();
+  //   console.log("startDate", startDate);
+  //   try {
+  //     const response = await fetch(
+  //       `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+  //       {
+  //         method: "GET",
+  //         credentials: "include",
+  //       },
+  //     );
+  //     if (response.status > 299) {
+  //       console.log("err");
+  //     } else {
+  //       console.log("response", response);
+  //       const data = await response.json();
+  //       if (data.length > 0) {
+  //         console.log("result", data);
+  //
+  //         setData(data);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     // Handle any errors that occur during the fetch operation
+  //     console.error("There was a problem with the fetch operation:", error);
+  //   }
+  // };
   function handleDateChange(date: Date) {
     setSelectedDate(date);
     let currentDate = moment(date);
@@ -144,58 +154,54 @@ export function Home() {
     handleDateChange(selectedDate);
   }, []);
 
-  function fillMissingDates(data: any, startDate: any, endDate: any) {
-    if (!data) {
-      return;
-    }
-
-    startDate?.setHours(0, 0, 0, 0);
-    endDate?.setHours(0, 0, 0, 0);
-
-    let currentDate = new Date(startDate);
-    let filledData = [];
-
-    while (currentDate <= endDate) {
-      let formattedDate = `${currentDate.getFullYear()}-${String(
-        currentDate.getMonth() + 1,
-      ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
-
-      let existingData =
-        data && data.find((item: any) => item.date === formattedDate);
-
-      if (existingData) {
-        filledData.push(existingData);
-      } else {
-        filledData.push({
-          date: formattedDate,
-          id: null,
-          user_id: null,
-          general_mood: null,
-          sleep: null,
-          activities: null,
-          yourself_time: null,
-          calmness: null,
-        });
-      }
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-    return filledData;
-  }
+  // function fillMissingDates(data: any, startDate: any, endDate: any) {
+  //   if (!data) {
+  //     return;
+  //   }
+  //
+  //   startDate?.setHours(0, 0, 0, 0);
+  //   endDate?.setHours(0, 0, 0, 0);
+  //
+  //   let currentDate = new Date(startDate);
+  //   let filledData = [];
+  //
+  //   while (currentDate <= endDate) {
+  //     let formattedDate = `${currentDate.getFullYear()}-${String(
+  //       currentDate.getMonth() + 1,
+  //     ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
+  //
+  //     let existingData =
+  //       data && data.find((item: any) => item.date === formattedDate);
+  //
+  //     if (existingData) {
+  //       filledData.push(existingData);
+  //     } else {
+  //       filledData.push({
+  //         date: formattedDate,
+  //         id: null,
+  //         user_id: null,
+  //         general_mood: null,
+  //         sleep: null,
+  //         activities: null,
+  //         yourself_time: null,
+  //         calmness: null,
+  //       });
+  //     }
+  //     currentDate.setDate(currentDate.getDate() + 1);
+  //   }
+  //   return filledData;
+  // }
 
   useEffect(() => {
-    fillDashboard(
-      setDashboardData,
+    fetchAndUpdateDashboard(
+      (data) =>
+        setDashboard(data, weekDates[0], weekDates[weekDates.length - 1]),
       weekDates[0],
       weekDates[weekDates.length - 1],
     );
-  }, [selectedDate]);
+  }, [selectedDate, survey]);
 
-  const wholeWeek = fillMissingDates(
-    dashboardData,
-    weekDates[0],
-    weekDates[weekDates.length - 1],
-  );
-
+  console.log("dashboard", dashboard);
   return (
     <Dashboard
       boardYear={boardYear}
@@ -204,7 +210,7 @@ export function Home() {
       handleChangeRangeWeek={handleChangeRangeWeek}
       handleDateChange={handleDateChange}
       selectedDate={selectedDate}
-      wholeWeek={wholeWeek}
+      wholeWeek={dashboard.length > 0 && dashboard}
       weekDates={weekDates}
     />
   );
