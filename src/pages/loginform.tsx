@@ -21,7 +21,6 @@ export function Login() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  const navigate = useNavigate();
   const location = useLocation();
   const signin = useAuth();
   const fromPage = location.state?.from?.pathname || "/";

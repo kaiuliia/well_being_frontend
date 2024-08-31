@@ -64,9 +64,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   weekDates: [],
   setWeekDates: (newWeekDates: Date[]) => set({ weekDates: newWeekDates }),
   dashboard: [],
-  fetchAndUpdateDashboard: async () // startDate?: Date,
-  // endDate?: Date,
-  : Promise<void> => {
+  fetchAndUpdateDashboard: async (): Promise<void> => {
     const { weekDates } = get();
     if (
       weekDates[0] === undefined ||
@@ -124,18 +122,9 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
       if (response.status > 299) {
         const error = await response.json();
         console.log(error);
-        // setStatusMessage(error.error);
-        // setError(true);
       } else {
         const message = await response.json();
-
-        // setStatusMessage(`Survey ${message} saved to database`);
-        // setSubmitted(true);
-        // navigate("/user/home");
       }
-    } catch (error) {
-      // setStatusMessage("An unexpected error occurred.");
-      // setError(true);
-    }
+    } catch (error) {}
   },
 }));

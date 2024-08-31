@@ -48,7 +48,6 @@ export function Dashboard({
             <DatePicker
               selected={selectedDate}
               calendarStartDay={1}
-              // onSelect={handleDateChange} //when day is clicked
               onChange={handleDateChange} //only when value has changed
             />
           </div>
@@ -76,7 +75,6 @@ export function Dashboard({
         weekDates={weekDates}
         boardYear={boardYear}
         boardStartMonth={boardStartMonth}
-        // boardData={}
         boardEndMonth={
           boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
         }
@@ -90,30 +88,8 @@ export function Dashboard({
         {" "}
         ADD TODAY
       </a>
-      <div className="text-xs font-medium text-left ">
-        Recomendations for dtoday:
-      </div>
-      <div className={"bg-blue-300 w-fit h-fit"}>
-        <button className={"pl-[1rem] font-extrabold text-2xl"}>SLEEP</button>
-        <div className={"bg-green-300 w-fit h-fit"}>
-          <button className={"pl-[1rem] font-extrabold text-2xl"}>MOOD</button>
-        </div>
-      </div>
       <Advice />
       <div>
-        <a
-          className={"text-red-300 cursor-pointer"}
-          // onClick={() =>
-          //   fillDashboard(
-          //     setDashboardData,
-          //     weekDates[0],
-          //     weekDates[weekDates.length - 1],
-          //   )
-          // }
-        >
-          {" "}
-          GET DASHBOARD DATA
-        </a>
         <a className={"text-red-300 cursor-pointer"} onClick={logOut}>
           {" "}
           log out
