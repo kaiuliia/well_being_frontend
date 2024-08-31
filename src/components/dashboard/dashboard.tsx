@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { DashboardTable } from "./table";
 import { Advice } from "./advice";
-
+import { IonIcon } from "@ionic/react";
+import { logoIonic, chevronBack, chevronForward } from "ionicons/icons";
 interface DashboardProps {
   wholeWeek: any;
   weekDates: any;
@@ -29,21 +30,9 @@ export function Dashboard({
 }: DashboardProps) {
   const name = localStorage.getItem("name");
   return (
-    <div className="bg-back-gray w-auto">
+    <div className=" w-auto">
       <div className="flex justify-between">
         <div>
-          <button
-            onClick={() => handleChangeRangeWeek(weekDates, "minus_week")}
-            className={"pl-[10rem] font-extrabold text-2xl"}
-          >
-            - week
-          </button>{" "}
-          <button
-            onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
-            className={"pl-[1rem] font-extrabold text-2xl"}
-          >
-            + week
-          </button>
           <div className={"hidden"}>
             <DatePicker
               selected={selectedDate}
@@ -52,25 +41,25 @@ export function Dashboard({
             />
           </div>
         </div>
-        <FontAwesomeIcon icon={faSliders} color="#BBC1CE" size={"xl"} />
       </div>
-      {/*<HeaderDashboard startDate={firstDayOfWeek} endDate={lastDayOfWeek} />*/}
+
       <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
         Welcome, {name}!
       </div>
-      <button
-        onClick={() => handleChangeRangeWeek(weekDates, "minus_year")}
-        className={"pl-[10rem] font-extrabold text-2xl"}
-      >
-        - year
-      </button>{" "}
-      <button
-        onClick={() => handleChangeRangeWeek(weekDates, "plus_year")}
-        className={"pl-[1rem] font-extrabold text-2xl"}
-      >
-        + year
-      </button>
+      {/*<button*/}
+      {/*  onClick={() => handleChangeRangeWeek(weekDates, "minus_year")}*/}
+      {/*  className={"pl-[10rem] font-extrabold text-2xl"}*/}
+      {/*>*/}
+      {/*  - year*/}
+      {/*</button>{" "}*/}
+      {/*<button*/}
+      {/*  onClick={() => handleChangeRangeWeek(weekDates, "plus_year")}*/}
+      {/*  className={"pl-[1rem] font-extrabold text-2xl"}*/}
+      {/*>*/}
+      {/*  + year*/}
+      {/*</button>*/}
       <DashboardTable
+        handleChangeRangeWeek={handleChangeRangeWeek}
         dashboardData={wholeWeek}
         weekDates={weekDates}
         boardYear={boardYear}
@@ -80,7 +69,7 @@ export function Dashboard({
         }
       ></DashboardTable>
       <a
-        className={"text-orange-800 cursor-pointer"}
+        className={"text-white cursor-pointer"}
         onClick={() => {
           window.location.href = "/user/survey";
         }}
@@ -90,7 +79,7 @@ export function Dashboard({
       </a>
       <Advice />
       <div>
-        <a className={"text-red-300 cursor-pointer"} onClick={logOut}>
+        <a className={"text-white cursor-pointer"} onClick={logOut}>
           {" "}
           log out
         </a>

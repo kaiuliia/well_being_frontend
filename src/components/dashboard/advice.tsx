@@ -1,5 +1,9 @@
 import React from "react";
+import { useLocalStore } from "../../store/useStore";
 
 export function Advice() {
-  return <div>Here is your recomendations</div>;
+  const { dashboard } = useLocalStore();
+  console.log("dash", dashboard);
+
+  return <div className={"text-white"}>Here is your recomendations</div>;
 }

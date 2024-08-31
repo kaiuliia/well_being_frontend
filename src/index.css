@@ -29,5 +29,10 @@ body {
     font-size: 60px;
 }
 html {
-    background-color: #EFF1F4;
+    background-color: #1a1919;
+}
+
+.ion-icon {
+    color:red;
+    --ionicon-stroke-width: 10px;
 }

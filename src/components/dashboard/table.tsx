@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { convertMonthToString, getColorFromNumber } from "./types";
+import { IonIcon } from "@ionic/react";
+import { chevronBack, chevronForward } from "ionicons/icons";
 
 interface MoodData {
   weekDay: string;
@@ -20,16 +22,13 @@ interface MoodProps {
   >;
 }
 
-interface MoodState {
-  [day: string | number]: MoodData;
-}
-
 interface DashboardTableProps {
   weekDates: any[];
   boardYear: number | number[];
   boardStartMonth: number;
   boardEndMonth: number | undefined;
   dashboardData: any;
+  handleChangeRangeWeek: (weekDates: Date[], action: string) => void;
 }
 export function DashboardTable({
   weekDates,
@@ -37,6 +36,7 @@ export function DashboardTable({
   boardStartMonth,
   boardEndMonth,
   dashboardData,
+  handleChangeRangeWeek,
 }: DashboardTableProps) {
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 7];
   const nameOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
@@ -63,94 +63,32 @@ export function DashboardTable({
     },
   ];
 
-  const dash = [
-    {
-      activities: "15",
-      calmness: "0",
-      date: "2024-08-26",
-      general_mood: "10",
-      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
-      sleep: "25",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      yourself_time: "35",
-    },
-    {
-      activities: "15",
-      calmness: "0",
-      date: "2024-08-27",
-      general_mood: null,
-      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
-      sleep: "25",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      yourself_time: "35",
-    },
-    {
-      activities: "15",
-      calmness: "0",
-      date: "2024-08-28",
-      general_mood: "10",
-      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
-      sleep: "25",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      yourself_time: "35",
-    },
-    {
-      activities: "78",
-      calmness: "0",
-      date: "2024-08-29",
-      general_mood: "10",
-      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
-      sleep: "25",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      yourself_time: "35",
-    },
-    {
-      activities: "16",
-      calmness: "0",
-      date: "2024-08-30",
-      general_mood: "10",
-      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
-      sleep: "25",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      yourself_time: "35",
-    },
-    {
-      activities: "15",
-      calmness: "0",
-      date: "2024-08-31",
-      general_mood: "67",
-      id: "298972bb-b6e4-4f49-850d-bddf1a2787a6",
-      sleep: "25",
-      user_id: "28f5f6f2-95d8-4fff-8b7d-5c2c621a6a1d",
-      yourself_time: "35",
-    },
-
-    {
-      id: "1bb4eb4e-de10-4032-9ace-b1eee3b948d2",
-      user_id: "73fe1a9d-a605-9163-afaf-7380bcc840de",
-      date: "2024-09-01",
-      general_mood: "100",
-      sleep: "100",
-      activities: "5",
-      yourself_time: "13",
-      calmness: "45",
-    },
-  ];
-
-  const findDayToChange = (today: Date) => {};
-  const dateStr = "2023-11-18T10:11:09.655Z";
-  const date = new Date(dateStr);
-
   return (
     <>
-      <p className={"pl-[10rem]"}>{boardYear}</p>
+      <IonIcon
+        onClick={() => handleChangeRangeWeek(weekDates, "minus_week")}
+        className={"cursor-pointer"}
+        icon={chevronBack}
+        style={{ color: "#ffffff" }}
+      ></IonIcon>
+      <IonIcon
+        onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
+        className={"cursor-pointer"}
+        icon={chevronForward}
+        style={{ color: "#ffffff" }}
+      ></IonIcon>
+      <p className={"text-white"}>{boardYear}</p>
       <div className="flex flex-row">
-        <p className={"pl-[10rem]"}>{convertMonthToString(boardStartMonth)}</p>
+        <p className={" text-white"}>
+          {convertMonthToString(boardStartMonth).toLowerCase()}
+        </p>
         {boardEndMonth !== undefined && (
-          <p>{convertMonthToString(boardEndMonth)} </p>
+          <p className={" text-white"}>
+            {convertMonthToString(boardEndMonth).toLowerCase()}{" "}
+          </p>
         )}
       </div>
-      <table className="table-fixed w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] text-main-secondary-gray">
+      <table className="table-fixed text-white w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] ">
         <thead className="p-0">
           <tr>
             <th className="p-[0.5rem]"></th>
@@ -164,8 +102,8 @@ export function DashboardTable({
 
         <tbody>
           {moodProps.map((moodType) => (
-            <tr className="p-[0.5rem]" key={moodType.name}>
-              <th className="p-[0.5rem] text-xs font-normal text-left align-top text-main-secondary-gray">
+            <tr className="p-[0.5rem] text-white" key={moodType.name}>
+              <th className="p-[0.5rem] text-xs font-normal text-left align-top text-white">
                 {moodType.name}
               </th>
 
@@ -176,7 +114,7 @@ export function DashboardTable({
                       // dashboardData &&
                       (dashboardData
                         ? getColorFromNumber(dashboardData[idx][moodType.key])
-                        : "bg-white") + " rounded-md shadow-lg w-7 h-7"
+                        : "bg-white") + " rounded-md shadow-lg -white w-7 h-7"
                     }
                   ></div>
                 </th>
@@ -186,9 +124,9 @@ export function DashboardTable({
         </tbody>
         <thead className="p-0">
           <tr>
-            <th className="p-[0.5rem]"></th>
+            <th className="p-[0.5rem] "></th>
             {daysOfWeek.map((day, idx) => (
-              <th key={day} className=" text-xs font-medium">
+              <th key={day} className=" text-xs text-white font-medium">
                 {nameOfWeek[idx]}
               </th>
             ))}
