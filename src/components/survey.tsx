@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { MouseEvent } from "../types";
 import { Button } from "./layout/button";
 import { useLocalStore } from "../store/useStore";
 import { Slider } from "@mui/material";
@@ -9,24 +8,23 @@ import { sliderName } from "./types";
 import { useNavigate } from "react-router-dom";
 interface Props {}
 interface Survey {
-  general_mood: number | number[];
-  activities: number | number[];
-  sleep: number | number[];
-  calmness: number | number[];
-  yourself_time: number | number[];
+  general_mood: number;
+  activities: number;
+  sleep: number;
+  calmness: number;
+  yourself_time: number;
 }
 
 export function Survey(props: Props) {
-  const {
-    survey,
-    setSurvey,
-    postSurveyData,
-    fetchAndUpdateDashboard,
-    setDashboard,
-    weekDates,
-    setWeekDates,
-  } = useLocalStore();
+  const { postSurveyData, fetchAndUpdateDashboard } = useLocalStore();
 
+  const [survey, setSurvey] = useState<Survey>({
+    general_mood: 0,
+    activities: 0,
+    sleep: 0,
+    calmness: 0,
+    yourself_time: 0,
+  });
   const [statusMessage, setStatusMessage] = useState("");
 
   const [submitted, setSubmitted] = useState(false);
@@ -46,11 +44,7 @@ export function Survey(props: Props) {
     await postSurveyData(survey);
     console.log(3);
 
-    console.log(4);
-
-    await fetchAndUpdateDashboard((data) =>
-      setDashboard(data, weekDates[0], weekDates[weekDates.length - 1]),
-    );
+    await fetchAndUpdateDashboard();
     navigate("/user/home");
   };
   const color = (value: number) => {

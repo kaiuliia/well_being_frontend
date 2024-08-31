@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { useNavigate } from "react-router-dom";
+import { Survey } from "../components/types";
 
-interface Survey {
+interface ApiSurvey {
   id: string;
   user_id: string;
   date: string;
@@ -15,28 +15,23 @@ interface Survey {
 interface useLocalState {
   weekDates: Date[];
   setWeekDates: (weekDates: Date[]) => void;
-  survey: Survey;
-  setSurvey: (survey: Survey) => void;
-  dashboard: Survey[];
-  setDashboard: (dashboard: Survey[], startDate: Date, endDate: Date) => void;
-  fetchAndUpdateDashboard: (
-    setData: (data: Survey[]) => void,
-    // startDate?: Date,
-    // endDate?: Date,
-  ) => Promise<void>;
+  dashboard: ApiSurvey[];
+  fetchAndUpdateDashboard: () // startDate?: Date,
+  // endDate?: Date,
+  => Promise<void>;
   postSurveyData: (setSurvey: Survey) => Promise<void>;
 }
 
 function fillMissingDates(
-  data: Survey[],
+  data: ApiSurvey[],
   startDate: Date,
   endDate: Date,
-): Survey[] {
+): ApiSurvey[] {
   startDate.setHours(0, 0, 0, 0);
   endDate.setHours(0, 0, 0, 0);
 
   let currentDate = new Date(startDate);
-  const filledData: Survey[] = [];
+  const filledData: ApiSurvey[] = [];
 
   while (currentDate <= endDate) {
     const formattedDate = `${currentDate.getFullYear()}-${String(
@@ -66,29 +61,12 @@ function fillMissingDates(
 }
 
 export const useLocalStore = create<useLocalState>((set, get) => ({
-  survey: {
-    id: "",
-    user_id: "",
-    date: "",
-    general_mood: 0,
-    activities: 0,
-    sleep: 0,
-    calmness: 0,
-    yourself_time: 0,
-  },
-  setSurvey: (newSurvey: Survey) => set({ survey: newSurvey }),
   weekDates: [],
   setWeekDates: (newWeekDates: Date[]) => set({ weekDates: newWeekDates }),
   dashboard: [],
-  setDashboard: (newDashboard: Survey[], startDate: Date, endDate: Date) => {
-    const filledDashboard = fillMissingDates(newDashboard, startDate, endDate);
-    set({ dashboard: filledDashboard });
-  },
-  fetchAndUpdateDashboard: async (
-    setData: (data: Survey[]) => void,
-    // startDate?: Date,
-    // endDate?: Date,
-  ): Promise<void> => {
+  fetchAndUpdateDashboard: async () // startDate?: Date,
+  // endDate?: Date,
+  : Promise<void> => {
     const { weekDates } = get();
     if (
       weekDates[0] === undefined ||
@@ -96,10 +74,9 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
     ) {
       return;
     }
-    const isoStartDate = weekDates[0] && weekDates[0].toISOString();
-    const isoEndDate =
-      weekDates[weekDates.length - 1] &&
-      weekDates[weekDates.length - 1].toISOString();
+
+    const isoStartDate = weekDates[0]?.toISOString();
+    const isoEndDate = weekDates[weekDates.length - 1]?.toISOString();
     console.log("startDate", weekDates[0]);
     try {
       const response = await fetch(
@@ -116,7 +93,14 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         const data = await response.json();
         if (data.length >= 0) {
           console.log("result", data);
-          setData(data);
+
+          set({
+            dashboard: fillMissingDates(
+              data,
+              weekDates[0],
+              weekDates[weekDates.length - 1],
+            ),
+          });
         }
       }
     } catch (error) {

@@ -13,21 +13,15 @@ export function Home() {
   const [boardStartMonth, setBoardStartMonth] = useState<number>(
     new Date().getMonth(),
   );
-  const { survey, weekDates, setWeekDates, dashboard } = useLocalStore();
-  const {
-    setDashboard,
-    fetchAndUpdateDashboard,
-    // dashboard,
-    // postSurveyData,
-    // weekDates,
-    // setWeekDates,
-  } = useLocalStore();
+  const { weekDates, setWeekDates, dashboard, fetchAndUpdateDashboard } =
+    useLocalStore();
+
   // (state) => ({
   //   dashboard: state.dashboard,
   //   setDashboard: state.setDashboard,
   //   fetchAndUpdateDashboard: state.fetchAndUpdateDashboard,
   // }),
-  console.log("survey", survey);
+
   const [boardEndMonth, setBoardEndMonth] = useState<number>();
   const [selectedDate, setSelectedDate] = useState(new Date());
   // const [weekDates, setWeekDates] = useState<Date[]>([]);
@@ -123,15 +117,9 @@ export function Home() {
 
   useEffect(() => {
     handleDateChange(selectedDate);
-  }, []);
+    fetchAndUpdateDashboard();
+  }, [selectedDate]);
 
-  useEffect(() => {
-    console.log(1);
-    fetchAndUpdateDashboard((data) =>
-      setDashboard(data, weekDates[0], weekDates[weekDates.length - 1]),
-    );
-    console.log(2);
-  }, [selectedDate, survey]);
   console.log("weekdate", weekDates[0]);
   console.log("dashboard", dashboard);
   return (
