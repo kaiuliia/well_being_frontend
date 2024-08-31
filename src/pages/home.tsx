@@ -13,14 +13,14 @@ export function Home() {
   const [boardStartMonth, setBoardStartMonth] = useState<number>(
     new Date().getMonth(),
   );
-  const { survey } = useLocalStore();
+  const { survey, weekDates, setWeekDates, dashboard } = useLocalStore();
   const {
     setDashboard,
     fetchAndUpdateDashboard,
-    dashboard,
-    postSurveyData,
-    weekDates,
-    setWeekDates,
+    // dashboard,
+    // postSurveyData,
+    // weekDates,
+    // setWeekDates,
   } = useLocalStore();
   // (state) => ({
   //   dashboard: state.dashboard,
@@ -127,11 +127,8 @@ export function Home() {
 
   useEffect(() => {
     console.log(1);
-    fetchAndUpdateDashboard(
-      (data) =>
-        setDashboard(data, weekDates[0], weekDates[weekDates.length - 1]),
-      weekDates[0],
-      weekDates[weekDates.length - 1],
+    fetchAndUpdateDashboard((data) =>
+      setDashboard(data, weekDates[0], weekDates[weekDates.length - 1]),
     );
     console.log(2);
   }, [selectedDate, survey]);

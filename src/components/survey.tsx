@@ -23,6 +23,8 @@ export function Survey(props: Props) {
     postSurveyData,
     fetchAndUpdateDashboard,
     setDashboard,
+    weekDates,
+    setWeekDates,
   } = useLocalStore();
 
   const [statusMessage, setStatusMessage] = useState("");
@@ -38,9 +40,17 @@ export function Survey(props: Props) {
     });
   };
 
-  const handleSubmit = async (e: MouseEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (): Promise<void> => {
+    // e.preventDefault();
+    console.log(3.9);
     await postSurveyData(survey);
+    console.log(3);
+
+    console.log(4);
+
+    await fetchAndUpdateDashboard((data) =>
+      setDashboard(data, weekDates[0], weekDates[weekDates.length - 1]),
+    );
     navigate("/user/home");
   };
   const color = (value: number) => {
@@ -93,7 +103,7 @@ export function Survey(props: Props) {
         </div>
       ))}
       <div className="flex flex-center">
-        <Button name={"Submit"} onClick={handleSubmit} />
+        <Button onClick={handleSubmit} />
       </div>
     </div>
   );
