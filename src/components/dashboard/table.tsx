@@ -64,7 +64,7 @@ export function DashboardTable({
   ];
 
   return (
-    <>
+    <div>
       <IonIcon
         onClick={() => handleChangeRangeWeek(weekDates, "minus_week")}
         className={"cursor-pointer"}
@@ -133,6 +133,6 @@ export function DashboardTable({
           </tr>
         </thead>
       </table>
-    </>
+    </div>
   );
 }

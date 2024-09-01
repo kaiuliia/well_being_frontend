@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { DashboardTable } from "./table";
 import { Advice } from "./advice";
+import { IonButton } from "@ionic/react";
 import { IonIcon } from "@ionic/react";
 import { logoIonic, chevronBack, chevronForward } from "ionicons/icons";
 interface DashboardProps {
@@ -68,6 +69,7 @@ export function Dashboard({
           boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
         }
       ></DashboardTable>
+      <IonButton color={"green"}>ADD TODAY</IonButton>
       <a
         className={"text-white cursor-pointer"}
         onClick={() => {
