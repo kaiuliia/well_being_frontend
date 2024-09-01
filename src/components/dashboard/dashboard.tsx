@@ -8,6 +8,7 @@ import { Advice } from "./advice";
 import { IonButton } from "@ionic/react";
 import { IonIcon } from "@ionic/react";
 import { logoIonic, chevronBack, chevronForward } from "ionicons/icons";
+import { Button } from "../layout/button";
 interface DashboardProps {
   wholeWeek: any;
   weekDates: any;
@@ -44,7 +45,7 @@ export function Dashboard({
         </div>
       </div>
 
-      <div className="text-3xl font-normal text-left text-main-light-green py-[1rem]">
+      <div className="text-3xl font-normal text-left text-white py-[1rem]">
         Welcome, {name}!
       </div>
       {/*<button*/}
@@ -69,16 +70,14 @@ export function Dashboard({
           boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
         }
       ></DashboardTable>
-      <IonButton color={"green"}>ADD TODAY</IonButton>
-      <a
-        className={"text-white cursor-pointer"}
+      <Button
+        name={"ADD TODAY"}
         onClick={() => {
           window.location.href = "/user/survey";
         }}
-      >
-        {" "}
-        ADD TODAY
-      </a>
+        className={"text-white cursor-pointer"}
+      />
+
       <Advice />
       <div>
         <a className={"text-white cursor-pointer"} onClick={logOut}>

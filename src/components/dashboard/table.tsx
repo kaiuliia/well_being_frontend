@@ -75,15 +75,15 @@ export function DashboardTable({
         onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
         className={"cursor-pointer"}
         icon={chevronForward}
-        style={{ color: "#ffffff" }}
+        style={{ color: "text-main-light-green" }}
       ></IonIcon>
-      <p className={"text-white"}>{boardYear}</p>
+      <p className={"text-main-light-green"}>{boardYear}</p>
       <div className="flex flex-row">
-        <p className={" text-white"}>
+        <p className={"text-main-light-green"}>
           {convertMonthToString(boardStartMonth).toLowerCase()}
         </p>
         {boardEndMonth !== undefined && (
-          <p className={" text-white"}>
+          <p className={" text-main-light-green"}>
             {convertMonthToString(boardEndMonth).toLowerCase()}{" "}
           </p>
         )}
@@ -109,14 +109,17 @@ export function DashboardTable({
 
               {daysOfWeek.map((day, idx) => (
                 <th key={day}>
-                  <div
-                    className={
-                      // dashboardData &&
-                      (dashboardData
-                        ? getColorFromNumber(dashboardData[idx][moodType.key])
-                        : "bg-white") + " rounded-md shadow-lg -white w-7 h-7"
-                    }
-                  ></div>
+                  <div className={"bg-white rounded-md shadow-lg"}>
+                    <div
+                      className={
+                        // dashboardData &&
+                        (dashboardData
+                          ? getColorFromNumber(dashboardData[idx][moodType.key])
+                          : "bg-white") +
+                        " rounded-md shadow-lg -white  w-7 h-7"
+                      }
+                    ></div>
+                  </div>
                 </th>
               ))}
             </tr>
