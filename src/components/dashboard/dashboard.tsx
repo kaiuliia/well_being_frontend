@@ -50,7 +50,7 @@ export function Dashboard({
           <p className="text-3xl font-normal text-left text-white pt-[1rem]">
             {`Welcome, ${capitalizeFirstLetter(name)}!`}
           </p>
-          <p className="text-sm font-normal text-left text-white pt-[1rem]">
+          <p className="text-md font-normal text-left text-white pt-[1rem]">
             How are you today?
           </p>
         </div>
