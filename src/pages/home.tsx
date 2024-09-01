@@ -115,22 +115,26 @@ export function Home() {
   }, [selectedDate]);
 
   return (
-    <div className={"bg-red-300"}>
-      <Dashboard
-        boardYear={boardYear}
-        boardStartMonth={boardStartMonth}
-        boardEndMonth={boardEndMonth}
-        handleChangeRangeWeek={handleChangeRangeWeek}
-        handleDateChange={handleDateChange}
-        selectedDate={selectedDate}
-        wholeWeek={dashboard.length === 7 && dashboard}
-        weekDates={weekDates}
-      />
-      <div className={"w-full bg-red-300"}>
+    <div className={"w-full h-[100%] relative justify-center"}>
+      <div>
+        <Dashboard
+          boardYear={boardYear}
+          boardStartMonth={boardStartMonth}
+          boardEndMonth={boardEndMonth}
+          handleChangeRangeWeek={handleChangeRangeWeek}
+          handleDateChange={handleDateChange}
+          selectedDate={selectedDate}
+          wholeWeek={dashboard.length === 7 && dashboard}
+          weekDates={weekDates}
+        />
+      </div>
+      <div
+        className={
+          "w-full absolute bottom-0 flex justify-center items-center h-10"
+        }
+      >
         <a
-          className={
-            "absolute bottom-5  flex flex-row justify-center self-center text-medium-gray text-sm cursor-pointer"
-          }
+          className={"  text-medium-gray text-sm cursor-pointer"}
           onClick={logOut}
         >
           log out

@@ -10,7 +10,7 @@ import { Home } from "./pages/home";
 
 function App() {
   return (
-    <div className={"container"}>
+    <div className={"container h-screen"}>
       <Routes>
         <Route path="/register" element={<Register title="register" />} />
         <Route path="/" element={<Login />} />
