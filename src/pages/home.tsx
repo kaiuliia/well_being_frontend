@@ -4,6 +4,7 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocalStore } from "../store/useStore";
+import { logOut } from "../components/dashboard/types";
 
 export function Home() {
   const [boardYear, setBoardYear] = useState<number | number[]>(
@@ -114,15 +115,27 @@ export function Home() {
   }, [selectedDate]);
 
   return (
-    <Dashboard
-      boardYear={boardYear}
-      boardStartMonth={boardStartMonth}
-      boardEndMonth={boardEndMonth}
-      handleChangeRangeWeek={handleChangeRangeWeek}
-      handleDateChange={handleDateChange}
-      selectedDate={selectedDate}
-      wholeWeek={dashboard.length === 7 && dashboard}
-      weekDates={weekDates}
-    />
+    <div className={"bg-red-300"}>
+      <Dashboard
+        boardYear={boardYear}
+        boardStartMonth={boardStartMonth}
+        boardEndMonth={boardEndMonth}
+        handleChangeRangeWeek={handleChangeRangeWeek}
+        handleDateChange={handleDateChange}
+        selectedDate={selectedDate}
+        wholeWeek={dashboard.length === 7 && dashboard}
+        weekDates={weekDates}
+      />
+      <div className={"w-full bg-red-300"}>
+        <a
+          className={
+            "absolute bottom-5  flex flex-row justify-center self-center text-medium-gray text-sm cursor-pointer"
+          }
+          onClick={logOut}
+        >
+          log out
+        </a>
+      </div>
+    </div>
   );
 }

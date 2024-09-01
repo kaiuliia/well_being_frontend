@@ -108,3 +108,8 @@ export const logOut = async () => {
     window.location.href = "/login";
   }
 };
+
+export const capitalizeFirstLetter = (name: string | null) => {
+  if (!name) return ""; // Handle empty string cases
+  return name.charAt(0).toUpperCase() + name.slice(1);
+};
