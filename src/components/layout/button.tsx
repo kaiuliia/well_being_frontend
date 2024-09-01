@@ -13,7 +13,7 @@ export const Button = (props: ButtonProps) => {
       onClick={props.onClick}
       onSubmit={props.onSubmit}
       type="submit"
-      className={`className bg-main-violet border-0 rounded-md text-white  w-full mt-3 mb-2 h-[3rem]`}
+      className={`className bg-main-button border-0 rounded-md text-white  w-full mt-3 mb-2 h-[3rem]`}
     >
       {props.name}
     </button>

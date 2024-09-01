@@ -41,11 +41,11 @@ export const getColorFromNumber = (point: string | null) => {
   }
 
   if (Number(point) < 30) {
-    return "bg-custom-red";
+    return "bg-scale-light";
   } else if (Number(point) >= 30 && Number(point) <= 70) {
-    return "bg-custom-orange";
+    return "bg-scale-medium";
   } else {
-    return "bg-custom-green";
+    return "bg-scale-dark";
   }
 };
 
