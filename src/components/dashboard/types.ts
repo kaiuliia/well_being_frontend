@@ -34,10 +34,10 @@ export function convertMonthToString(month: number): string {
 
 export const getColorFromNumber = (point: string | null) => {
   if (point === null) {
-    return "bg-black-300 border-[1px] border-black";
+    return "bg-black-700";
   }
   if (Number(point) === 0) {
-    return "bg-black-300 border-[1px] border-black";
+    return "bg-black-700 border-[1px] border-black";
   }
 
   if (Number(point) < 30) {

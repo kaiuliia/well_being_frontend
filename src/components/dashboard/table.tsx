@@ -64,36 +64,40 @@ export function DashboardTable({
   ];
 
   return (
-    <div>
-      <IonIcon
-        onClick={() => handleChangeRangeWeek(weekDates, "minus_week")}
-        className={"cursor-pointer"}
-        icon={chevronBack}
-        style={{ color: "#ffffff" }}
-      ></IonIcon>
-      <IonIcon
-        onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
-        className={"cursor-pointer"}
-        icon={chevronForward}
-        style={{ color: "text-main-light-green" }}
-      ></IonIcon>
-      <p className={"text-main-light-green"}>{boardYear}</p>
-      <div className="flex flex-row">
-        <p className={"text-main-light-green"}>
-          {convertMonthToString(boardStartMonth).toLowerCase()}
-        </p>
-        {boardEndMonth !== undefined && (
-          <p className={" text-main-light-green"}>
-            {convertMonthToString(boardEndMonth).toLowerCase()}{" "}
-          </p>
-        )}
+    <div className={"w-fit"}>
+      <div className="flex flex-row justify-between items-center">
+        <IonIcon
+          onClick={() => handleChangeRangeWeek(weekDates, "minus_week")}
+          className={"cursor-pointer f"}
+          icon={chevronBack}
+          style={{ color: "#94c55a" }}
+        ></IonIcon>{" "}
+        <div className={"flex flex-row"}>
+          <div className={"text-main-light-green font-medium"}>
+            {convertMonthToString(boardStartMonth).toLowerCase()}
+          </div>
+          {boardEndMonth !== undefined && (
+            <div className={" text-main-light-green font-medium"}>
+              {"-" + convertMonthToString(boardEndMonth).toLowerCase()}{" "}
+            </div>
+          )}
+        </div>
+        {/*<div className={"text-main-light-green"}>{boardYear}</div>*/}
+        <IonIcon
+          onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
+          className={"cursor-pointer"}
+          icon={chevronForward}
+          style={{ color: "#94c55a" }}
+        ></IonIcon>
       </div>
-      <table className="table-fixed text-white w-auto  pb-3 text-center border-separate border-spacing-0.5 leading-[0.5rem] ">
-        <thead className="p-0">
+      <br />
+      <table className="table-fixed text-white w-auto items-center pb-3 text-center border-separate leading-[0.5rem] ">
+        <thead className="p-0 ">
           <tr>
-            <th className="p-[0.5rem]"></th>
+            <th className=" "></th>
+
             {weekDates.map((element) => (
-              <th key={element} className=" text-xs font-medium">
+              <th key={element} className="text-xs font-medium">
                 {element.getDate()}
               </th>
             ))}
@@ -109,7 +113,7 @@ export function DashboardTable({
 
               {daysOfWeek.map((day, idx) => (
                 <th key={day}>
-                  <div className={"bg-white rounded-md shadow-lg"}>
+                  <div className={"bg-black-900 rounded-md shadow-lg"}>
                     <div
                       className={
                         // dashboardData &&

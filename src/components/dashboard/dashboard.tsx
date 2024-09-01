@@ -48,6 +48,7 @@ export function Dashboard({
       <div className="text-3xl font-normal text-left text-white py-[1rem]">
         Welcome, {name}!
       </div>
+      <br />
       {/*<button*/}
       {/*  onClick={() => handleChangeRangeWeek(weekDates, "minus_year")}*/}
       {/*  className={"pl-[10rem] font-extrabold text-2xl"}*/}
@@ -60,16 +61,18 @@ export function Dashboard({
       {/*>*/}
       {/*  + year*/}
       {/*</button>*/}
-      <DashboardTable
-        handleChangeRangeWeek={handleChangeRangeWeek}
-        dashboardData={wholeWeek}
-        weekDates={weekDates}
-        boardYear={boardYear}
-        boardStartMonth={boardStartMonth}
-        boardEndMonth={
-          boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
-        }
-      ></DashboardTable>
+      <div className={"before::bg-gray-700 "}>
+        <DashboardTable
+          handleChangeRangeWeek={handleChangeRangeWeek}
+          dashboardData={wholeWeek}
+          weekDates={weekDates}
+          boardYear={boardYear}
+          boardStartMonth={boardStartMonth}
+          boardEndMonth={
+            boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
+          }
+        ></DashboardTable>
+      </div>
       <Button
         name={"ADD TODAY"}
         onClick={() => {
