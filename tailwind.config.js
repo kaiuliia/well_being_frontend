@@ -21,6 +21,16 @@ module.exports = {
         "scale-light": "#a8c8cb",
         "custom-dark-green": "#526637",
       },
+      animation: {
+        float: "float 3s ease-in-out infinite",
+      },
+      keyframes: {
+        float: {
+          "0%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+          "100%": { transform: "translateY(0)" },
+        },
+      },
       //
       // background: {
       //   default: "#EFF1F4",

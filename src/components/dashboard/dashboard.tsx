@@ -67,7 +67,7 @@ export function Dashboard({
         {/*>*/}
         {/*  + year*/}
         {/*</button>*/}
-        <div className={"before::bg-gray-700 "}>
+        <div className={"before::bg-gray-700"}>
           <DashboardTable
             handleChangeRangeWeek={handleChangeRangeWeek}
             dashboardData={wholeWeek}
@@ -81,10 +81,10 @@ export function Dashboard({
         </div>
         <Button
           name={"ADD TODAY"}
+          className={"text-white cursor-pointer"}
           onClick={() => {
             window.location.href = "/user/survey";
           }}
-          className={"text-white cursor-pointer"}
         />
 
         <Advice />

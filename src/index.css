@@ -33,13 +33,7 @@ body {
 html {
     /*background-color: #232323;*/
     background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg.png');
-    /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg1.PNG');*/
-    /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg2.PNG');*/
-    /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg3.PNG');*/
-    /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg4.PNG');*/
-    /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg5.PNG');*/
-    /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg6.PNG');*/
-    /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg7.PNG');*/
+
     /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg8.PNG');*/
     background-size:cover;
     background-position: revert; /* Centers the background image */
@@ -47,7 +41,4 @@ html {
 
 }
 
-.ion-icon {
-    color:red;
-    --ionicon-stroke-width: 10px;
-}
+

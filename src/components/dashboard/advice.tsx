@@ -1,19 +1,7 @@
 import React, { useState, useRef } from "react";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "@material-tailwind/react";
-import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-} from "@ionic/react";
-import { IonButton, IonContent, IonPopover } from "@ionic/react";
+import { Popup } from "../layout/popup";
+import { Button } from "../layout/button";
+
 import { useLocalStore } from "../../store/useStore";
 
 export function Advice() {
@@ -27,26 +15,30 @@ export function Advice() {
       "Comfortable Bedding: Invest in a good mattress and pillows. Comfort is key to a restful night.",
   };
   // const popover = useRef<HTMLIonPopoverElement>(null);
-  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const openPopover = (e: any) => {
+  const open = (e: any) => {
     // popover.current!.event = e;
-    setPopoverOpen(true);
+    setIsOpen(!isOpen);
   };
   return (
     <>
-      <Button onClick={openPopover}>Click Me</Button>
-      {/*<IonPopover*/}
-      {/*  // ref={popover}*/}
-      {/*  isOpen={popoverOpen}*/}
-      {/*  onDidDismiss={() => setPopoverOpen(false)}*/}
-      {/*>*/}
-      {/*  <IonContent class="ion-padding absolute top-0">Hello World!</IonContent>*/}
-      {/*</IonPopover>*/}
-      <div className={"w-[100%] h-[100%] bg-black"}>
-        <div className=" w-full text-sm h-fit p-2 text-white absolute top-0 border-[1px] border-white-900">
-          {advice.sleep}
-        </div>
+      {/*<Button onClick={openPopover}>Click Me</Button>*/}
+      {isOpen && (
+        <>
+          <Popup
+            close={() => setIsOpen(false)}
+            description={advice.sleep}
+            title={"How to sleep better"}
+          />
+        </>
+      )}
+      <div className={"float-animation"} id={"float"}>
+        <Button
+          onClick={open}
+          name={"SLEEP"}
+          className={`text-white cursor-pointer`}
+        />
       </div>
     </>
   );

@@ -128,18 +128,14 @@ export function Home() {
           weekDates={weekDates}
         />
       </div>
-      <div
-        className={
-          "w-full absolute bottom-0 flex justify-center items-center h-10"
-        }
-      >
-        <a
-          className={"  text-medium-gray text-sm cursor-pointer"}
-          onClick={logOut}
-        >
-          log out
-        </a>
-      </div>
+      {/*<div*/}
+      {/*  className={*/}
+      {/*    "w-full absolute bottom-0 text-medium-gray text-sm cursor-pointer flex justify-center items-center h-10"*/}
+      {/*  }*/}
+      {/*  onClick={logOut}*/}
+      {/*>*/}
+      {/*  log out*/}
+      {/*</div>*/}
     </div>
   );
 }
