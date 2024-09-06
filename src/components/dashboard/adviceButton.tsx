@@ -6,21 +6,21 @@ import { useLocalStore } from "../../store/useStore";
 import { formatDate, Survey } from "./types";
 
 export function AdviceButton({ moodType }: { moodType: string }) {
-  const advice = {
+  const adviceArray = {
     sleep:
       "Go to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
       "Dark, Cool, and Quiet: Ensure your bedroom is dark (use blackout curtains if necessary), cool (ideally between 60-67°F or 15-19°C), and quiet (use earplugs or white noise machines if needed)." +
       "Comfortable Bedding: Invest in a good mattress and pillows. Comfort is key to a restful night.",
     activities:
-      "Go to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
+      "actGo to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
       "Dark, Cool, and Quiet: Ensure your bedroom is dark (use blackout curtains if necessary), cool (ideally between 60-67°F or 15-19°C), and quiet (use earplugs or white noise machines if needed)." +
       "Comfortable Bedding: Invest in a good mattress and pillows. Comfort is key to a restful night.",
     general_mood:
-      "Go to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
+      "genGo to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
       "Dark, Cool, and Quiet: Ensure your bedroom is dark (use blackout curtains if necessary), cool (ideally between 60-67°F or 15-19°C), and quiet (use earplugs or white noise machines if needed)." +
       "Comfortable Bedding: Invest in a good mattress and pillows. Comfort is key to a restful night.",
     yourself_time:
-      "Go to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
+      "youGo to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
       "Dark, Cool, and Quiet: Ensure your bedroom is dark (use blackout curtains if necessary), cool (ideally between 60-67°F or 15-19°C), and quiet (use earplugs or white noise machines if needed)." +
       "Comfortable Bedding: Invest in a good mattress and pillows. Comfort is key to a restful night.",
     calmness:
@@ -28,6 +28,24 @@ export function AdviceButton({ moodType }: { moodType: string }) {
       "Dark, Cool, and Quiet: Ensure your bedroom is dark (use blackout curtains if necessary), cool (ideally between 60-67°F or 15-19°C), and quiet (use earplugs or white noise machines if needed)." +
       "Comfortable Bedding: Invest in a good mattress and pillows. Comfort is key to a restful night.",
   };
+  let advice = "";
+  switch (moodType) {
+    case "sleep":
+      advice = adviceArray.sleep;
+      break;
+    case "activities":
+      advice = adviceArray.activities;
+      break;
+    case "general_mood":
+      advice = adviceArray.general_mood;
+      break;
+    case "yourself_time":
+      advice = adviceArray.yourself_time;
+      break;
+    case "calmness":
+      advice = adviceArray.calmness;
+      break;
+  }
   // const popover = useRef<HTMLIonPopoverElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,7 +60,7 @@ export function AdviceButton({ moodType }: { moodType: string }) {
         <>
           <Popup
             close={() => setIsOpen(false)}
-            description={moodType}
+            description={advice}
             title={"How to sleep better"}
           />
         </>

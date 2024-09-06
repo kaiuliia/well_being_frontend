@@ -17,7 +17,7 @@ module.exports = {
         "main-button": "#6f5abb",
         "main-secondary-gray": "#8B98AF",
         "scale-dark": "#0e3e44",
-        "scale-medium": "#2e717a",
+        "scale-medium": "#539fa9",
         "scale-light": "#a8c8cb",
         "custom-dark-green": "#526637",
       },
