@@ -86,7 +86,6 @@ export function AdviceButton({ moodType }: { moodType: string }) {
   };
   return (
     <>
-      {/*<Button onClick={openPopover}>Click Me</Button>*/}
       {isOpen && (
         <>
           <Popup

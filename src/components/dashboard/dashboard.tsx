@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import { capitalizeFirstLetter, formatDate, logOut } from "./types";
 import DatePicker from "react-datepicker";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { DashboardTable } from "./table";
 import { Advice } from "./advice";
-import { IonButton } from "@ionic/react";
-import { IonIcon } from "@ionic/react";
-import { logoIonic, chevronBack, chevronForward } from "ionicons/icons";
 import { Button } from "../layout/button";
 import { useLocalStore } from "../../store/useStore";
 interface DashboardProps {
@@ -32,12 +27,11 @@ export function Dashboard({
   handleChangeRangeWeek,
 }: DashboardProps) {
   const name = localStorage.getItem("name");
-  const { dashboard } = useLocalStore();
+  const { dashboard, adviceToday } = useLocalStore();
   const lastDashBoardData = [...dashboard]
     .reverse()
     .find((element) => element.id !== "");
 
-  const showAdvice = formatDate(new Date()) === lastDashBoardData?.date;
   return (
     <>
       <div className="">
@@ -57,7 +51,7 @@ export function Dashboard({
           <p className="text-3xl font-normal text-left text-white pt-[1rem]">
             {`Welcome, ${capitalizeFirstLetter(name)}!`}
           </p>
-          {showAdvice ? (
+          {adviceToday ? (
             <p className="text-md font-normal text-left text-white pt-[1.5rem]">
               It's time for self care. See advices
             </p>
@@ -67,7 +61,7 @@ export function Dashboard({
             </p>
           )}
         </div>
-        {showAdvice && <Advice />}
+        {adviceToday && <Advice />}
 
         <br />
         {/*<button*/}
@@ -96,7 +90,7 @@ export function Dashboard({
           ></DashboardTable>
         </div>
         <Button
-          name={showAdvice ? "EDIT TODAY" : "ADD TODAY"}
+          name={adviceToday ? "EDIT TODAY" : "ADD TODAY"}
           className={"text-white cursor-pointer"}
           onClick={() => {
             window.location.href = "/user/survey";

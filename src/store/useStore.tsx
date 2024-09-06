@@ -20,6 +20,8 @@ interface useLocalState {
   // endDate?: Date,
   => Promise<void>;
   postSurveyData: (setSurvey: Survey) => Promise<void>;
+  adviceToday: boolean;
+  setAdviceToday: (adviceToday: boolean) => void;
 }
 
 function fillMissingDates(
@@ -64,8 +66,11 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   weekDates: [],
   setWeekDates: (newWeekDates: Date[]) => set({ weekDates: newWeekDates }),
   dashboard: [],
+  adviceToday: false,
+  setAdviceToday: (newAdviceToday: boolean) =>
+    set({ adviceToday: newAdviceToday }),
   fetchAndUpdateDashboard: async (): Promise<void> => {
-    const { weekDates } = get();
+    const { weekDates, setAdviceToday } = get();
     if (
       weekDates[0] === undefined ||
       weekDates[weekDates.length - 1] === undefined
@@ -97,6 +102,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
             ),
           });
         }
+        setAdviceToday(true);
       }
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);

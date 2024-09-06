@@ -2,12 +2,13 @@ import React, { useState, useRef } from "react";
 
 import { AdviceButton } from "./adviceButton";
 import { useLocalStore } from "../../store/useStore";
+import { formatDate } from "./types";
 
 export function Advice() {
   const { dashboard } = useLocalStore();
-  const lastDashBoardData = [...dashboard]
-    .reverse()
-    .find((element) => element.id !== "");
+  const lastDashBoardData = dashboard.find(
+    (element) => element.date === formatDate(new Date()),
+  );
 
   const filteredData = {
     general_mood: lastDashBoardData?.general_mood,
@@ -25,6 +26,7 @@ export function Advice() {
     .filter(([key, value]) => Number(value) < 50) // Filter entries where value < 50
     .map(([key]) => key); // Extract keys
 
+  console.log(keysWithValuesLessThan50);
   return (
     <>
       <div className={"flex flex-row py-7 gap-5"}>
