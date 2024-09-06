@@ -1,12 +1,43 @@
 import React, { useState, useRef } from "react";
 import { Popup } from "../layout/popup";
 import { Button } from "../layout/button";
-
+import { AdviceButton } from "./adviceButton";
 import { useLocalStore } from "../../store/useStore";
+import { formatDate } from "./types";
 
 export function Advice() {
   const { dashboard } = useLocalStore();
-  console.log("dash", dashboard);
+  const lastDashBoardData = [...dashboard]
+    .reverse()
+    .find((element) => element.id !== "");
+
+  const parsedDate = lastDashBoardData?.date;
+  const today = formatDate(new Date());
+
+  if (lastDashBoardData && lastDashBoardData?.sleep < 50) {
+    console.log("The sleep value is less than 50.");
+  } else {
+    console.log("The sleep value is 50 or more.");
+  }
+  console.log("compare dates", parsedDate === today);
+
+  console.log("lastDashBoardData", lastDashBoardData);
+
+  const filteredData = {
+    general_mood: lastDashBoardData?.general_mood,
+    activities: lastDashBoardData?.activities,
+    sleep: lastDashBoardData?.sleep,
+    calmness: lastDashBoardData?.calmness,
+    yourself_time: lastDashBoardData?.yourself_time,
+  };
+
+  const map = new Map(Object.entries(filteredData));
+  const entriesArray = Array.from(map.entries());
+
+  // Find keys where values are less than 50
+  const keysWithValuesLessThan50 = entriesArray
+    .filter(([key, value]) => Number(value) < 50) // Filter entries where value < 50
+    .map(([key]) => key); // Extract keys
 
   const advice = {
     sleep:
@@ -23,23 +54,9 @@ export function Advice() {
   };
   return (
     <>
-      {/*<Button onClick={openPopover}>Click Me</Button>*/}
-      {isOpen && (
-        <>
-          <Popup
-            close={() => setIsOpen(false)}
-            description={advice.sleep}
-            title={"How to sleep better"}
-          />
-        </>
-      )}
-      <div className={"float-animation"} id={"float"}>
-        <Button
-          onClick={open}
-          name={"SLEEP"}
-          className={`text-white cursor-pointer`}
-        />
-      </div>
+      {keysWithValuesLessThan50.map((element) => (
+        <AdviceButton moodType={element} />
+      ))}
     </>
   );
 }

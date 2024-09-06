@@ -16,7 +16,7 @@ export const Popup = ({ description, title, close }: PopupProps) => {
     >
       <div className="bg-gray-700 w-[85%]  bg-opacity-80 p-3 rounded-lg">
         <div className={"text-white font-medium py-2 text-lg"}>{title}</div>
-        <div className="text-white h-[15rem] py-5 overflow-y-scroll text-sm">
+        <div className="text-white h-[80%] py-5 overflow-y-scroll text-sm">
           {description}
           {description}
         </div>
