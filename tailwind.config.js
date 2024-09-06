@@ -13,12 +13,12 @@ module.exports = {
       colors: {
         "medium-gray": "#989898",
         "back-gray": "#EFF1F4",
-        "main-light-green": "#94c55a",
+        "main-orange": "#d27600",
         "main-button": "#6f5abb",
         "main-secondary-gray": "#8B98AF",
-        "scale-dark": "#0e3e44",
-        "scale-medium": "#539fa9",
-        "scale-light": "#a8c8cb",
+        "scale-dark": "#178074",
+        "scale-medium": "#d27600",
+        "scale-light": "#7a002e",
         "custom-dark-green": "#526637",
       },
       animation: {

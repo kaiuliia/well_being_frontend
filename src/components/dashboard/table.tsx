@@ -70,14 +70,14 @@ export function DashboardTable({
           onClick={() => handleChangeRangeWeek(weekDates, "minus_week")}
           className={"cursor-pointer f"}
           icon={chevronBack}
-          style={{ color: "#94c55a" }}
+          style={{ color: "#d27600" }}
         ></IonIcon>{" "}
         <div className={"flex flex-row"}>
-          <div className={"text-main-light-green font-medium"}>
+          <div className={"text-main-orange font-medium"}>
             {convertMonthToString(boardStartMonth).toLowerCase()}
           </div>
           {boardEndMonth !== undefined && (
-            <div className={" text-main-light-green font-medium"}>
+            <div className={" text-main-orange font-medium"}>
               {"-" + convertMonthToString(boardEndMonth).toLowerCase()}{" "}
             </div>
           )}
@@ -87,7 +87,7 @@ export function DashboardTable({
           onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
           className={"cursor-pointer"}
           icon={chevronForward}
-          style={{ color: "#94c55a" }}
+          style={{ color: "#d27600" }}
         ></IonIcon>
       </div>
       <br />

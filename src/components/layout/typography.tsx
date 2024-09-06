@@ -5,7 +5,7 @@ export const Button = () => {
     <button
       type="submit"
       className={
-        "bg-main-light-green border-0 rounded-md  w-full mt-3 mb-2 h-[3rem]"
+        "bg-main-orange border-0 rounded-md  w-full mt-3 mb-2 h-[3rem]"
       }
     >
       SIGN IN

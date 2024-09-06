@@ -11,10 +11,10 @@ interface PopupProps {
 export const Popup = ({ description, title, close }: PopupProps) => {
   return (
     <div
-      id="overlay"
-      className="fixed flex flex-column inset-0  items-center h-[100%] justify-center bg-black bg-opacity-50 backdrop-blur-md"
+      // id="overlay"
+      className="fixed z-10 flex flex-column inset-0  items-center  justify-center bg-black bg-opacity-50 backdrop-blur-md"
     >
-      <div className="bg-gray-700 w-[85%]  bg-opacity-80 p-3 rounded-lg">
+      <div className="bg-gray-700 w-[85%] h-[90%] bg-opacity-80 p-3 rounded-lg">
         <div className={"text-white font-medium py-2 text-lg"}>{title}</div>
         <div className="text-white h-[80%] py-5 overflow-y-scroll text-sm">
           {description}

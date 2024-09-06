@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { capitalizeFirstLetter, logOut } from "./types";
+import { capitalizeFirstLetter, formatDate, logOut } from "./types";
 import DatePicker from "react-datepicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +9,7 @@ import { IonButton } from "@ionic/react";
 import { IonIcon } from "@ionic/react";
 import { logoIonic, chevronBack, chevronForward } from "ionicons/icons";
 import { Button } from "../layout/button";
+import { useLocalStore } from "../../store/useStore";
 interface DashboardProps {
   wholeWeek: any;
   weekDates: any;
@@ -31,6 +32,12 @@ export function Dashboard({
   handleChangeRangeWeek,
 }: DashboardProps) {
   const name = localStorage.getItem("name");
+  const { dashboard } = useLocalStore();
+  const lastDashBoardData = [...dashboard]
+    .reverse()
+    .find((element) => element.id !== "");
+
+  const showAdvice = formatDate(new Date()) === lastDashBoardData?.date;
   return (
     <>
       <div className="">
@@ -50,10 +57,18 @@ export function Dashboard({
           <p className="text-3xl font-normal text-left text-white pt-[1rem]">
             {`Welcome, ${capitalizeFirstLetter(name)}!`}
           </p>
-          <p className="text-md font-normal text-left text-white pt-[1rem]">
-            How are you today?
-          </p>
+          {showAdvice ? (
+            <p className="text-md font-normal text-left text-white pt-[1.5rem]">
+              It's time for self care. See advices
+            </p>
+          ) : (
+            <p className="text-md font-normal text-left text-white pt-[1rem]">
+              How are you today?
+            </p>
+          )}
         </div>
+        {showAdvice && <Advice />}
+
         <br />
         {/*<button*/}
         {/*  onClick={() => handleChangeRangeWeek(weekDates, "minus_year")}*/}
@@ -67,6 +82,7 @@ export function Dashboard({
         {/*>*/}
         {/*  + year*/}
         {/*</button>*/}
+
         <div className={"before::bg-gray-700"}>
           <DashboardTable
             handleChangeRangeWeek={handleChangeRangeWeek}
@@ -80,14 +96,12 @@ export function Dashboard({
           ></DashboardTable>
         </div>
         <Button
-          name={"ADD TODAY"}
+          name={showAdvice ? "EDIT TODAY" : "ADD TODAY"}
           className={"text-white cursor-pointer"}
           onClick={() => {
             window.location.href = "/user/survey";
           }}
         />
-
-        <Advice />
       </div>
     </>
   );
