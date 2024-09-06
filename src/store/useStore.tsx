@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Survey } from "../components/dashboard/types";
+import { formatDate, Survey } from "../components/dashboard/types";
 
 interface ApiSurvey {
   id: string;
@@ -19,9 +19,12 @@ interface useLocalState {
   fetchAndUpdateDashboard: () // startDate?: Date,
   // endDate?: Date,
   => Promise<void>;
+  getTodayAdvice: () => Promise<void>;
   postSurveyData: (setSurvey: Survey) => Promise<void>;
   adviceToday: boolean;
   setAdviceToday: (adviceToday: boolean) => void;
+  advicesArray: string[];
+  setAdvicesArray: (advicesArray: string[]) => void;
 }
 
 function fillMissingDates(
@@ -69,8 +72,11 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   adviceToday: false,
   setAdviceToday: (newAdviceToday: boolean) =>
     set({ adviceToday: newAdviceToday }),
+  advicesArray: [],
+  setAdvicesArray: (newAdvicesArray: string[]) =>
+    set({ advicesArray: newAdvicesArray }),
   fetchAndUpdateDashboard: async (): Promise<void> => {
-    const { weekDates, setAdviceToday } = get();
+    const { weekDates, setAdviceToday, setAdvicesArray, dashboard } = get();
     if (
       weekDates[0] === undefined ||
       weekDates[weekDates.length - 1] === undefined
@@ -102,7 +108,73 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
             ),
           });
         }
-        setAdviceToday(true);
+        // setAdviceToday(true);
+        // const lastDashBoardData = dashboard.find(
+        //   (element) => element.date === formatDate(new Date()),
+        // );
+        // const filteredData = {
+        //   general_mood: lastDashBoardData?.general_mood,
+        //   activities: lastDashBoardData?.activities,
+        //   sleep: lastDashBoardData?.sleep,
+        //   calmness: lastDashBoardData?.calmness,
+        //   yourself_time: lastDashBoardData?.yourself_time,
+        // };
+
+        // const map = new Map(Object.entries(filteredData));
+        // const entriesArray = Array.from(map.entries());
+
+        // Find keys where values are less than 50
+        // const keysWithValuesLessThan50 = entriesArray
+        //   .filter(([key, value]) => Number(value) < 50) // Filter entries where value < 50
+        //   .map(([key]) => key); // Extract keys
+        //
+        // setAdvicesArray([...keysWithValuesLessThan50]);
+      }
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+    }
+  },
+
+  getTodayAdvice: async () => {
+    const {
+      weekDates,
+      setAdviceToday,
+      setAdvicesArray,
+      adviceToday,
+      dashboard,
+    } = get();
+    try {
+      const response = await fetch(`http://localhost:9090/survey/today`, {
+        method: "GET",
+        credentials: "include",
+      });
+      if (response.status > 299) {
+        console.log("err");
+      } else {
+        const data = await response.json();
+        console.log("data", data);
+        if (data.length > 0) {
+          setAdviceToday(true);
+          const lastDashBoardData = dashboard.find(
+            (element) => element.date === formatDate(new Date()),
+          );
+          const filteredData = {
+            general_mood: lastDashBoardData?.general_mood,
+            activities: lastDashBoardData?.activities,
+            sleep: lastDashBoardData?.sleep,
+            calmness: lastDashBoardData?.calmness,
+            yourself_time: lastDashBoardData?.yourself_time,
+          };
+          const map = new Map(Object.entries(filteredData));
+          const entriesArray = Array.from(map.entries());
+
+          // Find keys where values are less than 50
+          const keysWithValuesLessThan50 = entriesArray
+            .filter(([key, value]) => Number(value) < 50) // Filter entries where value < 50
+            .map(([key]) => key); // Extract keys
+
+          setAdvicesArray([...keysWithValuesLessThan50]);
+        }
       }
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);

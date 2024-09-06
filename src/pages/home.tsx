@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocalStore } from "../store/useStore";
 import { logOut } from "../components/dashboard/types";
+import { Button } from "../components/layout/button";
 
 export function Home() {
   const [boardYear, setBoardYear] = useState<number | number[]>(
@@ -13,8 +14,13 @@ export function Home() {
   const [boardStartMonth, setBoardStartMonth] = useState<number>(
     new Date().getMonth(),
   );
-  const { weekDates, setWeekDates, dashboard, fetchAndUpdateDashboard } =
-    useLocalStore();
+  const {
+    weekDates,
+    setWeekDates,
+    dashboard,
+    fetchAndUpdateDashboard,
+    getTodayAdvice,
+  } = useLocalStore();
 
   const [boardEndMonth, setBoardEndMonth] = useState<number>();
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -128,6 +134,11 @@ export function Home() {
           weekDates={weekDates}
         />
       </div>
+      <Button
+        onClick={() => {
+          getTodayAdvice();
+        }}
+      />
       {/*<div*/}
       {/*  className={*/}
       {/*    "w-full absolute bottom-0 text-medium-gray text-sm cursor-pointer flex justify-center items-center h-10"*/}

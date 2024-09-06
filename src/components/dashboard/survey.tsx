@@ -16,7 +16,12 @@ interface Survey {
 }
 
 export function Survey(props: Props) {
-  const { postSurveyData, fetchAndUpdateDashboard } = useLocalStore();
+  const {
+    postSurveyData,
+    fetchAndUpdateDashboard,
+    getTodayAdvice,
+    adviceToday,
+  } = useLocalStore();
 
   const [survey, setSurvey] = useState<Survey>({
     general_mood: 0,
@@ -39,6 +44,10 @@ export function Survey(props: Props) {
     await postSurveyData(survey);
 
     await fetchAndUpdateDashboard();
+    // if (adviceToday) {
+    //   await getTodayAdvice();
+    // }
+
     navigate("/user/home");
   };
   const color = (value: number) => {

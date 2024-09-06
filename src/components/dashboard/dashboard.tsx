@@ -28,9 +28,6 @@ export function Dashboard({
 }: DashboardProps) {
   const name = localStorage.getItem("name");
   const { dashboard, adviceToday } = useLocalStore();
-  const lastDashBoardData = [...dashboard]
-    .reverse()
-    .find((element) => element.id !== "");
 
   return (
     <>
