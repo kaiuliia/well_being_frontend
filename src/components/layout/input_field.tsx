@@ -17,7 +17,7 @@ export const Input = (props: InputProps) => {
   return (
     <input
       className={
-        "border-main-secondary-gray border-[1px] h-[3.5rem] rounded-md w-full bg-back-gray "
+        "border-main-secondary-gray border-[1px] h-[3.5rem] pl-5 rounded-md w-full bg-back-gray "
       }
       onChange={props.onChange}
       required={props.required}

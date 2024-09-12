@@ -134,20 +134,17 @@ export function Home() {
           weekDates={weekDates}
         />
       </div>
-      <Button
-        onClick={() => {
-          getTodayAdvice();
-        }}
-        name={"get advice"}
-      />
-      {/*<div*/}
-      {/*  className={*/}
-      {/*    "w-full absolute bottom-0 text-medium-gray text-sm cursor-pointer flex justify-center items-center h-10"*/}
-      {/*  }*/}
-      {/*  onClick={logOut}*/}
-      {/*>*/}
-      {/*  log out*/}
-      {/*</div>*/}
+
+      <div
+        className={
+          "w-full absolute bottom-0 text-medium-gray text-sm cursor-pointer flex justify-center items-center h-10"
+        }
+        onClick={logOut}
+      >
+        log out
+      </div>
     </div>
   );
 }
+//todo: add forgot password
+//todo:

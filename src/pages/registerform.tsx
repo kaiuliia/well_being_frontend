@@ -37,7 +37,7 @@ export function Register(props: Props) {
     } else {
       setStatusMessage("Welcome!");
       localStorage.setItem("name", message.name);
-      window.location.href = "/user/dashboard";
+      window.location.href = "/user/home";
     }
   };
 
@@ -111,7 +111,7 @@ export function Register(props: Props) {
           placeholder={"password"}
         />
 
-        <Button name={"Sign up"} />
+        <Button name={"Sign up"} color={"bg-scale-dark"} />
       </form>
       <p
         className={"link cursor-pointer"}

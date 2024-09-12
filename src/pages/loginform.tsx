@@ -40,7 +40,7 @@ export function Login() {
       const message = await response.json();
       setStatusMessage(message.name);
       localStorage.setItem("name", message.name);
-      window.location.href = "/user/dashboard";
+      window.location.href = "/user/home";
     }
   };
 
@@ -68,9 +68,12 @@ export function Login() {
   };
 
   return (
-    <>
-      <p className={"title"}> Sign in</p>
-      <form onSubmit={handleSubmit}>
+    <div className={" flex flex-col gap-5 px-2 py-5"}>
+      <div className={"text-white text-[2rem]"}> Sign in</div>
+      <form
+        onSubmit={handleSubmit}
+        className={"flex items-start flex-col gap-5"}
+      >
         <Input
           onChange={handleEmailChange}
           value={email}
@@ -81,7 +84,6 @@ export function Login() {
           required={true}
           placeholder={"Email"}
         />
-
         <Input
           onChange={handlePasswordChange}
           value={password}
@@ -92,30 +94,20 @@ export function Login() {
           required={true}
           placeholder={"Password"}
         />
-        <div>
+        <div className={"flex flex-row gap-2 "}>
           <input
             type="checkbox"
             id="checkbox"
             defaultChecked={isChecked}
             onClick={handleCheck}
           />
-          <p className={"paragraph"}> Remember me</p>
+          <p className={"text-white"}> Remember me</p>
         </div>
-        {errorMessage && <p className={"paragraph"}> ERROR!!!!</p>}
-        <Button name={"Sign in"} />
+        {errorMessage && (
+          <p className={"text-main-orange"}> Password incorrect</p>
+        )}
+        <Button name={"Sign in"} className={"!my-0"} color={"bg-main-button"} />
       </form>
-      <div>
-        <p className={"link cursor-pointer"}>Forgot password?</p>
-        <p
-          className={"link cursor-pointer"}
-          onClick={() => {
-            window.location.href = "/register";
-          }}
-        >
-          {" "}
-          Don't have an account? Sign Up
-        </p>
-      </div>
-    </>
+    </div>
   );
 }
