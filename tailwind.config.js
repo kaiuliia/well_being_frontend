@@ -19,7 +19,7 @@ module.exports = {
         "scale-dark": "#178074",
         "scale-medium": "#d27600",
         "scale-light": "#7a002e",
-        "custom-dark-green": "#526637",
+        "custom-dark-green": "#135964",
       },
       animation: {
         float: "float 3s ease-in-out infinite",

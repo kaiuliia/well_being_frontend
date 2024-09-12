@@ -59,7 +59,7 @@ export function Dashboard({
           <p className="text-3xl font-normal text-left text-white pt-[1rem]">
             {`Welcome, ${capitalizeFirstLetter(name)}!`}
           </p>
-          {adviceToday ? (
+          {advicesArray?.length > 0 ? (
             <p className="text-md font-normal text-left text-white pt-[1.5rem]">
               It's time for self care. See advices
             </p>
@@ -69,7 +69,7 @@ export function Dashboard({
             </p>
           )}
         </div>
-        {adviceToday && <Advice />}
+        {advicesArray?.length > 0 && <Advice />}
 
         <br />
         {/*<button*/}
@@ -98,7 +98,8 @@ export function Dashboard({
           ></DashboardTable>
         </div>
         <Button
-          name={adviceToday ? "EDIT TODAY" : "ADD TODAY"}
+          color={"bg-main-button"}
+          name={advicesArray?.length > 0 ? "EDIT TODAY" : "ADD TODAY"}
           className={"text-white cursor-pointer"}
           onClick={() => {
             window.location.href = "/user/survey";

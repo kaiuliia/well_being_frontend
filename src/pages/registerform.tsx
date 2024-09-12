@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "../components/layout/button";
 import { Input } from "../components/layout/input_field";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   title: string;
@@ -23,6 +24,7 @@ export function Register(props: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
+  const navigate = useNavigate();
   const sendData = async (user: User) => {
     const response = await fetch("http://localhost:9090/register", {
       method: "POST",
@@ -71,12 +73,23 @@ export function Register(props: Props) {
   };
 
   return (
-    <div>
-      <p>{statusMessage}</p>
-
-      <p className={"title"}> Sign up</p>
-
-      <form onSubmit={handleSubmit}>
+    <div className={" flex flex-col gap-5 px-2 py-5"}>
+      <div className={"text-white text-[2rem]"}>Register</div>
+      <div className={"text-white"}>
+        Already have an account?{" "}
+        <a
+          className={"text-main-orange font-medium underline"}
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Log in
+        </a>{" "}
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className={"flex items-start flex-col gap-5"}
+      >
         <Input
           autoComplete="given-name"
           required
@@ -87,7 +100,6 @@ export function Register(props: Props) {
           value={name}
           placeholder={"name"}
         />
-
         <Input
           required
           id="email"
@@ -98,7 +110,6 @@ export function Register(props: Props) {
           value={email}
           placeholder={"email"}
         />
-
         <Input
           required
           name="password"
@@ -110,18 +121,12 @@ export function Register(props: Props) {
           value={password}
           placeholder={"password"}
         />
-
-        <Button name={"Sign up"} color={"bg-scale-dark"} />
+        <Button
+          name={"Register"}
+          className={"!my-0"}
+          color={"bg-main-orange"}
+        />
       </form>
-      <p
-        className={"link cursor-pointer"}
-        onClick={() => {
-          window.location.href = "/login";
-        }}
-      >
-        {" "}
-        Already have an account? Sign in
-      </p>
     </div>
   );
 }
