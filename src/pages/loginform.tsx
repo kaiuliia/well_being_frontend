@@ -1,10 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../hoc/useAuth";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Button } from "../components/layout/button";
 import { Input } from "../components/layout/input_field";
-
-interface Props {}
 
 interface User {
   email: string;
@@ -17,13 +15,8 @@ export function Login() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  // States for checking the errors
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
 
-  const location = useLocation();
-  const signin = useAuth();
-  const fromPage = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const sendData = async (user: User) => {
     const response = await fetch("http://localhost:9090/login", {
       method: "POST",
@@ -43,8 +36,6 @@ export function Login() {
       window.location.href = "/user/home";
     }
   };
-
-  const checkboxRef = useRef(null);
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -52,9 +43,9 @@ export function Login() {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const handleCheck = () => {
-    setIsChecked(!isChecked);
-  };
+  // const handleCheck = () => {
+  //   setIsChecked(!isChecked);
+  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -70,6 +61,16 @@ export function Login() {
   return (
     <div className={" flex flex-col gap-5 px-2 py-5"}>
       <div className={"text-white text-[2rem]"}> Sign in</div>
+      <div className={"text-main-orange"}>
+        Don't have an account?{" "}
+        <a
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          Register
+        </a>{" "}
+      </div>
       <form
         onSubmit={handleSubmit}
         className={"flex items-start flex-col gap-5"}
@@ -95,17 +96,18 @@ export function Login() {
           placeholder={"Password"}
         />
         <div className={"flex flex-row gap-2 "}>
-          <input
-            type="checkbox"
-            id="checkbox"
-            defaultChecked={isChecked}
-            onClick={handleCheck}
-          />
-          <p className={"text-white"}> Remember me</p>
+          {/*<input*/}
+          {/*  type="checkbox"*/}
+          {/*  id="checkbox"*/}
+          {/*  defaultChecked={isChecked}*/}
+          {/*  onClick={handleCheck}*/}
+          {/*/>*/}
+          {/*<p className={"text-white"}> Remember me</p>*/}
         </div>
         {errorMessage && (
           <p className={"text-main-orange"}> Password incorrect</p>
         )}
+
         <Button name={"Sign in"} className={"!my-0"} color={"bg-main-button"} />
       </form>
     </div>
