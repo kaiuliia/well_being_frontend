@@ -69,14 +69,14 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   weekDates: [],
   setWeekDates: (newWeekDates: Date[]) => set({ weekDates: newWeekDates }),
   dashboard: [],
-  adviceToday: false,
+  adviceToday: true,
   setAdviceToday: (newAdviceToday: boolean) =>
     set({ adviceToday: newAdviceToday }),
   advicesArray: [],
   setAdvicesArray: (newAdvicesArray: string[]) =>
     set({ advicesArray: newAdvicesArray }),
   fetchAndUpdateDashboard: async (): Promise<void> => {
-    const { weekDates, setAdviceToday, setAdvicesArray, dashboard } = get();
+    const { weekDates } = get();
     if (
       weekDates[0] === undefined ||
       weekDates[weekDates.length - 1] === undefined
@@ -108,27 +108,6 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
             ),
           });
         }
-        // setAdviceToday(true);
-        // const lastDashBoardData = dashboard.find(
-        //   (element) => element.date === formatDate(new Date()),
-        // );
-        // const filteredData = {
-        //   general_mood: lastDashBoardData?.general_mood,
-        //   activities: lastDashBoardData?.activities,
-        //   sleep: lastDashBoardData?.sleep,
-        //   calmness: lastDashBoardData?.calmness,
-        //   yourself_time: lastDashBoardData?.yourself_time,
-        // };
-
-        // const map = new Map(Object.entries(filteredData));
-        // const entriesArray = Array.from(map.entries());
-
-        // Find keys where values are less than 50
-        // const keysWithValuesLessThan50 = entriesArray
-        //   .filter(([key, value]) => Number(value) < 50) // Filter entries where value < 50
-        //   .map(([key]) => key); // Extract keys
-        //
-        // setAdvicesArray([...keysWithValuesLessThan50]);
       }
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
@@ -136,13 +115,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   },
 
   getTodayAdvice: async () => {
-    const {
-      weekDates,
-      setAdviceToday,
-      setAdvicesArray,
-      adviceToday,
-      dashboard,
-    } = get();
+    const { setAdviceToday, setAdvicesArray, adviceToday } = get();
     try {
       const response = await fetch(`http://localhost:9090/survey/today`, {
         method: "GET",
@@ -154,10 +127,12 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         const data = await response.json();
         console.log("data", data);
         if (data.length > 0) {
+          console.log("adviceToday", adviceToday);
           setAdviceToday(true);
-          const lastDashBoardData = dashboard.find(
-            (element) => element.date === formatDate(new Date()),
+          const lastDashBoardData = data.find(
+            (element: any) => element.date === formatDate(new Date()),
           );
+
           const filteredData = {
             general_mood: lastDashBoardData?.general_mood,
             activities: lastDashBoardData?.activities,
@@ -165,6 +140,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
             calmness: lastDashBoardData?.calmness,
             yourself_time: lastDashBoardData?.yourself_time,
           };
+
           const map = new Map(Object.entries(filteredData));
           const entriesArray = Array.from(map.entries());
 

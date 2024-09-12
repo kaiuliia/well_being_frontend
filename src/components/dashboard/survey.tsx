@@ -20,7 +20,7 @@ export function Survey(props: Props) {
     postSurveyData,
     fetchAndUpdateDashboard,
     getTodayAdvice,
-    adviceToday,
+    advicesArray,
   } = useLocalStore();
 
   const [survey, setSurvey] = useState<Survey>({
@@ -42,8 +42,12 @@ export function Survey(props: Props) {
 
   const handleSubmit = async (): Promise<void> => {
     await postSurveyData(survey);
-
+    console.log(1);
     await fetchAndUpdateDashboard();
+    console.log(2);
+    await getTodayAdvice();
+    console.log(3);
+
     // if (adviceToday) {
     //   await getTodayAdvice();
     // }

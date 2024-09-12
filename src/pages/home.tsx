@@ -138,6 +138,7 @@ export function Home() {
         onClick={() => {
           getTodayAdvice();
         }}
+        name={"get advice"}
       />
       {/*<div*/}
       {/*  className={*/}

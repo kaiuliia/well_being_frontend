@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { capitalizeFirstLetter, formatDate, logOut } from "./types";
 import DatePicker from "react-datepicker";
 import { DashboardTable } from "./table";
@@ -27,8 +27,19 @@ export function Dashboard({
   handleChangeRangeWeek,
 }: DashboardProps) {
   const name = localStorage.getItem("name");
-  const { dashboard, adviceToday } = useLocalStore();
+  const { dashboard, adviceToday, advicesArray, getTodayAdvice } =
+    useLocalStore();
+  // const [adv, setAdv] = useState([]);
 
+  useEffect(() => {
+    const fetchAdvice = async () => {
+      const response = await getTodayAdvice();
+    };
+
+    fetchAdvice();
+  }, []);
+
+  console.log("adv arra", advicesArray);
   return (
     <>
       <div className="">
