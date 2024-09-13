@@ -27,9 +27,7 @@ export function Dashboard({
   handleChangeRangeWeek,
 }: DashboardProps) {
   const name = localStorage.getItem("name");
-  const { dashboard, adviceToday, advicesArray, getTodayAdvice } =
-    useLocalStore();
-  // const [adv, setAdv] = useState([]);
+  const { advicesArray, getTodayAdvice } = useLocalStore();
 
   useEffect(() => {
     const fetchAdvice = async () => {
@@ -39,7 +37,6 @@ export function Dashboard({
     fetchAdvice();
   }, []);
 
-  console.log("adv arra", advicesArray);
   return (
     <>
       <div className="">

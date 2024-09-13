@@ -146,5 +146,5 @@ export function Home() {
     </div>
   );
 }
-//todo: add forgot password
-//todo:
+//todo: add forgot password, add check remember me in log form,
+//todo: adjust desktop vers,

@@ -60,7 +60,7 @@ export function Login() {
 
   return (
     <div className={" flex flex-col gap-5 px-2 py-5"}>
-      <div className={"text-white text-[2rem]"}> Sign in</div>
+      <div className={"text-white text-[2rem]"}>Sign in</div>
       <div className={"text-white"}>
         Don't have an account?{" "}
         <a
