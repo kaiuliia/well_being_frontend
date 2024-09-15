@@ -48,22 +48,18 @@ export function Survey(props: Props) {
     await getTodayAdvice();
     console.log(3);
 
-    // if (adviceToday) {
-    //   await getTodayAdvice();
-    // }
-
     navigate("/user/home");
   };
   const color = (value: number) => {
     if (value === 0) {
-      return "#EFF1F4";
+      return "#222a3d";
     }
     if (value < 30) {
-      return "#680010";
+      return "#7a002e";
     } else if (value >= 30 && value <= 70) {
-      return "#E98600";
+      return "#d27600";
     } else {
-      return "#05413E";
+      return "#08423c";
     }
   };
 
@@ -75,7 +71,7 @@ export function Survey(props: Props) {
 
           {sliderName.map((slider) => (
             // <div className={"w-100% mx-auto h-[5rem] bg-white"}>
-            <div className="w-100% px-[0.8rem] h-[4.5rem]  mt-[0.5rem] py-[0.5rem] rounded-lg  bg-gradient-to-tr from-indigo-900 to-cyan-800 align-start">
+            <div className="w-100% px-[0.8rem] h-[4.5rem]  mt-[0.5rem] py-[0.5rem] rounded-lg  bg-gradient-to-r from-teal-600  to-cyan-800 bg-opacity-90 align-start">
               <div className={"relative "}>
                 <Slider
                   size="small"
@@ -99,21 +95,21 @@ export function Survey(props: Props) {
                 />
                 <p
                   className={
-                    "text-[0.85rem] z-50 font-medium text-main-orange absolute top-0 left-1/2 transform -translate-x-1/2"
+                    "text-[0.85rem] z-50 font-medium text-white absolute top-0 left-1/2 transform -translate-x-1/2"
                   }
                 >
-                  {slider.surveyKey}
+                  {slider.name}
                 </p>
                 <p
                   className={
-                    "text-main-secondary-gray text-[0.625rem] absolute top-[2.5rem] left-0"
+                    "text-white text-[0.625rem] absolute top-[2.5rem] left-0"
                   }
                 >
                   {slider.min.toLowerCase()}
                 </p>
                 <p
                   className={
-                    "text-main-secondary-gray text-[0.625rem] absolute top-[2.5rem] right-0"
+                    "text-white text-[0.625rem] absolute top-[2.5rem] right-0"
                   }
                 >
                   {slider.max.toLowerCase()}

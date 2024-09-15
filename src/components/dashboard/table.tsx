@@ -42,7 +42,7 @@ export function DashboardTable({
   const nameOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
   const moodProps: MoodProps[] = [
     {
-      name: "General_mood",
+      name: "Mood",
       key: "general_mood",
     },
     {
