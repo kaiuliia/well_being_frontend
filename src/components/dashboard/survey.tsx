@@ -72,7 +72,7 @@ export function Survey(props: Props) {
           {sliderName.map((slider) => (
             // <div className={"w-100% mx-auto h-[5rem] bg-white"}>
             <div className="w-100% px-[0.8rem] h-[4.5rem]  mt-[0.5rem] py-[0.5rem] rounded-lg  bg-gradient-to-r from-teal-600  to-cyan-800 bg-opacity-90 align-start">
-              <div className={"relative "}>
+              <div className={"relative z-100 "}>
                 <Slider
                   size="small"
                   className={"absolute top-[0.625rem]"}
@@ -95,7 +95,7 @@ export function Survey(props: Props) {
                 />
                 <p
                   className={
-                    "text-[0.85rem] z-50 font-medium text-white absolute top-0 left-1/2 transform -translate-x-1/2"
+                    "text-[0.85rem] z-0 font-medium text-white absolute top-0 left-1/2 transform -translate-x-1/2"
                   }
                 >
                   {slider.name}

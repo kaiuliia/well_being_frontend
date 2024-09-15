@@ -27,7 +27,10 @@ export function Home() {
 
   const handleChangeRangeWeek = (weekDates: Date[], action: string) => {
     const startOfCurrentWeek = moment(selectedDate).clone().startOf("isoWeek");
-    const endOfCurrentWeek = moment(selectedDate).clone().endOf("isoWeek");
+    const endOfCurrentWeek = moment(selectedDate)
+      .clone()
+      .endOf("isoWeek")
+      .endOf("day");
     let startOfNewWeek;
     let endOfNewWeek;
     let startNextYear;
@@ -108,9 +111,11 @@ export function Home() {
     let weekStart = currentDate.clone().startOf("isoWeek");
     let days = [];
 
-    for (let i = 0; i <= 6; i++) {
+    for (let i = 0; i <= 5; i++) {
       days.push(moment(weekStart).add(i, "days").toDate());
     }
+
+    days.push(moment(weekStart).add(6, "days").endOf("day").toDate());
 
     setWeekDates(days);
   }

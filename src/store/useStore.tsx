@@ -83,10 +83,12 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
     ) {
       return;
     }
-
+    console.log("weekdates", weekDates);
     const isoStartDate = weekDates[0]?.toISOString();
-    const isoEndDate = weekDates[weekDates.length - 1]?.toISOString();
-
+    const isoEndDate = weekDates[weekDates.length - 1]
+      ?.toISOString()
+      .slice(0, 10);
+    console.log("startend", isoStartDate, isoEndDate);
     try {
       const response = await fetch(
         `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
@@ -169,7 +171,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
           sleep: survey.sleep,
           calmness: survey.calmness,
           yourself_time: survey.yourself_time,
-          date: new Date().toISOString(),
+          date: new Date().toISOString().slice(0, 10),
         }),
       });
 
