@@ -122,3 +122,14 @@ export const capitalizeFirstLetter = (name: string | null) => {
   if (!name) return ""; // Handle empty string cases
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
+
+export function getRandomElements(arr: any) {
+  const arrCopy = [...arr];
+
+  for (let i = arrCopy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arrCopy[i], arrCopy[j]] = [arrCopy[j], arrCopy[i]];
+  }
+
+  return arrCopy.slice(0, 3);
+}

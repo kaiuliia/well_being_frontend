@@ -9,76 +9,87 @@ import {
   bookOutline,
   radioButtonOffOutline,
 } from "ionicons/icons";
+import {
+  sleepTips,
+  activityTips,
+  moodBoostingTips,
+  meTimeTips,
+  calmnessTips,
+} from "./adviceLibrary";
+import { getRandomElements } from "./types";
 
 export function AdviceButton({ moodType }: { moodType: string }) {
   const adviceArray = {
     sleep: {
       adviceName: "sleep",
       iconName: bedOutline,
-      description:
-        "Go to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
-        "Dark, Cool, and Quiet: Ensure your bedroom is dark (use blackout curtains if necessary), cool (ideally between 60-67°F or 15-19°C), and quiet (use earplugs or white noise machines if needed)." +
-        "Comfortable Bedding: Invest in a good mattress and pillows. Comfort is key to a restful night.",
+      title: "Here are some tips on how to improve your sleep.",
+      description: getRandomElements(sleepTips),
     },
 
     activities: {
       adviceName: "activity",
       iconName: footstepsOutline,
-      description:
-        "Go to bed and wake up at the same time every day (even on weekends). This helps regulate your body's internal clock and improves the quality of your sleep." +
-        "Dark, Cool, and Quiet: Ensure your bedroom is dark (use blackout curtains if necessary), cool (ideally between 60-67°F or 15-19°C), and quiet (use earplugs or white noise machines if needed)." +
-        "Comfortable Bedding: Invest in a good mattress and pillows. Comfort is key to a restful nig",
+      title: "Here are some tips on how to be more active during the day.",
+      description: getRandomElements(activityTips),
     },
 
     general_mood: {
       adviceName: "mood",
       iconName: accessibilityOutline,
-      description: "mood desct",
+      title: "Here are some tips on how to make your mood better.",
+      description: getRandomElements(moodBoostingTips),
     },
 
     yourself_time: {
       adviceName: "selfcare",
       iconName: bookOutline,
-      description: "time for you",
+      title: "Here are some tips how get more time just for yourself.",
+      description: getRandomElements(meTimeTips),
     },
-
     calmness: {
       adviceName: "calmness",
       iconName: radioButtonOffOutline,
-      description: "calmness",
+      title: "Here are some tips how to more calm.",
+      description: getRandomElements(calmnessTips),
     },
   };
   let advice = "";
-  let adviceDescription = "";
+  let adviceDescription: { [key: string]: string }[] = [];
   let icon = "";
+  let adviceTitle = "";
   switch (moodType) {
     case "sleep":
       icon = adviceArray.sleep.iconName;
       advice = adviceArray.sleep.adviceName;
       adviceDescription = adviceArray.sleep.description;
+      adviceTitle = adviceArray.sleep.title;
       break;
     case "activities":
       icon = adviceArray.activities.iconName;
       advice = adviceArray.activities.adviceName;
       adviceDescription = adviceArray.activities.description;
+      adviceTitle = adviceArray.activities.title;
       break;
     case "general_mood":
       icon = adviceArray.general_mood.iconName;
       advice = adviceArray.general_mood.adviceName;
       adviceDescription = adviceArray.general_mood.description;
+      adviceTitle = adviceArray.general_mood.title;
       break;
     case "yourself_time":
       icon = adviceArray.yourself_time.iconName;
       advice = adviceArray.yourself_time.adviceName;
       adviceDescription = adviceArray.yourself_time.description;
+      adviceTitle = adviceArray.yourself_time.title;
       break;
     case "calmness":
       icon = adviceArray.calmness.iconName;
       advice = adviceArray.calmness.adviceName;
       adviceDescription = adviceArray.calmness.description;
+      adviceTitle = adviceArray.calmness.title;
       break;
   }
-  // const popover = useRef<HTMLIonPopoverElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const open = (e: any) => {
@@ -90,8 +101,8 @@ export function AdviceButton({ moodType }: { moodType: string }) {
         <>
           <Popup
             close={() => setIsOpen(false)}
-            description={advice}
-            title={"How to sleep better"}
+            description={adviceDescription}
+            title={adviceTitle}
           />
         </>
       )}

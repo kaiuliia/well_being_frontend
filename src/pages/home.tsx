@@ -153,3 +153,4 @@ export function Home() {
 }
 //todo: add forgot password, add check remember me in log form,
 //todo: adjust desktop vers,
+//todo add advices
