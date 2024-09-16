@@ -52,7 +52,7 @@ export function Dashboard({
           </div>
         </div>
 
-        <div className={"gap - 2"}>
+        <div className={"gap-2"}>
           <p className="text-3xl font-normal text-left text-white pt-[1rem]">
             {`Welcome, ${capitalizeFirstLetter(name)}!`}
           </p>
@@ -81,27 +81,29 @@ export function Dashboard({
         {/*>*/}
         {/*  + year*/}
         {/*</button>*/}
+        <div className={"lg:flex lg:flex-col lg:gap-5"}>
+          <div className={"before::bg-gray-700"}>
+            <DashboardTable
+              handleChangeRangeWeek={handleChangeRangeWeek}
+              dashboardData={wholeWeek}
+              weekDates={weekDates}
+              boardYear={boardYear}
+              boardStartMonth={boardStartMonth}
+              boardEndMonth={
+                boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
+              }
+            ></DashboardTable>
+          </div>
 
-        <div className={"before::bg-gray-700"}>
-          <DashboardTable
-            handleChangeRangeWeek={handleChangeRangeWeek}
-            dashboardData={wholeWeek}
-            weekDates={weekDates}
-            boardYear={boardYear}
-            boardStartMonth={boardStartMonth}
-            boardEndMonth={
-              boardStartMonth !== boardEndMonth ? boardEndMonth : undefined
-            }
-          ></DashboardTable>
+          <Button
+            color={"bg-main-button"}
+            name={advicesArray?.length > 0 ? "EDIT TODAY" : "ADD TODAY"}
+            className={"text-white cursor-pointer"}
+            onClick={() => {
+              window.location.href = "/user/survey";
+            }}
+          />
         </div>
-        <Button
-          color={"bg-main-button"}
-          name={advicesArray?.length > 0 ? "EDIT TODAY" : "ADD TODAY"}
-          className={"text-white cursor-pointer"}
-          onClick={() => {
-            window.location.href = "/user/survey";
-          }}
-        />
       </div>
     </>
   );

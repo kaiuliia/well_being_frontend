@@ -127,7 +127,7 @@ export function Home() {
 
   return (
     <div className={"w-full h-[100%] relative justify-center"}>
-      <div>
+      <div className={"flex justify-center"}>
         <Dashboard
           boardYear={boardYear}
           boardStartMonth={boardStartMonth}
