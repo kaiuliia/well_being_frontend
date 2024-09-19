@@ -12,6 +12,7 @@ function App() {
   return (
     <div className={"container h-screen"}>
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register title="register" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user/home" element={<Home />} />
