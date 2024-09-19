@@ -91,7 +91,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
     console.log("startend", isoStartDate, isoEndDate);
     try {
       const response = await fetch(
-        `http://localhost:9090/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+        `https://api.wellbeing.rusanova.eu/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
         {
           method: "GET",
           credentials: "include",
@@ -119,7 +119,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   getTodayAdvice: async () => {
     const { setAdviceToday, setAdvicesArray, adviceToday } = get();
     try {
-      const response = await fetch(`http://localhost:9090/survey/today`, {
+      const response = await fetch(`https://api.wellbeing.rusanova.eu/survey/today`, {
         method: "GET",
         credentials: "include",
       });
@@ -161,7 +161,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
 
   postSurveyData: async (survey: Survey) => {
     try {
-      const response = await fetch("http://localhost:9090/survey", {
+      const response = await fetch("https://api.wellbeing.rusanova.eu/survey", {
         method: "POST",
         credentials: "include",
         headers: { "Content-type": "application/json" },
