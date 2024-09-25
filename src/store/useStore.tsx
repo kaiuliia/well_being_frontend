@@ -91,7 +91,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
     console.log("startend", isoStartDate, isoEndDate);
     try {
       const response = await fetch(
-        `https://api.wellbeing.rusanova.eu/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+        `https://well-being-backend-563087003197.europe-west1.run.app/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
         {
           method: "GET",
           credentials: "include",
@@ -119,10 +119,13 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   getTodayAdvice: async () => {
     const { setAdviceToday, setAdvicesArray, adviceToday } = get();
     try {
-      const response = await fetch(`https://api.wellbeing.rusanova.eu/survey/today`, {
-        method: "GET",
-        credentials: "include",
-      });
+      const response = await fetch(
+        `https://well-being-backend-563087003197.europe-west1.run.app/survey/today`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
       if (response.status > 299) {
         console.log("err");
       } else {
@@ -161,19 +164,22 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
 
   postSurveyData: async (survey: Survey) => {
     try {
-      const response = await fetch("https://api.wellbeing.rusanova.eu/survey", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({
-          general_mood: survey.general_mood,
-          activities: survey.activities,
-          sleep: survey.sleep,
-          calmness: survey.calmness,
-          yourself_time: survey.yourself_time,
-          date: new Date().toISOString().slice(0, 10),
-        }),
-      });
+      const response = await fetch(
+        "https://well-being-backend-563087003197.europe-west1.run.app/survey",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            general_mood: survey.general_mood,
+            activities: survey.activities,
+            sleep: survey.sleep,
+            calmness: survey.calmness,
+            yourself_time: survey.yourself_time,
+            date: new Date().toISOString().slice(0, 10),
+          }),
+        },
+      );
 
       if (response.status > 299) {
         const error = await response.json();

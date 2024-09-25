@@ -18,12 +18,15 @@ export function Login() {
 
   const navigate = useNavigate();
   const sendData = async (user: User) => {
-    const response = await fetch("https://api.wellbeing.rusanova.eu/login", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(user),
-    });
+    const response = await fetch(
+      "https://well-being-backend-563087003197.europe-west1.run.app/login",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(user),
+      },
+    );
     if (response.status > 299) {
       const error = await response.json();
       setErrorMessage(true);

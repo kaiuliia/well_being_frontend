@@ -26,12 +26,15 @@ export function Register(props: Props) {
 
   const navigate = useNavigate();
   const sendData = async (user: User) => {
-    const response = await fetch("https://api.wellbeing.rusanova.eu/register", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(user),
-    });
+    const response = await fetch(
+      "https://well-being-backend-563087003197.europe-west1.run.app/register",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(user),
+      },
+    );
     const message = await response.json();
 
     if (response.status > 299) {
