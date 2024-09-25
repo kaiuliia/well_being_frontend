@@ -26,7 +26,7 @@ export function Register(props: Props) {
 
   const navigate = useNavigate();
   const sendData = async (user: User) => {
-    const response = await fetch("http://localhost:9090/register", {
+    const response = await fetch("https://api.wellbeing.rusanova.eu/register", {
       method: "POST",
       credentials: "include",
       headers: { "Content-type": "application/json" },

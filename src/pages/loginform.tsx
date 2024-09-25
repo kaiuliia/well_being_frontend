@@ -18,7 +18,7 @@ export function Login() {
 
   const navigate = useNavigate();
   const sendData = async (user: User) => {
-    const response = await fetch("http://localhost:9090/login", {
+    const response = await fetch("https://api.wellbeing.rusanova.eu/login", {
       method: "POST",
       credentials: "include",
       headers: { "Content-type": "application/json" },

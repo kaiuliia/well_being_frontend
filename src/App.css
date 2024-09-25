@@ -39,6 +39,6 @@
 
 @font-face {
   font-family: "RedHat";   /*Can be any text*/
-  src: url("/Users/iuliia/JS_Projects/well-being-frontend/src/assets/fonts/RedHatDisplay-VariableFont_wght.ttf") format("ttf");
+  src: url("./assets/fonts/RedHatDisplay-VariableFont_wght.ttf") format("ttf");
 }
 

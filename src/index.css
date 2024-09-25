@@ -32,9 +32,7 @@ body {
 }
 html {
     /*background-color: #232323;*/
-    background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg.png');
-
-    /*background-image: url('/Users/iuliia/JS_Projects/well-being-frontend/src/assets/bg8.PNG');*/
+    background-image: url('./assets/bg.png');
     background-size:cover;
     background-position: revert; /* Centers the background image */
     background-repeat: repeat; /* Ensures the image doesn't repeat */
