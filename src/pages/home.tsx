@@ -5,7 +5,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocalStore } from "../store/useStore";
 import { logOut } from "../components/dashboard/types";
-import { Button } from "../components/layout/button";
 
 export function Home() {
   const [boardYear, setBoardYear] = useState<number | number[]>(
@@ -14,13 +13,8 @@ export function Home() {
   const [boardStartMonth, setBoardStartMonth] = useState<number>(
     new Date().getMonth(),
   );
-  const {
-    weekDates,
-    setWeekDates,
-    dashboard,
-    fetchAndUpdateDashboard,
-    getTodayAdvice,
-  } = useLocalStore();
+  const { weekDates, setWeekDates, dashboard, fetchAndUpdateDashboard } =
+    useLocalStore();
 
   const [boardEndMonth, setBoardEndMonth] = useState<number>();
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -34,7 +28,7 @@ export function Home() {
     let startOfNewWeek;
     let endOfNewWeek;
     let startNextYear;
-    let newWeekDates: Date[] = [];
+    const newWeekDates: Date[] = [];
     switch (action) {
       case "minus_week":
         startOfNewWeek = startOfCurrentWeek.clone().subtract(1, "week");
@@ -106,10 +100,10 @@ export function Home() {
 
   function handleDateChange(date: Date) {
     setSelectedDate(date);
-    let currentDate = moment(date);
+    const currentDate = moment(date);
 
-    let weekStart = currentDate.clone().startOf("isoWeek");
-    let days = [];
+    const weekStart = currentDate.clone().startOf("isoWeek");
+    const days = [];
 
     for (let i = 0; i <= 5; i++) {
       days.push(moment(weekStart).add(i, "days").toDate());
@@ -142,7 +136,7 @@ export function Home() {
 
       <div
         className={
-          "w-full absolute bottom-0 text-medium-gray text-sm cursor-pointer flex justify-center items-center h-10"
+          "w-full bottom-0 text-medium-gray text-sm cursor-pointer flex justify-center items-center pt-5 h-10"
         }
         onClick={logOut}
       >
@@ -152,5 +146,4 @@ export function Home() {
   );
 }
 //todo: add forgot password, add check remember me in log form,
-//todo: adjust desktop vers,
 //todo add advices

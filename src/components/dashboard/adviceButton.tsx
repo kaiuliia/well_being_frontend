@@ -92,7 +92,7 @@ export function AdviceButton({ moodType }: { moodType: string }) {
   }
   const [isOpen, setIsOpen] = useState(false);
 
-  const open = (e: any) => {
+  const open = () => {
     setIsOpen(!isOpen);
   };
   return (
@@ -116,7 +116,6 @@ export function AdviceButton({ moodType }: { moodType: string }) {
               "cursor-pointer text-lg text-white absolute top-[16px] left-[16px]"
             }
             icon={icon}
-            // style={{ color: "#94c55a" }}
           ></IonIcon>
           <p className="text-[10px] top-[55px] absolute  text-white">
             {" "}

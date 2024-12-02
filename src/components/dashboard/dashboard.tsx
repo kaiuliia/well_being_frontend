@@ -7,9 +7,8 @@ import { Button } from "../layout/button";
 import { useLocalStore } from "../../store/useStore";
 interface DashboardProps {
   wholeWeek: any;
-  weekDates: any;
+  weekDates: Date[];
   boardYear: number | number[];
-
   boardStartMonth: number;
   boardEndMonth?: number;
   handleDateChange: (date: Date) => void;

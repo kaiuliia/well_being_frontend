@@ -1,8 +1,7 @@
 import React, { HTMLInputTypeAttribute } from "react";
 
 interface InputProps {
-  onChange?: any;
-
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   name?: string;
   label?: string;
@@ -17,7 +16,7 @@ export const Input = (props: InputProps) => {
   return (
     <input
       className={
-        "border-main-secondary-gray border-[1px] h-[3.5rem] pl-5 rounded-md w-full bg-back-gray "
+        "border-main-secondary-gray border-[1px] h-[3.5rem] pl-5 rounded-md w-full  bg-back-gray "
       }
       onChange={props.onChange}
       required={props.required}

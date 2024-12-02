@@ -42,11 +42,8 @@ export function Survey(props: Props) {
 
   const handleSubmit = async (): Promise<void> => {
     await postSurveyData(survey);
-    console.log(1);
     await fetchAndUpdateDashboard();
-    console.log(2);
     await getTodayAdvice();
-    console.log(3);
 
     navigate("/user/home");
   };
@@ -64,14 +61,17 @@ export function Survey(props: Props) {
   };
 
   return (
-    <div className="fixed z-10 flex flex-column inset-0  items-center  justify-center bg-black bg-opacity-50 backdrop-blur-md">
-      <div className="bg-gray-700 w-[85%] h-[90%] bg-opacity-80 p-3 rounded-lg">
+    <div className="fixed z-10  flex flex-column inset-0  items-center  justify-center bg-black bg-opacity-50 backdrop-blur-md">
+      <div className="bg-gray-700 lg:w-1/3 w-[85%] h-[90%] bg-opacity-80 p-3 rounded-lg">
         <div className="text-white h-[100%] py-5">
           <div className={"text-white text-xl"}> How are you today?</div>
 
-          {sliderName.map((slider) => (
+          {sliderName.map((slider, index) => (
             // <div className={"w-100% mx-auto h-[5rem] bg-white"}>
-            <div className="w-100% px-[0.8rem] h-[4.5rem]  mt-[0.5rem] py-[0.5rem] rounded-lg  bg-gradient-to-r from-teal-600  to-cyan-800 bg-opacity-90 align-start">
+            <div
+              key={index}
+              className="w-100% px-[0.8rem] h-[4.5rem]  mt-[0.5rem] py-[0.5rem] rounded-lg  bg-gradient-to-r from-teal-600  to-cyan-800 bg-opacity-90 align-start"
+            >
               <div className={"relative z-100 "}>
                 <Slider
                   size="small"

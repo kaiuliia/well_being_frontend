@@ -88,7 +88,7 @@ export function Register(props: Props) {
       </div>
       <form
         onSubmit={handleSubmit}
-        className={"flex items-start flex-col gap-5"}
+        className={"flex items-start lg:w-1/2 flex-col gap-5"}
       >
         <Input
           autoComplete="given-name"

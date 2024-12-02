@@ -54,7 +54,6 @@ export function Login() {
       setPassword("");
     } catch (error) {
       setPassword("");
-      console.error("Error:", error);
     }
   };
 
@@ -74,7 +73,7 @@ export function Login() {
       </div>
       <form
         onSubmit={handleSubmit}
-        className={"flex items-start flex-col gap-5"}
+        className={"flex items-start lg:w-1/2 flex-col gap-5"}
       >
         <Input
           onChange={handleEmailChange}

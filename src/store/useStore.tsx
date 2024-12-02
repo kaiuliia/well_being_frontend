@@ -16,9 +16,7 @@ interface useLocalState {
   weekDates: Date[];
   setWeekDates: (weekDates: Date[]) => void;
   dashboard: ApiSurvey[];
-  fetchAndUpdateDashboard: () // startDate?: Date,
-  // endDate?: Date,
-  => Promise<void>;
+  fetchAndUpdateDashboard: () => Promise<void>;
   getTodayAdvice: () => Promise<void>;
   postSurveyData: (setSurvey: Survey) => Promise<void>;
   adviceToday: boolean;
@@ -35,7 +33,7 @@ function fillMissingDates(
   startDate.setHours(0, 0, 0, 0);
   endDate.setHours(0, 0, 0, 0);
 
-  let currentDate = new Date(startDate);
+  const currentDate = new Date(startDate);
   const filledData: ApiSurvey[] = [];
 
   while (currentDate <= endDate) {
@@ -83,12 +81,12 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
     ) {
       return;
     }
-    console.log("weekdates", weekDates);
+
     const isoStartDate = weekDates[0]?.toISOString();
     const isoEndDate = weekDates[weekDates.length - 1]
       ?.toISOString()
       .slice(0, 10);
-    console.log("startend", isoStartDate, isoEndDate);
+
     try {
       const response = await fetch(
         `https://api.wellbeing.rusanova.eu/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
@@ -98,7 +96,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         },
       );
       if (response.status > 299) {
-        console.log("err");
+        console.log("fetch error");
       } else {
         const data = await response.json();
         if (data.length >= 0) {
@@ -112,27 +110,29 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         }
       }
     } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
+      console.log(error);
     }
   },
 
   getTodayAdvice: async () => {
-    const { setAdviceToday, setAdvicesArray, adviceToday } = get();
+    const { setAdviceToday, setAdvicesArray } = get();
     try {
-      const response = await fetch(`https://api.wellbeing.rusanova.eu/survey/today`, {
-        method: "GET",
-        credentials: "include",
-      });
+      const response = await fetch(
+        `https://api.wellbeing.rusanova.eu/survey/today`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
       if (response.status > 299) {
-        console.log("err");
+        console.log("fetch error");
       } else {
         const data = await response.json();
-        console.log("data", data);
+
         if (data.length > 0) {
-          console.log("adviceToday", adviceToday);
           setAdviceToday(true);
           const lastDashBoardData = data.find(
-            (element: any) => element.date === formatDate(new Date()),
+            (element: ApiSurvey) => element.date === formatDate(new Date()),
           );
 
           const filteredData = {
@@ -146,10 +146,9 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
           const map = new Map(Object.entries(filteredData));
           const entriesArray = Array.from(map.entries());
 
-          // Find keys where values are less than 50
           const keysWithValuesLessThan50 = entriesArray
-            .filter(([key, value]) => Number(value) < 50) // Filter entries where value < 50
-            .map(([key]) => key); // Extract keys
+            .filter(([value]) => Number(value) < 50)
+            .map(([key]) => key);
 
           setAdvicesArray([...keysWithValuesLessThan50]);
         }
@@ -179,8 +178,10 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         const error = await response.json();
         console.log(error);
       } else {
-        const message = await response.json();
+        await response.json();
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   },
 }));
