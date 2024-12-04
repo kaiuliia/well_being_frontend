@@ -1,24 +1,17 @@
-import React, { FormEventHandler } from "react";
+import React from "react";
 interface ButtonProps {
-  onSubmit?: any;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   name?: string;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   variant?: string;
   color?: string;
 }
-export const Button = ({
-  onSubmit,
-  name,
-  className,
-  onClick,
-  variant,
-  color,
-}: ButtonProps) => {
+export const Button = ({ onSubmit, name, onClick, color }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
-      onSubmit={onSubmit}
+      onSubmit={() => onSubmit}
       type="submit"
       className={`className ${color} border-0 rounded-md text-white  w-full  h-[3rem]`}
     >

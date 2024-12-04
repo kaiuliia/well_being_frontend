@@ -3,18 +3,13 @@ import { Button } from "../components/layout/button";
 import { Input } from "../components/layout/input_field";
 import { useNavigate } from "react-router-dom";
 
-interface Props {
-  title: string;
-  // theme: Theme;
-}
-
 interface User {
   name: string;
   email: string;
   password: string;
 }
 
-export function Register(props: Props) {
+export function Register({ title }: { title: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

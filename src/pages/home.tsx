@@ -122,16 +122,18 @@ export function Home() {
   return (
     <div className={"w-full h-[100%] relative justify-center"}>
       <div className={"flex justify-center"}>
-        <Dashboard
-          boardYear={boardYear}
-          boardStartMonth={boardStartMonth}
-          boardEndMonth={boardEndMonth}
-          handleChangeRangeWeek={handleChangeRangeWeek}
-          handleDateChange={handleDateChange}
-          selectedDate={selectedDate}
-          wholeWeek={dashboard.length === 7 && dashboard}
-          weekDates={weekDates}
-        />
+        {dashboard.length === 7 && dashboard && (
+          <Dashboard
+            boardYear={boardYear}
+            boardStartMonth={boardStartMonth}
+            boardEndMonth={boardEndMonth}
+            handleChangeRangeWeek={handleChangeRangeWeek}
+            handleDateChange={handleDateChange}
+            selectedDate={selectedDate}
+            wholeWeek={dashboard}
+            weekDates={weekDates}
+          />
+        )}
       </div>
 
       <div
@@ -146,4 +148,3 @@ export function Home() {
   );
 }
 //todo: add forgot password, add check remember me in log form,
-//todo add advices

@@ -14,7 +14,6 @@ body {
 
 .container {
     width:auto;
-    /*height:auto;*/
     overscroll-behavior-y: none;
     padding:2rem 1rem 2rem 1rem
 }
@@ -31,7 +30,6 @@ body {
     font-size: 60px;
 }
 html {
-    /*background-color: #232323;*/
     background-image: url('./assets/bg.png');
     background-size:cover;
     background-position: revert; /* Centers the background image */

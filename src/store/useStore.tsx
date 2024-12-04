@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { formatDate, Survey } from "../components/dashboard/types";
 
-interface ApiSurvey {
+export interface ApiSurvey {
   id: string;
   user_id: string;
   date: string;
@@ -12,7 +12,7 @@ interface ApiSurvey {
   yourself_time: number;
 }
 
-interface useLocalState {
+export interface useLocalState {
   weekDates: Date[];
   setWeekDates: (weekDates: Date[]) => void;
   dashboard: ApiSurvey[];

@@ -43,9 +43,6 @@ export function Login() {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  // const handleCheck = () => {
-  //   setIsChecked(!isChecked);
-  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -95,15 +92,7 @@ export function Login() {
           required={true}
           placeholder={"Password"}
         />
-        <div className={"flex flex-row gap-2 "}>
-          {/*<input*/}
-          {/*  type="checkbox"*/}
-          {/*  id="checkbox"*/}
-          {/*  defaultChecked={isChecked}*/}
-          {/*  onClick={handleCheck}*/}
-          {/*/>*/}
-          {/*<p className={"text-white"}> Remember me</p>*/}
-        </div>
+        <div className={"flex flex-row gap-2 "}></div>
         {errorMessage && (
           <p className={"text-main-orange"}> Password incorrect</p>
         )}

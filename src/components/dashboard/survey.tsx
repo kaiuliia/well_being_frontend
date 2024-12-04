@@ -6,7 +6,6 @@ import { Slider } from "@mui/material";
 
 import { sliderName } from "./types";
 import { useNavigate } from "react-router-dom";
-interface Props {}
 interface Survey {
   general_mood: number;
   activities: number;
@@ -15,13 +14,9 @@ interface Survey {
   yourself_time: number;
 }
 
-export function Survey(props: Props) {
-  const {
-    postSurveyData,
-    fetchAndUpdateDashboard,
-    getTodayAdvice,
-    advicesArray,
-  } = useLocalStore();
+export function Survey() {
+  const { postSurveyData, fetchAndUpdateDashboard, getTodayAdvice } =
+    useLocalStore();
 
   const [survey, setSurvey] = useState<Survey>({
     general_mood: 0,
@@ -67,7 +62,6 @@ export function Survey(props: Props) {
           <div className={"text-white text-xl"}> How are you today?</div>
 
           {sliderName.map((slider, index) => (
-            // <div className={"w-100% mx-auto h-[5rem] bg-white"}>
             <div
               key={index}
               className="w-100% px-[0.8rem] h-[4.5rem]  mt-[0.5rem] py-[0.5rem] rounded-lg  bg-gradient-to-r from-teal-600  to-cyan-800 bg-opacity-90 align-start"
@@ -115,8 +109,7 @@ export function Survey(props: Props) {
                   {slider.max.toLowerCase()}
                 </p>
               </div>
-              {/*</div>*/}
-            </div> //end card
+            </div>
           ))}
           <div className={"pt-5"}>
             <Button
@@ -129,44 +122,5 @@ export function Survey(props: Props) {
         </div>
       </div>
     </div>
-    // <div className="w-100% py-[2rem] px-[1rem] mx-auto bg-back-gray">
-    //   <p className={"title"}> How are you today?</p>
-    //
-    //   {sliderName.map((slider) => (
-    //     <div className={"w-100% mx-auto"}>
-    //       <div className="w-100% h-auto flex flex-column p-[0.8rem] align-start bg-white">
-    //         <p className={"paragraph"}>{slider.surveyKey}</p>
-    //
-    //         <Slider
-    //           sx={{
-    //             width: "100%",
-    //             margin: "0rem",
-    //             padding: "0rem",
-    //             color: color(survey[slider.surveyKey]),
-    //             "& .MuiSlider-valueLabel": {
-    //               backgroundColor: color(survey[slider.surveyKey]),
-    //             },
-    //           }}
-    //           valueLabelDisplay="auto"
-    //           color="primary"
-    //           onChange={(e, value) =>
-    //             updateValue(slider.surveyKey, value as number)
-    //           }
-    //           value={survey[slider.surveyKey]}
-    //         />
-    //
-    //         <div className={"flex flex-row justify-between align-center"}>
-    //           <p className={"paragraph"}>{slider.min}</p>
-    //           <p className={"paragraph"}>{slider.max}</p>
-    //         </div>
-    //
-    //         <br></br>
-    //       </div>
-    //     </div>
-    //   ))}
-    //   <div className="flex flex-center">
-    //     <Button onClick={handleSubmit} />
-    //   </div>
-    // </div>
   );
 }

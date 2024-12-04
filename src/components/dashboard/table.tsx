@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { convertMonthToString, getColorFromNumber } from "./types";
 import { IonIcon } from "@ionic/react";
 import { chevronBack, chevronForward } from "ionicons/icons";
+import { ApiSurvey } from "../../store/useStore";
 
 interface MoodData {
   weekDay: string;
@@ -23,16 +24,15 @@ interface MoodProps {
 }
 
 interface DashboardTableProps {
-  weekDates: any[];
+  weekDates: Date[];
   boardYear: number | number[];
   boardStartMonth: number;
   boardEndMonth: number | undefined;
-  dashboardData: any;
+  dashboardData: ApiSurvey[];
   handleChangeRangeWeek: (weekDates: Date[], action: string) => void;
 }
 export function DashboardTable({
   weekDates,
-  boardYear,
   boardStartMonth,
   boardEndMonth,
   dashboardData,
@@ -82,7 +82,6 @@ export function DashboardTable({
             </div>
           )}
         </div>
-        {/*<div className={"text-main-light-green"}>{boardYear}</div>*/}
         <IonIcon
           onClick={() => handleChangeRangeWeek(weekDates, "plus_week")}
           className={"cursor-pointer"}
@@ -96,8 +95,8 @@ export function DashboardTable({
           <tr>
             <th className=" "></th>
 
-            {weekDates.map((element) => (
-              <th key={element} className="text-xs font-medium">
+            {weekDates.map((element, index) => (
+              <th key={index} className="text-xs font-medium">
                 {element.getDate()}
               </th>
             ))}
@@ -116,7 +115,6 @@ export function DashboardTable({
                   <div className={"bg-black-900 rounded-md shadow-lg"}>
                     <div
                       className={
-                        // dashboardData &&
                         (dashboardData
                           ? getColorFromNumber(dashboardData[idx][moodType.key])
                           : "bg-white") +

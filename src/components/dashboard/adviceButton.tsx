@@ -1,6 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Popup } from "../layout/popup";
-import { Button } from "../layout/button";
 import { IonIcon } from "@ionic/react";
 import {
   bedOutline,
@@ -19,6 +18,10 @@ import {
 import { getRandomElements } from "./types";
 
 export function AdviceButton({ moodType }: { moodType: string }) {
+  let advice = "";
+  let adviceDescription: { [key: string]: string | undefined }[] = [];
+  let icon = "";
+  let adviceTitle = "";
   const adviceArray = {
     sleep: {
       adviceName: "sleep",
@@ -54,10 +57,7 @@ export function AdviceButton({ moodType }: { moodType: string }) {
       description: getRandomElements(calmnessTips),
     },
   };
-  let advice = "";
-  let adviceDescription: { [key: string]: string }[] = [];
-  let icon = "";
-  let adviceTitle = "";
+
   switch (moodType) {
     case "sleep":
       icon = adviceArray.sleep.iconName;

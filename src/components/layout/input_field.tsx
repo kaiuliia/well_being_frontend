@@ -23,7 +23,6 @@ export const Input = (props: InputProps) => {
       name={props.name}
       type={props.type}
       id={props.id}
-      // label={props.label}
       autoComplete={props.autoComplete}
       value={props.value}
       placeholder={props.placeholder}

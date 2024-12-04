@@ -32,17 +32,17 @@ export function convertMonthToString(month: number): string {
 
 //DASHBOARD VIEW FUNCTIONS
 
-export const getColorFromNumber = (point: string | null) => {
+export const getColorFromNumber = (point: number | null) => {
   if (point === null) {
     return "bg-black-700";
   }
-  if (Number(point) === 0) {
+  if (point === 0) {
     return "bg-black-700 border-[1px] border-black";
   }
 
-  if (Number(point) < 30) {
+  if (point < 30) {
     return "bg-scale-light";
-  } else if (Number(point) >= 30 && Number(point) <= 70) {
+  } else if (point >= 30 && point <= 70) {
     return "bg-scale-medium";
   } else {
     return "bg-scale-dark";
@@ -123,13 +123,13 @@ export const capitalizeFirstLetter = (name: string | null) => {
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
 
-export function getRandomElements(arr: any) {
-  const arrCopy = [...arr];
+export function getRandomElements<T>(array: T[]): T[] {
+  const arrayCopy = [...array];
 
-  for (let i = arrCopy.length - 1; i > 0; i--) {
+  for (let i = arrayCopy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [arrCopy[i], arrCopy[j]] = [arrCopy[j], arrCopy[i]];
+    [arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]];
   }
 
-  return arrCopy.slice(0, 3);
+  return arrayCopy.slice(0, 3);
 }

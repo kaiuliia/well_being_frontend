@@ -2,11 +2,9 @@ import React from "react";
 import { Button } from "./button";
 
 interface PopupProps {
-  description: { [key: string]: string }[];
+  description: { [key: string]: string | undefined }[];
   title: string;
-
   close: () => void;
-  // onClose: onClose;
 }
 export const Popup = ({ description, title, close }: PopupProps) => {
   return (

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { capitalizeFirstLetter, formatDate, logOut } from "./types";
+import React, { useEffect } from "react";
+import { capitalizeFirstLetter } from "./types";
 import DatePicker from "react-datepicker";
 import { DashboardTable } from "./table";
 import { Advice } from "./advice";
 import { Button } from "../layout/button";
-import { useLocalStore } from "../../store/useStore";
+import { useLocalStore, ApiSurvey } from "../../store/useStore";
 interface DashboardProps {
-  wholeWeek: any;
+  wholeWeek: ApiSurvey[];
   weekDates: Date[];
   boardYear: number | number[];
   boardStartMonth: number;
@@ -27,10 +27,9 @@ export function Dashboard({
 }: DashboardProps) {
   const name = localStorage.getItem("name");
   const { advicesArray, getTodayAdvice } = useLocalStore();
-
   useEffect(() => {
     const fetchAdvice = async () => {
-      const response = await getTodayAdvice();
+      await getTodayAdvice();
     };
 
     fetchAdvice();
@@ -57,7 +56,7 @@ export function Dashboard({
           </p>
           {advicesArray?.length > 0 ? (
             <p className="text-md font-normal text-left text-white pt-[1.5rem]">
-              It's time for self care. See advices
+              Time for self care. See advices
             </p>
           ) : (
             <p className="text-md font-normal text-left text-white pt-[1rem]">
@@ -68,18 +67,6 @@ export function Dashboard({
         {advicesArray?.length > 0 && <Advice />}
 
         <br />
-        {/*<button*/}
-        {/*  onClick={() => handleChangeRangeWeek(weekDates, "minus_year")}*/}
-        {/*  className={"pl-[10rem] font-extrabold text-2xl"}*/}
-        {/*>*/}
-        {/*  - year*/}
-        {/*</button>{" "}*/}
-        {/*<button*/}
-        {/*  onClick={() => handleChangeRangeWeek(weekDates, "plus_year")}*/}
-        {/*  className={"pl-[1rem] font-extrabold text-2xl"}*/}
-        {/*>*/}
-        {/*  + year*/}
-        {/*</button>*/}
         <div className={"lg:flex lg:flex-col lg:gap-5"}>
           <div className={"before::bg-gray-700"}>
             <DashboardTable
