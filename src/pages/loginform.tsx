@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "../components/layout/button";
 import { Input } from "../components/layout/input_field";
+import { API_URL } from "../env";
 
 interface User {
   email: string;
@@ -18,7 +19,7 @@ export function Login() {
 
   const navigate = useNavigate();
   const sendData = async (user: User) => {
-    const response = await fetch("https://api.wellbeing.rusanova.eu/login", {
+    const response = await fetch(`${API_URL}/login`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-type": "application/json" },

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../components/layout/button";
 import { Input } from "../components/layout/input_field";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../env";
 
 interface User {
   name: string;
@@ -21,7 +22,7 @@ export function Register({ title }: { title: string }) {
 
   const navigate = useNavigate();
   const sendData = async (user: User) => {
-    const response = await fetch("https://api.wellbeing.rusanova.eu/register", {
+    const response = await fetch(`${API_URL}/register`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-type": "application/json" },

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { formatDate, Survey } from "../components/dashboard/types";
+import { API_URL } from "../env";
 
 export interface ApiSurvey {
   id: string;
@@ -89,7 +90,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
 
     try {
       const response = await fetch(
-        `https://api.wellbeing.rusanova.eu/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
+        `${API_URL}/survey?startDate=${isoStartDate}&endDate=${isoEndDate}`,
         {
           method: "GET",
           credentials: "include",
@@ -117,13 +118,10 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   getTodayAdvice: async () => {
     const { setAdviceToday, setAdvicesArray } = get();
     try {
-      const response = await fetch(
-        `https://api.wellbeing.rusanova.eu/survey/today`,
-        {
-          method: "GET",
-          credentials: "include",
-        },
-      );
+      const response = await fetch(`${API_URL}/survey/today`, {
+        method: "GET",
+        credentials: "include",
+      });
       if (response.status > 299) {
         console.log("fetch error");
       } else {
@@ -160,7 +158,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
 
   postSurveyData: async (survey: Survey) => {
     try {
-      const response = await fetch("https://api.wellbeing.rusanova.eu/survey", {
+      const response = await fetch(`${API_URL}/survey`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-type": "application/json" },

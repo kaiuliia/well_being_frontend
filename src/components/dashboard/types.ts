@@ -1,5 +1,6 @@
 import React from "react";
 import { Survey } from "./survey";
+import { API_URL } from "../../env";
 
 export type FormEvent = React.FormEvent<HTMLFormElement>;
 export type MouseEvent = React.MouseEvent<HTMLButtonElement>;
@@ -106,15 +107,29 @@ export function formatDate(date: Date) {
 
 //USERDATA
 
-export const logOut = async () => {
-  const response = await fetch("http://localhost:9090/logout", {
+// export const logOut = async () => {
+//   const response = await fetch("http://localhost:9090/logout", {
+//     method: "POST",
+//     credentials: "include",
+//   });
+//   if (response.status > 299) {
+//   } else {
+//     localStorage.clear();
+//     window.location.href = "/login";
+//   }
+// };
+
+export const logOut = async (): Promise<void> => {
+  const response = await fetch(`${API_URL}/logout`, {
     method: "POST",
     credentials: "include",
   });
-  if (response.status > 299) {
-  } else {
+
+  if (response.ok) {
     localStorage.clear();
     window.location.href = "/login";
+  } else {
+    console.error("Logout failed:", await response.text());
   }
 };
 
