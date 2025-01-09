@@ -56,7 +56,7 @@ export function Login() {
   };
 
   return (
-    <div className={" flex flex-col gap-5 px-2 py-5"}>
+    <div className={"flex flex-col pt-10 px-2 gap-5 lg:w-1/3  w-full"}>
       <div className={"text-white text-[2rem]"}>Sign in</div>
       <div className={"text-white"}>
         Don't have an account?{" "}
@@ -71,7 +71,7 @@ export function Login() {
       </div>
       <form
         onSubmit={handleSubmit}
-        className={"flex items-start lg:w-1/2 flex-col gap-5"}
+        className={"flex items-start flex-col gap-5"}
       >
         <Input
           onChange={handleEmailChange}

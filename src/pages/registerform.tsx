@@ -10,15 +10,14 @@ interface User {
   password: string;
 }
 
-export function Register({ title }: { title: string }) {
+export function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [statusMessage, setStatusMessage] = useState("");
+  const [, setStatusMessage] = useState("");
 
-  // States for checking the errors
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  const [, setSubmitted] = useState(false);
+  const [, setError] = useState(false);
 
   const navigate = useNavigate();
   const sendData = async (user: User) => {
@@ -69,7 +68,7 @@ export function Register({ title }: { title: string }) {
   };
 
   return (
-    <div className={" flex flex-col gap-5 px-2 py-5"}>
+    <div className={"flex flex-col pt-10 px-2 gap-5 lg:w-1/3  w-full"}>
       <div className={"text-white text-[2rem]"}>Register</div>
       <div className={"text-white"}>
         Already have an account?{" "}
@@ -84,7 +83,7 @@ export function Register({ title }: { title: string }) {
       </div>
       <form
         onSubmit={handleSubmit}
-        className={"flex items-start lg:w-1/2 flex-col gap-5"}
+        className={"flex items-start flex-col gap-5"}
       >
         <Input
           autoComplete="given-name"

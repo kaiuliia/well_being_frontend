@@ -11,10 +11,10 @@ import { Entry } from "./pages/entry";
 
 function App() {
   return (
-    <div className={"container h-screen"}>
+    <div className={"flex justify-center p-5 h-screen"}>
       <Routes>
         <Route path="/" element={<Entry />} />
-        <Route path="/register" element={<Register title="register" />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user/home" element={<Home />} />
         <Route path="/user/survey" element={<Survey />} />
