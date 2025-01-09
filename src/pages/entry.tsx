@@ -9,6 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 export function Entry() {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("name")) {
+      navigate("user/home");
+    }
+  }, []);
   return (
     <div
       className={

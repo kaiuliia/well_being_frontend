@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "../components/layout/button";
@@ -54,7 +54,11 @@ export function Login() {
       setPassword("");
     }
   };
-
+  useEffect(() => {
+    if (localStorage.getItem("name")) {
+      navigate("../user/home");
+    }
+  }, []);
   return (
     <div className={"flex flex-col pt-10 px-2 gap-5 lg:w-1/3  w-full"}>
       <div className={"text-white text-[2rem]"}>Sign in</div>

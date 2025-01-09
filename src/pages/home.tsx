@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocalStore } from "../store/useStore";
 import { logOut } from "../components/dashboard/types";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
   const [boardYear, setBoardYear] = useState<number | number[]>(
@@ -15,7 +16,7 @@ export function Home() {
   );
   const { weekDates, setWeekDates, dashboard, fetchAndUpdateDashboard } =
     useLocalStore();
-
+  const navigate = useNavigate();
   const [boardEndMonth, setBoardEndMonth] = useState<number>();
   const [selectedDate, setSelectedDate] = useState(new Date());
 
