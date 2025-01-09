@@ -29,12 +29,13 @@ export function Dashboard({
   const { advicesArray, getTodayAdvice } = useLocalStore();
   useEffect(() => {
     const fetchAdvice = async () => {
-      await getTodayAdvice();
+      const resp = await getTodayAdvice();
+      console.log(resp);
     };
 
     fetchAdvice();
   }, []);
-
+  console.log("1", advicesArray);
   return (
     <>
       <div className="">

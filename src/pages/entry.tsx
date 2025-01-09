@@ -15,7 +15,8 @@ export function Entry() {
         "w-[20rem] h-[100%] flex flex-col relative gap-5 justify-center"
       }
     >
-      <img className={"w-[20rem] h-[20rem]"} src={logo} alt={""} />
+      <img className={"w-[15rem] h-[15rem] self-center"} src={logo} alt={""} />
+      <div className={"text-white self-center"}>Your mental health tracker</div>
       <Button
         onClick={() => {
           navigate("/login");
