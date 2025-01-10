@@ -69,8 +69,8 @@ export function Dashboard({
             </p>
           )}
         </div>
-        {/*{advicesArray?.length > 0 && <Advice />}*/}
-        <Advice />
+        {advicesArray?.length > 0 && <Advice />}
+        {/*<Advice />*/}
         <br />
         <div className={"lg:flex lg:flex-col lg:gap-5"}>
           <div className={"before::bg-gray-700"}>
