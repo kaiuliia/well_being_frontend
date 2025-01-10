@@ -31,6 +31,9 @@ export function Register() {
 
     if (response.status > 299) {
       setStatusMessage("error");
+    } else if (response.status === 401) {
+      localStorage.removeItem("name");
+      navigate("/login");
     } else {
       setStatusMessage("Welcome!");
       localStorage.setItem("name", message.name);

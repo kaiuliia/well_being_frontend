@@ -30,6 +30,9 @@ export function Login() {
       setErrorMessage(true);
       setPassword("");
       setStatusMessage(error.error);
+    } else if (response.status === 401) {
+      localStorage.removeItem("name");
+      navigate("/login");
     } else {
       const message = await response.json();
       setStatusMessage(message.name);
