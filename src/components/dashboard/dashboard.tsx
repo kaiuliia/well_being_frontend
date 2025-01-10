@@ -28,14 +28,11 @@ export function Dashboard({
   const name = localStorage.getItem("name");
   const { advicesArray, getTodayAdvice } = useLocalStore();
   useEffect(() => {
-    const fetchAdvice = async () => {
-      const resp = await getTodayAdvice();
-      console.log(resp);
-    };
+    const fetchAdvice = async () => {};
 
     fetchAdvice();
   }, []);
-  console.log("1", advicesArray);
+
   return (
     <>
       <div className="">
