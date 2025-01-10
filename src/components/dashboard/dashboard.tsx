@@ -26,9 +26,16 @@ export function Dashboard({
   handleChangeRangeWeek,
 }: DashboardProps) {
   const name = localStorage.getItem("name");
-  const { advicesArray, getTodayAdvice } = useLocalStore();
+  const { advicesArray, setAdvicesArray, getTodayAdvice } = useLocalStore();
   useEffect(() => {
-    const fetchAdvice = async () => {};
+    const fetchAdvice = async () => {
+      try {
+        const advice = await getTodayAdvice();
+        console.log("advice", advice);
+      } catch (error) {
+        console.error("Error fetching advice:", error);
+      }
+    };
 
     fetchAdvice();
   }, []);
@@ -62,8 +69,8 @@ export function Dashboard({
             </p>
           )}
         </div>
-        {advicesArray?.length > 0 && <Advice />}
-
+        {/*{advicesArray?.length > 0 && <Advice />}*/}
+        <Advice />
         <br />
         <div className={"lg:flex lg:flex-col lg:gap-5"}>
           <div className={"before::bg-gray-700"}>

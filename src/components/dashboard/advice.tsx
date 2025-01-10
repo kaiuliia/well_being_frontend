@@ -5,7 +5,7 @@ import { useLocalStore } from "../../store/useStore";
 
 export function Advice() {
   const { advicesArray } = useLocalStore();
-
+  console.log("advicesArray", advicesArray);
   return (
     <>
       <div className={"flex flex-row py-7 gap-5"}>

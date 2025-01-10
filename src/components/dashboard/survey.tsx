@@ -38,7 +38,7 @@ export function Survey() {
   const handleSubmit = async (): Promise<void> => {
     await postSurveyData(survey);
     await fetchAndUpdateDashboard();
-    await getTodayAdvice();
+    // await getTodayAdvice();
 
     navigate("/user/home");
   };

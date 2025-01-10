@@ -126,7 +126,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         console.log("fetch error");
       } else {
         const data = await response.json();
-
+        console.log("2", data);
         if (data.length > 0) {
           setAdviceToday(true);
           const lastDashBoardData = data.find(
@@ -143,9 +143,12 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
 
           const map = new Map(Object.entries(filteredData));
           const entriesArray = Array.from(map.entries());
-
+          console.log(
+            "entriesArray",
+            entriesArray.filter((element) => Number(element[1]) < 50),
+          );
           const keysWithValuesLessThan50 = entriesArray
-            .filter(([value]) => Number(value) < 50)
+            .filter((element) => Number(element[1]) < 50)
             .map(([key]) => key);
 
           setAdvicesArray([...keysWithValuesLessThan50]);
