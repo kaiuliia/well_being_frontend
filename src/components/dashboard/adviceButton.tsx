@@ -17,7 +17,14 @@ import {
 } from "./adviceLibrary";
 import { getRandomElements } from "./types";
 
-export function AdviceButton({ moodType }: { moodType: string }) {
+export function AdviceButton({
+  title,
+  description,
+}: {
+  title: string;
+  description: string[];
+}) {
+  //TODO description now from from not from back. needs to be fixed
   let advice = "";
   let adviceDescription: { [key: string]: string | undefined }[] = [];
   let icon = "";
@@ -58,7 +65,7 @@ export function AdviceButton({ moodType }: { moodType: string }) {
     },
   };
 
-  switch (moodType) {
+  switch (title) {
     case "sleep":
       icon = adviceArray.sleep.iconName;
       advice = adviceArray.sleep.adviceName;

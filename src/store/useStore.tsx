@@ -12,7 +12,10 @@ export interface ApiSurvey {
   calmness: number;
   yourself_time: number;
 }
-
+interface Advice {
+  title: string;
+  advices: string[];
+}
 export interface useLocalState {
   weekDates: Date[];
   setWeekDates: (weekDates: Date[]) => void;
@@ -22,8 +25,8 @@ export interface useLocalState {
   postSurveyData: (setSurvey: Survey) => Promise<void>;
   adviceToday: boolean;
   setAdviceToday: (adviceToday: boolean) => void;
-  advicesArray: string[];
-  setAdvicesArray: (advicesArray: string[]) => void;
+  advicesArray: Advice[];
+  setAdvicesArray: (advicesArray: Advice[]) => void;
 }
 
 function fillMissingDates(
@@ -71,8 +74,9 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   adviceToday: true,
   setAdviceToday: (newAdviceToday: boolean) =>
     set({ adviceToday: newAdviceToday }),
-  advicesArray: [],
-  setAdvicesArray: (newAdvicesArray: string[]) =>
+
+  advicesArray: [] as Advice[],
+  setAdvicesArray: (newAdvicesArray: Advice[]) =>
     set({ advicesArray: newAdvicesArray }),
   fetchAndUpdateDashboard: async (): Promise<void> => {
     const { weekDates } = get();
@@ -118,7 +122,7 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
   getTodayAdvice: async () => {
     const { setAdviceToday, setAdvicesArray } = get();
     try {
-      const response = await fetch(`${API_URL}/survey/today`, {
+      const response = await fetch(`${API_URL}/dashboard/advice`, {
         method: "GET",
         credentials: "include",
       });
@@ -126,32 +130,10 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         console.log("fetch error");
       } else {
         const data = await response.json();
-        console.log("2", data);
+
         if (data.length > 0) {
           setAdviceToday(true);
-          const lastDashBoardData = data.find(
-            (element: ApiSurvey) => element.date === formatDate(new Date()),
-          );
-
-          const filteredData = {
-            general_mood: lastDashBoardData?.general_mood,
-            activities: lastDashBoardData?.activities,
-            sleep: lastDashBoardData?.sleep,
-            calmness: lastDashBoardData?.calmness,
-            yourself_time: lastDashBoardData?.yourself_time,
-          };
-
-          const map = new Map(Object.entries(filteredData));
-          const entriesArray = Array.from(map.entries());
-          console.log(
-            "entriesArray",
-            entriesArray.filter((element) => Number(element[1]) < 50),
-          );
-          const keysWithValuesLessThan50 = entriesArray
-            .filter((element) => Number(element[1]) < 50)
-            .map(([key]) => key);
-
-          setAdvicesArray([...keysWithValuesLessThan50]);
+          setAdvicesArray(data);
         }
       }
     } catch (error) {

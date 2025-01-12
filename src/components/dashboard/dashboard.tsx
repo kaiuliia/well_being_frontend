@@ -31,7 +31,6 @@ export function Dashboard({
     const fetchAdvice = async () => {
       try {
         const advice = await getTodayAdvice();
-        console.log("advice", advice);
       } catch (error) {
         console.error("Error fetching advice:", error);
       }
