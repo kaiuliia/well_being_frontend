@@ -130,10 +130,33 @@ export const useLocalStore = create<useLocalState>((set, get) => ({
         console.log("fetch error");
       } else {
         const data = await response.json();
-
+        console.log("2", data);
         if (data.length > 0) {
           setAdviceToday(true);
           setAdvicesArray(data);
+          // const lastDashBoardData = data.find(
+          //   (element: ApiSurvey) => element.date === formatDate(new Date()),
+          // );
+
+          // const filteredData = {
+          //   general_mood: lastDashBoardData?.general_mood,
+          //   activities: lastDashBoardData?.activities,
+          //   sleep: lastDashBoardData?.sleep,
+          //   calmness: lastDashBoardData?.calmness,
+          //   yourself_time: lastDashBoardData?.yourself_time,
+          // };
+
+          // const map = new Map(Object.entries(filteredData));
+          // const entriesArray = Array.from(map.entries());
+          // console.log(
+          //   "entriesArray",
+          //   entriesArray.filter((element) => Number(element[1]) < 50),
+          // );
+          // const keysWithValuesLessThan50 = entriesArray
+          //   .filter((element) => Number(element[1]) < 50)
+          //   .map(([key]) => key);
+          //
+          // setAdvicesArray([...keysWithValuesLessThan50]);
         }
       }
     } catch (error) {
